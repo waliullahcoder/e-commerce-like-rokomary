@@ -25,6 +25,7 @@ class SettingController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // dd($request->all());
         $request->validate([
             'favicon' => 'image|nullable',
             'logo' => 'image|nullable',
@@ -32,7 +33,6 @@ class SettingController extends Controller
             'placeholder' => 'image|nullable',
             'meta_image' => 'image|nullable',
         ]);
-
         $data = Setting::firstOrNew([]);
 
         $data->app_name = $request->app_name;

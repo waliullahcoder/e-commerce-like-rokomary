@@ -16,18 +16,62 @@
                     <div class="row g-4">
 
                         <!-- LEFT : PRODUCT IMAGE -->
-                        <div class="col-lg-4">
-                            <div class="bg-white border rounded p-3"
-                                 style="top:80px">
+                     <!-- LEFT : PRODUCT IMAGE -->
+                    <div class="col-lg-4">
+                        <div class="bg-white border rounded p-3" style="top:80px">
 
-                                <div class="text-center product-image-wrapper">
-                                    <img class="img-fluid product-img"
-                                         src="{{ asset($product->thumbnail) }}"
-                                         alt="{{ $product->name }}">
+                            <div class="text-center product-image-wrapper">
+                                <!-- Clickable image -->
+                                <img id="productThumbnail"
+                                    class="img-fluid rounded product-img"
+                                    src="{{ asset($product->thumbnail) }}"
+                                    alt="{{ $product->name }}"
+                                    style="cursor:pointer; max-height:500px; width:100%; object-fit:contain;"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#imageModal">
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- IMAGE ZOOM MODAL -->
+                    <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content bg-white rounded shadow-lg border-0">
+                                <div class="modal-header border-0">
+                                    <h5 class="modal-title">{{ $product->name }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-
+                                <div class="modal-body text-center p-3">
+                                    <img id="modalImage"
+                                        src="{{ asset($product->thumbnail) }}"
+                                        class="img-fluid rounded"
+                                        style="max-height:80vh; width:auto;">
+                                </div>
+                                <div class="modal-footer justify-content-between border-0">
+                                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <div>
+                                        <button class="btn btn-sm btn-primary" id="zoomIn">+</button>
+                                        <button class="btn btn-sm btn-primary" id="zoomOut">-</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <script>
+                    let zoomLevel = 1;
+                    const modalImage = document.getElementById('modalImage');
+
+                    document.getElementById('zoomIn').addEventListener('click', () => {
+                        zoomLevel += 0.1;
+                        modalImage.style.transform = `scale(${zoomLevel})`;
+                    });
+
+                    document.getElementById('zoomOut').addEventListener('click', () => {
+                        if(zoomLevel > 0.2) zoomLevel -= 0.1;
+                        modalImage.style.transform = `scale(${zoomLevel})`;
+                    });
+                    </script>
+
 
                         <!-- RIGHT : PRODUCT DETAILS -->
                         <div class="col-lg-8">

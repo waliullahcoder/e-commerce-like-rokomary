@@ -28,6 +28,7 @@
             <h5 class="mb-3 pb-3 fs-17 fw-700" style="border-bottom: 1px dashed #e4e5eb;">Product Information</h5>
             <div class="row g-3">
                 <div class="col-sm-6">
+                    <label for="name" class="form-label"><b>Product Name <span class="text-danger">*</span></b></label>
                   <input type="text"
                         name="name"
                         value="{{ old('name') }}"

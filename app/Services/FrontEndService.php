@@ -156,7 +156,7 @@ public function getSubCategoryOthersOnly()
 //ব্র্যান্ডসমূহ
 public function getSubCategoryBrandOnly()
 {
-    return Category::whereNotNull('parent_id')->where('position', 'homepage_brand_category')->get();
+    return Category::whereNotNull('parent_id')->where('position', 'homepage_brands_category')->get();
 }
 
 //--------------Home Page\\\\\\\\\\----------------//

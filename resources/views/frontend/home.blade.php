@@ -398,7 +398,7 @@
                     <div class="swiper carousel" data-items="2" data-xl-items="7" data-lg-items="6" data-md-items="5"
                         data-sm-items="3" data-xs-items="2" data-margin="20" data-dots="false" data-arrows="true">
                         <div class="swiper-wrapper">
-                            @foreach($get_sub_category_brand_only as $item)
+                     @foreach($get_sub_category_brand_only as $item)
                             <div class="swiper-slide">
                                 <a href="{{route('category.singleCategoryPage', $item->id)}}" class="brand-card">
                                     <div class="brand-card-image ratio" style="--bs-aspect-ratio: 100%;">

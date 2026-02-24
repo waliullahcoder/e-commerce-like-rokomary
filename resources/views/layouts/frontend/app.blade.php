@@ -24,6 +24,58 @@
     @include('layouts.frontend.partial.scripts')
     {{-- <script type="text/javascript" src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+
+    
+    {{-- // AJAX Live Search --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+<script>
+$(document).ready(function(){
+
+    $('#product-search-input').on('keyup', function(){
+        let query = $(this).val();
+        if(query.length >= 2) {
+            $.ajax({
+                url: "{{ route('products.search') }}",
+                method: "GET",
+                data: { query: query },
+                success: function(data) {
+                    let html = '';
+                    if(data.length > 0){
+                        html += '<ul class="list-group list-group-flush">';
+                        data.forEach(function(item){
+                            html += `<li class="list-group-item p-2">
+                                        <a href="/product/details/${item.id}" class="d-flex align-items-center gap-2 text-decoration-none text-dark">
+                                            <img src="${item.thumbnail}" width="50" height="50" style="object-fit:cover; border-radius:4px;" alt="${item.name}">
+                                            <div>
+                                                <strong>${item.name}</strong><br>
+                                                <small>${item.name}</small>
+                                            </div>
+                                        </a>
+                                    </li>`;
+                        });
+                        html += '</ul>';
+                        $('#search-results').html(html).fadeIn();
+                    } else {
+                        $('#search-results').html('<div class="p-2">কোন প্রোডাক্ট পাওয়া যায়নি</div>').fadeIn();
+                    }
+                }
+            });
+        } else {
+            $('#search-results').fadeOut();
+        }
+    });
+
+    // Click outside to hide results
+    $(document).on('click', function(e){
+        if(!$(e.target).closest('.search-area').length){
+            $('#search-results').fadeOut();
+        }
+    });
+
+});
+</script>
+
+{{-- Add to cart --}}
 <script>
 $(document).ready(function () {
 
@@ -71,6 +123,8 @@ $(document).ready(function () {
 
 });
 </script>
+
+{{-- Cart update --}}
 <script>
 $(document).ready(function () {
 

@@ -133,52 +133,5 @@ document.querySelectorAll('.has-sub > a').forEach(item => {
 <!-- MOBILE MENU END -->
 
 <!-- JS -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function(){
 
-    // AJAX Live Search
-    $('#product-search-input').on('keyup', function(){
-        let query = $(this).val();
-        if(query.length >= 2) {
-            $.ajax({
-                url: "{{ route('products.search') }}",
-                method: "GET",
-                data: { query: query },
-                success: function(data) {
-                    let html = '';
-                    if(data.length > 0){
-                        html += '<ul class="list-group list-group-flush">';
-                        data.forEach(function(item){
-                            html += `<li class="list-group-item p-2">
-                                        <a href="/product/${item.slug}" class="d-flex align-items-center gap-2 text-decoration-none text-dark">
-                                            <img src="${item.image}" width="50" height="50" style="object-fit:cover; border-radius:4px;" alt="${item.name}">
-                                            <div>
-                                                <strong>${item.name}</strong><br>
-                                                <small>${item.author}</small>
-                                            </div>
-                                        </a>
-                                    </li>`;
-                        });
-                        html += '</ul>';
-                        $('#search-results').html(html).fadeIn();
-                    } else {
-                        $('#search-results').html('<div class="p-2">কোন প্রোডাক্ট পাওয়া যায়নি</div>').fadeIn();
-                    }
-                }
-            });
-        } else {
-            $('#search-results').fadeOut();
-        }
-    });
-
-    // Click outside to hide results
-    $(document).on('click', function(e){
-        if(!$(e.target).closest('.search-area').length){
-            $('#search-results').fadeOut();
-        }
-    });
-
-});
-</script>
 

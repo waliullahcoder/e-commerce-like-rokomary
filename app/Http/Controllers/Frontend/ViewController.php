@@ -63,7 +63,7 @@ class ViewController extends Controller
         $products = Product::where('name', 'LIKE', "%{$query}%")
                             ->orWhere('slug', 'LIKE', "%{$query}%")
                             ->limit(10)
-                            ->get(['name','slug','thumbnail']);
+                            ->get(['id','name','slug','thumbnail']);
         return response()->json($products);
     }
     public function categoryPage($cat_id, $slug, $menu)

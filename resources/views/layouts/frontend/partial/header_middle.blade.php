@@ -17,14 +17,88 @@
                     </a>
                 </div>
                 <div class="search-area d-lg-block d-none">
-                    <form action="#" method="GET">
+                    {{-- <form action="#" method="GET">
                         <div class="search-wrapper">
                             <input type="search" class="search-input form-control" name="query"
                                 placeholder="বইয়ের নাম ও লেখক দিয়ে অনুসন্ধান করুন" required>
                             <button type="submit" class="btn search-btn"><i class="fas fa-search"></i></button>
                         </div>
-                    </form>
+                    </form> --}}
+                    <style>
+                        #search-results {
+                            max-height: 300px;
+                            overflow-y: auto;
+                            border-radius: 4px;
+                        }
+
+                        #search-results ul {
+                            list-style: none;
+                            margin: 0;
+                            padding: 0;
+                        }
+
+                        #search-results li:hover {
+                            background: #f1f1f1;
+                        }
+                    </style>
+                    <form action="#" method="GET" id="product-search-form">
+                    <div class="search-wrapper position-relative">
+                        <input type="text" class="search-input form-control" name="query"
+                            id="product-search-input"
+                            placeholder="প্রোডাক্টের নাম বা লেখক লিখুন" autocomplete="off">
+                        <button type="submit" class="btn search-btn"><i class="fas fa-search"></i></button>
+
+                        <!-- Search Results Container -->
+                        <div id="search-results" class="position-absolute w-100 bg-white border mt-1" style="z-index:1000; display:none;"></div>
+                    </div>
+                </form>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+
+    $('#product-search-input').on('keyup', function(){
+        let query = $(this).val();
+
+        if(query.length >= 2) { // 2 letter থেকে search
+            $.ajax({
+                url: "{{ route('products.search') }}",
+                method: "GET",
+                data: { query: query },
+                success: function(data) {
+                    let html = '';
+                    if(data.length > 0){
+                        html += '<ul class="list-group">';
+                        data.forEach(function(item){
+                            html += `<li class="list-group-item">
+                                        <a href="/product/${item.slug}" class="d-flex align-items-center gap-2">
+                                            <img src="${item.image}" width="50" alt="${item.name}">
+                                            <span>${item.name} - ${item.author}</span>
+                                        </a>
+                                    </li>`;
+                        });
+                        html += '</ul>';
+                        $('#search-results').html(html).fadeIn();
+                    } else {
+                        $('#search-results').html('<div class="p-2">কোন প্রোডাক্ট পাওয়া যায়নি</div>').fadeIn();
+                    }
+                }
+            });
+        } else {
+            $('#search-results').fadeOut();
+        }
+    });
+
+    // Click outside to hide results
+    $(document).on('click', function(e){
+        if(!$(e.target).closest('.search-wrapper').length){
+            $('#search-results').fadeOut();
+        }
+    });
+
+});
+</script>
                 </div>
+                
                 <div class="action-area">
                     <div class="header-links">
                         <a href="{{ route('cart.index') }}" class="cart-icon">

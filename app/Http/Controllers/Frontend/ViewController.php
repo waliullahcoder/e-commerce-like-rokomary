@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Slider;
+use App\Models\Product;
 use App\Models\HomeSection;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -53,6 +54,17 @@ class ViewController extends Controller
             'get_sub_category_others_only',
             'get_sub_category_brand_only'
         ));
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->get('query');
+        
+        $products = Product::where('name', 'LIKE', "%{$query}%")
+                            ->orWhere('slug', 'LIKE', "%{$query}%")
+                            ->limit(10)
+                            ->get(['name','slug','thumbnail']);
+        return response()->json($products);
     }
     public function categoryPage($cat_id, $slug, $menu)
     {

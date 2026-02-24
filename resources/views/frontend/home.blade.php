@@ -103,7 +103,7 @@
                                             </div>
                                             
                                            <a href="{{route('product.details', $product->id)}}">
-                                            <figure class="product-card-image ratio" style="--bs-aspect-ratio: 130%">
+                                            <figure class="product-card-image ratio" style="--bs-aspect-ratio: 150%">
                                                 <img class="object-fit-contain product-img" src="{{ asset($product->thumbnail) }}"
                                                     alt="">
                                             </figure>
@@ -195,7 +195,7 @@
                                             </div>
                                             
                                            <a href="{{route('product.details', $product->id)}}">
-                                            <figure class="product-card-image ratio" style="--bs-aspect-ratio: 130%">
+                                            <figure class="product-card-image ratio" style="--bs-aspect-ratio: 150%">
                                                 <img class="object-fit-contain product-img" src="{{ asset($product->thumbnail) }}"
                                                     alt="">
                                             </figure>
@@ -301,7 +301,7 @@
                                             </div>
                                             
                                            <a href="{{route('product.details', $product->id)}}">
-                                            <figure class="product-card-image ratio" style="--bs-aspect-ratio: 130%">
+                                            <figure class="product-card-image ratio" style="--bs-aspect-ratio: 150%">
                                                 <img class="object-fit-contain product-img" src="{{ asset($product->thumbnail) }}"
                                                     alt="">
                                             </figure>

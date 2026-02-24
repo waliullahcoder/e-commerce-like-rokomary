@@ -14,8 +14,6 @@
                 <div class="product-card">
 
                     <div class="row g-4">
-
-                        <!-- LEFT : PRODUCT IMAGE -->
                      <!-- LEFT : PRODUCT IMAGE -->
                     <div class="col-lg-4">
                         <div class="bg-white border rounded p-3" style="top:80px">

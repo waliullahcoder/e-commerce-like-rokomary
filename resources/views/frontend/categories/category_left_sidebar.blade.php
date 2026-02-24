@@ -2,21 +2,22 @@
                 <div class="filter-box">
                     <h5 class="filter-title">ফিল্টার</h5>
                     <!-- SUBJECT -->
-                    <form id="filter-form">
+                    @if($subcategories->count() > 0)  
+                    <form id="filter-form"> 
                     <div class="filter-group">
                         <h6>বিষয়</h6>
                         <ul>
                             @foreach($subcategories as $sub)
                                 <li>
                                     <label>
-                                        <input type="checkbox" name="category_id[]" value="{{ $sub->id }}">
-                                        {{ $sub->name }}
+                                        <a href="{{route('category.singleCategoryPage', $sub->id)}}" class="section-link"> {{ $sub->name }}</a>
                                     </label>
                                 </li>
                             @endforeach
                         </ul>
                     </div>
                     </form>
+                    @endif
                     <!-- AUTHOR -->
                     <div class="filter-group">
                         <h6>লেখক</h6>

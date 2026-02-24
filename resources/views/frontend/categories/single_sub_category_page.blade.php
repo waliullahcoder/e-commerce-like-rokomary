@@ -6,54 +6,9 @@
         <div class="row">
 
             <!-- LEFT SIDEBAR -->
-            <div class="col-lg-3 d-none d-lg-block">
-                <div class="filter-box">
-                    <h5 class="filter-title">ফিল্টার</h5>
-
-                    <!-- SUBJECT -->
-                    <div class="filter-group">
-                        <h6>বিষয়</h6>
-                        <ul>
-                            @foreach($subcategories as $sub)
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        {{ $sub->name }}
-                                    </label>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-
-                    <!-- AUTHOR -->
-                    <div class="filter-group">
-                        <h6>লেখক</h6>
-                        <ul>
-                            @foreach($authors ?? [] as $author)
-                                <li>
-                                    <label>
-                                        <input type="checkbox">
-                                        {{ $author->name }}
-                                    </label>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-
-                    <!-- PRICE -->
-                    <div class="filter-group">
-                        <h6>দাম</h6>
-                        <ul>
-                            <li><label><input type="checkbox"> ০ – ২০০ ৳</label></li>
-                            <li><label><input type="checkbox"> ২০১ – ৫০০ ৳</label></li>
-                            <li><label><input type="checkbox"> ৫০০+ ৳</label></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+             @include('frontend.categories.category_left_sidebar')
             <!-- END LEFT SIDEBAR -->
-
-
+  
             <!-- RIGHT CONTENT -->
             <div class="col-lg-9">
                 <div class="category-product-section pb-4">
@@ -66,7 +21,7 @@
                                 <h3 class="section-title">
                                     {{ $single_sub_category->name }}
                                 </h3>
-                            </div>
+                            </div>  
 
                             <!-- PRODUCTS -->
                             @if($single_sub_category->products->count() > 0)

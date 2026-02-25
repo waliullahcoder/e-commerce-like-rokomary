@@ -76,7 +76,11 @@ class ViewController extends Controller
         $publications = $this->frontEndService->getPublication();
         $subcategories = $this->frontEndService->getProductData($cat_id);
         $bookcat_count = Category::where('type', 'book')->where('parent_id', $cat_id)->count();
-        return view('frontend.categories.index', compact('menus','subcategories','authors','publications','bookcat_count'));
+        $relatedProducts = Product::where('category_id', $cat_id)
+                    ->latest()
+                    ->take(8)
+                    ->get();
+        return view('frontend.categories.index', compact('menus','subcategories','authors','publications','bookcat_count','relatedProducts'));
     }
     public function singleCategoryPage($sub_cat_id)
     {
@@ -86,7 +90,11 @@ class ViewController extends Controller
         $authors = $this->frontEndService->getAuthor();
         $publications = $this->frontEndService->getPublication();
         $bookcat_count = Category::where('type', 'book')->where('id', $sub_cat_id)->count();
-        return view('frontend.categories.single_sub_category_page', compact('menus','subcategories','single_sub_category','authors','publications','bookcat_count'));
+        $relatedProducts = Product::where('category_id', $sub_cat_id)
+                    ->latest()
+                    ->take(8)
+                    ->get();
+        return view('frontend.categories.single_sub_category_page', compact('menus','subcategories','single_sub_category','authors','publications','bookcat_count','relatedProducts'));
     }
 
     //Category Page Left Filter

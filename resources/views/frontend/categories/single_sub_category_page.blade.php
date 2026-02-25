@@ -83,6 +83,37 @@
                             </li>
                         </ul>
                     </div>
+
+                    @if($relatedProducts->count() > 0)
+                    <div class="related-products mt-4">
+                        <h6 class="mb-3">Others Related Products</h6>
+                        <div class="row g-2">
+                            @foreach($relatedProducts->take(8) as $product)
+                                <div class="col-6">
+                                    <div class="border p-2 h-100">
+
+                                        <a href="{{ route('product.details', $product->id) }}" class="text-decoration-none text-dark">
+                                            <img src="{{ asset($product->thumbnail) }}"
+                                                class="img-fluid mb-2"
+                                                alt="{{ $product->name }}">
+
+                                            <small class="d-block text-truncate">
+                                                {{ $product->name }}
+                                            </small>
+
+                                            <strong class="d-block">
+                                                {{ number_format($product->sale_price ?? $product->regular_price) }} ৳
+                                            </strong>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endif
+
+                    
                 </div>
             </div>
             <!-- END LEFT SIDEBAR -->

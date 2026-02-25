@@ -26,6 +26,7 @@
                     </div>
                     </form>
                     @endif
+                    @if($bookcat_count > 0)  
                     <!-- AUTHOR -->
                     <div class="filter-group">
                         <h6>লেখক</h6>
@@ -55,6 +56,7 @@
                             @endforeach
                         </ul>
                     </div>
+                    @endif
                     <div class="filter-group">
                         <h6>দাম অনুযায়ী</h6>
 
@@ -128,11 +130,15 @@
            
     <div class="col-lg-9">
     <div class="category-product-section pb-4">
+
         <div class="container">
-             <div id="product-list">
-             @include('frontend.categories.partials.product_list')
-             </div>
+             <div id="default-products">
+                @include('frontend.categories.partials.product_list')
+            </div>
+            <div id="filtered-products"></div>
         </div>
+
+
     </div>
 </div>
 

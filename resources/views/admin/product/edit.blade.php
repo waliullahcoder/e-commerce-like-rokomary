@@ -58,7 +58,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-12">
+                <div class="col-6">
                     <label for="vendor_id" class="form-label"><b>Suppliers</b></label>
                     <select name="vendor_id[]" id="vendor_id" class="form-select select" data-placeholder="Select Vendors"
                         multiple>
@@ -66,6 +66,17 @@
                         @foreach ($additionalData['vendors'] as $item)
                             <option value="{{ $item->id }}"
                                 {{ in_array($item->id, old('vendor_id', $data->vendors->pluck('id')->toArray())) ? 'selected' : '' }}>
+                                {{ $item->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                 <div class="col-sm-6">
+                    <label for="publication_id" class="form-label"><b>Publication <span class="text-danger">*</span></b></label>
+                    <select class="form-select select" name="publication_id" id="publication_id"
+                        data-placeholder="Select Publication" required>
+                        <option value=""></option>
+                        @foreach ($additionalData['publications'] as $item)
+                            <option value="{{ $item->id }}" {{ $data->publication_id == $item->id ? 'selected' : '' }}>
                                 {{ $item->name }}</option>
                         @endforeach
                     </select>

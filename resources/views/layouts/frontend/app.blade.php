@@ -32,30 +32,34 @@ $(document).ready(function(){
 
     $(document).on('change', '.publication-filter', function(){
 
-        console.log("Checkbox clicked");
-
         let publications = [];
 
         $('.publication-filter:checked').each(function(){
             publications.push($(this).val());
         });
 
-        console.log(publications);
+        if(publications.length > 0){
 
-        $.ajax({
-            url: "{{ route('filter.products') }}",
-            type: "GET",
-            data: {
-                publications: publications
-            },
-            success: function(response){
-                console.log("Success");
-                $('#product-list').html(response);
-            },
-            error: function(xhr){
-                console.log(xhr.responseText);
-            }
-        });
+            $.ajax({
+                url: "{{ route('filter.products') }}",
+                type: "GET",
+                data: { publications: publications },
+                success: function(response){
+
+                    // default hide
+                    $('#default-products').hide();
+
+                    // show filtered data
+                    $('#filtered-products').html(response).show();
+                }
+            });
+
+        }else{
+
+            // checkbox uncheck করলে আবার default show
+            $('#filtered-products').hide().html('');
+            $('#default-products').show();
+        }
 
     });
 

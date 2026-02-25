@@ -57,6 +57,7 @@ class ViewController extends Controller
         ));
     }
 
+    //Global search home
     public function search(Request $request)
     {
         $query = $request->get('query');
@@ -67,13 +68,15 @@ class ViewController extends Controller
                             ->get(['id','name','slug','thumbnail']);
         return response()->json($products);
     }
+
     public function categoryPage($cat_id, $slug, $menu)
     {
         $menus = $this->frontEndService->getMenu();
         $authors = $this->frontEndService->getAuthor();
         $publications = $this->frontEndService->getPublication();
         $subcategories = $this->frontEndService->getProductData($cat_id);
-        return view('frontend.categories.index', compact('menus','subcategories','authors','publications'));
+        $bookcat_count = Category::where('type', 'book')->where('parent_id', $cat_id)->count();
+        return view('frontend.categories.index', compact('menus','subcategories','authors','publications','bookcat_count'));
     }
     public function filterProducts(Request $request)
     {
@@ -85,8 +88,8 @@ class ViewController extends Controller
                 $query->whereIn('publication_id', $publicationIds);
             }
 
-        }])->get();
-
+        }])->where('type', 'book')->get();
+        
         return view('frontend.categories.partials.product_list', compact('subcategories'))->render();
     }
 

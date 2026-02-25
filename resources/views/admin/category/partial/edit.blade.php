@@ -22,6 +22,17 @@
                                value="{{ $data->name }}"
                                required>
                     </div>
+                     <div class="col-12">
+                                    <label for="type" class="form-label"><b>Type</b></label>
+                                    <select name="type" id="type" class="form-select" required>
+                                      <option value="book" {{ $data->type == 'book' ? 'selected' : '' }}>
+                                        Book
+                                    </option>
+                                    <option value="other" {{ $data->type == 'other' ? 'selected' : '' }}>
+                                        Other
+                                    </option>
+                                </select>
+                        </div>
 
                     <div class="mb-2">
                                     <label for="position" class="form-label"><b>Position</b></label>

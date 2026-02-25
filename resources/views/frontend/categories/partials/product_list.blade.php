@@ -1,4 +1,9 @@
 @foreach($subcategories as $sub)
+<style>
+    .filtered-products {
+        width:25%;
+    }
+</style>
     <div class="section-card">
                     <!-- Section Header -->
                     <div class="section-header mb-3">
@@ -24,7 +29,7 @@
                                 <!-- Product Slide -->
                               @if($sub->products->count()> 0)
                                @foreach($sub->products as $product)
-                                <div class="swiper-slide">
+                                <div class="swiper-slide filtered-products">
                                     <div class="p-sm-2 p-1">
                                         <div class="product-card-wrapper">
                                             <div class="product-card">

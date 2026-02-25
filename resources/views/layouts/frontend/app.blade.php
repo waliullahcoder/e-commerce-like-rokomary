@@ -25,7 +25,7 @@
     {{-- <script type="text/javascript" src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 
-    {{-- filterleft side --}}
+{{-- Cat page for filterleft side --}}
 <script>
 $(document).ready(function(){
 
@@ -72,6 +72,61 @@ $(document).ready(function(){
             // সব unchecked হলে default show
             $('#filtered-products').hide().html('');
             $('#default-products').show();
+        }
+
+    });
+
+});
+</script>
+
+
+{{--Sub Cat page for filterleft side --}}
+<script>
+$(document).ready(function(){
+
+    $(document).on('change', '.publication-filter-sub, .author-filter-sub, .author-filter-sub, input[name="price_sort_sub"], .price-range-filter-sub', function(){
+
+        let publications = [];
+        let authors = [];
+        let priceSort = $('input[name="price_sort_sub"]:checked').val() || null;
+        let priceRanges = [];
+
+        $('.publication-filter-sub:checked').each(function(){
+            publications.push($(this).val());
+        });
+
+        $('.author-filter-sub:checked').each(function(){
+            authors.push($(this).val());
+        });
+
+         $('.price-range-filter-sub:checked').each(function(){
+            priceRanges.push($(this).val());
+        });
+
+
+        // যদি যেকোনো একটাও checked থাকে
+        if(publications.length > 0 || authors.length > 0 || priceSort != null || priceRanges.length > 0){
+
+            $.ajax({
+                url: "{{ route('filter.sub.products') }}",
+                type: "GET",
+                data: { 
+                    publications: publications,
+                    authors: authors,
+                    price_sort: priceSort,
+                    price_ranges: priceRanges
+                },
+                success: function(response){
+                    $('#default-products-sub').hide();
+                    $('#filtered-products-sub').html(response).show();
+                }
+            });
+
+        }else{
+
+            // সব unchecked হলে default show
+            $('#filtered-products-sub').hide().html('');
+            $('#default-products-sub').show();
         }
 
     });

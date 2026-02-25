@@ -112,6 +112,8 @@ Route::get('/product/details/{id}', [ViewController::class, 'productDetails'])->
 
 Route::get('/filter-products', [ViewController::class, 'filterProducts'])
     ->name('filter.products');
+Route::get('/filter-sub-products', [ViewController::class, 'subFilterProducts'])
+    ->name('filter.sub.products');
 
 
 

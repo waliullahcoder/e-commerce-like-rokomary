@@ -65,7 +65,15 @@ class ViewController extends Controller
         $products = Product::where('name', 'LIKE', "%{$query}%")
                             ->orWhere('slug', 'LIKE', "%{$query}%")
                             ->limit(10)
-                            ->get(['id','name','slug','thumbnail']);
+                            ->get()
+                            ->map(function($product){
+                                return [
+                                    'id' => $product->id,
+                                    'name' => $product->name,
+                                    'slug' => $product->slug,
+                                    'thumbnail' => asset($product->thumbnail), // ✅ full URL
+                                ];
+                            });
         return response()->json($products);
     }
 

@@ -57,64 +57,28 @@
                         </ul>
                     </div>
                     @endif
+                    <!-- PRICE -->
                     <div class="filter-group">
-                        <h6>দাম অনুযায়ী</h6>
-
-                        <!-- SORT -->
-                        <ul class="mb-3">
-                            <li>
-                                <label>
-                                    <input type="radio" name="price_sort" value="low_high">
-                                    কম থেকে বেশি
-                                </label>
-                            </li>
-                            <li>
-                                <label>
-                                    <input type="radio" name="price_sort" value="high_low">
-                                    বেশি থেকে কম
-                                </label>
-                            </li>
-                        </ul>
-
-                        <!-- RANGE -->
+                        <h6>দাম</h6>
                         <ul>
                             <li>
                                 <label>
-                                    <input type="radio" name="price_range"
-                                        value="0-200"
-                                        onchange="this.form.submit()"
-                                        {{ request('price_range') == '0-200' ? 'checked' : '' }}>
+                                    <input type="checkbox" class="price-range-filter" value="0-200">
                                     ০ – ২০০ ৳
                                 </label>
                             </li>
                             <li>
                                 <label>
-                                    <input type="radio" name="price_range"
-                                        value="201-500"
-                                        onchange="this.form.submit()"
-                                        {{ request('price_range') == '201-500' ? 'checked' : '' }}>
+                                    <input type="checkbox" class="price-range-filter" value="201-500">
                                     ২০১ – ৫০০ ৳
                                 </label>
                             </li>
                             <li>
                                 <label>
-                                    <input type="radio" name="price_range"
-                                        value="500+"
-                                        onchange="this.form.submit()"
-                                        {{ request('price_range') == '500+' ? 'checked' : '' }}>
+                                    <input type="checkbox" class="price-range-filter" value="500+">
                                     ৫০০+ ৳
                                 </label>
                             </li>
-                        </ul>
-                    </div>
-
-                    <!-- PRICE -->
-                    <div class="filter-group">
-                        <h6>দাম</h6>
-                        <ul>
-                            <li><label><input type="checkbox"> ০ – ২০০ ৳</label></li>
-                            <li><label><input type="checkbox"> ২০১ – ৫০০ ৳</label></li>
-                            <li><label><input type="checkbox"> ৫০০+ ৳</label></li>
                         </ul>
                     </div>
                 </div>

@@ -29,11 +29,12 @@
 <script>
 $(document).ready(function(){
 
-    $(document).on('change', '.publication-filter, .author-filter, input[name="price_sort"]', function(){
+    $(document).on('change', '.publication-filter, .author-filter, input[name="price_sort"], .price-range-filter', function(){
 
         let publications = [];
         let authors = [];
         let priceSort = $('input[name="price_sort"]:checked').val() || null;
+        let priceRanges = [];
 
         $('.publication-filter:checked').each(function(){
             publications.push($(this).val());
@@ -43,8 +44,13 @@ $(document).ready(function(){
             authors.push($(this).val());
         });
 
+         $('.price-range-filter:checked').each(function(){
+            priceRanges.push($(this).val());
+        });
+
+
         // যদি যেকোনো একটাও checked থাকে
-        if(publications.length > 0 || authors.length > 0 || priceSort != null){
+        if(publications.length > 0 || authors.length > 0 || priceSort != null || priceRanges.length > 0){
 
             $.ajax({
                 url: "{{ route('filter.products') }}",
@@ -52,7 +58,8 @@ $(document).ready(function(){
                 data: { 
                     publications: publications,
                     authors: authors,
-                    price_sort: priceSort
+                    price_sort: priceSort,
+                    price_ranges: priceRanges
                 },
                 success: function(response){
                     $('#default-products').hide();

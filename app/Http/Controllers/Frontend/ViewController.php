@@ -83,9 +83,10 @@ class ViewController extends Controller
         $publicationIds = $request->publications ?? [];
         $authorIds      = $request->authors ?? [];
         $priceSort      = $request->price_sort ?? null; // low_high / high_low
+        $priceRanges    = $request->price_ranges ?? [];
 
         $subcategories = Category::where('type', 'book')
-            ->whereHas('products', function ($query) use ($publicationIds, $authorIds,$priceSort) {
+            ->whereHas('products', function ($query) use ($publicationIds, $authorIds,$priceSort,$priceRanges) {
 
                 // Publication filter
                 if (!empty($publicationIds)) {
@@ -99,15 +100,32 @@ class ViewController extends Controller
                     });
                 }
                 // Price sorting // low_high / high_low
+                if(!empty($priceSort)) {
                 if ($priceSort === 'low_high') {
-                    $query->orderBy('regular_price', 'asc');
+                    $query->orderBy('sale_price', 'asc');
                 } elseif ($priceSort === 'high_low') {
-                    $query->orderBy('regular_price', 'desc');
+                    $query->orderBy('sale_price', 'desc');
+                }
+                }
+
+                // Price Range filter
+                if (!empty($priceRanges)) {
+                    $query->where(function($q) use ($priceRanges){
+                        foreach($priceRanges as $range){
+                            if($range === '0-200'){
+                                $q->orWhereBetween('sale_price', [0,200]);
+                            } elseif($range === '201-500'){
+                                $q->orWhereBetween('sale_price', [201,500]);
+                            } elseif($range === '500+'){
+                                $q->orWhere('sale_price', '>', 500);
+                            }
+                        }
+                    });
                 }
 
 
             })
-            ->with(['products' => function ($query) use ($publicationIds, $authorIds,$priceSort) {
+            ->with(['products' => function ($query) use ($publicationIds, $authorIds,$priceSort,$priceRanges) {
 
                 if (!empty($publicationIds)) {
                     $query->whereIn('publication_id', $publicationIds);
@@ -119,11 +137,29 @@ class ViewController extends Controller
                     });
                 }
                 // Price sorting // low_high / high_low
-                if ($priceSort === 'low_high') {
-                $query->orderBy('sale_price', 'asc');
-                } elseif ($priceSort === 'high_low') {
-                    $query->orderBy('sale_price', 'desc');
+                if(!empty($priceSort)) {
+                    if ($priceSort === 'low_high') {
+                    $query->orderBy('sale_price', 'asc');
+                    } elseif ($priceSort === 'high_low') {
+                        $query->orderBy('sale_price', 'desc');
+                    }
                 }
+
+                 // Price Range filter
+                if (!empty($priceRanges)) {
+                $query->where(function($q) use ($priceRanges){
+                    foreach($priceRanges as $range){
+                        if($range === '0-200'){
+                            $q->orWhereBetween('regular_price', [0,200]);
+                        } elseif($range === '201-500'){
+                            $q->orWhereBetween('regular_price', [201,500]);
+                        } elseif($range === '500+'){
+                            $q->orWhere('regular_price', '>', 500);
+                        }
+                    }
+                });
+                }
+
 
             }])
             ->get();

@@ -1,6 +1,7 @@
  
+                             <div class="d-flex flex-wrap">
                                 @foreach($single_sub_category->products as $product)
-                                            <div class="p-sm-2 p-1" style="width:25%;">
+                                    <div class="p-sm-2 p-1" style="width:25%;">
                                                 <div class="product-card-wrapper">
                                                     <div class="product-card">
 
@@ -52,3 +53,4 @@
                                                      
                                             </div>
                                         @endforeach
+                                        </div>

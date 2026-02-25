@@ -47,13 +47,13 @@
                         <ul class="mb-3">
                             <li>
                                 <label>
-                                    <input type="radio" name="price_sort" value="low_high">
+                                    <input type="radio" name="price_sort_sub" value="low_high">
                                     কম থেকে বেশি
                                 </label>
                             </li>
                             <li>
                                 <label>
-                                    <input type="radio" name="price_sort" value="high_low">
+                                    <input type="radio" name="price_sort_sub" value="high_low">
                                     বেশি থেকে কম
                                 </label>
                             </li>
@@ -106,7 +106,7 @@
                             @if($single_sub_category->products->count() > 0)
                                 <div class="position-relative">
                                     <div class="container">
-                                       <div id="default-products-sub" class="d-flex flex-wrap">
+                                       <div id="default-products-sub">
                                         @include('frontend.categories.partials.sub_product_list')
                                         </div>
                                       <div id="filtered-products-sub"></div>

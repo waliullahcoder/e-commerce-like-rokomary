@@ -162,11 +162,11 @@ class ViewController extends Controller
                 $query->where(function($q) use ($priceRanges){
                     foreach($priceRanges as $range){
                         if($range === '0-200'){
-                            $q->orWhereBetween('regular_price', [0,200]);
+                            $q->orWhereBetween('sale_price', [0,200]);
                         } elseif($range === '201-500'){
-                            $q->orWhereBetween('regular_price', [201,500]);
+                            $q->orWhereBetween('sale_price', [201,500]);
                         } elseif($range === '500+'){
-                            $q->orWhere('regular_price', '>', 500);
+                            $q->orWhere('sale_price', '>', 500);
                         }
                     }
                 });
@@ -253,11 +253,11 @@ class ViewController extends Controller
                 $query->where(function($q) use ($priceRanges){
                     foreach($priceRanges as $range){
                         if($range === '0-200'){
-                            $q->orWhereBetween('regular_price', [0,200]);
+                            $q->orWhereBetween('sale_price', [0,200]);
                         } elseif($range === '201-500'){
-                            $q->orWhereBetween('regular_price', [201,500]);
+                            $q->orWhereBetween('sale_price', [201,500]);
                         } elseif($range === '500+'){
-                            $q->orWhere('regular_price', '>', 500);
+                            $q->orWhere('sale_price', '>', 500);
                         }
                     }
                 });
@@ -266,7 +266,8 @@ class ViewController extends Controller
 
             }])
             ->first();
-        return view('frontend.categories.partials.sub_product_list', compact('single_sub_category'))->render();
+    return view('frontend.categories.partials.sub_product_list', 
+    compact('single_sub_category'))->render();
     }
 
     

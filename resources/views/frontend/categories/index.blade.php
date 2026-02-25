@@ -34,7 +34,7 @@
                             @foreach($authors ?? [] as $author)
                                 <li>
                                     <label>
-                                        <input type="checkbox">
+                                       <input type="checkbox" class="author-filter" value="{{ $author->id }}">
                                         {{ $author->name }}
                                     </label>
                                 </li>

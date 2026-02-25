@@ -78,18 +78,42 @@ class ViewController extends Controller
         $bookcat_count = Category::where('type', 'book')->where('parent_id', $cat_id)->count();
         return view('frontend.categories.index', compact('menus','subcategories','authors','publications','bookcat_count'));
     }
-    public function filterProducts(Request $request)
+   public function filterProducts(Request $request)
     {
         $publicationIds = $request->publications ?? [];
+        $authorIds      = $request->authors ?? [];
 
-        $subcategories = Category::with(['products' => function ($query) use ($publicationIds) {
-            
-            if (!empty($publicationIds)) {
-                $query->whereIn('publication_id', $publicationIds);
-            }
+        $subcategories = Category::where('type', 'book')
+            ->whereHas('products', function ($query) use ($publicationIds, $authorIds) {
 
-        }])->where('type', 'book')->get();
-        
+                // Publication filter
+                if (!empty($publicationIds)) {
+                    $query->whereIn('publication_id', $publicationIds);
+                }
+
+                // Author filter via many-to-many
+                if (!empty($authorIds)) {
+                    $query->whereHas('authors', function($q) use ($authorIds) {
+                        $q->whereIn('author_id', $authorIds);
+                    });
+                }
+
+            })
+            ->with(['products' => function ($query) use ($publicationIds, $authorIds) {
+
+                if (!empty($publicationIds)) {
+                    $query->whereIn('publication_id', $publicationIds);
+                }
+
+                if (!empty($authorIds)) {
+                    $query->whereHas('authors', function($q) use ($authorIds) {
+                        $q->whereIn('author_id', $authorIds);
+                    });
+                }
+
+            }])
+            ->get();
+
         return view('frontend.categories.partials.product_list', compact('subcategories'))->render();
     }
 

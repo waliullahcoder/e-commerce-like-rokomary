@@ -29,33 +29,39 @@
 <script>
 $(document).ready(function(){
 
-    $(document).on('change', '.publication-filter', function(){
+    $(document).on('change', '.publication-filter, .author-filter', function(){
 
         let publications = [];
+        let authors = [];
 
         $('.publication-filter:checked').each(function(){
             publications.push($(this).val());
         });
 
-        if(publications.length > 0){
+        $('.author-filter:checked').each(function(){
+            authors.push($(this).val());
+        });
+
+        // যদি যেকোনো একটাও checked থাকে
+        if(publications.length > 0 || authors.length > 0){
 
             $.ajax({
                 url: "{{ route('filter.products') }}",
                 type: "GET",
-                data: { publications: publications },
+                data: { 
+                    publications: publications,
+                    authors: authors
+                },
                 success: function(response){
 
-                    // default hide
                     $('#default-products').hide();
-
-                    // show filtered data
                     $('#filtered-products').html(response).show();
                 }
             });
 
         }else{
 
-            // checkbox uncheck করলে আবার default show
+            // সব unchecked হলে default show
             $('#filtered-products').hide().html('');
             $('#default-products').show();
         }

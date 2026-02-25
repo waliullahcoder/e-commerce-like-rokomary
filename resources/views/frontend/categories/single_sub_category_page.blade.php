@@ -88,7 +88,7 @@
             <!-- END LEFT SIDEBAR -->
   
             <!-- RIGHT CONTENT -->
-            <div class="col-lg-9">
+            <div class="col-lg-9" style="margin-top:-9px;">
                 <div class="category-product-section pb-4">
                     <div class="container">
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Slider;
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\HomeSection;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -73,6 +74,20 @@ class ViewController extends Controller
         $publications = $this->frontEndService->getPublication();
         $subcategories = $this->frontEndService->getProductData($cat_id);
         return view('frontend.categories.index', compact('menus','subcategories','authors','publications'));
+    }
+    public function filterProducts(Request $request)
+    {
+        $publicationIds = $request->publications ?? [];
+
+        $subcategories = Category::with(['products' => function ($query) use ($publicationIds) {
+            
+            if (!empty($publicationIds)) {
+                $query->whereIn('publication_id', $publicationIds);
+            }
+
+        }])->get();
+
+        return view('frontend.categories.partials.product_list', compact('subcategories'))->render();
     }
 
     public function singleCategoryPage($sub_cat_id)

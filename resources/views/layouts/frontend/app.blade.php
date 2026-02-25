@@ -27,6 +27,40 @@
 
     {{-- filterleft side --}}
 
+<script>
+$(document).ready(function(){
+
+    $(document).on('change', '.publication-filter', function(){
+
+        console.log("Checkbox clicked");
+
+        let publications = [];
+
+        $('.publication-filter:checked').each(function(){
+            publications.push($(this).val());
+        });
+
+        console.log(publications);
+
+        $.ajax({
+            url: "{{ route('filter.products') }}",
+            type: "GET",
+            data: {
+                publications: publications
+            },
+            success: function(response){
+                console.log("Success");
+                $('#product-list').html(response);
+            },
+            error: function(xhr){
+                console.log(xhr.responseText);
+            }
+        });
+
+    });
+
+});
+</script>
 
     {{-- // AJAX Live Search --}}
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}

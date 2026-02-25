@@ -64,19 +64,13 @@
                         <ul class="mb-3">
                             <li>
                                 <label>
-                                    <input type="radio" name="price_sort"
-                                        value="low_high"
-                                        onchange="this.form.submit()"
-                                        {{ request('price_sort') == 'low_high' ? 'checked' : '' }}>
+                                    <input type="radio" name="price_sort" value="low_high">
                                     কম থেকে বেশি
                                 </label>
                             </li>
                             <li>
                                 <label>
-                                    <input type="radio" name="price_sort"
-                                        value="high_low"
-                                        onchange="this.form.submit()"
-                                        {{ request('price_sort') == 'high_low' ? 'checked' : '' }}>
+                                    <input type="radio" name="price_sort" value="high_low">
                                     বেশি থেকে কম
                                 </label>
                             </li>

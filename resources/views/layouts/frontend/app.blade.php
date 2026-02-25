@@ -29,10 +29,11 @@
 <script>
 $(document).ready(function(){
 
-    $(document).on('change', '.publication-filter, .author-filter', function(){
+    $(document).on('change', '.publication-filter, .author-filter, input[name="price_sort"]', function(){
 
         let publications = [];
         let authors = [];
+        let priceSort = $('input[name="price_sort"]:checked').val() || null;
 
         $('.publication-filter:checked').each(function(){
             publications.push($(this).val());
@@ -43,17 +44,17 @@ $(document).ready(function(){
         });
 
         // যদি যেকোনো একটাও checked থাকে
-        if(publications.length > 0 || authors.length > 0){
+        if(publications.length > 0 || authors.length > 0 || priceSort != null){
 
             $.ajax({
                 url: "{{ route('filter.products') }}",
                 type: "GET",
                 data: { 
                     publications: publications,
-                    authors: authors
+                    authors: authors,
+                    price_sort: priceSort
                 },
                 success: function(response){
-
                     $('#default-products').hide();
                     $('#filtered-products').html(response).show();
                 }

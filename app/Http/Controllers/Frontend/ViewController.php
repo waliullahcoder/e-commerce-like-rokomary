@@ -82,9 +82,10 @@ class ViewController extends Controller
     {
         $publicationIds = $request->publications ?? [];
         $authorIds      = $request->authors ?? [];
+        $priceSort      = $request->price_sort ?? null; // low_high / high_low
 
         $subcategories = Category::where('type', 'book')
-            ->whereHas('products', function ($query) use ($publicationIds, $authorIds) {
+            ->whereHas('products', function ($query) use ($publicationIds, $authorIds,$priceSort) {
 
                 // Publication filter
                 if (!empty($publicationIds)) {
@@ -97,9 +98,16 @@ class ViewController extends Controller
                         $q->whereIn('author_id', $authorIds);
                     });
                 }
+                // Price sorting // low_high / high_low
+                if ($priceSort === 'low_high') {
+                    $query->orderBy('regular_price', 'asc');
+                } elseif ($priceSort === 'high_low') {
+                    $query->orderBy('regular_price', 'desc');
+                }
+
 
             })
-            ->with(['products' => function ($query) use ($publicationIds, $authorIds) {
+            ->with(['products' => function ($query) use ($publicationIds, $authorIds,$priceSort) {
 
                 if (!empty($publicationIds)) {
                     $query->whereIn('publication_id', $publicationIds);
@@ -109,6 +117,12 @@ class ViewController extends Controller
                     $query->whereHas('authors', function($q) use ($authorIds) {
                         $q->whereIn('author_id', $authorIds);
                     });
+                }
+                // Price sorting // low_high / high_low
+                if ($priceSort === 'low_high') {
+                $query->orderBy('sale_price', 'asc');
+                } elseif ($priceSort === 'high_low') {
+                    $query->orderBy('sale_price', 'desc');
                 }
 
             }])

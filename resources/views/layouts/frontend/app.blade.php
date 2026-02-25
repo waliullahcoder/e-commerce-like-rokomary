@@ -185,48 +185,46 @@ $(document).ready(function(){
 
 {{-- Add to cart --}}
 <script>
-$(document).ready(function () {
+$(document).on('click', '.add-to-cart', function(e) {
+    e.preventDefault();
 
-    $('.add-to-cart').click(function (e) {
-        e.preventDefault();
+    let button = $(this);
 
-        let button = $(this);   // ✅ আগে declare
+    let productId = button.data('id');
+    let variantId = button.data('variant_id');
+    let image = button.closest('.product-card').find('.product-img');
+    let cart = $('.cart-icon');
 
-        let productId = button.data('id');
-        let variantId = button.data('variant_id');
-        let image = button.closest('.product-card').find('.product-img');
-        let cart = $('.cart-icon');
-  if (!image.length) {
-            console.warn('Product image not found for flying animation');
-            return;
-        }
-        let flyingImg = image.clone()
-            .css({
-                position: 'absolute',
-                zIndex: 999,
-                width: image.width(),
-                top: image.offset().top,
-                left: image.offset().left
-            })
-            .appendTo('body');
+    if (!image.length) {
+        console.warn('Product image not found for flying animation');
+        return;
+    }
 
-        flyingImg.animate({
-            top: cart.offset().top,
-            left: cart.offset().left,
-            width: 20,
-            opacity: 0.5
-        }, 700, function () {
-            flyingImg.remove();
-        });
+    let flyingImg = image.clone()
+        .css({
+            position: 'absolute',
+            zIndex: 999,
+            width: image.width(),
+            top: image.offset().top,
+            left: image.offset().left
+        })
+        .appendTo('body');
 
-        $.post("{{ route('cart.add') }}", {
-            _token: "{{ csrf_token() }}",
-            product_id: productId,
-            variant_id: variantId
-        }, function (res) {
-            $('.cart-count').text(res.count);
-        });
+    flyingImg.animate({
+        top: cart.offset().top,
+        left: cart.offset().left,
+        width: 20,
+        opacity: 0.5
+    }, 700, function () {
+        flyingImg.remove();
+    });
 
+    $.post("{{ route('cart.add') }}", {
+        _token: "{{ csrf_token() }}",
+        product_id: productId,
+        variant_id: variantId
+    }, function (res) {
+        $('.cart-count').text(res.count);
     });
 
 });

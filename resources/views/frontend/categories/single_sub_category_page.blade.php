@@ -42,6 +42,23 @@
                         </ul>
                     </div>
                     @endif
+                    <div class="filter-group">
+                        <h6>দাম</h6>
+                        <ul class="mb-3">
+                            <li>
+                                <label>
+                                    <input type="radio" name="price_sort" value="low_high">
+                                    কম থেকে বেশি
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="price_sort" value="high_low">
+                                    বেশি থেকে কম
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
                     <!-- PRICE -->
                     <div class="filter-group">
                         <h6>দাম</h6>

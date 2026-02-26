@@ -11,10 +11,10 @@
         <thead>
             <tr class="text-nowrap">
                 <th></th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Address</th>
-                <th>Status</th>
+                <th>Production No</th>
+                <th>Date</th>
+                <th>Store</th>
+                {{-- <th>Remarks</th> --}}
                 <th>Actions</th>
             </tr>
         </thead>
@@ -35,17 +35,11 @@
                             </div>
                         </div>
                     </th>
-                    <th colspan="5">
-                        <div class="text-end">
-                            <button type="button" id="bulk_delete" name="bulk_delete" data-url="{{ $deleteUrl }}"
-                                class="btn btn-xs btn-danger">
-                                Delete
-                            </button>
-                            <button type="button" id="trash_bulk_delete" name="bulk_delete" data-url="{{ $deleteUrl }}"
-                                class="btn btn-xs btn-danger" style="display: none;">
-                                Delete
-                            </button>
-                        </div>
+                    <th class="text-end" colspan="4">
+                        <button type="button" name="bulk_delete" data-url="{{ $deleteUrl }}" id="bulk_delete"
+                            class="btn btn btn-xs btn-danger">Delete</button>
+                        <button type="button" name="bulk_delete" data-url="{{ $deleteUrl }}" style="display: none;"
+                            id="trash_bulk_delete" class="btn btn btn-xs btn-danger">Delete</button>
                     </th>
                 </tr>
             </tfoot>
@@ -72,26 +66,23 @@
                         name: "checkbox",
                         orderable: false,
                         searchable: false,
-                        className: "text-center",
-                        width: '20'
+                        className: 'text-center',
+                        width: '20',
                     },
                     {
-                        data: 'name',
-                        name: 'name'
+                        data: 'production_no',
+                        name: 'production_no',
                     },
                     {
-                        data: 'type',
-                        name: 'type'
-                    },
-                    {
-                        data: 'address',
-                        name: 'address'
-                    },
-                    {
-                        data: 'status',
-                        name: 'status',
+                        data: 'formattedDate',
+                        name: 'formattedDate',
                         orderable: false,
                         searchable: false,
+                    },
+                    {
+                        data: 'store.name',
+                        name: 'store.name',
+                        defaultContent: ''
                     },
                     {
                         data: 'actions',

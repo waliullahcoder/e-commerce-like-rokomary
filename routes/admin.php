@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\{
     MenuItemController,
     ReportController,
     AdminOrderController,
+    ProductionController,
 };
 
 Route::middleware('guest')->group(function () {
@@ -56,6 +57,11 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('/admin/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])
     ->name('orders.updateStatus');
 
+      // Production
+    Route::resource('/production', ProductionController::class);
+    Route::get('/production/{id}/print', [ProductionController::class, 'print'])->name('production.print');
+      // Store
+    Route::resource('/store', StoreController::class);
 
     // Admin Setting
     Route::resource('/admin-settings', AdminSettingController::class);

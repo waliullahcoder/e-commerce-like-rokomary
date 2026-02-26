@@ -93,20 +93,29 @@
     <!-- MOBILE MENU START -->
     <div class="mobile-menu" id="mobileMenu">
         <ul>
-            <li><a href="#">হোম</a></li>
-            <li><a href="#">জেনারেল বই</a></li>
-
+            <li><a href="{{ route('home') }}">হোম</a></li>
+            @foreach ($menus['middle_menus'] as $menu)
+            <li class="menu-item">
+                        <a class="menu-link
+                        {{ request()->routeIs('category.index') 
+                            && request()->route('menu') == $menu->name 
+                            ? 'active' : '' }}"
+                        href="{{ route('category.index', [$menu->category_id, $menu->category_slug,$menu->name]) }}">
+                            <span>{{ $menu->name }}</span>
+                        </a>
+                    </li>
+            @endforeach
+            
+            {{-- <li><a href="#">জেনারেল বই</a></li>
             <li class="has-sub">
                 <a href="#">একাডেমিক ▾</a>
                 <ul class="sub-menu">
                     <li><a href="#">স্কুল</a></li>
                     <li><a href="#">কলেজ</a></li>
                 </ul>
-            </li>
+            </li> --}}
 
-            <li><a href="#">আরবি বই</a></li>
-            <li><a href="#">লেখক</a></li>
-            <li><a href="#">প্রকাশক</a></li>
+           
         </ul>
     </div>
 </div>

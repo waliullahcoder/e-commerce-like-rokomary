@@ -95,12 +95,7 @@
         <ul>
             <li><a href="{{ route('home') }}">হোম</a></li>
             @foreach ($menus['middle_menus'] as $menu)
-            <li class="menu-item">
-                        <a class="menu-link
-                        {{ request()->routeIs('category.index') 
-                            && request()->route('menu') == $menu->name 
-                            ? 'active' : '' }}"
-                        href="{{ route('category.index', [$menu->category_id, $menu->category_slug,$menu->name]) }}">
+            <li><a href="{{ route('category.index', [$menu->category_id, $menu->category_slug,$menu->name]) }}">
                             <span>{{ $menu->name }}</span>
                         </a>
                     </li>

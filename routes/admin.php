@@ -29,6 +29,14 @@ use App\Http\Controllers\Admin\{
     ReportController,
     AdminOrderController,
     ProductionController,
+    ClientController,
+    SalesOfficerController,
+    SalesController,
+    CollectionController,
+    SalesReturnController,
+    RegionController,
+    AreaController,
+    TerritoryController,
 };
 
 Route::middleware('guest')->group(function () {
@@ -62,6 +70,31 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('/production/{id}/print', [ProductionController::class, 'print'])->name('production.print');
       // Store
     Route::resource('/store', StoreController::class);
+
+    //stock
+    Route::get('/stock-status', [ReportController::class, 'stockStatus'])->name('stock-status.index');
+// Region
+    Route::resource('/region', RegionController::class);
+
+    // Area
+    Route::resource('/area', AreaController::class);
+
+    // Territory
+    Route::resource('/territory', TerritoryController::class);
+    // Client
+    Route::resource('/client', ClientController::class);
+
+    // Sales Officer
+    Route::resource('/sales-officer', SalesOfficerController::class);
+
+    // Sales
+    Route::resource('/sales', SalesController::class);
+
+    // Collection
+    Route::resource('/collection', CollectionController::class);
+
+    // Sales Return
+    Route::resource('/sales-return', SalesReturnController::class);
 
     // Admin Setting
     Route::resource('/admin-settings', AdminSettingController::class);

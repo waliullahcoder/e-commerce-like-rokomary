@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Slider;
 use App\Models\Product;
+use App\Models\Review;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\HomeSection;
 use Illuminate\Http\Request;
@@ -292,7 +294,8 @@ class ViewController extends Controller
         $menus = $this->frontEndService->getMenu();
         $product = $this->frontEndService->productDetails($id);
         $relatedProducts = $this->frontEndService->productAll();
-        return view('frontend.products.productDetails', compact('product','menus','relatedProducts'));
+        $review_count=Review::where('product_id', $id)->where('user_id',Auth::id())->count();
+        return view('frontend.products.productDetails', compact('product','menus','relatedProducts','review_count'));
     }
 
     public function signinPage()

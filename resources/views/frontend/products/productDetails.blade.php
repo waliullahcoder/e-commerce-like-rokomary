@@ -274,16 +274,16 @@
                         <div class="tab-pane fade" id="information">
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Category ID</th>
-                                    <td>{{ $product->category_id }}</td>
+                                    <th>Category</th>
+                                    <td>{{ $product->category->name??'N/A' }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Brand ID</th>
-                                    <td>{{ $product->brand_id }}</td>
+                                    <th>Authors</th>
+                                    <td>{{ $product->authors->pluck('name')->implode(', ') }}</td>
                                 </tr>
                                 <tr>
                                     <th>Publication</th>
-                                    <td>{{ $product->publication_id }}</td>
+                                    <td>{{ $product->publication->name ?? 'N/A' }}</td>
                                 </tr>
                                 <tr>
                                     <th>Barcode</th>
@@ -319,6 +319,7 @@
 
                             {{-- REVIEW FORM --}}
                             @auth
+                                @if($review_count == 0)
                                 <hr>
                                 <h6>Write a Review</h6>
 
@@ -346,6 +347,7 @@
                                         Submit Review
                                     </button>
                                 </form>
+                                @endif
                             @else
                                 <p class="text-muted mt-3">
                                     Please <a href="{{ route('login') }}">login</a> to write a review.

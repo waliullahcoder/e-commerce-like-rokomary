@@ -92,6 +92,64 @@
                                 @endforelse
                             </tbody>
                         </table>
+
+                        {{-- Paginator section --}}
+                        <style>
+                        .pagination .page-link {
+                            color: #333;
+                            border-radius: 6px;
+                        }
+
+                        .pagination .page-item.active .page-link {
+                            background: #0d6efd;
+                            border-color: #0d6efd;
+                            color: #fff;
+                        }
+
+                        .pagination .page-link:hover {
+                            background: #f1f1f1;
+                        }
+                        </style>
+                         @if ($orders->hasPages())
+                            <div class="d-flex justify-content-center mt-4">
+                                <nav>
+                                    <ul class="pagination pagination-sm">
+
+                                        {{-- Previous --}}
+                                        @if ($orders->onFirstPage())
+                                            <li class="page-item disabled">
+                                                <span class="page-link">«</span>
+                                            </li>
+                                        @else
+                                            <li class="page-item">
+                                                <a class="page-link" href="{{ $orders->previousPageUrl() }}" rel="prev">«</a>
+                                            </li>
+                                        @endif
+
+                                        {{-- Page Numbers --}}
+                                        @foreach ($orders->getUrlRange(1, $orders->lastPage()) as $page => $url)
+                                            <li class="page-item {{ $page == $orders->currentPage() ? 'active' : '' }}">
+                                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                            </li>
+                                        @endforeach
+
+                                        {{-- Next --}}
+                                        @if ($orders->hasMorePages())
+                                            <li class="page-item">
+                                                <a class="page-link" href="{{ $orders->nextPageUrl() }}" rel="next">»</a>
+                                            </li>
+                                        @else
+                                            <li class="page-item disabled">
+                                                <span class="page-link">»</span>
+                                            </li>
+                                        @endif
+
+                                    </ul>
+                                </nav>
+                            </div>
+                        @endif
+                        {{-- End paginator --}}
+
                         @forelse($orders as $order)
                         <!-- STATUS UPDATE MODAL -->
                         <div class="modal fade" id="statusModal{{ $order->id }}" tabindex="-1">

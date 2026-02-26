@@ -6,6 +6,7 @@ use App\Models\Setting;
 use App\Models\AdminMenu;
 use App\Models\AdminSetting;
 use App\Models\Category;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
@@ -25,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Paginator::useBootstrapFive();
         if (app()->environment('production')) {
             URL::forceScheme('https');
         }

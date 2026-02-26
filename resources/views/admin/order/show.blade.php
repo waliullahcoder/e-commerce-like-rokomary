@@ -27,7 +27,7 @@
                         <thead>
                             <tr>
                                 <th>Product</th>
-                                <th>Variant</th>
+                                <th>Category</th>
                                 <th>Qty</th>
                                 <th>Price</th>
                                 <th>Total</th>
@@ -38,7 +38,7 @@
                                 <tr>
                                     <td>{{ $item->product->name }}</td>
                                     <td>
-                                        {{ optional($item->productVariant)->name ?? '-' }}
+                                        {{ $item->product->category->name ?? '-' }}
                                     </td>
                                     <td>{{ $item->qty }}</td>
                                     <td>৳ {{ number_format($item->price,2) }}</td>

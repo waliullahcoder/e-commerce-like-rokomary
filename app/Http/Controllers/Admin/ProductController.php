@@ -13,6 +13,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Attribute;
 use App\Models\ProductTag;
+use App\Models\ProductEdition;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use App\Models\AttributeValue;
@@ -150,6 +151,15 @@ class ProductController extends Controller
                     $product->vendors()->attach($request->vendor_id);
                 }
 
+                //Edition
+                if (!empty($request->edition_name)) {
+                    ProductEdition::create([
+                        'product_id' => $product->id,
+                        'name' => $request->edition_name,
+                        'status' => true,
+                    ]);
+                }
+
                 // ✅ TAGS (NULL SAFE)
                 if (!empty($request->tags) && isset($request->tags[0])) {
                     $tags = json_decode($request->tags[0]);
@@ -245,7 +255,6 @@ class ProductController extends Controller
             'publications' => Publication::where('status', true)->orderBy('name', 'asc')->get(),
             'attributes' => Attribute::where('status', true)->orderBy('name', 'asc')->get()
         ];
-
         return HelperClass::resourceDataEdit($this->model, $id, $this->path, $this->edit_title, $additionalData);
     }
 
@@ -309,6 +318,23 @@ class ProductController extends Controller
                     $product->vendors()->sync($request->vendor_id);
                 } else {
                     $product->vendors()->detach();
+                }
+
+                 //Edition
+                if (!empty($request->edition_name)) {
+                    $existedition = ProductEdition::where('product_id', $product->id)->first();
+                    if ($existedition) {
+                        $existedition->update(['name' => $request->edition_name]);
+                    }else{
+                    ProductEdition::create([
+                        'product_id' => $product->id,
+                        'name' => $request->edition_name,
+                        'status' => true,
+                        ]);
+                    }
+                    
+                }else{
+                    return back()->withErrors('Edition name is required');
                 }
 
                 // ======================

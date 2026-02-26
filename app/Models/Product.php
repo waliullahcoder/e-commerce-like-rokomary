@@ -61,6 +61,11 @@ class Product extends Model
         return $this->hasMany(ProductVariant::class, 'product_id');
     }
 
+    public function edition()
+    {
+        return $this->belongsTo(ProductEdition::class, 'product_id');
+    }
+
     // All attributes assigned across its variants
     public function attributes()
     {

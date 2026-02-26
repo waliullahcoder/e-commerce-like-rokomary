@@ -33,7 +33,7 @@
                         name="name"
                         value="{{ old('name') }}"
                         class="form-control @error('name') is-invalid @enderror"
-                        placeholder="Product Name">
+                        placeholder="Product Name" required>
 
                     @error('name')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -112,10 +112,22 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-12">
+                <div class="col-6">
                     <label for="tags" class="form-label"><b>Tags</b></label>
                     <input type="text" class="form-control" id="tags" name="tags[]" value="{{ old('tags.0') }}"
                         placeholder="Tags">
+                </div>
+                <div class="col-sm-6">
+                <label for="edition_name" class="form-label"><b>Edition <span class="text-danger">*</span></b></label>
+                  <input type="text"
+                        name="edition_name"
+                        value="{{ old('edition_name') }}"
+                        class="form-control @error('edition_name') is-invalid @enderror"
+                        placeholder="Ex. First Edition" required>
+
+                    @error('edition_name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-12">
                     <div class="row g-2">

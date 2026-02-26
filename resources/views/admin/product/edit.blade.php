@@ -81,10 +81,20 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-12">
+                <div class="col-6">
                     <label for="tags" class="form-label"><b>Tags</b></label>
                     <input type="text" class="form-control" id="tags" name="tags[]"
                         value="{{ json_encode($data->tags->pluck('name')->toArray()) }}" placeholder="Tags">
+                </div>
+                <div class="col-sm-6">
+                    @php
+                    $edition = App\Models\ProductEdition::where('product_id',$data->id)->first();
+                    @endphp
+                <label for="edition_name" class="form-label"><b>Edition <span class="text-danger">*</span></b></label>
+                  <input type="text"
+                        name="edition_name"
+                        value="{{ $edition->name ?? '' }}"
+                        class="form-control" required>
                 </div>
                 <div class="col-12">
                     <div class="row g-2">

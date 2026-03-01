@@ -74,6 +74,9 @@ class ViewController extends Controller
                                     'name' => $product->name,
                                     'slug' => $product->slug,
                                     'thumbnail' => asset($product->thumbnail), // ✅ full URL
+                                    'sale_price'=> $product->sale_price,
+                                    'regular_price'=> $product->regular_price,
+                                    'authors'   => $product->authors->pluck('name')->implode(', '), // all authors as string
                                 ];
                             });
         return response()->json($products);

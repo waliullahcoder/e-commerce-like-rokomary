@@ -156,7 +156,8 @@ $(document).ready(function(){
                                             <img src="${item.thumbnail}" width="50" height="50" style="object-fit:cover; border-radius:4px;" alt="${item.name}">
                                             <div>
                                                 <strong>${item.name}</strong><br>
-                                                <small>${item.name}</small>
+                                                <small>${item.authors}</small><br>
+                                                <del>৳${item.regular_price}</del> <strong>৳${item.sale_price}</strong>
                                             </div>
                                         </a>
                                     </li>`;

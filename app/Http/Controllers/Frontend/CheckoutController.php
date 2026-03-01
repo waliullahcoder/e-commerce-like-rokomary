@@ -36,6 +36,14 @@ class CheckoutController extends Controller
 
     public function placeOrder(Request $request)
     {
+
+        if($request->email){
+            $user = User::where('email', $request->email)->first();
+            if($user){
+                auth()->login($user);
+            }
+           // return back()->withErrors('Please login to continue');
+        }
         $request->validate([
             'payment_method' => 'required',
         ]);

@@ -97,7 +97,10 @@
                             <div class="mb-3">
                                 <input type="password" name="password" class="form-control" placeholder="Password" required>
                             </div>
+                            <p>If you have an account, please continue to <a href="{{ route('auth.signinPage') }}" style="color:green">Login</a></p>
                         @endif
+                        
+                        
 
                         {{-- PAYMENT METHOD --}}
                         <h5 class="mb-3">💳 Payment Method</h5>

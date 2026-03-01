@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Production;
 use Illuminate\Http\Request;
 use App\Models\ProductEdition;
+use App\Models\ProductVariant;
 use App\Models\ProductionList;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
@@ -112,6 +113,10 @@ class ProductionController extends Controller
                 ]);
 
                 foreach ($request->product_edition_id as $product_edition_id) {
+
+                $productId = $request->product_id[$product_edition_id];
+                $qty       = $request->qty[$product_edition_id];
+
                     ProductionList::create([
                         'production_id' => $data->id,
                         'store_id' => $request->store_id,
@@ -120,6 +125,32 @@ class ProductionController extends Controller
                         'qty' => $request->qty[$product_edition_id],
                     ]);
                 }
+                // 🔥 Stock Update
+                $variant = ProductVariant::where([
+                    'product_id' => $productId
+                ])->first();
+
+                if ($variant) {
+                    $variant->increment('stock', $qty);
+                } else {
+                $product = Product::find($productId);
+                    ProductVariant::create([
+                        'product_id' => $productId,
+                        'product_edition_id' => $product_edition_id,
+                        'stock' => $qty,
+                        'purchase_price' => $product->purchase_price,
+                        'regular_price' => $product->regular_price,
+                        'sale_price' => $product->sale_price,
+                        'discount_type' => $product->discount_type,
+                        'discount' => $product->discount,
+                        'status' => true,
+                        'created_by' => Auth::id(),
+                        'updated_by' => Auth::id(),
+                    ]);
+                }
+                // Stock update end
+
+
             });
         } catch (\Exception $e) {
             return back()->withErrors($e->getMessage());
@@ -191,6 +222,10 @@ class ProductionController extends Controller
 
                 ProductionList::where('production_id', $id)->delete();
                 foreach ($request->product_edition_id as $product_edition_id) {
+
+                $productId = $request->product_id[$product_edition_id];
+                $qty       = $request->qty[$product_edition_id];
+
                     ProductionList::create([
                         'production_id' => $data->id,
                         'store_id' => $request->store_id,
@@ -199,6 +234,34 @@ class ProductionController extends Controller
                         'qty' => $request->qty[$product_edition_id],
                     ]);
                 }
+                // 🔥 Stock Update
+                $variant = ProductVariant::where([
+                    'product_id' => $productId
+                ])->first();
+                
+                
+                if ($variant) {
+                    if($variant->stock != $qty) {
+                     $variant->update(['stock' => $qty]);
+                    }
+                } else {
+                $product = Product::find($productId);
+                    ProductVariant::create([
+                        'product_id' => $productId,
+                        'product_edition_id' => $product_edition_id,
+                        'stock' => $qty,
+                        'purchase_price' => $product->purchase_price,
+                        'regular_price' => $product->regular_price,
+                        'sale_price' => $product->sale_price,
+                        'discount_type' => $product->discount_type,
+                        'discount' => $product->discount,
+                        'status' => true,
+                        'created_by' => Auth::id(),
+                        'updated_by' => Auth::id(),
+                    ]);
+                }
+                // Stock update end
+
             });
         } catch (\Exception $e) {
             return back()->withErrors($e->getMessage());

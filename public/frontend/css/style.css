@@ -694,7 +694,7 @@ h6 {
 .product-card {
     background-color: var(--bs-white);
     padding: 10px;
-    border: 1px solid transparent;
+    border: 1px solid #ededed;
 }
 
 .product-card-wrapper:hover .product-card {

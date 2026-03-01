@@ -196,7 +196,7 @@
                                 <!-- ACTION BUTTONS -->
                                 <div class="d-flex gap-2 mb-4" style="gap:0.5rem !important">
                                     <button class="btn btn-danger add-to-cart"
-                                            data-id="{{ $product->id }}">
+                                            data-id="{{ $product->id }}" {{$product->variants->sum('stock')>0 ? '' : 'disabled'}}>
                                         Add to Cart
                                     </button>
                                     {{-- <button class="btn btn-outline-secondary">
@@ -215,7 +215,7 @@
                                             method="POST"
                                             class="d-inline">
                                             @csrf
-                                            <button class="btn btn-outline-danger btn-sm">
+                                            <button class="btn btn-outline-danger btn-sm"{{$product->variants->sum('stock')>0 ? '' : 'disabled'}}>
                                                 🤍 Add to Wishlist
                                             </button>
                                         </form>

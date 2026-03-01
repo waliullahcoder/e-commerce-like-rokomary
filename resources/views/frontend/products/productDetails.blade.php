@@ -3,6 +3,25 @@
 @extends('layouts.frontend.app')
 
 @section('content')
+<style>
+.small-thumb {
+    transition: 0.3s;
+    border: 2px solid transparent;
+}
+
+.small-thumb:hover {
+    transform: scale(1.05);
+}
+.product-card img{
+    width:20%
+}
+.gap-2{
+    gap:0px !important;
+}
+.active-thumb {
+    border: 2px solid #dc3545;
+}
+</style>
 <div class="product-details-page py-4">
     <div class="container">
 
@@ -16,10 +35,10 @@
                     <div class="row g-4">
                      <!-- LEFT : PRODUCT IMAGE -->
                     <div class="col-lg-4">
-                        <div class="bg-white border rounded p-3" style="top:80px">
+                        <div class="bg-white border rounded p-3">
 
-                            <div class="text-center product-image-wrapper">
-                                <!-- Clickable image -->
+                            <!-- MAIN IMAGE -->
+                            <div class="text-center mb-3">
                                 <img id="productThumbnail"
                                     class="img-fluid rounded product-img"
                                     src="{{ asset($product->thumbnail) }}"
@@ -27,6 +46,26 @@
                                     style="cursor:pointer; max-height:500px; width:100%; object-fit:contain;"
                                     data-bs-toggle="modal"
                                     data-bs-target="#imageModal">
+                            </div>
+
+                            <!-- SMALL THUMBNAILS -->
+                            <div class="d-flex justify-content-center gap-2 flex-wrap">
+
+                                {{-- Default Thumbnail --}}
+                                <img src="{{ asset($product->thumbnail) }}"
+                                    class="img-thumbnail small-thumb active-thumb"
+                                    width="70"
+                                    style="cursor:pointer;"
+                                    onclick="changeImage(this)">
+                                {{-- Extra Images --}}
+                                @foreach($product->images->take(4) as $image)
+                                    <img src="{{ asset($image->image) }}"
+                                        class="img-thumbnail small-thumb"
+                                        width="70"
+                                        style="cursor:pointer;"
+                                        onclick="changeImage(this)">
+                                @endforeach
+
                             </div>
 
                         </div>
@@ -55,6 +94,25 @@
                             </div>
                         </div>
                     </div>
+                    <script>
+                    function changeImage(element) {
+
+                        // Change main image
+                        let mainImage = document.getElementById('productThumbnail');
+                        mainImage.src = element.src;
+
+                        // Change modal image also
+                        document.getElementById('modalImage').src = element.src;
+
+                        // Active border remove
+                        document.querySelectorAll('.small-thumb').forEach(img => {
+                            img.classList.remove('active-thumb');
+                        });
+
+                        // Active border add
+                        element.classList.add('active-thumb');
+                    }
+                    </script>
                     <script>
                     let zoomLevel = 1;
                     const modalImage = document.getElementById('modalImage');

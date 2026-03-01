@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\ProductVariant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\FrontEndService;
@@ -49,6 +51,14 @@ class AdminOrderController extends Controller
         $order->update([
             'status' => $request->status
         ]);
+
+
+        if ($request->status == 'cancelled') {
+            // Restore stock
+            foreach ($order->items as $item) {
+                ProductVariant::where('id', $item->product_variant_id)->orWhere('product_id', $item->product_id)->increment('stock', $item->qty);
+            }
+        }
 
         return redirect()->back()->withSuccessMessage('Order status updated successfully ✅');
     }

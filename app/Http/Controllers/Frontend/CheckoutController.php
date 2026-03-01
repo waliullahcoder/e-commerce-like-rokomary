@@ -83,8 +83,8 @@ class CheckoutController extends Controller
                 ]);
 
                 // Variant stock reduce
-                if (!empty($item['variant_id'])) {
-                    ProductVariant::where('id', $item['variant_id'])
+                if (!empty($item['variant_id']) || !empty($item['id'])) {
+                    ProductVariant::where('id', $item['variant_id'])->orWhere('product_id', $item['id'])
                         ->decrement('stock', $item['qty']);
                 }
             }

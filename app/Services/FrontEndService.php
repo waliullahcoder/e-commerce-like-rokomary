@@ -40,7 +40,7 @@ $menus = Category::whereNull('parent_id')
 $data['top_menus']         = $menus['header_top']        ?? collect();
 $data['middle_menus']      = $menus['header']            ?? collect();
 $data['mega_menus']        = $menus['mega_menu_parent']  ?? collect();
-$data['footer_col1_menus'] = $menus['footer_col1']       ?? collect();
+$data['footer_col1_menus'] = $menus['footer']       ?? collect();
 $data['footer_col2_menus'] = $menus['footer_col2']       ?? collect();
 
 $data['sub_menus'] = Category::whereNotNull('parent_id')

@@ -279,7 +279,7 @@
 
     {{-- আতর ও সুগন্ধি পণ্য --}}
     @foreach($get_sub_category_atar_sugondhi_product_only as $subCategory)
- <div class="category-product-section pb-4">
+ <div class="category-product-section pb-4" style="display:none;">
         <div class="container">
             <div class="section-card">
                 <div class="section-header mb-3">
@@ -356,7 +356,7 @@
 
 
     {{-- অন্যান্য পণ্য --}}
-     <div class="category-section pb-4">
+     <div class="category-section pb-4" style="display:none;">
         <div class="container">
             <div class="section-card">
                 <div class="section-header mb-3">
@@ -388,7 +388,7 @@
     {{-- end অন্যান্য পণ্য --}}
 
     {{-- ব্র্যান্ডসমূহ --}}
-    <div class="brand-section pb-4">
+    <div class="brand-section pb-4" style="display:none;">
         <div class="container">
             <div class="section-card">
                 <div class="section-header mb-3">

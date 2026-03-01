@@ -13,25 +13,17 @@
             <div class="col-lg-3 col-md-4 col-6">
                 <h5 class="footer-title">প্রয়োজনীয় লিংক</h5>
                 <ul class="footer-list">
-                    <li class="footer-item"><a class="footer-link" href="#">যোগাযোগ করুন</a></li>
-                    <li class="footer-item"><a class="footer-link" href="#">শপিং ব্যাগ</a></li>
-                    <li class="footer-item"><a class="footer-link" href="#">প্রশ্নোত্তর</a></li>
-                    <li class="footer-item"><a class="footer-link" href="#">কিভাবে কেনাকাটা করবেন ?</a></li>
-                    <li class="footer-item"><a class="footer-link" href="#">শর্তাবলী</a></li>
-                    <li class="footer-item"><a class="footer-link" href="#">রিফান্ড নীতিমালা</a></li>
-                    <li class="footer-item"><a class="footer-link" href="#">প্রাইভেসী পলিসি</a></li>
+                    @foreach ($menus['footer_col1_menus'] as $menu)
+                    <li class="footer-item"><a class="footer-link" href="{{ $menu->menu_url }}">{{ $menu->name }}</a></li>
+                    @endforeach
                 </ul>
             </div>
             <div class="col-lg-3 col-md-4 col-6">
                 <h5 class="footer-title">জনপ্রিয়</h5>
                 <ul class="footer-list">
-                    <li class="footer-item"><a class="footer-link" href="#">পছন্দের তালিকা</a></li>
-                    <li class="footer-item"><a class="footer-link" href="#">অ্যাকাডেমিক বই</a></li>
-                    <li class="footer-item"><a class="footer-link" href="#">ড. আব্দুল্লাহ জাহাঙ্গীর</a></li>
-                    <li class="footer-item"><a class="footer-link" href="#">আরিফ আজাদ এর বই</a></li>
-                    <li class="footer-item"><a class="footer-link" href="#">প্রি-অর্ডার</a></li>
-                    <li class="footer-item"><a class="footer-link" href="#">প্যাকেজ</a></li>
-                    <li class="footer-item"><a class="footer-link" href="#">ইলেকট্রনিক্স</a></li>
+                    @foreach ($menus['footer_col2_menus'] as $menu)
+                    <li class="footer-item"><a class="footer-link" href="{{ $menu->menu_url }}">{{ $menu->name }}</a></li>
+                    @endforeach
                 </ul>
             </div>
             <div class="col-lg-3 col-md-4 col-6">

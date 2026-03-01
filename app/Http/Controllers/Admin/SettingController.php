@@ -64,6 +64,9 @@ class SettingController extends Controller
         $data->sms_api_url = $request->sms_api_url;
         $data->sms_api_key = $request->sms_api_key;
         $data->sms_api_id = $request->sms_api_id;
+        $data->tax = $request->tax;
+        $data->discount = $request->discount;
+        $data->discount_type = $request->discount_type;
 
         // Images
         if ($request->hasFile('meta_image')) {

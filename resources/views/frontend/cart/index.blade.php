@@ -117,12 +117,12 @@
                     </div>
 
                     <div class="d-flex justify-content-between mb-2">
-                        <span>Discount (10%)</span>
+                        <span>Discount {{ $settings->discount_type=='percent' ? '('.$settings->discount.'%)' : '' }}</span>
                         <strong id="discount">- ৳ 0.00</strong>
                     </div>
 
                     <div class="d-flex justify-content-between mb-2">
-                        <span>Tax (5%)</span>
+                        <span>Tax ({{$settings->tax}}%)</span>
                         <strong id="tax">৳ 0.00</strong>
                     </div>
 

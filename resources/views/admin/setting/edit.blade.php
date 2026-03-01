@@ -175,6 +175,32 @@
                                 </select>
                             </div>
 
+                            <div class="col-lg-3 col-sm-6">
+                                <label for="tax" class="form-label"><b>Tax(%)</b></label>
+                                <input type="text" name="tax" id="tax" class="form-control"
+                                    placeholder="Tax(%)"
+                                    value="{{ old('tax', $data->tax ?? '') }}">
+                            </div>
+
+                            <div class="col-lg-6 col-sm-6">
+                                <label for="discount_type" class="form-label"><b>Discount Type</b></label>
+                                <select name="discount_type" id="banner_two_status" class="form-select" required>
+                                    <option value="percent"
+                                        {{ $data->discount_type == 'percent' ? 'selected' : '' }}>
+                                        Percent</option>
+                                    <option value="amount"
+                                        {{ $data->discount_type == 'amount' ? 'selected' : '' }}>
+                                        Amount</option>
+                                    
+                                </select>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <label for="discount" class="form-label"><b>Discount</b></label>
+                                <input type="text" name="discount" id="discount" class="form-control"
+                                    placeholder="Discount Value"
+                                    value="{{ old('discount', $data->discount ?? '') }}">
+                            </div>
+
                             {{-- Social Links --}}
                             <div class="col-12">
                                 <label for="socialLinks" class="form-label"><b>Social Links</b></label>

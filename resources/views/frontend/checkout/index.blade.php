@@ -44,8 +44,8 @@
                         </table>
                        
                         @php
-                            $discount = $subtotal * 0.10;
-                            $tax = $subtotal * 0.05;
+                            $discount = ($settings->discount_type=='percent' ? $subtotal * $settings->discount/100 : $settings->discount);
+                            $tax = $subtotal * $settings->tax/100;
                             $total = $subtotal - $discount + $tax;
                         @endphp
                         <input type="hidden" name="subtotal" value="{{ $subtotal }}">
@@ -58,13 +58,13 @@
                                 <strong>৳ {{ number_format($subtotal,2) }}</strong>
                             </li>
                             <li class="list-group-item d-flex justify-content-between">
-                                <span>Discount (10%)</span>
+                                <span>Discount {{ $settings->discount_type=='percent' ? '('.$settings->discount.'%)' : '' }}</span>
                                 <strong class="text-danger">
                                     - ৳ {{ number_format($discount,2) }}
                                 </strong>
                             </li>
                             <li class="list-group-item d-flex justify-content-between">
-                                <span>Tax (5%)</span>
+                                <span>Tax ({{$settings->tax}}%)</span>
                                 <strong>৳ {{ number_format($tax,2) }}</strong>
                             </li>
                             <li class="list-group-item d-flex justify-content-between fs-5">

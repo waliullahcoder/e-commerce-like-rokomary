@@ -231,11 +231,21 @@ $(document).on('click', '.add-to-cart', function(e) {
 </script>
 
 {{-- Cart update --}}
-<script>
+@php
+    $tax = $settings->tax/100;
+    $discount = $settings->discount;
+    $discount_type = $settings->discount_type;
+@endphp
+<script>  
 $(document).ready(function () {
 
     function calculateCart() {
         let subtotal = 0;
+    // Inject PHP values into JS
+    const TAX_RATE = {{ $tax }};
+    const DISCOUNT_RATE = {{ $discount }};
+    const DISCOUNT_TYPE = '{{ $discount_type }}';
+
 
         $('.cart-item').each(function () {
             let price = parseFloat($(this).data('price'));
@@ -243,8 +253,15 @@ $(document).ready(function () {
             subtotal += price * qty;
         });
 
-        let discount = subtotal * 0.10;
-        let tax      = subtotal * 0.05;
+         // ✅ discount calculation
+        let discount = 0;
+        if(DISCOUNT_TYPE === 'percent') {
+            discount = subtotal * (DISCOUNT_RATE / 100);
+        } else if(DISCOUNT_TYPE === 'amount') {
+            discount = DISCOUNT_RATE;
+        }
+
+        let tax      = subtotal * TAX_RATE;
         let total    = subtotal - discount + tax;
 
         $('#subtotal').text('৳ ' + subtotal.toFixed(2));

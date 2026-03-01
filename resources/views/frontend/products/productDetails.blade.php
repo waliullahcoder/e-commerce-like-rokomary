@@ -194,7 +194,7 @@
                                 </div>
 
                                 <!-- ACTION BUTTONS -->
-                                <div class="d-flex gap-2 mb-4">
+                                <div class="d-flex gap-2 mb-4" style="gap:0.5rem !important">
                                     <button class="btn btn-danger add-to-cart"
                                             data-id="{{ $product->id }}">
                                         Add to Cart

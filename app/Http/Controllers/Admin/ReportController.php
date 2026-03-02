@@ -10,12 +10,25 @@ use App\Models\Payment;
 use App\Models\Investor;
 use Carbon\CarbonPeriod;
 use App\Models\TrialBalance;
+use App\Models\Client;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\InvestSattlement;
 use Illuminate\Support\Facades\DB;
 use App\Models\AccountTransaction;
 use App\DataTables\CoaListDataTable;
+use App\DataTables\CollectionReportDataTable;
+use App\DataTables\InvoiceWiseCollectionHistoryDataTable;
+use App\DataTables\InvoiceWiseSalesHistoryDataTable;
+use App\DataTables\InvoiceWiseSalesReturnHistoryDataTable;
+use App\DataTables\ProductWiseSalesHistroyDataTable;
+use App\DataTables\ProductWiseSalesReturnHistoryDataTable;
+use App\DataTables\ProductWiseSalesReturnSummaryDataTable;
+use App\DataTables\ProductWiseSalesSummaryDataTable;
+use App\DataTables\SalesReportDataTable;
+use App\DataTables\SalesReturnReportDataTable;
+use App\DataTables\ClientWiseCollectionSummaryDataTable;
+
 use App\Http\Controllers\Controller;
 use App\Models\ProfitDistributionList;
 use App\DataTables\voucherListDataTable;
@@ -595,5 +608,217 @@ class ReportController extends Controller
 
         $title = 'Investor Statement';
         return view('admin.reports.investor-statement.index', compact('title', 'start_date', 'end_date', 'previous_balance', 'statements'));
+    }
+
+
+    public function salesReport(Request $request, InvoiceWiseSalesHistoryDataTable $invoiceHistoryDataTable, ProductWiseSalesHistroyDataTable $productHistoryDataTable, ProductWiseSalesSummaryDataTable $productSummaryDataTable)
+    {
+        $date_range = explode('to', $request->date_range);
+        $start_date = !is_null($request->date_range) ? date('Y-m-d', strtotime($date_range[0])) : date('Y-m-01');
+        $end_date = !is_null($request->date_range) ? date('Y-m-d', strtotime($date_range[1])) : date('Y-m-t');
+
+        if (!is_null($request->print)) {
+            $report_type = $request->report_type;
+            if ($report_type == 'product_history') {
+                $report_title = 'Product Wise Sales History On ' . date('d-m-Y', strtotime($start_date)) . ' To ' . date('d-m-Y', strtotime($end_date));
+                $query = SalesList::with(['sales', 'product'])->leftJoin('sales', 'sales.id', '=', 'sales_lists.sales_id');
+                $query->whereHas('sales', function ($q) use ($start_date, $end_date) {
+                    if (request('store_id')) {
+                        $q->where('store_id', request('store_id'));
+                    }
+                    $q->where('date', '>=', $start_date)->where('date', '<=', $end_date);
+                });
+                if (request('product_id')) {
+                    $query->whereIn('product_id', request('product_id'));
+                }
+                $data = $query->orderBy('sales.date', 'desc')->orderBy('id', 'desc')->select('sales_lists.id', 'sales_lists.product_id', 'sales_lists.qty', 'sales_lists.amount', 'sales_lists.sales_id')->get();
+                // return view('admin.reports.sales-report.print', compact('report_title', 'report_type', 'data'));
+                $pdf = Pdf::loadView('admin.reports.sales-report.print', compact('report_title', 'report_type', 'data'));
+                $pdf->setPaper('A4');
+                return $pdf->stream('product_wise_sales_history_' . date('d_m_Y_H_i_s') . '.pdf');
+            } elseif ($report_type == 'product_summary') {
+                $report_title = 'Product Wise Sales Summary On ' . date('d-m-Y', strtotime($start_date)) . ' To ' . date('d-m-Y', strtotime($end_date));
+                $query = SalesList::with(['sales', 'product']);
+                $query->whereHas('sales', function ($q) use ($start_date, $end_date) {
+                    if (request('store_id')) {
+                        $q->where('store_id', request('store_id'));
+                    }
+                    $q->where('date', '>=', $start_date)->where('date', '<=', $end_date);
+                });
+                if (request('product_id')) {
+                    $query->whereIn('product_id', request('product_id'));
+                }
+                $data = $query->groupBy('product_id')->select('*', DB::raw('SUM(qty) as sum_qty'), DB::raw('SUM(amount) as sum_amount'))->get();
+                // return view('admin.reports.sales-report.print', compact('report_title', 'report_type', 'data'));
+                $pdf = Pdf::loadView('admin.reports.sales-report.print', compact('report_title', 'report_type', 'data'));
+                $pdf->setPaper('A4');
+                return $pdf->stream('product_wise_sales_summary_' . date('d_m_Y_H_i_s') . '.pdf');
+            } else {
+                $report_title = 'Invoice Wise Sales History On ' . date('d-m-Y', strtotime($start_date)) . ' To ' . date('d-m-Y', strtotime($end_date));
+                $query = Sales::with(['store', 'list']);
+                if ($request->store_id) {
+                    $query->where('store_id', $request->store_id);
+                }
+                $query->whereHas('list', function ($q) use ($request) {
+                    if ($request->product_id) {
+                        $q->whereIn('product_id', $request->product_id);
+                    }
+                });
+                $query->where('date', '>=', $start_date)->where('date', '<=', $end_date);
+                $data = $query->orderBy('date', 'desc')->get();
+                // return view('admin.reports.sales-report.print', compact('report_title', 'report_type', 'data'));
+                $pdf = Pdf::loadView('admin.reports.sales-report.print', compact('report_title', 'report_type', 'data'));
+                $pdf->setPaper('A3');
+                return $pdf->stream('invoice_wise_sales_history_' . date('d_m_Y_H_i_s') . '.pdf');
+            }
+        }
+
+        $products = Product::where('status', true)->orderBy('name', 'asc')->get();
+        $report_type = $request->report_type;
+        if ($report_type == 'product_history') {
+            $title = 'Product Wise History';
+            return $productHistoryDataTable->render('admin.reports.sales-report.index', compact('title', 'products', 'start_date', 'end_date'));
+        } elseif ($report_type == 'product_summary') {
+            $title = 'Product Wise Summary';
+            return $productSummaryDataTable->render('admin.reports.sales-report.index', compact('title', 'products', 'start_date', 'end_date'));
+        } else {
+            $title = 'Invoice Wise History';
+            return $invoiceHistoryDataTable->render('admin.reports.sales-report.index', compact('title', 'products', 'start_date', 'end_date'));
+        }
+    }
+
+    public function collectionReport(Request $request, InvoiceWiseCollectionHistoryDataTable $invoiceHistoryDataTable, ClientWiseCollectionSummaryDataTable $clientSummaryDataTable)
+    {
+        $date_range = explode('to', $request->date_range);
+        $start_date = !is_null($request->date_range) ? date('Y-m-d', strtotime($date_range[0])) : date('Y-m-01');
+        $end_date = !is_null($request->date_range) ? date('Y-m-d', strtotime($date_range[1])) : date('Y-m-t');
+
+        if (!is_null($request->print)) {
+            $report_type = $request->report_type;
+            if ($report_type == 'client_summary') {
+                $report_title = 'Client Wise Collection Summary On ' . date('d-m-Y', strtotime($start_date)) . ' To ' . date('d-m-Y', strtotime($end_date));
+
+                $query = Collection::with(['client']);
+                if ($request->client_id) {
+                    $query->whereIn('client_id', $request->client_id);
+                }
+                $query->where('date', '>=', $start_date)->where('date', '<=', $end_date);
+                $data = $query->whereNotIn('type', ['Return', 'Adjust'])->groupBy('client_id')->select('*', DB::raw('SUM(amount) as sum_amount'))->get();
+                // return view('admin.reports.collection-report.print', compact('report_title', 'report_type', 'data'));
+                $pdf = Pdf::loadView('admin.reports.collection-report.print', compact('report_title', 'report_type', 'data'));
+                $pdf->setPaper('A4');
+                return $pdf->stream('client_wise_collection_summary_' . date('d_m_Y_H_i_s') . '.pdf');
+            } else {
+                $report_title = 'Invoice Wise Collection History On ' . date('d-m-Y', strtotime($start_date)) . ' To ' . date('d-m-Y', strtotime($end_date));
+                $query = Collection::with(['client']);
+                if ($request->client_id) {
+                    $query->whereIn('client_id', $request->client_id);
+                }
+                $query->where('date', '>=', $start_date)->where('date', '<=', $end_date);
+                $data = $query->whereNotIn('type', ['Return', 'Adjust'])->orderBy('date', 'desc')->get();
+                // return view('admin.reports.collection-report.print', compact('report_title', 'report_type', 'data'));
+                $pdf = Pdf::loadView('admin.reports.collection-report.print', compact('report_title', 'report_type', 'data'));
+                $pdf->setPaper('A4');
+                return $pdf->stream('invoice_wise_collection_history_' . date('d_m_Y_H_i_s') . '.pdf');
+            }
+        }
+
+        $clients = Client::where('status', true)->orderBy('name', 'asc')->get();
+        $report_type = $request->report_type;
+        if ($report_type == 'client_summary') {
+            $title = 'Collection Summary';
+            return $clientSummaryDataTable->render('admin.reports.collection-report.index', compact('title', 'clients', 'start_date', 'end_date'));
+        } else {
+            $title = 'Collection History';
+            return $invoiceHistoryDataTable->render('admin.reports.collection-report.index', compact('title', 'clients', 'start_date', 'end_date'));
+        }
+    }
+
+    public function salesReturnReport(Request $request, InvoiceWiseSalesReturnHistoryDataTable $invoiceHistoryDataTable, ProductWiseSalesReturnHistoryDataTable $productHistoryDataTable, ProductWiseSalesReturnSummaryDataTable $productSummaryDataTable)
+    {
+        $date_range = explode('to', $request->date_range);
+        $start_date = !is_null($request->date_range) ? date('Y-m-d', strtotime($date_range[0])) : date('Y-m-01');
+        $end_date = !is_null($request->date_range) ? date('Y-m-d', strtotime($date_range[1])) : date('Y-m-t');
+
+        if (!is_null($request->print)) {
+            $report_type = $request->report_type;
+            if ($report_type == 'product_history') {
+                $report_title = 'Product Wise Return History On ' . date('d-m-Y', strtotime($start_date)) . ' To ' . date('d-m-Y', strtotime($end_date));
+                $query = SalesReturnList::with(['purchase_return', 'store', 'client'])->leftJoin('sales_returns', 'sales_returns.id', '=', 'sales_return_lists.sales_return_id');
+                $query->whereHas('sales_return', function ($q) use ($start_date, $end_date) {
+                    if (request('store_id')) {
+                        $q->where('store_id', request('store_id'));
+                    }
+                    if (request('client_id')) {
+                        $q->whereIn('client_id', request('client_id'));
+                    }
+                    $q->where('date', '>=', $start_date)->where('date', '<=', $end_date);
+                });
+                if (request('product_id')) {
+                    $query->whereIn('product_id', request('product_id'));
+                }
+                $data = $query->orderBy('sales_returns.date', 'desc')->orderBy('id', 'desc')->select('sales_return_lists.*')->get();
+                // return view('admin.reports.sales-return-report.print', compact('report_title', 'report_type', 'data'));
+                $pdf = Pdf::loadView('admin.reports.sales-return-report.print', compact('report_title', 'report_type', 'data'));
+                $pdf->setPaper('A3');
+                return $pdf->stream('product_wise_sales_return_history_' . date('d_m_Y_H_i_s') . '.pdf');
+            } elseif ($report_type == 'product_summary') {
+                $report_title = 'Product Wise Return Summary On ' . date('d-m-Y', strtotime($start_date)) . ' To ' . date('d-m-Y', strtotime($end_date));
+                $query = SalesReturnList::with(['sales_return', 'store', 'client']);
+                $query->whereHas('sales_return', function ($q) use ($start_date, $end_date) {
+                    if (request('store_id')) {
+                        $q->where('store_id', request('store_id'));
+                    }
+                    if (request('client_id')) {
+                        $q->whereIn('client_id', request('client_id'));
+                    }
+                    $q->where('date', '>=', $start_date)->where('date', '<=', $end_date);
+                });
+                if (request('product_id')) {
+                    $query->whereIn('product_id', request('product_id'));
+                }
+                $data = $query->groupBy('product_id')->select('*', DB::raw('SUM(qty) as sum_quantity'), DB::raw('SUM(amount) as sum_amount'))->get();
+                // return view('admin.reports.sales-return-report.print', compact('report_title', 'report_type', 'data'));
+                $pdf = Pdf::loadView('admin.reports.sales-return-report.print', compact('report_title', 'report_type', 'data'));
+                $pdf->setPaper('A4');
+                return $pdf->stream('product_wise_sales_return_summary_' . date('d_m_Y_H_i_s') . '.pdf');
+            } else {
+                $report_title = 'Invoice Wise Return History On ' . date('d-m-Y', strtotime($start_date)) . ' To ' . date('d-m-Y', strtotime($end_date));
+                $query = SalesReturn::with(['store', 'client']);
+                if ($request->store_id) {
+                    $query->where('store_id', $request->store_id);
+                }
+                if ($request->client_id) {
+                    $query->whereIn('client_id', $request->client_id);
+                }
+                $query->whereHas('list', function ($q) use ($request) {
+                    if ($request->product_id) {
+                        $q->whereIn('product_id', $request->product_id);
+                    }
+                });
+                $query->where('date', '>=', $start_date)->where('date', '<=', $end_date);
+                $data = $query->orderBy('date', 'desc')->get();
+                // return view('admin.reports.sales-return-report.print', compact('report_title', 'report_type', 'data'));
+                $pdf = Pdf::loadView('admin.reports.sales-return-report.print', compact('report_title', 'report_type', 'data'));
+                $pdf->setPaper('A2');
+                return $pdf->stream('invoice_wise_sales_return_history_' . date('d_m_Y_H_i_s') . '.pdf');
+            }
+        }
+
+        $products   = Product::where('status', true)->orderBy('name', 'asc')->get();
+        $stores     = Store::where('status', true)->orderBy('name', 'asc')->get();
+        $clients    = Client::where('status', true)->orderBy('name', 'asc')->get();
+
+        $report_type = $request->report_type;
+        if ($report_type == 'product_history') {
+            $title = 'Product Wise History';
+            return $productHistoryDataTable->render('admin.reports.sales-return-report.index', compact('title', 'stores', 'clients', 'products', 'start_date', 'end_date'));
+        } elseif ($report_type == 'product_summary') {
+            $title = 'Product Wise Summary';
+            return $productSummaryDataTable->render('admin.reports.sales-return-report.index', compact('title', 'stores', 'clients', 'products', 'start_date', 'end_date'));
+        } else {
+            $title = 'Invoice Wise History';
+            return $invoiceHistoryDataTable->render('admin.reports.sales-return-report.index', compact('title', 'stores', 'clients', 'products', 'start_date', 'end_date'));
+        }
     }
 }

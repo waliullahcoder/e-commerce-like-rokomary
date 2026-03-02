@@ -37,6 +37,11 @@ use App\Http\Controllers\Admin\{
     RegionController,
     AreaController,
     TerritoryController,
+    InvestorController,
+    InvestController,
+    ProfitDistributionController,
+    InvestorPaymentController,
+    InvestSattlementController,
 };
 
 Route::middleware('guest')->group(function () {
@@ -95,6 +100,21 @@ Route::group(['middleware' => ['admin']], function () {
 
     // Sales Return
     Route::resource('/sales-return', SalesReturnController::class);
+
+    // Investor
+    Route::resource('/investor', InvestorController::class);
+
+    // Invest
+    Route::resource('/invest', InvestController::class);
+
+    // Profit Distribution
+    Route::resource('/profit-distribution', ProfitDistributionController::class);
+    // Investor Payment
+    Route::resource('/investor-payment', InvestorPaymentController::class);
+
+    // Invest Sattlement
+    Route::resource('/invest-sattlement', InvestSattlementController::class);
+    Route::get('/investor-statement', [ReportController::class, 'investorStatement'])->name('investor-statement.index');
 
     // Admin Setting
     Route::resource('/admin-settings', AdminSettingController::class);

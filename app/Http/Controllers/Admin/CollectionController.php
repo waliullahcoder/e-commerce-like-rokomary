@@ -29,7 +29,7 @@ class CollectionController extends Controller
     public function __construct()
     {
         $this->path = 'collection';
-        $this->title = 'Dealer Collections';
+        $this->title = 'Client Collections';
         $this->create_title = 'Add Collection';
         $this->edit_title = 'Update Collection';
         $this->model = Collection::class;

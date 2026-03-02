@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class PurchaseOrder extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['po_number', 'store_id', 'vendor_id', 'order_date', 'expected_date', 'total_amount', 'discount_amount', 'tax_amount', 'grand_total', 'status', 'notes', 'created_by', 'updated_by', 'deleted_by'];
+    protected $fillable = ['po_number', 'store_id', 'vendor_id', 'order_date', 'expected_date', 'total_amount', 'discount_amount', 'tax_amount', 'grand_total','paid_amount','due_amount','payment_type', 'status', 'notes', 'created_by', 'updated_by', 'deleted_by'];
     protected $appends = ['orderDate', 'expectedDate'];
 
     protected static function booted()

@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\PurchaseOrder;
+use App\Models\PurchaseOrderItem;
 use App\Http\Controllers\Controller;
 use App\Models\ProductTag;
 
@@ -148,7 +149,7 @@ class PurchaseOrderController extends Controller
         }
 
         $title = $this->create_title;
-        $products = Product::with('variants')->get();
+        $products = Product::get();
         $stores = Store::where('status', true)->get();
         $vendors = Vendor::where('status', true)->get();
         return view("admin.{$this->path}.create", compact('title', 'products', 'stores', 'vendors'));
@@ -160,17 +161,34 @@ class PurchaseOrderController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'code' => 'nullable|unique:stores,code'
+            'vendor_id' => 'required',
+            'order_date' => 'required',
+            'items' => 'required|array|min:1'
         ]);
 
-        $this->model::create([
-            'name' => $request->name,
-            'code' => $request->code,
-            'location' => $request->location,
-            'address' => $request->address,
-            'remarks' => $request->remarks
+        $purchase = PurchaseOrder::create([
+            'vendor_id' => $request->vendor_id,
+            'store_id' => $request->store_id,
+            'order_date' => $request->order_date,
+            'total_amount' => $request->total_amount,
+            'tax_amount' => $request->tax_amount,
+            'grand_total' => $request->grand_total,
+            'paid_amount' => $request->paid_amount,
+            'due_amount' => $request->grand_total-$request->paid_amount,
+            'payment_type' => $request->payment_type,
+            'notes' => $request->notes,
         ]);
+
+        foreach ($request->items as $item) {
+
+            PurchaseOrderItem::create([
+                'purchase_order_id' => $purchase->id,
+                'product_id' => $item['product_id'],
+                'quantity' => $item['quantity'],
+                'unit_price' => $item['unit_price'],
+                'discount' => $item['discount'] ?? 0,
+            ]);
+        }
 
         return redirect()->route("admin.{$this->path}.index")->withSuccessMessage('Created Successfully!');
     }

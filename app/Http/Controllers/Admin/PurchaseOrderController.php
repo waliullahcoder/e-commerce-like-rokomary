@@ -34,7 +34,14 @@ class PurchaseOrderController extends Controller
      */
     public function index()
     {
-        return HelperClass::resourceDataView($this->model::orderBy('id', 'desc'), null, null, $this->path, $this->title, ['purchaseReceipts']);
+        return HelperClass::resourceDataView(
+            $this->model::with(['store', 'vendor'])->orderBy('id', 'desc'),
+            null,
+            null,
+            $this->path,
+            $this->title,
+            ['purchaseReceipts'] // optional extra relations
+        );
     }
 
     function getBreadcrumb(Category $category)
@@ -160,6 +167,7 @@ class PurchaseOrderController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $request->validate([
             'vendor_id' => 'required',
             'order_date' => 'required',
@@ -167,9 +175,11 @@ class PurchaseOrderController extends Controller
         ]);
 
         $purchase = PurchaseOrder::create([
+            'po_number' => $this->poNumber(),
             'vendor_id' => $request->vendor_id,
             'store_id' => $request->store_id,
             'order_date' => $request->order_date,
+            'expected_date' => $request->expected_date,
             'total_amount' => $request->total_amount,
             'tax_amount' => $request->tax_amount,
             'grand_total' => $request->grand_total,
@@ -191,6 +201,19 @@ class PurchaseOrderController extends Controller
         }
 
         return redirect()->route("admin.{$this->path}.index")->withSuccessMessage('Created Successfully!');
+    }
+    /**
+     * Generate PO No.
+     */
+    public function poNumber()
+    {
+        $data = PurchaseOrder::withTrashed()->select(['po_number'])->whereDate('created_at', '>=', date('Y-m-01'))->whereDate('created_at', '<=', date('Y-m-t'))->orderBy('id', 'desc')->first();
+        if ($data) {
+            $trim = (int)str_replace("PONO", '', $data->po_number) + 1;
+            return "PONO" . $trim;
+        } else {
+            return "PONO" . date('ym') . '001';
+        }
     }
 
     /**

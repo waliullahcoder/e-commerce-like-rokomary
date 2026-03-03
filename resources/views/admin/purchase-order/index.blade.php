@@ -83,14 +83,14 @@
                         name: 'po_number'
                     },
                     {
-                        data: 'orderDate',
-                        name: 'orderDate',
+                        data: 'order_date',
+                        name: 'order_date',
                         orderable: false,
                         searchable: false,
                     },
                     {
-                        data: 'expectedDate',
-                        name: 'expectedDate',
+                        data: 'expected_date',
+                        name: 'expected_date',
                         orderable: false,
                         searchable: false,
                     },
@@ -121,8 +121,8 @@
                         name: 'grand_total'
                     },
                     {
-                        data: 'status',
-                        name: 'status'
+                        data: 'payment_type',
+                        name: 'payment_type'
                     },
                     {
                         data: 'actions',

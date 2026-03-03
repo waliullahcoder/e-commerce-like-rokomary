@@ -151,7 +151,7 @@
                                 <li class="sub-total list-group-item border-dashed">
                                     <span class="key">Sub Total:</span>
                                     <span class="value float-end">
-                                        <span id="subtotal">৳450.00</span>
+                                        <span id="subtotal">৳00.00</span>
                                     </span>
                                 </li>
                                 <li class="list-group-item border-dashed">
@@ -161,17 +161,17 @@
                                         </a>
                                         10.00% Sales Tax:
                                     </span>
-                                    <span class="value float-end">৳45.00 </span>
+                                    <span class="value float-end">৳00.00 </span>
                                 </li>
                             </ul>
                             <div class="amount-block border-top-0">
                                 <div class="total amount">
                                     <div class="side-heading text-center">Total</div>
-                                    <div class="amount total-amount">৳2,000.00</div>
+                                    <div class="amount total-amount">৳00.00</div>
                                 </div>
                                 <div class="total amount-due">
                                     <div class="side-heading text-center">Amount Due </div>
-                                    <div class="amount">৳2,000.00 </div>
+                                    <div class="amount">৳000.00 </div>
                                 </div>
                             </div>
                             <div class="add-payment">

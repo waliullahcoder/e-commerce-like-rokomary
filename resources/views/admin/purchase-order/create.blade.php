@@ -118,6 +118,7 @@
                                 <span class="key">Tax ({{$settings->tax}}%):</span>
                                 <span class="value float-end" id="tax_total">৳0.00</span>
                             </li>
+                             
                             <li class="list-group-item border-dashed">
                                 <span class="key">Grand Total:</span>
                                 <span class="value float-end" id="grand_total_display">৳0.00</span>

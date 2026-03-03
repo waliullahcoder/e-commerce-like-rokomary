@@ -167,7 +167,6 @@ class PurchaseOrderController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
         $request->validate([
             'vendor_id' => 'required',
             'order_date' => 'required',
@@ -180,6 +179,7 @@ class PurchaseOrderController extends Controller
             'store_id' => $request->store_id,
             'order_date' => $request->order_date,
             'expected_date' => $request->expected_date,
+            'discount_amount' => $request->discount_amount,
             'total_amount' => $request->total_amount,
             'tax_amount' => $request->tax_amount,
             'grand_total' => $request->grand_total,

@@ -118,6 +118,12 @@
                                 <span class="key">Tax ({{$settings->tax}}%):</span>
                                 <span class="value float-end" id="tax_total">৳0.00</span>
                             </li>
+                             <li class="discount list-group-item border-dashed">
+                                <span class="key">Discount:</span>
+                                <span class="value float-end">
+                                    <span id="discount_total">৳0.00</span>
+                                </span>
+                            </li>
                              
                             <li class="list-group-item border-dashed">
                                 <span class="key">Grand Total:</span>
@@ -243,15 +249,14 @@ $(document).ready(function(){
         const TAX_RATE = {{ $settings->tax/100 }};
         let discountPercent = parseFloat($('#discount_percent').val()) || 0;
         let discountAmount = subtotal * (discountPercent / 100);
-        let taxableAmount = subtotal - discountAmount;
-        let tax = taxableAmount * TAX_RATE;
-        let grandTotal = taxableAmount + tax;
+        let tax = subtotal * TAX_RATE;
+        let grandTotal = subtotal - discountAmount + tax;
 
         // UPDATE DISPLAY
         $('#subtotal').text('৳'+subtotal.toFixed(2));
         $('#tax_total').text('৳'+tax.toFixed(2));
         $('#grand_total_display').text('৳'+grandTotal.toFixed(2));
-
+         $("#discount_total").text("৳" + discountAmount.toFixed(2));
         // UPDATE HIDDEN INPUTS FOR FORM
         $('#total_amount').val(subtotal.toFixed(2));
         $('#discount_amount').val(discountAmount.toFixed(2));

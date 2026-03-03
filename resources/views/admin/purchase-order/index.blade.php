@@ -20,7 +20,7 @@
                 <th>Discount</th>
                 <th>Tax</th>
                 <th>Grand Total</th>
-                <th>Status</th>
+                <th>Method</th>
                 <th>Actions</th>
             </tr>
         </thead>

@@ -17,7 +17,7 @@
             </a>
 
             {{-- Searchable select input like input box --}}
-            <select id="product_select" class="form-select" data-placeholder="Enter item name or scan barcode" style="flex: 1;">
+            <select id="product_select" class="form-select" data-placeholder="Enter Book name" style="flex: 1;">
                 <option value=""></option>
                 @foreach($products as $product)
                     <option value="{{ $product->id }}" data-price="{{ $product->purchase_price }}">

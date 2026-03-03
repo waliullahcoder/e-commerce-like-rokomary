@@ -219,9 +219,11 @@ class PurchaseOrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $purchaseOrder = PurchaseOrder::with(['vendor', 'store', 'items.product'])->findOrFail($id);
+
+        return view('admin.purchase-order.show', compact('purchaseOrder'));
     }
 
     /**

@@ -6,11 +6,14 @@ use App\HelperClass;
 use App\Models\Store;
 use App\Models\Vendor;
 use App\Models\Product;
+use App\Models\ProductVariant;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\PurchaseOrder;
 use App\Models\PurchaseOrderItem;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\ProductTag;
 
 class PurchaseOrderController extends Controller
@@ -173,6 +176,8 @@ class PurchaseOrderController extends Controller
             'items' => 'required|array|min:1'
         ]);
 
+        try {
+            DB::transaction(function () use ($request) {
         $purchase = PurchaseOrder::create([
             'po_number' => $this->poNumber(),
             'vendor_id' => $request->vendor_id,
@@ -190,6 +195,9 @@ class PurchaseOrderController extends Controller
         ]);
 
         foreach ($request->items as $item) {
+          
+            $productId = $item['product_id'];
+            $qty = $item['quantity'];
 
             PurchaseOrderItem::create([
                 'purchase_order_id' => $purchase->id,
@@ -198,6 +206,36 @@ class PurchaseOrderController extends Controller
                 'unit_price' => $item['unit_price'],
                 'discount' => $item['discount'] ?? 0,
             ]);
+
+             // 🔥 Stock Update
+                $variant = ProductVariant::where([
+                    'product_id' => $productId
+                ])->first();
+
+                if ($variant) {
+                    $variant->increment('stock', $qty);
+                } else {
+                $product = Product::find($productId);
+                    ProductVariant::create([
+                        'product_id' => $productId,
+                        'stock' => $qty,
+                        'purchase_price' => $product->purchase_price,
+                        'regular_price' => $product->regular_price,
+                        'sale_price' => $product->sale_price,
+                        'discount_type' => $product->discount_type,
+                        'discount' => $product->discount,
+                        'status' => true,
+                        'created_by' => Auth::id(),
+                        'updated_by' => Auth::id(),
+                    ]);
+                }
+                // Stock update end
+            }
+
+
+           });
+        } catch (\Exception $e) {
+            return back()->withErrors($e->getMessage());
         }
 
         return redirect()->route("admin.{$this->path}.index")->withSuccessMessage('Created Successfully!');

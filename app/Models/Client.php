@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Client extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['coa_id', 'region_id', 'area_id', 'territory_id', 'code', 'name', 'contact_person', 'phone', 'email', 'address', 'credit_limit', 'bin_no', 'status', 'created_by', 'updated_by', 'deleted_by'];
+    protected $fillable = ['coa_id', 'user_id','region_id', 'area_id', 'territory_id', 'code', 'name', 'contact_person', 'phone', 'email', 'address', 'credit_limit', 'bin_no', 'status', 'created_by', 'updated_by', 'deleted_by'];
 
     public function region()
     {
@@ -43,5 +43,9 @@ class Client extends Model
     public function transactions()
     {
         return $this->hasMany(AccountTransactionAuto::class, 'coa_id', 'coa_id');
+    }
+    public function user()
+    {
+        return $this->hasMany(User::class, 'user_id');
     }
 }

@@ -18,6 +18,7 @@
 
                     {{-- STATUS TRACK --}}
                     <ul class="order-tracker mb-4">
+                        <li>Sir/Madam, {{ $order->user->name ?? 'N/A' }}</li>
                         <li class="{{ in_array($order->status,['pending','processing','completed']) ? 'active' : '' }}">Pending</li>
                         <li class="{{ in_array($order->status,['processing','completed']) ? 'active' : '' }}">Processing</li>
                         <li class="{{ $order->status=='completed' ? 'active' : '' }}">Completed</li>

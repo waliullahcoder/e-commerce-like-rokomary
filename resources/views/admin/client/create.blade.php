@@ -67,14 +67,14 @@
                 value="{{ old('contact_person') }}" placeholder="Contact Person">
         </div>
         <div class="col-sm-6">
-            <label for="phone" class="form-label"><b>Phone</b></label>
+            <label for="phone" class="form-label"><b>Phone <span class="text-danger">*</span></b></label>
             <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}"
-                placeholder="Phone">
+                placeholder="Phone" required>
         </div>
         <div class="col-sm-6">
-            <label for="email" class="form-label"><b>Email</b></label>
+            <label for="email" class="form-label"><b>Email <span class="text-danger">*</span></b></label>
             <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}"
-                placeholder="Email">
+                placeholder="Email" required>
         </div>
         <div class="col-sm-6">
             <label for="address" class="form-label"><b>Address</b></label>

@@ -7,10 +7,12 @@ use App\HelperClass;
 use App\Models\Area;
 use App\Models\Client;
 use App\Models\Region;
+use App\Models\User;
 use App\Models\Territory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
@@ -94,7 +96,37 @@ class ClientController extends Controller
                     'created_by'  => Auth::id(),
                 ]);
 
+             // Create User section
+                $user = null;
+            if ($request->phone || $request->email || $request->name) {
+                $user = User::query()
+                    ->when($request->phone, function ($q) use ($request) {
+                        $q->where('phone', $request->phone);
+                    })
+                    ->when($request->email, function ($q) use ($request) {
+                        $q->orWhere('email', $request->email);
+                    })
+                    ->when($request->name, function ($q) use ($request) {
+                        $q->orWhere('name', $request->name);
+                    })
+                    ->first();
+
+                if (!$user) {
+                    $user = User::create([
+                        'name'       => $request->name,
+                        'email'      => $request->email,
+                        'phone'      => $request->phone,
+                        'user_name'  => $request->phone ?? $request->email ?? $request->name,
+                        'password'   => Hash::make($request->phone ?? '12345678'),
+                        'created_by' => Auth::id(),
+                    ]);
+                }
+                $user_id = $user->id;
+                }
+                // End Create User section
+
                 $this->model::create([
+                    'user_id'  => $user_id,
                     'region_id' => $request->region_id,
                     'area_id' => $request->area_id,
                     'territory_id' => $request->territory_id,
@@ -193,7 +225,37 @@ class ClientController extends Controller
                     ]);
                 }
 
+                // Create User section
+                $user = null;
+            if ($request->phone || $request->email || $request->name) {
+                $user = User::query()
+                    ->when($request->phone, function ($q) use ($request) {
+                        $q->where('phone', $request->phone);
+                    })
+                    ->when($request->email, function ($q) use ($request) {
+                        $q->orWhere('email', $request->email);
+                    })
+                    ->when($request->name, function ($q) use ($request) {
+                        $q->orWhere('name', $request->name);
+                    })
+                    ->first();
+
+                if (!$user) {
+                    $user = User::create([
+                        'name'       => $request->name,
+                        'email'      => $request->email,
+                        'phone'      => $request->phone,
+                        'user_name'  => $request->phone ?? $request->email ?? $request->name,
+                        'password'   => Hash::make($request->phone ?? '12345678'),
+                        'created_by' => Auth::id(),
+                    ]);
+                }
+                $user_id = $user->id;
+                }
+                // End Create User section
+
                 $data->update([
+                    'user_id' => $user_id,
                     'region_id' => $request->region_id,
                     'area_id' => $request->area_id,
                     'territory_id' => $request->territory_id,

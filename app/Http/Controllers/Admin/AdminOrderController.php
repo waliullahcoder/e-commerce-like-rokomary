@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Services\FrontEndService;
 use Carbon\Carbon;
+use Exception;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminOrderController extends Controller
@@ -73,11 +74,10 @@ class AdminOrderController extends Controller
                 ProductVariant::where('id', $item->product_variant_id)->orWhere('product_id', $item->product_id)->increment('stock', $item->qty);
             }
         }else{
+            if($order->status == 'pending'){
                 try {
                     DB::transaction(function () use ($request,$order) {
-                        $order->update([
-                        'status' => $request->status
-                        ]);
+                      
                         $client = Client::where('user_id', $order->user_id)->first();
                         $store = Store::first();
                         $sales_officer = SalesOfficer::where('email', 'online@gmail.com')->first();
@@ -99,13 +99,16 @@ class AdminOrderController extends Controller
 
                         foreach ($order->items as $item) {
                             $product= Product::find($item->product_id);
-                            $product_edition_id = ProductEdition::where('product_id', $item->product_id)->first()->id ?? 1;
+                       $product_edition = ProductEdition::where('product_id', $item->product_id)->first();
+                              if (!$product_edition) {
+                                    throw new \Exception('CODE-'.$item->product_id.',Please set Edition on Book!');
+                                }
                             SalesList::create([
                                 'sales_id' => $data->id,
                                 'store_id' => $store ? $store->id : 1,
                                 'client_id' => $client->id,
                                 'product_id' => $item->product_id,
-                                'product_edition_id' => $product_edition_id,
+                                'product_edition_id' => $product_edition->id,
                                 'price' => $item->price,
                                 'commission' => 0,
                                 'commission_amount' => 0,
@@ -157,16 +160,16 @@ class AdminOrderController extends Controller
 
                     });
                 } catch (\Exception $e) {
-                    dd($e);
                     return back()->withErrors($e->getMessage());
                 }
+            }
+
+
+            $order->update([
+                'status' => $request->status
+            ]);
 
         }
-         
-         
-
-      
-
         return redirect()->back()->withSuccessMessage('Order status updated successfully ✅');
     }
 

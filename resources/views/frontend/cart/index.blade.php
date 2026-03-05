@@ -1,6 +1,60 @@
 @extends('layouts.frontend.app')
 
 @section('content')
+<style>
+    /* Mobile Responsive */
+    .code{
+        margin-bottom:0px;
+        font-size:11px;
+    }
+@media (max-width: 768px) {
+
+    .cart-item h6{
+        font-size:11px;
+    }
+
+    .cart-item b{
+        font-size:10px;
+    }
+
+    .cart-item small{
+        font-size:10px;
+    }
+
+    .item-subtotal{
+        font-size:10px;
+    }
+
+    .qty{
+        width:33px !important;
+        font-size:11px;
+        padding:2px;
+    }
+
+    .qty-minus,
+    .qty-plus{
+        padding:2px 4px;
+        font-size:10px;
+    }
+
+    .btn{
+        font-size:11px;
+        padding:2px 4px;
+    }
+    
+
+    .card-body h5{
+        font-size:12px;
+    }
+
+    #subtotal,
+    #discount,
+    #tax,
+    #total{
+        font-size:11px;
+    }
+}
+</style>
 <div class="container py-5">
     <div class="row">
         @if(count($cart) == 0)
@@ -48,14 +102,13 @@
                         </div>
 
                         <!-- TITLE + PRICE -->
-                        <div class="col-4">
+                        <div class="col-3">
                             <h6 class="mb-1 fw-semibold text-dark">
                                 {{ $item['name'] }}
                             </h6>
-                            <b>CODE-{{ $item['id'] }}</b>
-                            <br>
+                            <p class="code">{{ $item['code'] }}</p>
                             <small class="text-muted">
-                                ৳ {{ number_format($item['price'],2) }}
+                                ৳{{ number_format($item['price']) }}
                             </small>
                         </div>
 
@@ -83,12 +136,12 @@
                         <!-- SUBTOTAL -->
                         <div class="col-2 text-end">
                             <strong class="item-subtotal text-danger">
-                                ৳ {{ number_format($item['price'] * $item['qty'],2) }}
+                                ৳{{ number_format($item['price'] * $item['qty']) }}
                             </strong>
                         </div>
 
                         <!-- REMOVE -->
-                        <div class="col-1 text-end">
+                        <div class="col-2 text-end">
                             <form action="{{ route('cart.remove',$item['id']) }}" method="POST">
                                 @csrf
                                 <button class="btn btn-sm btn-outline-danger">

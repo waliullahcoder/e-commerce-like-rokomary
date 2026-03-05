@@ -101,7 +101,7 @@ class AdminOrderController extends Controller
                             $product= Product::find($item->product_id);
                        $product_edition = ProductEdition::where('product_id', $item->product_id)->first();
                               if (!$product_edition) {
-                                    throw new \Exception('CODE-'.$item->product_id.',Please set Edition on Book!');
+                                    throw new \Exception('CODE'.$item->product_id.',Please set Edition on Book!');
                                 }
                             SalesList::create([
                                 'sales_id' => $data->id,

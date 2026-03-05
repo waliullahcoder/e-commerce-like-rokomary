@@ -53,7 +53,7 @@ class ProductController extends Controller
     public function index()
     {
         return HelperClass::resourceDataView(
-            $this->model::with(['category', 'uom'])
+            $this->model::with(['category', 'uom','edition'])
                 ->select('id','code','name','category_id','uom_id','thumbnail','status')
                 ->where('product_type', 'book')
                 ->orderBy('id', 'desc'),

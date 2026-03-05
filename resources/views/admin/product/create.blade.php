@@ -118,12 +118,19 @@
                         placeholder="Tags">
                 </div>
                 <div class="col-sm-6">
-                <label for="edition_name" class="form-label"><b>Edition <span class="text-danger">*</span></b></label>
-                  <input type="text"
-                        name="edition_name"
-                        value="{{ old('edition_name') }}"
-                        class="form-control @error('edition_name') is-invalid @enderror"
-                        placeholder="Ex. First Edition" required>
+                    <label for="edition_name" class="form-label"><b>Edition <span class="text-danger">*</span></b></label>
+                    <select name="edition_name" id="edition_name"
+                        class="form-control @error('edition_name') is-invalid @enderror" required>
+                        @php
+                            $editions = ['First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh'];
+                        @endphp
+                        @foreach($editions as $edition)
+                            <option value="{{ $edition }} Edition"
+                                {{ old('edition_name') == $edition . ' Edition' ? 'selected' : '' }}>
+                                {{ $edition }} Edition
+                            </option>
+                        @endforeach
+                    </select>
 
                     @error('edition_name')
                     <div class="invalid-feedback">{{ $message }}</div>

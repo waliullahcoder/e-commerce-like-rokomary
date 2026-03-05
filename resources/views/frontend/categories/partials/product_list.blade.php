@@ -50,10 +50,10 @@
                                                       
                                                          {{$product->name}}
                                                     </h6>
-                                                    <b class="product-card-title truncate-text"
+                                                    <p class="product-card-title truncate-text"
                                                         style="--lines: 2;">
-                                                        CODE-{{ $product->id }}
-                                                    </b>
+                                                        {{ $product->code }}
+                                                </p>
                                                     <span class="product-card-price">
                                                         <del>
                                                             <span class="Price-amount">

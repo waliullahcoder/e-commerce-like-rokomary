@@ -18,7 +18,7 @@
                     <th>Code</th>
                     <th>Name</th>
                     <th>Category</th>
-                    <th>UOM</th>
+                    <th>Edition</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
@@ -66,7 +66,7 @@ $(document).ready(function() {
             { data: 'code', name: 'code' },
             { data: 'name', name: 'name' },
             { data: 'category.name', name: 'category.name', defaultContent: '', width: '150px' },
-            { data: 'uom.name', name: 'uom.name', defaultContent: '', width: '100px' },
+            { data: 'edition.name', name: 'edition.name', defaultContent: '', width: '100px' },
             { data: 'status', name: 'status', orderable: false, searchable: false, className: 'text-center', width: '90px' },
             { data: 'actions', name: 'actions', orderable: false, searchable: false, className: 'text-end', width: '120px' }
         ],

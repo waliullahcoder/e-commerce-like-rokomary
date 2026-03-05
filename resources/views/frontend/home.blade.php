@@ -112,10 +112,10 @@
                                                         {{ $product->name }}
                                                     
                                                 </h6>
-                                                <b class="product-card-title truncate-text"
+                                                <p class="product-card-title truncate-text"
                                                         style="--lines: 2;">
-                                                        CODE-{{ $product->id }}
-                                                    </b>
+                                                        {{ $product->code }}
+                                                </p>
                                                 <p class="product-card-author truncate-text" style="--lines: 2;"> {!! $product->short_description !!}
                                                 </p>
                                                 <span class="product-card-price">
@@ -204,10 +204,10 @@
                                                         {{ $product->name }}
                                                     
                                                 </h6>
-                                                <b class="product-card-title truncate-text"
+                                                <p class="product-card-title truncate-text"
                                                         style="--lines: 2;">
-                                                        CODE-{{ $product->id }}
-                                                    </b>
+                                                        {{ $product->code }}
+                                                </p>
                                                 <p class="product-card-author truncate-text" style="--lines: 2;"> {!! $product->short_description !!}
                                                 </p>
                                                 <span class="product-card-price">
@@ -310,10 +310,10 @@
                                                         {{ $product->name }}
                                                     
                                                 </h6>
-                                                <b class="product-card-title truncate-text"
+                                                <p class="product-card-title truncate-text"
                                                         style="--lines: 2;">
-                                                        CODE-{{ $product->id }}
-                                                    </b>
+                                                       {{ $product->code }}
+                                                </p>
                                                 <p class="product-card-author truncate-text" style="--lines: 2;"> {!! $product->short_description !!}
                                                 </p>
                                                 <span class="product-card-price">

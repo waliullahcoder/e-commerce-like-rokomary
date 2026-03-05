@@ -87,16 +87,30 @@
                     <input type="text" class="form-control" id="tags" name="tags[]"
                         value="{{ json_encode($data->tags->pluck('name')->toArray()) }}" placeholder="Tags">
                 </div>
-                <div class="col-sm-6">
-                    @php
-                    $edition = App\Models\ProductEdition::where('product_id',$data->id)->first();
+                   @php
+                        // Existing edition for this product (edit mode)
+                        $existingEdition = App\Models\ProductEdition::where('product_id', $data->id)->first();
                     @endphp
-                <label for="edition_name" class="form-label"><b>Edition <span class="text-danger">*</span></b></label>
-                  <input type="text"
-                        name="edition_name"
-                        value="{{ $edition->name ?? '' }}"
-                        class="form-control" required>
-                </div>
+
+                    <div class="col-sm-6">
+                        <label for="edition_name" class="form-label"><b>Edition <span class="text-danger">*</span></b></label>
+                        <select name="edition_name" id="edition_name"
+                            class="form-control @error('edition_name') is-invalid @enderror" required>
+                            @php
+                                $editions = ['First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh'];
+                            @endphp
+                            @foreach($editions as $ed)
+                                <option value="{{ $ed }} Edition"
+                                    {{ (old('edition_name') == $ed . ' Edition' || ($existingEdition && $existingEdition->name == $ed . ' Edition')) ? 'selected' : '' }}>
+                                    {{ $ed }} Edition
+                                </option>
+                            @endforeach
+                        </select>
+
+                        @error('edition_name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                 <div class="col-12">
                     <div class="row g-2">
                         <label for="favorite" class="col-sm-3 col-md-3 col-lg-2 control-label"><b>Is Favorite:</b></label>

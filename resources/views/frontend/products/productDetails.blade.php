@@ -231,7 +231,7 @@
                                     </tr>
                                     <tr>
                                         <th>CODE NUMBER</th>
-                                        <td>CODE-{{ $product->id }}</td>
+                                        <td>{{ $product->code }}</td>
                                     </tr>
                                     <tr>
                                         <th>Product Type</th>
@@ -284,7 +284,7 @@
                                    class="small fw-semibold d-block">
                                     {{ $item->name }}
                                 </a>
-                                <b>CODE-{{ $item->id }}</b><br>
+                                <p>{{ $item->code }}</p><br>
                                 <span class="text-danger small">
                                     {{ number_format($item->sale_price ?? $item->regular_price, 2) }} ৳
                                 </span>

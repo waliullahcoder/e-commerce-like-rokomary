@@ -23,6 +23,7 @@
                     <input type="text" class="form-control" id="name" name="name"
                         value="{{ old('name', $data->name) }}" placeholder="Name" required>
                 </div>
+                <input type="hidden"  name="code" value="{{ old('code', $data->code) }}">
                 <div class="col-sm-6">
                     <label for="category_id" class="form-label"><b>Category <span class="text-danger">*</span></b></label>
                     <select class="form-select select" name="category_id" id="category_id"

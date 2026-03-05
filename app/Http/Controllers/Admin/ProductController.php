@@ -21,7 +21,7 @@ use App\Services\ProductService;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Services\ProductVariantService;
-
+use Yajra\DataTables\Facades\DataTables;
 class ProductController extends Controller
 {
     public $path;
@@ -45,11 +45,26 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function index()
+    // {
+    //     return HelperClass::resourceDataView($this->model::with(['category', 'uom'])->where('product_type', 'book')->orderBy('id', 'desc'), 'thumbnail', null, $this->path, $this->title);
+    // }
+
     public function index()
     {
-        return HelperClass::resourceDataView($this->model::with(['category', 'uom'])->where('product_type', 'book')->orderBy('id', 'desc'), 'thumbnail', null, $this->path, $this->title);
+        return HelperClass::resourceDataView(
+            $this->model::with(['category', 'uom'])
+                ->select('id','code','name','category_id','uom_id','thumbnail','status')
+                ->where('product_type', 'book')
+                ->orderBy('id', 'desc'),
+            'thumbnail',
+            null,
+            $this->path,
+            $this->title
+        );
     }
 
+    
     public function skuCombination(Request $request)
     {
         if ($request->ajax()) {
@@ -102,6 +117,25 @@ class ProductController extends Controller
         return view("admin.{$this->path}.create", compact('title', 'brands', 'uoms', 'subcategories', 'vendors', 'attributes', 'authors', 'publications'));
     }
 
+     /**
+     * Generate Code No.
+     */
+    public function codeNo()
+    {
+        // Current date in YYYYMMDD format
+         $date = date('Ymd');
+        // Last product
+        $last = $this->model::withTrashed()->orderBy('id', 'desc')->first();
+        if ($last && $last->id) {
+            // CODE + date + last id
+            return 'COD' . $date . $last->id +1;
+        } else {
+            // No product yet
+            return 'COD' . $date . '1';
+        }
+    }
+
+
     /**
      * Store a newly created resource in storage.
      */
@@ -123,10 +157,14 @@ class ProductController extends Controller
 
         try {
             DB::transaction(function () use ($request) {
+            
+            // $product = $this->productService->store($request->except(['_token', 'choice']));
+            // ✅ generate code
+            $data = $request->except(['_token','choice']);
+            $data['code'] = $this->codeNo();
 
-                // ✅ PRODUCT STORE
-                $product = $this->productService
-                    ->store($request->except(['_token', 'choice']));
+            // ✅ PRODUCT STORE
+            $product = $this->productService->store($data);
 
                 // ✅ VARIANT (safe)
                 if ($request->filled('choice_no')) {
@@ -274,10 +312,14 @@ class ProductController extends Controller
             DB::transaction(function () use ($request, $id) {
 
                 $product = $this->model::findOrFail($id);
-
+                $data = $request->except(['_token','choice']);
+                if(empty($request->code)){
+                    $date = date('Ymd');
+                    $data['code'] = 'COD' . $date . $id;
+                }
                 // ✅ PRODUCT UPDATE
-                $product = $this->productService
-                    ->update($request->except(['_token', 'choice']), $product);
+                $product = $this->productService->update($data, $product);
+                // $product = $this->productService->update($request->except(['_token', 'choice']), $product);
 
                 // ✅ VARIANT (NULL SAFE)
                 if ($request->filled('choice_no')) {

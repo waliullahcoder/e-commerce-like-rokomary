@@ -16,6 +16,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\InvestSattlement;
 use Illuminate\Support\Facades\DB;
 use App\Models\AccountTransaction;
+use App\Models\AccountTransactionAuto;
 use App\DataTables\CoaListDataTable;
 use App\DataTables\CollectionReportDataTable;
 use App\DataTables\InvoiceWiseCollectionHistoryDataTable;
@@ -267,8 +268,10 @@ class ReportController extends Controller
 
         $incomes = array();
         $expenses = array();
-        if ($request->has('filter')) {
-            $incomes = AccountTransaction::with('coa')
+
+        //MyCode when run ageneral accounting comment this code
+         if ($request->has('filter')) {
+            $incomes = AccountTransactionAuto::with('coa')
                 ->where('date', '>=', $start_date)
                 ->where('date', '<=', $end_date)
                 ->whereHas('coa', fn($q) => $q->where('head_type', 'I'))
@@ -276,13 +279,32 @@ class ReportController extends Controller
                 ->select('coa_head_code', 'coa_id', DB::raw('SUM(debit_amount) as debit_amount'), DB::raw('SUM(credit_amount) as credit_amount'))
                 ->get();
 
-            $expenses = AccountTransaction::with('coa')->select('*', DB::raw('SUM(debit_amount - credit_amount) as amount'))
+            $expenses = AccountTransactionAuto::with('coa')->select('*', DB::raw('SUM(debit_amount - credit_amount) as amount'))
                 ->where('date', '>=', $start_date)
                 ->where('date', '<=', $end_date)
                 ->whereHas('coa', fn($q) => $q->where('head_type', 'E')->where('transaction', 1))
                 ->groupBy('coa_id')
                 ->get();
         }
+
+        //Old code when run ageneral accounting uncomment this code
+
+        // if ($request->has('filter')) {
+        //     $incomes = AccountTransaction::with('coa')
+        //         ->where('date', '>=', $start_date)
+        //         ->where('date', '<=', $end_date)
+        //         ->whereHas('coa', fn($q) => $q->where('head_type', 'I'))
+        //         ->groupBy('coa_id')
+        //         ->select('coa_head_code', 'coa_id', DB::raw('SUM(debit_amount) as debit_amount'), DB::raw('SUM(credit_amount) as credit_amount'))
+        //         ->get();
+
+        //     $expenses = AccountTransaction::with('coa')->select('*', DB::raw('SUM(debit_amount - credit_amount) as amount'))
+        //         ->where('date', '>=', $start_date)
+        //         ->where('date', '<=', $end_date)
+        //         ->whereHas('coa', fn($q) => $q->where('head_type', 'E')->where('transaction', 1))
+        //         ->groupBy('coa_id')
+        //         ->get();
+        // }
 
         if (!is_null($request->print)) {
             $report_title = 'Income Statement Report <br> <span class="text-sm">' . date('d-m-Y', strtotime($start_date)) . ' To ' . date('d-m-Y', strtotime($end_date)) . '</span>';

@@ -23,7 +23,14 @@
                         <li class="{{ in_array($order->status,['processing','completed']) ? 'active' : '' }}">Processing</li>
                         <li class="{{ $order->status=='completed' ? 'active' : '' }}">Completed</li>
                     </ul>
-
+                    {{-- CALCULATION --}}
+                    @php
+                        $subtotal = $order->items->sum('total');
+                        $discount = $order->discount;
+                        $afterDiscount = $subtotal - $discount;
+                        $tax = $order->tax;
+                        $grandTotal = $afterDiscount + $tax;
+                    @endphp
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -31,7 +38,7 @@
                                 <th>Category</th>
                                 <th>Qty</th>
                                 <th>Price</th>
-                                <th>Total</th>
+                                <th>Subtotal</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,9 +55,29 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{-- TOTAL --}}
+                
 
                     <div class="text-end mt-3">
-                        <h5>Grand Total: ৳ {{ number_format($order->total,2) }}</h5>
+                        <table>
+                                        <tr>
+                                            <td>Total</td>
+                                            <td style="text-align:right;">- ৳{{ number_format($subtotal,2) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Discount {{$settings->discount_type=='percent' ? '('.$settings->discount.'%'.')' : ''}}</td>
+                                            <td style="text-align:right;">- ৳{{ number_format($discount,2) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tax ({{$settings->tax}}%)</td>
+                                            <td style="text-align:right;">- ৳{{ number_format($tax,2) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Grand Total  </th>
+                                            <th style="text-align:right;">- ৳{{ number_format($grandTotal,2) }}</th>
+                                        </tr>
+                                    </table>
+                        <h5>Net Total: ৳ {{ number_format($order->total,2) }}</h5>
                     </div>
 
                 </div>

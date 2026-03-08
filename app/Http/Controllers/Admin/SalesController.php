@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\AccountTransactionAuto;
 use App\Models\SalesOfficer;
+use App\Models\ProductVariant;
 use Yajra\DataTables\Facades\DataTables;
 use App\Services\ActionButtons\ActionButtons;
 
@@ -199,6 +200,34 @@ class SalesController extends Controller
                         'discount' => $discount,
                         'net_amount' => $request->amount[$product_edition_id] - $discount,
                     ]);
+
+                     // 🔥 Stock Update
+                    $productId = $request->product_id[$product_edition_id];
+                    $qty = $request->qty[$product_edition_id];
+                    $variant = ProductVariant::where([
+                        'product_id' => $productId
+                    ])->first();
+
+                    if ($variant) {
+                        $variant->decrement('stock', $qty);
+                    } else {
+                    $product = Product::find($productId);
+                        ProductVariant::create([
+                            'product_id' => $productId,
+                            'stock' => $qty,
+                            'purchase_price' => $product->purchase_price,
+                            'regular_price' => $product->regular_price,
+                            'sale_price' => $product->sale_price,
+                            'discount_type' => $product->discount_type,
+                            'discount' => $product->discount,
+                            'status' => true,
+                            'created_by' => Auth::id(),
+                            'updated_by' => Auth::id(),
+                        ]);
+                    }
+                    // Stock update end
+
+                    
                 }
 
                 $client = Client::find($request->client_id);

@@ -274,7 +274,9 @@ class ReportController extends Controller
             $incomes = AccountTransactionAuto::with('coa')
                 ->where('date', '>=', $start_date)
                 ->where('date', '<=', $end_date)
-                ->whereHas('coa', fn($q) => $q->where('head_type', 'I'))
+                ->whereHas('coa', fn($q) => $q->where('head_type', 'A'))
+                ->where('voucher_type', '=', 'Client Collection')
+                ->where('debit_amount', 0.00)
                 ->groupBy('coa_id')
                 ->select('coa_head_code', 'coa_id', DB::raw('SUM(debit_amount) as debit_amount'), DB::raw('SUM(credit_amount) as credit_amount'))
                 ->get();

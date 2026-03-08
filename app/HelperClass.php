@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
 use Yajra\DataTables\Facades\DataTables;
 use App\Services\ActionButtons\ActionButtons;
+use App\Models\ProductionList;
+use App\Models\SalesList;
+use App\Models\SalesReturnList;
+use App\Models\ProductEdition;
+use App\Models\ProductVariant;
+use App\Models\Product;
 use Intervention\Image\Drivers\Gd\Driver as GdDriver;
 
 class HelperClass
@@ -273,6 +279,28 @@ class HelperClass
 
         return $slug;
     }
+
+    public static function stock($product_edition_id, $store_id = null)
+    {
+        // dd($product_edition_id, $store_id);
+        if($product_edition_id){
+            $productid= ProductEdition::find($product_edition_id)->product_id;
+            $variant = ProductVariant::where('product_id', $productid)->first();
+            return $variant->stock??0;
+        }
+        if (!is_null($store_id)) {
+            $productions = ProductionList::whereHas('production')->where('store_id', $store_id)->where('product_edition_id', $product_edition_id)->sum('qty');
+            $sales = SalesList::whereHas('sales')->where('store_id', $store_id)->where('product_edition_id', $product_edition_id)->sum('qty');
+            $salesReturns = SalesReturnList::whereHas('return')->where('store_id', $store_id)->where('product_edition_id', $product_edition_id)->sum('qty');
+            return $productions - $sales + $salesReturns;
+        } else {
+            $productions = ProductionList::whereHas('production')->where('product_edition_id', $product_edition_id)->sum('qty');
+            $sales = SalesList::whereHas('sales')->where('product_edition_id', $product_edition_id)->sum('qty');
+            $salesReturns = SalesReturnList::whereHas('return')->where('product_edition_id', $product_edition_id)->sum('qty');
+            return $productions - $sales + $salesReturns;
+        }
+    }
+
 
     /**
      * Converts number to words.

@@ -174,6 +174,8 @@ class SalesController extends Controller
                     'date'      => date('Y-m-d', strtotime($request->date)),
                     'amount'    => $request->total_amount,
                     'discount'  => $request->discount,
+                    'tax'       => $request->tax,
+                    'tax_amount' => $request->tax_amount,
                     'net_amount' => $request->net_amount,
                     'paid'      => $request->sale_type == 'Cash' ? $request->net_amount : 0.00,
                     'remarks'   => $request->remarks,

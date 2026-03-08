@@ -85,7 +85,7 @@
         <div class="container">
             <div class="section-card">
                 <div class="section-header mb-3">
-                    <h3 class="section-title"> {{ $subCategory->name }}</h3>
+                    <h5 class="section-title"> {{ $subCategory->name }}</h5>
                     <a href="{{route('category.singleCategoryPage', $subCategory->id)}}" class="section-link">সবগুলো দেখুন</a>
                 </div>
                 <div class="position-relative">
@@ -119,13 +119,15 @@
                                                 <p class="product-card-author truncate-text" style="--lines: 2;"> {!! $product->short_description !!}
                                                 </p>
                                                 <span class="product-card-price">
+                                                    @if($product->discount>0)
                                                     <del>
                                                          <span class="Price-amount">
                                                                  {{ number_format($product->regular_price) }} <span class="Price-currencySymbol">৳</span>
                                                             </span>
                                                     </del>
+                                                    @endif
                                                     <ins>
-                                                        <span class="Price-amount"> {{ number_format($product->sale_price ?? $product->regular_price) }}<span class="Price-currencySymbol">৳</span>
+                                                        <span class="Price-amount"> {{ number_format($product->sale_price) }}<span class="Price-currencySymbol">৳</span>
                                                         </span>
                                                     </ins>
                                                 </span>
@@ -177,7 +179,7 @@
         <div class="container">
             <div class="section-card">
                 <div class="section-header mb-3">
-                    <h3 class="section-title"> {{ $subCategory->name }}</h3>
+                    <h5 class="section-title"> {{ $subCategory->name }}</h5>
                     <a href="{{route('category.singleCategoryPage', $subCategory->id)}}" class="section-link">সবগুলো দেখুন</a>
                 </div>
                 <div class="position-relative">
@@ -211,13 +213,15 @@
                                                 <p class="product-card-author truncate-text" style="--lines: 2;"> {!! $product->short_description !!}
                                                 </p>
                                                 <span class="product-card-price">
+                                                    @if($product->discount>0)
                                                     <del>
                                                          <span class="Price-amount">
                                                                  {{ number_format($product->regular_price) }} <span class="Price-currencySymbol">৳</span>
                                                             </span>
                                                     </del>
+                                                    @endif
                                                     <ins>
-                                                        <span class="Price-amount"> {{ number_format($product->sale_price ?? $product->regular_price) }}<span class="Price-currencySymbol">৳</span>
+                                                        <span class="Price-amount"> {{ number_format($product->sale_price) }}<span class="Price-currencySymbol">৳</span>
                                                         </span>
                                                     </ins>
                                                 </span>
@@ -253,7 +257,7 @@
         <div class="container">
             <div class="section-card">
                 <div class="section-header mb-3">
-                    <h3 class="section-title">জনপ্রিয় লেখক</h3>
+                    <h5 class="section-title">জনপ্রিয় লেখক</h5>
                 </div>
                 <div class="position-relative">
                     <div class="swiper carousel" data-items="2" data-xl-items="7" data-lg-items="6" data-md-items="5"
@@ -278,7 +282,7 @@
     {{-- END//জনপ্রিয় লেখক --}}
 
     {{-- আতর ও সুগন্ধি পণ্য --}}
-    @foreach($get_sub_category_atar_sugondhi_product_only as $subCategory)
+    {{-- @foreach($get_sub_category_atar_sugondhi_product_only as $subCategory)
  <div class="category-product-section pb-4" style="display:none;">
         <div class="container">
             <div class="section-card">
@@ -317,13 +321,15 @@
                                                 <p class="product-card-author truncate-text" style="--lines: 2;"> {!! $product->short_description !!}
                                                 </p>
                                                 <span class="product-card-price">
+                                                    @if($product->discount>0)
                                                     <del>
                                                          <span class="Price-amount">
                                                                  {{ number_format($product->regular_price) }} <span class="Price-currencySymbol">৳</span>
                                                             </span>
                                                     </del>
+                                                    @endif
                                                     <ins>
-                                                        <span class="Price-amount"> {{ number_format($product->sale_price ?? $product->regular_price) }}<span class="Price-currencySymbol">৳</span>
+                                                        <span class="Price-amount"> {{ number_format($product->sale_price) }}<span class="Price-currencySymbol">৳</span>
                                                         </span>
                                                     </ins>
                                                 </span>
@@ -351,12 +357,12 @@
             </div>
         </div>
     </div>
-    @endforeach
+    @endforeach --}}
     {{-- END//আতর ও সুগন্ধি পণ্য --}}
 
 
     {{-- অন্যান্য পণ্য --}}
-     <div class="category-section pb-4" style="display:none;">
+     {{-- <div class="category-section pb-4" style="display:none;">
         <div class="container">
             <div class="section-card">
                 <div class="section-header mb-3">
@@ -384,11 +390,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     {{-- end অন্যান্য পণ্য --}}
 
     {{-- ব্র্যান্ডসমূহ --}}
-    <div class="brand-section pb-4" style="display:none;">
+    {{-- <div class="brand-section pb-4" style="display:none;">
         <div class="container">
             <div class="section-card">
                 <div class="section-header mb-3">
@@ -415,6 +421,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
    {{-- END ব্র্যান্ডসমূহ --}}
 @endsection

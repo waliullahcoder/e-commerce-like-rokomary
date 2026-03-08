@@ -3,11 +3,11 @@
         <div class="col-6 col-md-4 col-lg-3"> <!-- Mobile 2, Tablet 3, Desktop 4 -->
             <div class="product-card-wrapper">
                 <div class="product-card">
-
+                    @if($product->discount>0)
                     <div class="discount-badge">
                         <span class="product-discount">{{ number_format($product->discount) }}</span>
                     </div>
-
+                    @endif
                     <a class="z-2" href="{{ route('product.details', $product->id) }}">
                         <figure class="product-card-image ratio" style="--bs-aspect-ratio: 130%">
                             <img class="object-fit-contain product-img"
@@ -23,14 +23,16 @@
                                 {{ $product->code }}
                             </p>
                             <span class="product-card-price">
+                                @if($product->discount>0)
                                 <del>
                                     <span class="Price-amount">
                                         {{ number_format($product->regular_price) }} <span class="Price-currencySymbol">৳</span>
                                     </span>
                                 </del>
+                                @endif
                                 <ins>
                                     <span class="Price-amount">
-                                        {{ number_format($product->sale_price ?? $product->regular_price) }} <span class="Price-currencySymbol">৳</span>
+                                        {{ number_format($product->sale_price) }} <span class="Price-currencySymbol">৳</span>
                                     </span>
                                 </ins>
                             </span>

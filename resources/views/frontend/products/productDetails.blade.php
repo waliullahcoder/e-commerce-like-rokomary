@@ -34,7 +34,7 @@
 
                     <div class="row g-4">
                      <!-- LEFT : PRODUCT IMAGE -->
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="bg-white border rounded p-3">
 
                             <!-- MAIN IMAGE -->
@@ -130,7 +130,7 @@
 
 
                         <!-- RIGHT : PRODUCT DETAILS -->
-                        <div class="col-lg-8">
+                        <div class="col-lg-6">
                             <div class="bg-white border rounded p-3">
 
                                 <h2 class="mb-2">{{ $product->name }}</h2>
@@ -179,18 +179,14 @@
 
                                 <!-- PRICE -->
                                 <div class="mb-4">
-                                    @if($product->sale_price > 0)
                                         <h3 class="text-danger">
                                             {{ number_format($product->sale_price, 2) }} ৳
+                                            @if($product->discount>0)
                                             <del class="fs-6 text-muted ms-2">
                                                 {{ number_format($product->regular_price, 2) }} ৳
                                             </del>
+                                            @endif
                                         </h3>
-                                    @else
-                                        <h3 class="text-danger">
-                                            {{ number_format($product->regular_price, 2) }} ৳
-                                        </h3>
-                                    @endif
                                 </div>
 
                                 <!-- ACTION BUTTONS -->

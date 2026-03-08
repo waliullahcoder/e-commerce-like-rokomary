@@ -11,7 +11,19 @@
         href="{{ asset(file_exists($settings->favicon) ? $settings->favicon : 'frontend/images/logo/favicon.png') }}"
         type="image/x-icon">
     @include('layouts.frontend.partial.styles')
-    
+<link href="https://fonts.maateen.me/solaiman-lipi/font.css" rel="stylesheet">
+<style>
+/* @font-face {
+    font-family: 'SolaimanLipi';
+    src: url('/fonts/SolaimanLipi.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+} */
+
+body{
+    font-family: 'SolaimanLipi', sans-serif;
+}
+</style>
    
 </head>
 

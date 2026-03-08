@@ -127,9 +127,9 @@
 
                             <!-- Section Header -->
                             <div class="section-header mb-3">
-                                <h3 class="section-title">
+                                <h5 class="section-title">
                                     {{ $single_sub_category->name }}
-                                </h3>
+                                </h5>
                             </div>  
 
                             <!-- PRODUCTS -->

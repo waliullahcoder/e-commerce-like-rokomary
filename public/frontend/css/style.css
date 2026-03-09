@@ -17,7 +17,7 @@ body {
     font-size: 14px;
     font-weight: 400;
     color: #3F4254;
-    background-color: var(--bs-light);
+    background-color:#fbfffe;
     font-family: "Noto Sans Bengali", sans-serif;
     overflow-x: hidden;
 }
@@ -377,7 +377,7 @@ h6 {
 
 /* =============== Header CSS =============== */
 .header-top {
-    background: #f5f5f5;
+    background: #fbfffe;
     color: #666;
     display: block;
     font-size: 13px;

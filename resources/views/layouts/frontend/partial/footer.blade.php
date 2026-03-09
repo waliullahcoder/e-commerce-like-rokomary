@@ -8,21 +8,21 @@
                             height="50" alt="{{ $settings->app_name }}">
                     </a>
                 </div>
-                <p>{{ $settings->description }}</p>
+                <p style="text-align: justify;">{{ $settings->description }}</p>
             </div>
             <div class="col-lg-3 col-md-4 col-6">
                 <h5 class="footer-title">প্রয়োজনীয় লিংক</h5>
                 <ul class="footer-list">
                     @foreach ($menus['footer_col1_menus'] as $menu)
-                    <li class="footer-item"><a class="footer-link" href="{{ $menu->menu_url }}">{{ $menu->name }}</a></li>
+                    <li class="footer-item"><a class="footer-link" href="{{ route('info.page', $menu->id) }}">{{ $menu->name }}</a></li>
                     @endforeach
                 </ul>
             </div>
             <div class="col-lg-3 col-md-4 col-6">
-                <h5 class="footer-title">জনপ্রিয়</h5>
+                <h5 class="footer-title">অন্যান্য লিংক</h5>
                 <ul class="footer-list">
                     @foreach ($menus['footer_col2_menus'] as $menu)
-                    <li class="footer-item"><a class="footer-link" href="{{ $menu->menu_url }}">{{ $menu->name }}</a></li>
+                    <li class="footer-item"><a class="footer-link" href="{{ route('info.page', $menu->id) }}">{{ $menu->name }}</a></li>
                     @endforeach
                 </ul>
             </div>

@@ -2,11 +2,25 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="description" content="{{$settings->meta_description?? 'বুকস অ্যান্ড বুকস কুইজে অংশগ্রহণ করুন এবং পুরস্কার জিতুন। সহজ, মজাদার ও শিক্ষামূলক কুইজ।'}}">
+    <meta name="keywords" content="{{$settings->meta_keyword?? 'বই, অনলাইন বই, বই বিক্রি, কমিশন, ঘরে বসে আয়'}}">
+    <meta name="author" content="বুকস অ্যান্ড বুকস">
+
+    {{-- Open Graph / Facebook --}}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="{{$settings->meta_title?? 'বুকস অ্যান্ড বুকস'}}">
+    <meta property="og:description" content="{{$settings->meta_description?? 'বুকস অ্যান্ড বুকস কুইজে অংশগ্রহণ করুন এবং পুরস্কার জিতুন। সহজ, মজাদার ও শিক্ষামূলক কুইজ।'}}">
+    <meta property="og:image" content="{{asset($settings->meta_image?? 'frontend/images/logo/logo.jpg')}}">
+
+    {{-- Canonical --}}
+    <link rel="canonical" href="{{ url()->current() }}">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>{{ $settings->title }}</title>
+    <title>{{ $settings->title ?? 'বুকস অ্যান্ড বুকস' }}</title>
     <link rel="shortcut icon"
         href="{{ asset(file_exists($settings->favicon) ? $settings->favicon : 'frontend/images/logo/favicon.png') }}"
         type="image/x-icon">

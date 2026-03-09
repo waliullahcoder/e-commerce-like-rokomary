@@ -24,7 +24,7 @@ Route::get('/signup', [ViewController::class, 'signupPage'])->name('auth.signupP
 Route::post('/signin', [UserController::class, 'signinPost'])->name('user.signinPost');
 Route::post('/signup', [UserController::class, 'signupPost'])->name('user.signupPost');
 
-
+Route::get('/info/{id}', [ViewController::class, 'infoPage'])->name('info.page');
 /*
 |--------------------------------------------------------------------------
 | Cart Routes

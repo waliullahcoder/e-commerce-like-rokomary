@@ -311,4 +311,10 @@ class ViewController extends Controller
         $menus = $this->frontEndService->getMenu();
         return view('frontend.auth.signup',compact('menus'));
     }
+    public function infoPage($id)
+    {
+        $menus = $this->frontEndService->getMenu();
+        $info = Category::find($id);
+        return view('frontend.information.index',compact('menus','info'));
+    }
 }

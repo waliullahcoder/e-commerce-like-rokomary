@@ -160,6 +160,7 @@ class AdminOrderController extends Controller
 
                     });
                 } catch (\Exception $e) {
+                    dd($e);
                     return back()->withErrors($e->getMessage());
                 }
             }

@@ -19,9 +19,20 @@
                     {{-- STATUS TRACK --}}
                     <ul class="order-tracker mb-4">
                         <li>Sir/Madam, {{ $order->user->name ?? 'N/A' }}</li>
-                        <li class="{{ in_array($order->status,['pending','processing','completed']) ? 'active' : '' }}">Pending</li>
-                        <li class="{{ in_array($order->status,['processing','completed']) ? 'active' : '' }}">Processing</li>
-                        <li class="{{ $order->status=='completed' ? 'active' : '' }}">Completed</li>
+                       <span class="badge 
+                                                @switch($order->status)
+                                                    @case('pending') bg-warning @break
+                                                    @case('processing') bg-primary @break
+                                                    @case('confirmed') bg-success @break
+                                                    @case('shipped') bg-info @break
+                                                    @case('delivered') bg-secondary text-dark @break
+                                                    @case('cancelled') bg-danger @break
+                                                    @default bg-secondary
+                                                @endswitch
+                                            ">
+                                                {{ ucfirst($order->status) }}
+                                            </span><br><br>
+                                        <a href="{{ route('admin.orders.index') }}" class="btn btn-outline-primary">Orders</a>
                     </ul>
                     {{-- CALCULATION --}}
                     @php

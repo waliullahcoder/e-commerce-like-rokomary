@@ -469,7 +469,7 @@ ul {
 }
 
 .bg-light {
-    background-color: var(--bs-light) !important;
+    background-color: #fbfffe !important;
 }
 
 a {
@@ -1677,14 +1677,14 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .btn-light {
     color: #7e8299;
-    background-color: var(--bs-light);
+    background-color: white;
     border-color: var(--bs-light);
 }
 
 .btn-light:focus,
 .btn-light:hover {
     color: #549a95;
-    background-color: rgb(53 72 149 / 15%);
+    background-color: white;
     border-color: rgb(53 72 149 / 15%);
 }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\HelperClass;
 use App\Models\User;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -53,6 +54,7 @@ class AuthController extends Controller
 
     public function dashboard(Request $request)
     {
+        
         return view('admin.auth.dashbaord');
     }
 

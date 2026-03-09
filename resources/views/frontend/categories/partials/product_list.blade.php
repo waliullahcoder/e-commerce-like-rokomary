@@ -85,7 +85,7 @@
                                 </div>
                                @endforeach
                                 @else
-                                    <p>No subjects</p>
+                                    @include('frontend.categories.partials.notfound')
                                 @endif
                                 <!-- Product Slide -->
                            

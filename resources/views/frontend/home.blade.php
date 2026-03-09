@@ -145,7 +145,7 @@
                             </div>
                             @endforeach
                              @else
-                            <p class="text-muted">No products found</p>
+                             @include('frontend.categories.partials.notfound')
                              @endif
                         </div>
                         
@@ -239,7 +239,7 @@
                             </div>
                             @endforeach
                              @else
-                            <p class="text-muted">No products found</p>
+                             @include('frontend.categories.partials.notfound')
                              @endif
                         </div>
                         

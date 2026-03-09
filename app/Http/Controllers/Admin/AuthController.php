@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-
+use Carbon\Carbon;
 class AuthController extends Controller
 {
     /**
@@ -54,8 +54,51 @@ class AuthController extends Controller
 
     public function dashboard(Request $request)
     {
-        
-        return view('admin.auth.dashbaord');
+
+        $today = Carbon::today();
+        $startOfMonth = $today->copy()->startOfMonth();
+        $endOfMonth = $today->copy()->endOfMonth();
+
+        // Total & Daily Expenses
+        $totalExpense = \App\Models\Expense::sum('amount');
+        $dailyExpense = \App\Models\Expense::whereDate('created_at', $today)->sum('amount');
+
+        // Total & Daily Sales
+        $totalSales = \App\Models\Sales::sum('net_amount');
+        $dailySales = \App\Models\Sales::whereDate('created_at', $today)->sum('net_amount');
+
+        // Total & Daily Orders
+        $totalOrders = \App\Models\Order::count();
+        $dailyOrders = \App\Models\Order::whereDate('created_at', $today)->count();
+
+        // Monthly Sales & Expense for charts
+        $months = [];
+        $monthlySales = [];
+        $monthlyExpense = [];
+
+        for ($i = 0; $i < 6; $i++) {
+            $monthStart = $today->copy()->subMonths(5 - $i)->startOfMonth();
+            $monthEnd = $monthStart->copy()->endOfMonth();
+
+            $months[] = $monthStart->format('M');
+
+            $monthlySales[] = \App\Models\Sales::whereBetween('created_at', [$monthStart, $monthEnd])->sum('net_amount');
+            $monthlyExpense[] = \App\Models\Expense::whereBetween('created_at', [$monthStart, $monthEnd])->sum('amount');
+        }
+
+        $dashboardData = [
+            'totalExpense' => $totalExpense,
+            'dailyExpense' => $dailyExpense,
+            'totalSales' => $totalSales,
+            'dailySales' => $dailySales,
+            'totalOrders' => $totalOrders,
+            'dailyOrders' => $dailyOrders,
+            'monthlySales' => $monthlySales,
+            'monthlyExpense' => $monthlyExpense,
+            'months' => $months,
+        ];
+
+        return view('admin.auth.dashbaord', compact('dashboardData'));
     }
 
     /**

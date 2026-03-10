@@ -86,16 +86,18 @@ class AuthController extends Controller
             $sales = SalesList::whereHas('sales')->where('product_id', $item->id)->get();
             $salesQty = ($sales->sum('qty') - $sales->sum('return_qty'));
             $salesAmount = $sales->sum('net_amount') - $sales->sum('return_amount');
-            $totalProfit = $salesQty * $item->profit;
             $totalShare = Invest::where('product_id', $item->id)->sum('qty');
             $sattledQty = Invest::where('product_id', $item->id)->where('sattled', true)->sum('qty');
 
             $distribution = ProfitDistribution::where('product_id', $item->id)->first();
+            $totalProfit = 0;
+            $investQty= 0;
             if($distribution){
                 $productionQty  = $distribution->production_qty;
                 $salesQty       = $distribution->sales_qty;
                 $salesAmount    = $distribution->sales_amount;
                 $totalProfit    = $distribution->profit_amount;
+                $investQty       = $distribution->invest_qty;
             }
 
             $data[] = [
@@ -106,7 +108,7 @@ class AuthController extends Controller
                 'investor_profit'   => $totalProfit,
                 'share_qty'         => $totalShare,
                 'sattled_qty'       => $sattledQty,
-                'per_share_profit' => $totalProfit > 0 && $item->required_share > 0 ? $totalProfit / $item->required_share : 0,
+                'per_share_profit' =>$totalProfit ? $totalProfit/$investQty : 0,
             ];
         }
             return view('admin.auth.investor-dashbaord', compact('data'));

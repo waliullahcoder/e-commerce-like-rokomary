@@ -117,7 +117,7 @@
                         value="{{ old('required_share', $data->required_share) }}" placeholder="required_share" required>
                     </div>
                     <div class="col-sm-4">
-                    <label for="profit" class="form-label"><b>Profit(Tk.) <span class="text-danger">*</span></b></label>
+                    <label for="profit" class="form-label"><b>Investor Profit(Tk.) <span class="text-danger">*</span></b></label>
                     <input type="text" class="form-control" id="profit" name="profit"
                         value="{{ old('profit', $data->profit) }}" placeholder="profit" required>
                     </div>

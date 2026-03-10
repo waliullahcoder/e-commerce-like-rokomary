@@ -111,6 +111,21 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="col-sm-4">
+                    <label for="required_share" class="form-label"><b>Required Share(Qty) <span class="text-danger">*</span></b></label>
+                    <input type="text" class="form-control" id="required_share" name="required_share"
+                        value="{{ old('required_share', $data->required_share) }}" placeholder="required_share" required>
+                    </div>
+                    <div class="col-sm-4">
+                    <label for="profit" class="form-label"><b>Profit(Tk.) <span class="text-danger">*</span></b></label>
+                    <input type="text" class="form-control" id="profit" name="profit"
+                        value="{{ old('profit', $data->profit) }}" placeholder="profit" required>
+                    </div>
+                    <div class="col-sm-4">
+                    <label for="profit_percent" class="form-label"><b>Profit Percent(%) <span class="text-danger">*</span></b></label>
+                    <input type="text" class="form-control" id="profit_percent" name="profit_percent"
+                        value="{{ old('profit_percent', $data->profit_percent) }}" placeholder="profit_percent" required>
+                    </div>
                 <div class="col-12">
                     <div class="row g-2">
                         <label for="favorite" class="col-sm-3 col-md-3 col-lg-2 control-label"><b>Is Favorite:</b></label>

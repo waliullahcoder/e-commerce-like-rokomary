@@ -19,17 +19,17 @@
 
                             <!-- EMAIL -->
                             <div class="mb-3">
-                                <label class="form-label">Email address</label>
-                                <input type="email"
-                                       name="email"
-                                       value="{{ old('email') }}"
+                                <label class="form-label">Mobile No. <span class="text-danger">*</span></label>
+                                <input type="phone"
+                                       name="phone"
+                                       value="{{ old('phone') }}"
                                        class="form-control"
                                        required>
                             </div>
 
                             <!-- PASSWORD -->
                             <div class="mb-3">
-                                <label class="form-label">Password</label>
+                                <label class="form-label">Password <span class="text-danger">*</span></label>
                                 <input type="password"
                                        name="password"
                                        class="form-control"
@@ -37,7 +37,7 @@
                             </div>
 
                             <!-- REMEMBER -->
-                            <div class="d-flex justify-content-between mb-3">
+                            {{-- <div class="d-flex justify-content-between mb-3">
                                 <div>
                                     <input type="checkbox" name="remember" id="remember">
                                     <label for="remember">Remember me</label>
@@ -45,7 +45,7 @@
                                 <a href="" class="small">
                                     Forgot password?
                                 </a>
-                            </div>
+                            </div> --}}
 
                             <!-- BUTTON -->
                             <button type="submit" class="btn btn-danger w-100">

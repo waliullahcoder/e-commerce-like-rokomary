@@ -31,11 +31,11 @@ class UserController extends Controller
     public function signinPost(Request $request)
     {
         $request->validate([
-            'email'    => 'required|email',
+            'phone'    => ['required','regex:/^01[3-9]\d{8}$/'],
             'password' => 'required',
         ]);
 
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('phone', 'password');
 
         if (Auth::attempt($credentials)) {
 
@@ -57,21 +57,18 @@ class UserController extends Controller
         {
             $request->validate([
                 'name'     => 'required|string|max:255',
-                'email'    => 'required|email|unique:users,email',
-                'password' => 'required|min:6|confirmed', // 👈 confirm handled here
+                'phone'    => ['required','regex:/^01[3-9]\d{8}$/','unique:users,phone'],
+                'password' => 'required|min:6|confirmed',
             ]);
 
             try {
             DB::transaction(function () use ($request) {
              // Create User section
                 $user = null;
-            if ($request->phone || $request->email || $request->name) {
+            if ($request->phone || $request->name) {
                 $user = User::query()
                     ->when($request->phone, function ($q) use ($request) {
                         $q->where('phone', $request->phone);
-                    })
-                    ->when($request->email, function ($q) use ($request) {
-                        $q->orWhere('email', $request->email);
                     })
                     ->when($request->name, function ($q) use ($request) {
                         $q->orWhere('name', $request->name);
@@ -81,8 +78,10 @@ class UserController extends Controller
                 if (!$user) {
                 $user = User::create([
                 'name'        => $request->name,
+                'phone'        => $request->phone,
+                'address'        => $request->address,
                 'user_name'   => strtolower(str_replace(' ', '', $request->name)),
-                'email'       => $request->email,
+                'email'       => $request->phone.'@email.com',
                 'password'    => Hash::make($request->password),
                 'role_status' => 0,
                 ]);
@@ -124,7 +123,7 @@ class UserController extends Controller
                     'name' => $request->name,
                     'contact_person' => $request->contact_person,
                     'phone' => $request->phone,
-                    'email' => $request->email,
+                    'email' => $request->phone.'@email.com',
                     'address' => $request->address,
                     'bin_no' => $request->bin_no,
                     'credit_limit' => $request->credit_limit,

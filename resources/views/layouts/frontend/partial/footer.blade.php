@@ -104,7 +104,7 @@
 </footer>
 <div class="footer-bottom py-3">
     <div class="container">
-        <div class="copyright">Copyright © {{ date('Y') }} {{ $settings->app_name }}</div>
+        <div class="copyright">Copyright © {{ date('Y') }} {{ $settings->app_name }} | Developed by <a href="https://technoparkbd.com" target="_blank" style="color:#0092c2;">Techno Park Bangladesh</a></div>
     </div>
 </div>
 <!-- End Footer -->

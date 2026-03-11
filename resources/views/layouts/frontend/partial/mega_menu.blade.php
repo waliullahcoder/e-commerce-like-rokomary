@@ -2,7 +2,9 @@
     <div class="navbar">
 
         @foreach ($menus['mega_menus'] as $menu)
-            <a href="{{ route('category.index', [$menu->category_id, $menu->category_slug,$menu->name]) }}"
+            <a class="{{ request()->routeIs('category.index') 
+                            && request()->route('menu') == $menu->name 
+                            ? 'clicked' : '' }}" href="{{ route('category.index', [$menu->category_id, $menu->category_slug,$menu->name]) }}"
                class="{{ isset($menus['sub_menus'][$menu->id]) ? 'mega-trigger' : '' }}"
                data-menu="menu-{{ $menu->id }}">
 

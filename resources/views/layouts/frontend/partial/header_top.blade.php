@@ -4,7 +4,7 @@
             <div class="text-sm">বুকস অ্যান্ড বুকসে স্বাগতম!</div>
             <div class="top-header-links">
                 @foreach ($menus['top_menus'] as $menu)
-                <a href="{{ route('info.page', $menu->id) }}">
+                <a class="{{ request()->routeIs('info.page') && request()->route('id') == $menu->id ? 'clicked' : '' }}" href="{{ route('info.page', $menu->id) }}">
                     <span>{{ $menu->name }}</span> </a>
                 <div class="devider"></div>
                 @endforeach

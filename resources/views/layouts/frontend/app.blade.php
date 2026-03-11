@@ -34,7 +34,7 @@
     font-style: normal;
 } */
 
-body{
+body,a{
     font-family: 'SolaimanLipi', sans-serif;
 }
 </style>

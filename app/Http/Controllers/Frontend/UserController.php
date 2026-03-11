@@ -36,8 +36,9 @@ class UserController extends Controller
         ]);
 
         $credentials = $request->only('phone', 'password');
+        $remember = $request->has('remember'); // ✅ remember me
 
-        if (Auth::attempt($credentials)) {
+         if (Auth::attempt($credentials, $remember)) {
 
             if (auth()->user()->role_status != 0) {
                 Auth::logout();
@@ -48,8 +49,8 @@ class UserController extends Controller
         }
 
         return back()
-            ->withErrors(['email' => 'Invalid email or password'])
-            ->withInput();
+        ->withErrors(['phone' => 'Invalid mobile number or password'])
+        ->withInput();
     }
 
 
@@ -140,6 +141,33 @@ class UserController extends Controller
                 ->route('frontend.user.dashboard')
                 ->with('success', 'Welcome 🎉 Account created successfully');
         }
+
+   
+    public function forgotPasswordPost(Request $request)
+    {
+        
+        if(!$request->password){
+        $request->validate([
+                    'phone' => ['required','regex:/^01[3-9]\d{8}$/','exists:users,phone'],
+                ]);
+        }
+        if($request->password){
+            $request->validate([
+                'password' => 'required|min:6',
+            ]);
+            $user = User::where('phone', $request->phone)->first();
+            $user->update([
+                 "password" => Hash::make($request->password),
+            ]);
+             return back()->with('success', 'Password changed successfully!');
+        }
+         $user = User::where('phone', $request->phone)->first();
+         if($user){
+             $menus = $this->frontEndService->getMenu();
+            return view('frontend.auth.forgot_password',compact('user','menus'));
+         }
+
+    }
 
 
     public function dashboard()

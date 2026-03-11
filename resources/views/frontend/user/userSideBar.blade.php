@@ -1,3 +1,9 @@
+ <style>
+    [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled){
+        border:none !important;
+        padding-left:30px !important;
+    }
+ </style>
  <div class="col-lg-3">
            <div class="card shadow-sm">
                 <div class="card-body p-0">

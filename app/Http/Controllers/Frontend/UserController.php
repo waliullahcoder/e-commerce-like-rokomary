@@ -145,28 +145,32 @@ class UserController extends Controller
    
     public function forgotPasswordPost(Request $request)
     {
-        
-        if(!$request->password){
+        // Step 1: Validate phone first
         $request->validate([
-                    'phone' => ['required','regex:/^01[3-9]\d{8}$/','exists:users,phone'],
-                ]);
-        }
-        if($request->password){
+            'phone' => ['required','regex:/^01[3-9]\d{8}$/','exists:users,phone'],
+        ]);
+
+        // Find user once
+        $user = User::where('phone', $request->phone)->firstOrFail();
+
+        // Step 2: If password submitted, validate and update
+        if ($request->filled('password')) {
             $request->validate([
                 'password' => 'required|min:6',
             ]);
-            $user = User::where('phone', $request->phone)->first();
-            $user->update([
-                 "password" => Hash::make($request->password),
-            ]);
-             return back()->with('success', 'Password changed successfully!');
-        }
-         $user = User::where('phone', $request->phone)->first();
-         if($user){
-             $menus = $this->frontEndService->getMenu();
-            return view('frontend.auth.forgot_password',compact('user','menus'));
-         }
 
+            $user->update([
+                'password' => Hash::make($request->password),
+            ]);
+
+             return redirect()
+                ->route('auth.signinPage')->with('success', 'Password changed successfully!');
+        }
+
+        // Step 3: If no password yet, show the forgot password form with user info
+        $menus = $this->frontEndService->getMenu();
+
+        return view('frontend.auth.forgot_password', compact('user','menus'));
     }
 
 

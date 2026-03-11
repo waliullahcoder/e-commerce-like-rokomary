@@ -25,6 +25,7 @@
         </div>
 
         <div class="d-flex align-items-center gap-3">
+            @if(Auth::user()->hasRole('Software Admin'))
             {{-- Order Notification --}}
             <div class="dropdown">
                 <button class="btn btn-light position-relative" type="button" id="orderDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -54,6 +55,7 @@
                     @endif
                 </ul>
             </div>
+            @endif
 
             {{-- User Profile --}}
             <div class="dropdown ms-3 header-item topbar-user">

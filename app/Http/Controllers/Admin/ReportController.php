@@ -522,6 +522,8 @@ class ReportController extends Controller
             foreach ($searched_products as $edition) {
                 $prod_id = $edition->product_id;
                 $edition_id = $edition->id;
+                $product = Product::find($prod_id);
+                $stock = $product->variants->sum('stock')??0;
                 $row = [
                     'product' => $edition->product_name,
                     'edition' => $edition->edition_name,
@@ -533,7 +535,8 @@ class ReportController extends Controller
                     'sales' => $sales->where('product_edition_id', $edition_id)->sum('qty'),
                     'sales_return' => $sales_returns->where('product_edition_id', $edition_id)->sum('qty'),
                 ];
-                $row['stock'] = $row['opening'] + $row['production'] - $row['sales'] + $row['sales_return'];
+                // $row['stock'] = $row['opening'] + $row['production'] - $row['sales'] + $row['sales_return'];
+                 $row['stock']=$stock;
                 $data[] = $row;
             }
         }

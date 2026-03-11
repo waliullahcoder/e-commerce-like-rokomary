@@ -52,9 +52,11 @@
                                     })
                                     ->where('distributed', false)
                                     ->sum(DB::raw('qty - return_qty'));
-                                $profit_percent=$item->product->profit_percent/100;  
-                                $totalProfit = $salesQty * $item->product->profit;
-                                $perShareProfit = $totalProfit / $item->product->required_share;
+                                //$profit_percent=$item->product->profit_percent/100;  
+                               // $totalProfit = $salesQty * $item->product->profit;
+                                // $perShareProfit = $totalProfit / $item->product->required_share;
+                                 $totalProfit = $totalInvestQty * $item->product->profit;
+                                $perShareProfit = $totalProfit / $totalInvestQty;
                             @endphp
                             <tr>
                                 <input type="hidden" name="invest_id[]" value="{{ $item->id }}">
@@ -66,9 +68,9 @@
                                 <td><input type="number" class="form-control input-sm text-end" step="any"
                                         value="{{ $salesQty }}" readonly></td>
                                 <td><input type="number" class="form-control input-sm text-end" step="any"
-                                        value="{{ round($totalProfit) }}" readonly></td>
+                                        value="{{ round($totalProfit,2) }}" readonly></td>
                                 <td><input type="number" class="form-control input-sm text-end" step="any"
-                                        value="{{ round($perShareProfit * $item->qty) }}" readonly></td>
+                                        value="{{ round($perShareProfit,2) }}" readonly></td>
                             </tr>
                         @endforeach
                     @endif

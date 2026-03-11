@@ -48,7 +48,7 @@
                                         {{ $index + 1 }}
                                     @endif
                                 </div>
-                                <div class="label">
+                                <div>
                                     {{ ucfirst($step) }}
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <a href="{{ route('orders.index') }}" class="btn btn-outline-secondary">
+                        <a href="{{ route('admin.orders.index') }}" class="btn btn-outline-secondary">
                             ← Back to Orders
                         </a>
                     </div>

@@ -67,6 +67,9 @@ class AdminOrderController extends Controller
         if ($request->status == 'pending') {
             return redirect()->back()->withErrors('Ops! Status is already Exist!');
         }
+        if ($order->status == $request->status) {
+            return redirect()->back()->withErrors('Ops! Status is already Exist!');
+        }
 
          if ($request->status == 'cancelled') {
             // Restore stock

@@ -312,10 +312,10 @@ $(document).ready(function () {
         let tax      = subtotal * TAX_RATE;
         let total    = subtotal - discount + tax;
 
-        $('#subtotal').text('৳ ' + subtotal.toFixed(2));
-        $('#discount').text('- ৳ ' + discount.toFixed(2));
-        $('#tax').text('৳ ' + tax.toFixed(2));
-        $('#total').text('৳ ' + total.toFixed(2));
+        $('#subtotal').text('৳' + subtotal.toFixed(2));
+        $('#discount').text('- ৳' + discount.toFixed(2));
+        $('#tax').text('৳' + tax.toFixed(2));
+        $('#total').text('৳' + total.toFixed(2));
     }
 
     calculateCart();
@@ -336,7 +336,7 @@ $(document).ready(function () {
         qtyInput.val(qty);
 
         let itemTotal = price * qty;
-        card.find('.item-subtotal').text('৳ ' + itemTotal.toFixed(2));
+        card.find('.item-subtotal').text('৳' + itemTotal.toFixed(2));
 
         $.ajax({
             url: "{{ route('cart.update') }}",

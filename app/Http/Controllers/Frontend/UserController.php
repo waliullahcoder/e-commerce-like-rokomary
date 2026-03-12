@@ -6,6 +6,9 @@ use App\Models\Slider;
 use App\Models\HomeSection;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Sales;
+use App\Models\Collection;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Coa;
 use Illuminate\Support\Facades\DB;
 use App\Models\Client;
@@ -180,7 +183,35 @@ class UserController extends Controller
             abort(403);
         }
         $menus = $this->frontEndService->getMenu();
-        return view('frontend.user.dashboard', compact('menus'));
+        
+        $client = Client::where('user_id', Auth::user()->id)->first();
+        $clientid = 0;
+        if($client){
+            $clientid=$client->id;
+        }
+        $sales = Sales::where('client_id', $clientid)->sum('net_amount');
+        $collection = Collection::where('client_id', $clientid)->sum('amount');
+        return view('frontend.user.dashboard', compact('menus','sales','collection'));
+    }
+
+    public function invoiceHistory(){
+        $menus = $this->frontEndService->getMenu();
+        $client = Client::where('user_id', Auth::user()->id)->first();
+        $clientid = 0;
+        if($client){
+            $clientid=$client->id;
+        }
+         $sales = Sales::where('client_id', $clientid)->get();
+        return view('frontend.user.invoiceList', compact('menus','sales'));
+    }
+
+    public function salesInvoice($id){
+        $data = Sales::withTrashed()->findOrFail($id);
+        $report_title = 'Sales Invoice';
+        return view('frontend.user.salesInvoice', compact('report_title', 'data'));
+        // $pdf = Pdf::loadView("frontend.user.salesInvoice", compact('report_title', 'data'));
+        // $pdf->setOptions(['defaultFont' => 'solaimanlipi']);
+        // return $pdf->stream('sales_voucher_' . date('d_m_Y_H_i_s') . '.pdf');
     }
 
     public function updateEditProfile()

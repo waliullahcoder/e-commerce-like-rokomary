@@ -87,6 +87,10 @@ Route::middleware(['auth'])->group(function () {
     ->name('user.profile.edit');
     Route::post('/user/profile/update', [UserController::class, 'updateProfile'])
     ->name('user.profile.update');
+    Route::get('/user/invoice/history', [UserController::class, 'invoiceHistory'])
+        ->name('frontend.user.invoiceHistory');
+    Route::get('/user/invoice/{invoice}', [UserController::class, 'salesInvoice'])
+        ->name('frontend.user.salesInvoice');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 });
 

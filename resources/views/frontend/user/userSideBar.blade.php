@@ -37,9 +37,9 @@
                         </li>
 
                          <li class="list-group-item">
-                            <a href="" class="d-flex align-items-center gap-2">
+                            <a href="{{route('frontend.user.invoiceHistory')}}" class="d-flex align-items-center gap-2">
                                 <i class="fa fa-credit-card"></i>
-                                Wallet History
+                                Invoice History
                             </a>
                         </li>
 

@@ -339,10 +339,10 @@ class SalesController extends Controller
     {
         $data = $this->model::withTrashed()->findOrFail($id);
         $report_title = 'Sales Invoice';
-        // return view("admin.{$this->path}.print", compact('report_title', 'data'));
-        $pdf = Pdf::loadView("admin.{$this->path}.print", compact('report_title', 'data'));
-        $pdf->setOptions(['defaultFont' => 'solaimanlipi']);
-        return $pdf->stream('sales_voucher_' . date('d_m_Y_H_i_s') . '.pdf');
+         return view("admin.{$this->path}.print", compact('report_title', 'data'));
+        // $pdf = Pdf::loadView("admin.{$this->path}.print", compact('report_title', 'data'));
+        // $pdf->setOptions(['defaultFont' => 'solaimanlipi']);
+        // return $pdf->stream('sales_voucher_' . date('d_m_Y_H_i_s') . '.pdf');
     }
 
     /**

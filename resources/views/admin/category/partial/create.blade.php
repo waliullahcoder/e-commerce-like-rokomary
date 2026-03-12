@@ -104,7 +104,7 @@
 
                         <div class="col-12">
                             <label for="description" class="form-label">Description:</label>
-                            <textarea name="description" cols="17" rows="3" id="description" class="form-control"></textarea>
+                            <textarea class="form-control description" id="description" name="description" placeholder="Description"></textarea>
                         </div>
                     </div>
                 </div>

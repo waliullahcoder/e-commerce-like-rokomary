@@ -176,6 +176,9 @@ Route::group(['middleware' => ['admin']], function () {
 
     // Category
     Route::resource('/category', CategoryController::class);
+     Route::get('/des/change/{ck}', [CategoryController::class, 'desCK'])->name('category.ck');
+     Route::put('/des/change/{ck}', [CategoryController::class, 'ckUpdate'])->name('category.ck.update');
+    
 
     // Uom
     Route::resource('/uom', UomController::class);

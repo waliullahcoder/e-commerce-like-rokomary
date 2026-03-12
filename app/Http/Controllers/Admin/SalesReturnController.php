@@ -269,7 +269,7 @@ class SalesReturnController extends Controller
                 }
 
                 $previous_payment = 0;
-                $sales = Sales::whereIn('id', array_unique($sales_id))->get();
+               $sales = Sales::whereIn('id', collect($sales_id)->flatten()->unique()->toArray())->get();
                 foreach ($sales as $item) {
                     $balance = $item->paid + $item->return_amount - $item->net_amount - $item->return_paid;
                     if ($balance > 0) {
@@ -301,6 +301,7 @@ class SalesReturnController extends Controller
                 }
             });
         } catch (\Exception $e) {
+            dd($e);
             return back()->withErrors($e->getMessage());
         }
 

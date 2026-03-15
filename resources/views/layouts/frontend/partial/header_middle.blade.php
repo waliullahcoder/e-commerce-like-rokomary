@@ -14,13 +14,143 @@
     border-radius: 4px;
 }
 </style>
+<style>
+/* ================== General ================== */
+body {
+    font-family: Arial, sans-serif;
+    margin:0;
+    padding:0;
+}
+
+/* Hamburger */
+.hamburger {
+    background:none;
+    border:none;
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    padding:5px;
+}
+
+.hamburger span {
+    display:block;
+    width:25px;
+    height:3px;
+    background:#333;
+    border-radius:2px;
+}
+
+/* Overlay */
+.sidebar-overlay {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    z-index:999;
+    display:none;
+}
+
+/* Sidebar */
+.sidebar {
+    position:fixed;
+    top:0;
+    left:-280px;
+    width:260px;
+    height:100%;
+    background:#fff;
+    z-index:1000;
+    overflow-y:auto;
+    box-shadow: 2px 0 12px rgba(0,0,0,0.2);
+    transition:0.3s;
+}
+
+.sidebar.active {
+    left:0;
+}
+
+.sidebar-header {
+    padding:20px;
+    font-weight:bold;
+    font-size:18px;
+    border-bottom:1px solid #eee;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.sidebar-header button {
+    background:none;
+    border:none;
+    font-size:20px;
+    cursor:pointer;
+}
+
+/* Menu Items */
+.sidebar ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.sidebar li {
+    border-bottom:1px solid #f0f0f0;
+}
+
+.sidebar a {
+    display:block;
+    padding:12px 18px;
+    text-decoration:none;
+    color:#333;
+    position:relative;
+    transition:0.2s;
+}
+
+.sidebar a:hover {
+    background:#f5f5f5;
+}
+
+/* Submenu */
+.sidebar .sub-menu {
+    display:none;
+    background:#f9f9f9;
+}
+
+.sidebar .sub-menu a {
+    padding-left:35px;
+}
+
+/* Arrow */
+.sidebar .has-sub > a::after {
+    content:"▸";
+    position:absolute;
+    right:18px;
+    transition:0.3s;
+}
+
+.sidebar .has-sub.open > a::after {
+    transform: rotate(90deg);
+}
+
+/* Scrollbar */
+.sidebar::-webkit-scrollbar {
+    width:6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.2);
+    border-radius:3px;
+}
+</style>
 <div class="header-middle">
         <div class="container">
             <div class="header-middle-wrapper">
                 <div class="logo-area d-flex align-items-center">
                     <!-- MOBILE HEADER START -->
                     <div class="d-lg-none">
-                       <button id="mobileMenuBtn" class="hamburger">
+                       <button id="sidebarToggle" class="hamburger">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -90,52 +220,90 @@
         </div>
     </div>
 
-    <!-- MOBILE MENU START -->
-    <div class="mobile-menu" id="mobileMenu">
-        <ul>
-            <li><a href="{{ route('home') }}">হোম</a></li>
-            @foreach ($menus['middle_menus'] as $menu)
-            <li><a href="{{ route('category.index', [$menu->category_id, $menu->category_slug,$menu->name]) }}">
-                            <span>{{ $menu->name }}</span>
-                        </a>
-                    </li>
-            @endforeach
-            
-            {{-- <li><a href="#">জেনারেল বই</a></li>
-            <li class="has-sub">
-                <a href="#">একাডেমিক ▾</a>
-                <ul class="sub-menu">
-                    <li><a href="#">স্কুল</a></li>
-                    <li><a href="#">কলেজ</a></li>
-                </ul>
-            </li> --}}
+    <!-- Overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-           
-        </ul>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        Menu
+        <button id="closeSidebar">✕</button>
     </div>
+
+    <ul>
+        <li>
+            <a href="{{ route('home') }}">হোম</a>
+        </li>
+        <li class="has-sub">
+            <a href="#">একাডেমিক</a>
+            <ul class="sub-menu">
+                <li><a href="#">স্কুল</a></li>
+                <li><a href="#">কলেজ</a></li>
+            </ul>
+        </li>
+
+        <li class="has-sub">
+            <a href="#">জেনারেল বই</a>
+            <ul class="sub-menu">
+                <li><a href="#">বিজ্ঞান</a></li>
+                <li><a href="#">সাহিত্য</a></li>
+            </ul>
+        </li>
+
+        @foreach($menus['middle_menus'] as $menu)
+        <li>
+            <a href="{{ route('category.index', [$menu->category_id, $menu->category_slug, $menu->name]) }}">
+                {{ $menu->name }}
+            </a>
+        </li>
+        @endforeach
+
+        
+
+    </ul>
 </div>
 
-
+<!-- JS -->
 <script>
-const mobileBtn = document.getElementById('mobileMenuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
+document.addEventListener('DOMContentLoaded', function(){
 
-mobileBtn.addEventListener('click', () => {
-    mobileMenu.style.display =
-        mobileMenu.style.display === 'block' ? 'none' : 'block';
-});
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const toggleBtn = document.getElementById('sidebarToggle');
+    const closeBtn = document.getElementById('closeSidebar');
 
-/* accordion */
-document.querySelectorAll('.has-sub > a').forEach(item => {
-    item.addEventListener('click', e => {
-        e.preventDefault();
-        const sub = item.nextElementSibling;
-        sub.style.display = sub.style.display === 'block' ? 'none' : 'block';
+    toggleBtn.addEventListener('click', function(){
+        sidebar.classList.add('active');
+        overlay.style.display = 'block';
     });
+
+    closeBtn.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+
+    function closeSidebar(){
+        sidebar.classList.remove('active');
+        overlay.style.display = 'none';
+    }
+
+    // Submenu toggle
+    document.querySelectorAll('.sidebar .has-sub > a').forEach(function(item){
+        item.addEventListener('click', function(e){
+            e.preventDefault();
+            const parent = this.parentElement;
+            const subMenu = this.nextElementSibling;
+
+            // toggle display
+            if(subMenu.style.display === 'block'){
+                subMenu.style.display = 'none';
+                parent.classList.remove('open');
+            } else {
+                subMenu.style.display = 'block';
+                parent.classList.add('open');
+            }
+        });
+    });
+
 });
 </script>
-<!-- MOBILE MENU END -->
-
-<!-- JS -->
 
 

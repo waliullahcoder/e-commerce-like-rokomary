@@ -977,7 +977,9 @@ del .Price-amount {
     object-fit: contain;
 }
 
-
+.hamburger{
+    display:block !important;
+}
 
 .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl{
     --bs-gutter-x:0.5rem;

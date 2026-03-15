@@ -149,32 +149,114 @@ body {
 }
 </style>
 <div class="header-middle">
+    
+                <!-- MOBILE HEADER START -->
+                <div class="header-middle d-lg-none">
+                    <div class="container">
+
+                        <!-- Row 1: Hamburger + Logo + Cart + Login -->
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            
+                            <!-- Left: Hamburger -->
+                            <button id="sidebarToggle" class="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </button>
+
+                            <!-- Logo -->
+                            <a href="{{ route('home') }}">
+                                <img src="{{ asset(file_exists($settings->logo) ? $settings->logo : 'frontend/images/logo/logo.jpg') }}"
+                                    height="40" alt="{{ $settings->app_name }}">
+                            </a>
+
+                            <!-- Right: Cart + Login -->
+                            <div class="d-flex align-items-center gap-2">
+                                 <a href="{{ route('cart.index') }}" class="cart-icon">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span class="cart-count">{{ count(session('cart', [])) }}</span>
+                                </a>
+
+                                @if(Auth::check())
+                                    <a href="{{ Auth::user()->role_status == 0 ? route('frontend.user.dashboard') : route('admin.dashboard') }}">
+                                        <strong>{{ Auth::user()->name }}</strong>
+                                    </a>
+                                @else
+                                    <a href="{{ route('auth.signinPage') }}">Sign in</a>
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Mobile Search -->
+                        <div>
+                            <form action="#" method="GET" class="position-relative mobile-search-area">
+                                <input type="search" class="form-control w-100" name="query"
+                                    placeholder="বইয়ের নাম/লেখক" required id="mobile-product-search-input">
+                                <button type="submit" class="btn btn-primary position-absolute end-0 top-0 h-100">
+                                    <i class="fas fa-search"></i>
+                                </button>
+
+                                <!-- Search Results -->
+                                <div id="mobile-search-results" class="bg-white border shadow-sm"
+                                    style="position:absolute; top:100%; left:0; right:0; display:none; z-index:2000; max-height:350px; overflow-y:auto; border-radius:5px;">
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- MOBILE HEADER END -->
+
+                <!-- Overlay -->
+                <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+                <!-- Sidebar -->
+                <div class="sidebar" id="sidebar">
+                    <div class="sidebar-header d-flex justify-content-between align-items-center">
+                        <span>Menu</span>
+                        <button id="closeSidebar">✕</button>
+                    </div>
+
+                    <ul>
+                        <li><a href="{{ route('home') }}">হোম</a></li>
+
+                        @foreach($menus['middle_menus'] as $menu)
+                            <li>
+                                <a href="{{ route('category.index', [$menu->category_id, $menu->category_slug, $menu->name]) }}">
+                                    {{ $menu->name }}
+                                </a>
+                            </li>
+                        @endforeach
+
+                        <div class="sidebar-header">Mega Menu</div>
+
+                        @foreach ($menus['mega_menus'] as $menu)
+                            <li class="{{ isset($menus['sub_menus'][$menu->id]) ? 'has-sub' : '' }}">
+                                <a href="{{ route('category.index', [$menu->category_id, $menu->category_slug, $menu->name]) }}">
+                                    {{ $menu->name }}
+                                </a>
+
+                                @if(isset($menus['sub_menus'][$menu->id]) && count($menus['sub_menus'][$menu->id]) > 0)
+                                    <ul class="sub-menu">
+                                        @foreach($menus['sub_menus'][$menu->id] as $item)
+                                            <li>
+                                                <a href="{{ route('category.index', [$item->id, $item->category_slug, $item->name]) }}">
+                                                    → {{ $item->name }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <!-- MOBILE HEADER END -->
         <div class="container">
             <div class="header-middle-wrapper">
                <div class="logo-area d-flex align-items-center">
-                <!-- MOBILE HEADER START -->
-                <div class="d-lg-none d-flex align-items-center">
-                    <!-- Hamburger -->
-                    <button id="sidebarToggle" class="hamburger me-2">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                    <!-- Mobile Search -->
-                    <form action="#" method="GET" class="flex-grow-1 me-2 mobile-search-area">
-                        <div class="input-group">
-                            <input type="search" class="form-control" name="query" placeholder="বইয়ের নাম/লেখক" required id="mobile-product-search-input">
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                             <div id="mobile-search-results" class="bg-white border shadow-sm"
-                            style="position:absolute; top:100%; left:0; right:0; display:none; z-index:2000; max-height:350px; overflow-y:auto; border-radius:5px;">
-                        </div>
-                        </div>
-                    </form>
 
-                    
 
-                </div>
-                <!-- MOBILE HEADER END -->
                 <!-- Desktop Logo & Search -->
                 <a href="{{ route('home') }}" class="d-none d-lg-block me-3">
                     <img src="{{ asset(file_exists($settings->logo) ? $settings->logo : 'frontend/images/logo/logo.jpg') }}"
@@ -197,7 +279,7 @@ body {
             </div>
 
 
-                <div class="action-area">
+                <div class="action-area d-lg-block d-none">
                     <div class="header-links">
                         <a href="{{ route('cart.index') }}" class="cart-icon">
                         <i class="fa-solid fa-cart-shopping"></i>

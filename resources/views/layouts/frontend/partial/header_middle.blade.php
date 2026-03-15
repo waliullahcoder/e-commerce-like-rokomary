@@ -172,10 +172,10 @@ body {
 
                             <!-- Right: Cart + Login -->
                             <div class="d-flex align-items-center gap-2">
-                                 <a href="{{ route('cart.index') }}" class="cart-icon">
+                                 {{-- <a href="{{ route('cart.index') }}" class="cart-icon">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <span class="cart-count">{{ count(session('cart', [])) }}</span>
-                                </a>
+                                </a> --}}
 
                                 @if(Auth::check())
                                     <a href="{{ Auth::user()->role_status == 0 ? route('frontend.user.dashboard') : route('admin.dashboard') }}">
@@ -320,54 +320,7 @@ body {
         </div>
     </div>
 
-    <!-- Overlay -->
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-<!-- Sidebar -->
-<div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-        Menu
-        <button id="closeSidebar">✕</button>
-    </div>
-
-    <ul>
-        <li>
-            <a href="{{ route('home') }}">হোম</a>
-        </li>
-        @foreach($menus['middle_menus'] as $menu)
-        <li>
-            <a href="{{ route('category.index', [$menu->category_id, $menu->category_slug, $menu->name]) }}">
-                {{ $menu->name }}
-            </a>
-        </li>
-        @endforeach
-        
-        <div class="sidebar-header">Mega Menu</div>
-         @foreach ($menus['mega_menus'] as $menu)
-            <li class="{{ isset($menus['sub_menus'][$menu->id]) ? 'has-sub' : '' }}">
-                <a href="{{ route('category.index', [$menu->category_id, $menu->category_slug, $menu->name]) }}">
-                    {{ $menu->name }}
-                </a>
-
-                @if(isset($menus['sub_menus'][$menu->id]) && count($menus['sub_menus'][$menu->id]) > 0)
-                <ul class="sub-menu">
-                    @foreach($menus['sub_menus'][$menu->id] as $item)
-                        <li>
-                            <a href="{{ route('category.index', [$item->id, $item->category_slug, $item->name]) }}">
-                                → {{ $item->name }}
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-                @endif
-            </li>
-        @endforeach
-        
-        
-
-    </ul>
-</div>
-
+   
 <!-- JS -->
 <script>
 document.addEventListener('DOMContentLoaded', function(){

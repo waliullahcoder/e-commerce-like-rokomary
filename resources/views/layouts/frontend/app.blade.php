@@ -283,21 +283,15 @@ $(document).ready(function(){
 <script>
 $(document).on('click', '.add-to-cart', function(e) {
     e.preventDefault();
-
     let button = $(this);
+
     let productId = button.data('id');
     let variantId = button.data('variant_id');
     let image = button.closest('.product-card').find('.product-img');
-
-    // Find cart icon dynamically depending on desktop/mobile
-    let cart = $('.cart-icon:visible').first(); // only visible cart icon
+    let cart = $('.cart-icon');
 
     if (!image.length) {
         console.warn('Product image not found for flying animation');
-        return;
-    }
-    if (!cart.length) {
-        console.warn('Cart icon not found for flying animation');
         return;
     }
 
@@ -307,21 +301,19 @@ $(document).on('click', '.add-to-cart', function(e) {
             zIndex: 999,
             width: image.width(),
             top: image.offset().top,
-            left: image.offset().left,
-            //pointerEvents: 'none'
+            left: image.offset().left
         })
         .appendTo('body');
 
     flyingImg.animate({
-        top: cart.offset().top + cart.height()/2 - image.height()/4,
-        left: cart.offset().left + cart.width()/2 - image.width()/4,
+        top: cart.offset().top,
+        left: cart.offset().left,
         width: 20,
         opacity: 0.5
     }, 700, function () {
         flyingImg.remove();
     });
 
-    // Add to cart via AJAX
     $.post("{{ route('cart.add') }}", {
         _token: "{{ csrf_token() }}",
         product_id: productId,
@@ -329,6 +321,7 @@ $(document).on('click', '.add-to-cart', function(e) {
     }, function (res) {
         $('.cart-count').text(res.count);
     });
+
 });
 </script>
 

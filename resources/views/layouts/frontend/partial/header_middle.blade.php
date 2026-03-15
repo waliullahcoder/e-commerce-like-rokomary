@@ -151,7 +151,7 @@ body {
 <div class="header-middle">
     <div class="container">
 
-        <!-- Row 1: Hamburger / Logo / Cart / Login -->
+        <!-- Row 1: Hamburger / Logo / Cart / Login / Desktop search -->
         <div class="d-flex align-items-center justify-content-between mb-2">
 
             <!-- Hamburger for mobile only -->
@@ -166,6 +166,21 @@ body {
                 <img src="{{ asset(file_exists($settings->logo) ? $settings->logo : 'frontend/images/logo/logo.jpg') }}"
                      height="40" alt="{{ $settings->app_name }}">
             </a>
+
+            <!-- Desktop Search (desktop only) -->
+            <div class="d-none d-lg-block flex-grow-1 mx-3 search-area">
+                <form action="#" method="GET" class="position-relative w-100">
+                    <input type="search" class="form-control w-100" name="query"
+                           placeholder="বইয়ের নাম/লেখক" required id="product-search-input">
+                    <button type="submit" class="btn btn-primary position-absolute end-0 top-0 h-100">
+                        <i class="fas fa-search"></i>
+                    </button>
+
+                    <div id="search-results" class="bg-white border shadow-sm"
+                         style="position:absolute; top:100%; left:0; right:0; display:none; z-index:2000; max-height:350px; overflow-y:auto; border-radius:5px;">
+                    </div>
+                </form>
+            </div>
 
             <!-- Cart + Login -->
             <div class="d-flex align-items-center gap-2">
@@ -184,16 +199,16 @@ body {
             </div>
         </div>
 
-        <!-- Row 2: Search (mobile + desktop same input) -->
-        <div class="position-relative w-100 mb-2">
-            <form action="#" method="GET" class="w-100 position-relative">
+        <!-- Row 2: Mobile Search only -->
+        <div class="d-lg-none position-relative w-100 mb-2">
+            <form action="#" method="GET" class="w-100 position-relative mobile-search-area">
                 <input type="search" class="form-control w-100" name="query"
-                       placeholder="বইয়ের নাম/লেখক" required id="product-search-input">
+                       placeholder="বইয়ের নাম/লেখক" required id="mobile-product-search-input">
                 <button type="submit" class="btn btn-primary position-absolute end-0 top-0 h-100">
                     <i class="fas fa-search"></i>
                 </button>
 
-                <div id="search-results" class="bg-white border shadow-sm"
+                <div id="mobile-search-results" class="bg-white border shadow-sm"
                      style="position:absolute; top:100%; left:0; right:0; display:none; z-index:2000; max-height:350px; overflow-y:auto; border-radius:5px;">
                 </div>
             </form>

@@ -151,36 +151,50 @@ body {
 <div class="header-middle">
         <div class="container">
             <div class="header-middle-wrapper">
-                <div class="logo-area d-flex align-items-center">
-                    <!-- MOBILE HEADER START -->
-                    <div class="d-lg-none">
-                       <button id="sidebarToggle" class="hamburger">
+               <div class="logo-area d-flex align-items-center">
+                <!-- MOBILE HEADER START -->
+                <div class="d-lg-none d-flex align-items-center">
+                    <!-- Hamburger -->
+                    <button id="sidebarToggle" class="hamburger me-2">
                         <span></span>
                         <span></span>
                         <span></span>
                     </button>
-                        <!-- MOBILE HEADER END -->
-                    </div>
-                    <a href="{{ Route('home') }}">
-                        <img src="{{ asset(file_exists($settings->logo) ? $settings->logo : 'frontend/images/logo/logo.jpg') }}"
-                            height="50" alt="{{ $settings->app_name }}">
-                    </a>
-                </div>
-
-                <!-- Search Area -->
-                <div class="search-area d-lg-block d-none position-relative">
-                    <form action="#" method="GET" id="product-search-form">
-                        <div class="search-wrapper">
-                            <input type="search" class="search-input form-control" name="query"
-                                placeholder="বইয়ের নাম ও লেখক দিয়ে অনুসন্ধান করুন" required id="product-search-input">
-                            <button type="submit" class="btn search-btn"><i class="fas fa-search"></i></button>
-                            <div id="search-results" class="bg-white border shadow-sm"
-                         style="position:absolute; top:100%; left:0; right:0; display:none; z-index:2000; max-height:350px; overflow-y:auto; border-radius:5px;">
-                    </div>
+                    <!-- Mobile Search -->
+                    <form action="#" method="GET" class="flex-grow-1 me-2 mobile-search-area">
+                        <div class="input-group">
+                            <input type="search" class="form-control" name="query" placeholder="বইয়ের নাম/লেখক" required id="mobile-product-search-input">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                             <div id="mobile-search-results" class="bg-white border shadow-sm"
+                            style="position:absolute; top:100%; left:0; right:0; display:none; z-index:2000; max-height:350px; overflow-y:auto; border-radius:5px;">
+                        </div>
                         </div>
                     </form>
+
+                    
+
                 </div>
-                <!-- End Search Area Area -->
+                <!-- MOBILE HEADER END -->
+                <!-- Desktop Logo & Search -->
+                <a href="{{ route('home') }}" class="d-none d-lg-block me-3">
+                    <img src="{{ asset(file_exists($settings->logo) ? $settings->logo : 'frontend/images/logo/logo.jpg') }}"
+                        height="50" alt="{{ $settings->app_name }}">
+                </a>
+            </div>
+
+            <!-- Desktop Search -->
+            <div class="search-area d-lg-block d-none position-relative">
+                <form action="#" method="GET" id="product-search-form">
+                    <div class="search-wrapper">
+                        <input type="search" class="search-input form-control" name="query"
+                            placeholder="বইয়ের নাম ও লেখক দিয়ে অনুসন্ধান করুন" required id="product-search-input">
+                        <button type="submit" class="btn search-btn"><i class="fas fa-search"></i></button>
+                        <div id="search-results" class="bg-white border shadow-sm"
+                            style="position:absolute; top:100%; left:0; right:0; display:none; z-index:2000; max-height:350px; overflow-y:auto; border-radius:5px;">
+                        </div>
+                    </div>
+                </form>
+            </div>
 
 
                 <div class="action-area">

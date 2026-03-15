@@ -165,6 +165,7 @@ $(document).ready(function(){
 <script>
 $(document).ready(function(){
 
+    //Desktop Search
     $('#product-search-input').on('keyup', function(){
         let query = $(this).val();
         if(query.length >= 2) {
@@ -207,6 +208,53 @@ $(document).ready(function(){
     $(document).on('click', function(e){
         if(!$(e.target).closest('.search-area').length){
             $('#search-results').fadeOut();
+        }
+    });
+
+
+    //Mobile Search
+    $('#mobile-product-search-input').on('keyup', function(){
+        let query = $(this).val();
+        if(query.length >= 2) {
+            $.ajax({
+                url: "{{ route('products.search') }}",
+                method: "GET",
+                data: { query: query },
+                success: function(data) {
+                    let html = '';
+                    if(data.length > 0){
+                        html += '<ul class="list-group list-group-flush">';
+                        data.forEach(function(item){
+                            html += `<li class="list-group-item p-2 d-flex justify-content-between align-items-center product-card">
+                                        <a href="/product/details/${item.id}" class="d-flex align-items-center gap-2 text-decoration-none text-dark flex-grow-1">
+                                            <img class="product-img" src="${item.thumbnail}" style="position:relative; z-index:999;width:50px; height:50px; border-radius:10px;" alt="${item.name}">
+                                            <div>
+                                                <strong>${item.name}</strong><br>
+                                                <small>${item.authors}</small>
+                                            </div>
+                                        </a>
+                                        <div class="text-end ms-3">
+                                            <div><del>৳${item.regular_price}</del> <strong>৳${item.sale_price}</strong></div>
+                                            <button class="btn btn-sm btn-primary mt-1 add-to-cart-btn add-to-cart" data-id="${item.id}">+</button>
+                                        </div>
+                                    </li>`;
+                        });
+                        html += '</ul>';
+                        $('#mobile-search-results').html(html).fadeIn();
+                    } else {
+                        $('#mobile-search-results').html('<div class="p-2">কোন প্রোডাক্ট পাওয়া যায়নি</div>').fadeIn();
+                    }
+                }
+            });
+        } else {
+            $('#mobile-search-results').fadeOut();
+        }
+    });
+
+    // Click outside to hide results
+    $(document).on('click', function(e){
+        if(!$(e.target).closest('.mobile-search-area').length){
+            $('#mobile-search-results').fadeOut();
         }
     });
 

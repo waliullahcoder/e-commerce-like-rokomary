@@ -147,6 +147,11 @@ body {
     background: rgba(0,0,0,0.2);
     border-radius:3px;
 }
+@media (min-width: 992px) {
+    #sidebarToggle {
+        display: none !important;
+    }
+}
 </style>
 <div class="header-middle">
     <div class="container">
@@ -155,7 +160,7 @@ body {
         <div class="d-flex align-items-center justify-content-between mb-2">
 
             <!-- Hamburger for mobile only -->
-            <button id="sidebarToggle" class="hamburger d-lg-none">
+          <button id="sidebarToggle" class="hamburger d-block d-lg-none">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -171,7 +176,7 @@ body {
             <div class="d-none d-lg-block flex-grow-1 mx-3 search-area">
                 <form action="#" method="GET" class="position-relative w-100">
                     <input type="search" class="form-control w-100" name="query"
-                           placeholder="বইয়ের নাম/লেখক" required id="product-search-input">
+                           placeholder="বইয়ের নাম লেখ" required id="product-search-input">
                     <button type="submit" class="btn btn-primary position-absolute end-0 top-0 h-100">
                         <i class="fas fa-search"></i>
                     </button>
@@ -191,7 +196,7 @@ body {
 
                 @if(Auth::check())
                     <a href="{{ Auth::user()->role_status == 0 ? route('frontend.user.dashboard') : route('admin.dashboard') }}">
-                        <strong>{{ Auth::user()->name }}</strong>
+                        <b style="font-size: 13px">{{ Auth::user()->name }}</b>
                     </a>
                 @else
                     <a href="{{ route('auth.signinPage') }}">Sign in</a>
@@ -203,7 +208,7 @@ body {
         <div class="d-lg-none position-relative w-100 mb-2">
             <form action="#" method="GET" class="w-100 position-relative mobile-search-area">
                 <input type="search" class="form-control w-100" name="query"
-                       placeholder="বইয়ের নাম/লেখক" required id="mobile-product-search-input">
+                       placeholder="বইয়ের নাম লেখ" required id="mobile-product-search-input">
                 <button type="submit" class="btn btn-primary position-absolute end-0 top-0 h-100">
                     <i class="fas fa-search"></i>
                 </button>

@@ -72,13 +72,14 @@ body {
 }
 
 .sidebar-header {
-    padding:20px;
+    padding:10px;
     font-weight:bold;
-    font-size:18px;
+    font-size:16px;
     border-bottom:1px solid #eee;
     display:flex;
     justify-content:space-between;
     align-items:center;
+    background:#ebf5f4;
 }
 
 .sidebar-header button {
@@ -127,7 +128,10 @@ body {
     content:"▸";
     position:absolute;
     right:18px;
+    top:0px;
+    font-size: 30px;
     transition:0.3s;
+    color: #86ada7;
 }
 
 .sidebar .has-sub.open > a::after {
@@ -234,22 +238,14 @@ body {
         <li>
             <a href="{{ route('home') }}">হোম</a>
         </li>
+        <div class="sidebar-header">Mega Menu</div>
         <li class="has-sub">
             <a href="#">একাডেমিক</a>
             <ul class="sub-menu">
-                <li><a href="#">স্কুল</a></li>
-                <li><a href="#">কলেজ</a></li>
+                <li><a href="#">→ স্কুল</a></li>
+                <li><a href="#">→ কলেজ</a></li>
             </ul>
         </li>
-
-        <li class="has-sub">
-            <a href="#">জেনারেল বই</a>
-            <ul class="sub-menu">
-                <li><a href="#">বিজ্ঞান</a></li>
-                <li><a href="#">সাহিত্য</a></li>
-            </ul>
-        </li>
-
         @foreach($menus['middle_menus'] as $menu)
         <li>
             <a href="{{ route('category.index', [$menu->category_id, $menu->category_slug, $menu->name]) }}">
@@ -257,7 +253,7 @@ body {
             </a>
         </li>
         @endforeach
-
+        
         
 
     </ul>

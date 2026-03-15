@@ -661,7 +661,7 @@ h6 {
 /* =============== Product CSS =============== */
 .section-card {
     background-color: var(--bs-white);
-    padding: 1rem;
+    padding: 0.4rem;
     border-radius: 0.3rem;
     box-shadow: 0 3px 5px rgb(0 0 0 / 8%);
     margin-top:10px;
@@ -979,3 +979,9 @@ del .Price-amount {
 
 
 
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl{
+    --bs-gutter-x:0.5rem;
+}
+.p-1{
+    padding:0.1rem !important;
+}

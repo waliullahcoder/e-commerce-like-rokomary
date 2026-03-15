@@ -239,13 +239,19 @@ body {
             <a href="{{ route('home') }}">হোম</a>
         </li>
         <div class="sidebar-header">Mega Menu</div>
-        <li class="has-sub">
-            <a href="#">একাডেমিক</a>
+       
+         @foreach ($menus['mega_menus'] as $menu)
+            <li class="has-sub"><a href="{{ route('category.index', [$menu->category_id, $menu->category_slug,$menu->name]) }}">{{ $menu->name }}</a>
             <ul class="sub-menu">
-                <li><a href="#">→ স্কুল</a></li>
-                <li><a href="#">→ কলেজ</a></li>
+                 @if(isset($menus['sub_menus'][$menu->id]))
+                  @foreach ($menus['sub_menus'][$menu->id] as $item)
+                <li><a href="{{ route('category.index', [$item->id, $item->category_slug,$item->name]) }}">→ {{ $item->name }}</a></li>
+                @endforeach
+                 @endif
             </ul>
-        </li>
+        </li>  
+        @endforeach
+       
         @foreach($menus['middle_menus'] as $menu)
         <li>
             <a href="{{ route('category.index', [$menu->category_id, $menu->category_slug, $menu->name]) }}">

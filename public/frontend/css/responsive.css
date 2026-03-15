@@ -28,13 +28,13 @@
 
 @media (max-width: 575.98px) {
     .swiper-arrow-btn {
-        height: 38px;
-        width: 24px;
+        height: 17px;
+        width: 10px;
     }
 
     .featured-category-section .swiper-arrow-btn {
-        width: 34px;
-        height: 34px;
+        width: 10px;
+        height: 17px;
         left: -16px;
     }
 
@@ -59,7 +59,7 @@
     }
 
     .featured-category-section .swiper-arrow-btn.swiper-button-next {
-        right: -10px;
+        right: 0px;
     }
 
     .featured-category-section .swiper-arrow-btn {

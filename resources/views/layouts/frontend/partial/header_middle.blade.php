@@ -238,26 +238,33 @@ body {
         <li>
             <a href="{{ route('home') }}">হোম</a>
         </li>
-        <div class="sidebar-header">Mega Menu</div>
-       
-         @foreach ($menus['mega_menus'] as $menu)
-            <li class="has-sub"><a href="{{ route('category.index', [$menu->category_id, $menu->category_slug,$menu->name]) }}">{{ $menu->name }}</a>
-            <ul class="sub-menu">
-                 @if(isset($menus['sub_menus'][$menu->id]))
-                  @foreach ($menus['sub_menus'][$menu->id] as $item)
-                <li><a href="{{ route('category.index', [$item->id, $item->category_slug,$item->name]) }}">→ {{ $item->name }}</a></li>
-                @endforeach
-                 @endif
-            </ul>
-        </li>  
-        @endforeach
-       
         @foreach($menus['middle_menus'] as $menu)
         <li>
             <a href="{{ route('category.index', [$menu->category_id, $menu->category_slug, $menu->name]) }}">
                 {{ $menu->name }}
             </a>
         </li>
+        @endforeach
+        
+        <div class="sidebar-header">Mega Menu</div>
+         @foreach ($menus['mega_menus'] as $menu)
+            <li class="{{ isset($menus['sub_menus'][$menu->id]) ? 'has-sub' : '' }}">
+                <a href="{{ route('category.index', [$menu->category_id, $menu->category_slug, $menu->name]) }}">
+                    {{ $menu->name }}
+                </a>
+
+                @if(isset($menus['sub_menus'][$menu->id]) && count($menus['sub_menus'][$menu->id]) > 0)
+                <ul class="sub-menu">
+                    @foreach($menus['sub_menus'][$menu->id] as $item)
+                        <li>
+                            <a href="{{ route('category.index', [$item->id, $item->category_slug, $item->name]) }}">
+                                → {{ $item->name }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+                @endif
+            </li>
         @endforeach
         
         

@@ -16,9 +16,7 @@
 
 
 -- Dumping database structure for e_commerce_like_rokomary
-DROP DATABASE IF EXISTS `e_commerce_like_rokomary`;
-CREATE DATABASE IF NOT EXISTS `e_commerce_like_rokomary` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `e_commerce_like_rokomary`;
+USE `busines2_books_and_books`;
 
 -- Dumping structure for table e_commerce_like_rokomary.account_transactions
 DROP TABLE IF EXISTS `account_transactions`;
@@ -58,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `account_transactions` (
   CONSTRAINT `account_transactions_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.account_transactions: ~992 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.account_transactions: ~0 rows (approximately)
 DELETE FROM `account_transactions`;
 
 -- Dumping structure for table e_commerce_like_rokomary.account_transaction_autos
@@ -94,10 +92,93 @@ CREATE TABLE IF NOT EXISTS `account_transaction_autos` (
   CONSTRAINT `account_transaction_autos_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `account_transaction_autos_deleted_by_foreign` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `account_transaction_autos_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.account_transaction_autos: ~1,011 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.account_transaction_autos: ~82 rows (approximately)
 DELETE FROM `account_transaction_autos`;
+INSERT INTO `account_transaction_autos` (`id`, `voucher_no`, `voucher_type`, `date`, `coa_id`, `coa_head_code`, `narration`, `debit_amount`, `credit_amount`, `document`, `posted`, `approved`, `approved_by`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
+	(1, 'EXP-2603001', 'Expense', '2026-03-08', 98, 1010202, NULL, 0.00, 267.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:19:09', '2026-03-07 23:19:09'),
+	(2, 'EXP-2603001', 'Expense', '2026-03-08', 100, 40304, NULL, 267.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:19:09', '2026-03-07 23:19:09'),
+	(3, 'CS2603001', 'Client Sales', '2026-03-08', 129, 1010104, 'Client Sales Against Invoice No - CS2603001', 266.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:23:16', '2026-03-07 23:23:16'),
+	(4, 'CS2603001', 'Client Sales', '2026-03-08', 63, 30201, 'Client Sales Against Invoice No - CS2603001', 0.00, 266.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:23:16', '2026-03-07 23:23:16'),
+	(5, 'CC2603001', 'Client Collection', '2026-03-08', 13, 1010201, 'Client collection against payment no - CC2603001', 266.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:24:04', '2026-03-07 23:24:04'),
+	(6, 'CC2603001', 'Client Collection', '2026-03-08', 129, 1010104, 'Client collection against payment no - CC2603001', 0.00, 266.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:24:04', '2026-03-07 23:24:04'),
+	(7, 'CS2603002', 'Client Sales', '2026-03-08', 129, 1010104, 'Client Sales Against Invoice No - CS2603002', 468.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:51:49', '2026-03-07 23:51:49'),
+	(8, 'CS2603002', 'Client Sales', '2026-03-08', 63, 30201, 'Client Sales Against Invoice No - CS2603002', 0.00, 468.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:51:49', '2026-03-07 23:51:49'),
+	(9, 'CS2603003', 'Client Sales', '2026-03-08', 129, 1010104, 'Client Sales Against Invoice No - CS2603003', 306.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:53:58', '2026-03-07 23:53:58'),
+	(10, 'CS2603003', 'Client Sales', '2026-03-08', 63, 30201, 'Client Sales Against Invoice No - CS2603003', 0.00, 306.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:53:58', '2026-03-07 23:53:58'),
+	(11, 'EXP-2603002', 'Expense', '2026-03-08', 98, 1010202, NULL, 0.00, 267.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:56:19', '2026-03-07 23:56:19'),
+	(12, 'EXP-2603002', 'Expense', '2026-03-08', 100, 40304, NULL, 267.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:56:19', '2026-03-07 23:56:19'),
+	(13, 'CC2603002', 'Client Collection', '2026-03-08', 13, 1010201, 'Client collection against payment no - CC2603002', 774.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:57:09', '2026-03-07 23:57:09'),
+	(14, 'CC2603002', 'Client Collection', '2026-03-08', 129, 1010104, 'Client collection against payment no - CC2603002', 0.00, 774.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:57:09', '2026-03-07 23:57:09'),
+	(15, 'CS2603004', 'Client Sales', '2026-03-08', 278, 1010169, 'Client Sales Against Invoice No - CS2603004', 306.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:59:28', '2026-03-07 23:59:28'),
+	(16, 'CS2603004', 'Client Sales', '2026-03-08', 63, 30201, 'Client Sales Against Invoice No - CS2603004', 0.00, 306.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:59:28', '2026-03-07 23:59:28'),
+	(17, 'CC2603003', 'Client Collection', '2026-03-08', 13, 1010201, 'Client collection against payment no - CC2603003', 306.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:59:53', '2026-03-07 23:59:53'),
+	(18, 'CC2603003', 'Client Collection', '2026-03-08', 278, 1010169, 'Client collection against payment no - CC2603003', 0.00, 306.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:59:53', '2026-03-07 23:59:53'),
+	(19, 'EXP-2603003', 'Expense', '2026-03-08', 98, 1010202, 'ttt', 0.00, 100.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-08 00:00:48', '2026-03-08 00:00:48'),
+	(20, 'EXP-2603003', 'Expense', '2026-03-08', 244, 40330, 'ttt', 100.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-08 00:00:48', '2026-03-08 00:00:48'),
+	(21, 'CS2603005', 'Client Sales', '2026-03-08', 278, 1010169, 'Client Sales Against Invoice No - CS2603005', 306.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-08 00:23:27', '2026-03-08 00:23:27'),
+	(22, 'CS2603005', 'Client Sales', '2026-03-08', 63, 30201, 'Client Sales Against Invoice No - CS2603005', 0.00, 306.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-08 00:23:27', '2026-03-08 00:23:27'),
+	(23, 'CS2603006', 'Client Sales', '2026-03-08', 129, 1010104, 'Client Sales Against Invoice No - CS2603006', 306.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-08 00:36:43', '2026-03-08 00:36:43'),
+	(24, 'CS2603006', 'Client Sales', '2026-03-08', 63, 30201, 'Client Sales Against Invoice No - CS2603006', 0.00, 306.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-08 00:36:43', '2026-03-08 00:36:43'),
+	(25, 'CS2603007', 'Client Sales', '1970-01-01', 278, 1010169, 'Client Sales Against Invoice No - CS2603007', 0.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-08 00:40:22', '2026-03-08 00:40:22'),
+	(26, 'CS2603007', 'Client Sales', '1970-01-01', 63, 30201, 'Client Sales Against Invoice No - CS2603007', 0.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-08 00:40:22', '2026-03-08 00:40:22'),
+	(27, 'CS2603008', 'Client Sales', '1970-01-01', 277, 1010168, 'Client Sales Against Invoice No - CS2603008', 0.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 00:27:52', '2026-03-09 00:27:52'),
+	(28, 'CS2603008', 'Client Sales', '1970-01-01', 63, 30201, 'Client Sales Against Invoice No - CS2603008', 0.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 00:27:52', '2026-03-09 00:27:52'),
+	(29, 'I2603001', 'Invest', '2026-03-09', 13, 1010201, 'Invest against invest no - I2603001', 140000.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 03:32:10', '2026-03-09 03:32:10'),
+	(30, 'I2603001', 'Invest', '2026-03-09', 289, 20218, 'Invest against invest no - I2603001', 0.00, 140000.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 03:32:10', '2026-03-09 03:32:10'),
+	(31, 'CS2603009', 'Client Sales', '2026-03-09', 129, 1010104, 'Client Sales Against Invoice No - CS2603009', 1530.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 03:43:54', '2026-03-09 03:43:54'),
+	(32, 'CS2603009', 'Client Sales', '2026-03-09', 63, 30201, 'Client Sales Against Invoice No - CS2603009', 0.00, 1530.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 03:43:54', '2026-03-09 03:43:54'),
+	(33, 'IS2603001', 'Invest Sattlement', '2026-03-09', 13, 1010201, 'Invest Sattlement against payment no - IS2603001', 0.00, 140000.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 03:46:52', '2026-03-09 03:46:52'),
+	(34, 'IS2603001', 'Invest Sattlement', '2026-03-09', 289, 20218, 'Invest Sattlement against payment no - IS2603001', 140000.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 03:46:52', '2026-03-09 03:46:52'),
+	(35, 'I2603002', 'Invest', '2026-03-09', 13, 1010201, 'Invest against invest no - I2603002', 120000.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 04:00:48', '2026-03-09 04:00:48'),
+	(36, 'I2603002', 'Invest', '2026-03-09', 291, 20219, 'Invest against invest no - I2603002', 0.00, 120000.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 04:00:48', '2026-03-09 04:00:48'),
+	(37, 'CS2603010', 'Client Sales', '2026-03-10', 277, 1010168, 'Client Sales Against Invoice No - CS2603010', 612.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 21:44:42', '2026-03-09 21:44:42'),
+	(38, 'CS2603010', 'Client Sales', '2026-03-10', 63, 30201, 'Client Sales Against Invoice No - CS2603010', 0.00, 612.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 21:44:42', '2026-03-09 21:44:42'),
+	(39, 'I2603001', 'Invest', '2026-03-10', 13, 1010201, 'Invest against invest no - I2603001', 130000.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 22:28:35', '2026-03-09 22:28:35'),
+	(40, 'I2603001', 'Invest', '2026-03-10', 289, 20218, 'Invest against invest no - I2603001', 0.00, 130000.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 22:28:35', '2026-03-09 22:28:35'),
+	(41, 'CS2603011', 'Client Sales', '2026-03-10', 277, 1010168, 'Client Sales Against Invoice No - CS2603011', 1224.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 22:30:27', '2026-03-09 22:30:27'),
+	(42, 'CS2603011', 'Client Sales', '2026-03-10', 63, 30201, 'Client Sales Against Invoice No - CS2603011', 0.00, 1224.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 22:30:27', '2026-03-09 22:30:27'),
+	(43, 'I2603002', 'Invest', '2026-03-10', 13, 1010201, 'Invest against invest no - I2603002', 130000.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 22:59:39', '2026-03-09 22:59:39'),
+	(44, 'I2603002', 'Invest', '2026-03-10', 289, 20218, 'Invest against invest no - I2603002', 0.00, 130000.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 22:59:39', '2026-03-09 22:59:39'),
+	(45, 'CS2603012', 'Client Sales', '2026-03-10', 277, 1010168, 'Client Sales Against Invoice No - CS2603012', 1380.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 23:00:26', '2026-03-09 23:00:26'),
+	(46, 'CS2603012', 'Client Sales', '2026-03-10', 63, 30201, 'Client Sales Against Invoice No - CS2603012', 0.00, 1380.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-09 23:00:26', '2026-03-09 23:00:26'),
+	(47, 'IP2603001', 'Investor Payment', '2026-03-10', 290, 40218, 'Investor Payment against payment no - IP2603001', 9.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 00:05:33', '2026-03-10 00:05:33'),
+	(48, 'IP2603001', 'Investor Payment', '2026-03-10', 13, 1010201, 'Investor Payment against payment no - IP2603001', 0.00, 9.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 00:05:33', '2026-03-10 00:05:33'),
+	(49, 'IP2603002', 'Investor Payment', '2026-03-10', 290, 40218, 'Investor Payment against payment no - IP2603002', 60.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 00:50:37', '2026-03-10 00:50:37'),
+	(50, 'IP2603002', 'Investor Payment', '2026-03-10', 13, 1010201, 'Investor Payment against payment no - IP2603002', 0.00, 60.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 00:50:37', '2026-03-10 00:50:37'),
+	(51, 'IS2603001', 'Invest Sattlement', '2026-03-10', 13, 1010201, 'Invest Sattlement against payment no - IS2603001', 0.00, 260000.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 00:51:17', '2026-03-10 00:51:17'),
+	(52, 'IS2603001', 'Invest Sattlement', '2026-03-10', 289, 20218, 'Invest Sattlement against payment no - IS2603001', 260000.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 00:51:17', '2026-03-10 00:51:17'),
+	(53, 'I2603003', 'Invest', '2026-03-10', 13, 1010201, 'Invest against invest no - I2603003', 90000.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 00:52:56', '2026-03-10 00:52:56'),
+	(54, 'I2603003', 'Invest', '2026-03-10', 289, 20218, 'Invest against invest no - I2603003', 0.00, 90000.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 00:52:56', '2026-03-10 00:52:56'),
+	(55, 'CS2603013', 'Client Sales', '2026-03-10', 277, 1010168, 'Client Sales Against Invoice No - CS2603013', 3671.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 00:58:58', '2026-03-10 00:58:58'),
+	(56, 'CS2603013', 'Client Sales', '2026-03-10', 63, 30201, 'Client Sales Against Invoice No - CS2603013', 0.00, 3671.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 00:58:58', '2026-03-10 00:58:58'),
+	(57, 'CC2603004', 'Client Collection', '2026-03-10', 13, 1010201, 'Client collection against Payment No - CC2603004', 3671.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 00:58:58', '2026-03-10 00:58:58'),
+	(58, 'CC2603004', 'Client Collection', '2026-03-10', 277, 1010168, 'Client collection against Payment No - CC2603004', 0.00, 3671.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 00:58:58', '2026-03-10 00:58:58'),
+	(59, 'I2603004', 'Invest', '2026-03-10', 13, 1010201, 'Invest against invest no - I2603004', 70000.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 01:15:47', '2026-03-10 01:15:47'),
+	(60, 'I2603004', 'Invest', '2026-03-10', 289, 20218, 'Invest against invest no - I2603004', 0.00, 70000.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 01:15:47', '2026-03-10 01:15:47'),
+	(61, 'CS2603014', 'Client Sales', '2026-03-10', 277, 1010168, 'Client Sales Against Invoice No - CS2603014', 5189.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 01:20:27', '2026-03-10 01:20:27'),
+	(62, 'CS2603014', 'Client Sales', '2026-03-10', 63, 30201, 'Client Sales Against Invoice No - CS2603014', 0.00, 5189.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 01:20:27', '2026-03-10 01:20:27'),
+	(63, 'SR2603001', 'Sales Return', '2026-03-10', 64, 30202, 'Sales Return against Return No - SR2603001', 282.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 03:03:28', '2026-03-10 03:03:28'),
+	(64, 'SR2603001', 'Sales Return', '2026-03-10', 277, 1010168, 'Sales Return against Return No - SR2603001', 0.00, 282.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 03:03:28', '2026-03-10 03:03:28'),
+	(69, 'I2603005', 'Invest', '2026-03-10', 13, 1010201, 'Invest against invest no - I2603005', 60000.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 03:41:42', '2026-03-10 03:41:42'),
+	(70, 'I2603005', 'Invest', '2026-03-10', 289, 20218, 'Invest against invest no - I2603005', 0.00, 60000.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 03:41:42', '2026-03-10 03:41:42'),
+	(71, 'CS2603015', 'Client Sales', '2026-03-10', 277, 1010168, 'Client Sales Against Invoice No - CS2603015', 1656.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 03:46:55', '2026-03-10 03:46:55'),
+	(72, 'CS2603015', 'Client Sales', '2026-03-10', 63, 30201, 'Client Sales Against Invoice No - CS2603015', 0.00, 1656.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 03:46:55', '2026-03-10 03:46:55'),
+	(73, 'I2603006', 'Invest', '2026-03-10', 13, 1010201, 'Invest against invest no - I2603006', 50000.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 03:55:33', '2026-03-10 03:55:33'),
+	(74, 'I2603006', 'Invest', '2026-03-10', 289, 20218, 'Invest against invest no - I2603006', 0.00, 50000.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 03:55:33', '2026-03-10 03:55:33'),
+	(75, 'CS2603016', 'Client Sales', '2026-03-10', 277, 1010168, 'Client Sales Against Invoice No - CS2603016', 2527.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 03:56:11', '2026-03-10 03:56:11'),
+	(76, 'CS2603016', 'Client Sales', '2026-03-10', 63, 30201, 'Client Sales Against Invoice No - CS2603016', 0.00, 2527.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 03:56:11', '2026-03-10 03:56:11'),
+	(77, 'SR2603002', 'Sales Return', '2026-03-11', 64, 30202, 'Sales Return against Return No - SR2603002', 240.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 21:39:30', '2026-03-10 21:39:30'),
+	(78, 'SR2603002', 'Sales Return', '2026-03-11', 277, 1010168, 'Sales Return against Return No - SR2603002', 0.00, 240.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 21:39:30', '2026-03-10 21:39:30'),
+	(79, 'SR2603003', 'Sales Return', '2026-03-11', 64, 30202, 'Sales Return against Return No - SR2603003', 240.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 21:51:55', '2026-03-10 21:51:55'),
+	(80, 'SR2603003', 'Sales Return', '2026-03-11', 277, 1010168, 'Sales Return against Return No - SR2603003', 0.00, 240.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 21:51:55', '2026-03-10 21:51:55'),
+	(81, 'SR2603004', 'Sales Return', '2026-03-11', 64, 30202, 'Sales Return against Return No - SR2603004', 240.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 21:53:37', '2026-03-10 21:53:37'),
+	(82, 'SR2603004', 'Sales Return', '2026-03-11', 277, 1010168, 'Sales Return against Return No - SR2603004', 0.00, 240.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 21:53:37', '2026-03-10 21:53:37'),
+	(83, 'CS2603017', 'Client Sales', '2026-03-11', 277, 1010168, 'Client Sales Against Invoice No - CS2603017', 414.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 21:54:35', '2026-03-10 21:54:35'),
+	(84, 'CS2603017', 'Client Sales', '2026-03-11', 63, 30201, 'Client Sales Against Invoice No - CS2603017', 0.00, 414.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-10 21:54:35', '2026-03-10 21:54:35'),
+	(93, 'SR2603005', 'Sales Return', '2026-03-12', 64, 30202, 'Sales Return against Return No - SR2603005', 289.00, 0.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-12 00:15:36', '2026-03-12 00:15:36'),
+	(94, 'SR2603005', 'Sales Return', '2026-03-12', 277, 1010168, 'Sales Return against Return No - SR2603005', 0.00, 289.00, NULL, 0, 0, NULL, 1, NULL, NULL, NULL, '2026-03-12 00:15:36', '2026-03-12 00:15:36');
 
 -- Dumping structure for table e_commerce_like_rokomary.admin_menus
 DROP TABLE IF EXISTS `admin_menus`;
@@ -118,9 +199,9 @@ CREATE TABLE IF NOT EXISTS `admin_menus` (
   KEY `admin_menus_parent_id_foreign` (`parent_id`),
   CONSTRAINT `admin_menus_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `admin_menus` (`id`) ON DELETE CASCADE,
   CONSTRAINT `admin_menus_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.admin_menus: ~45 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.admin_menus: ~55 rows (approximately)
 DELETE FROM `admin_menus`;
 INSERT INTO `admin_menus` (`id`, `permission_id`, `parent_id`, `name`, `route`, `icon`, `order`, `status`, `is_deletable`, `created_at`, `updated_at`) VALUES
 	(1, 1, NULL, 'Dashboard', 'admin.dashboard', '<span class="material-symbols-outlined fs-22"> home_app_logo </span>', 1, 1, 1, '2026-01-19 05:33:09', '2026-01-19 05:33:09'),
@@ -164,12 +245,21 @@ INSERT INTO `admin_menus` (`id`, `permission_id`, `parent_id`, `name`, `route`, 
 	(44, 97, 43, 'Sales Report', 'admin.sales-report.index', NULL, 1, 1, 1, '2026-03-01 23:55:22', '2026-03-01 23:55:22'),
 	(45, 98, 43, 'Collection Report', 'admin.collection-report.index', NULL, 2, 1, 1, '2026-03-01 23:57:00', '2026-03-01 23:57:00'),
 	(46, 99, 43, 'Sales Return Report', 'admin.sales-return-report.index', NULL, 3, 1, 1, '2026-03-02 00:03:47', '2026-03-02 00:03:47'),
-	(47, 100, NULL, 'Expenses', 'admin.expense.index', '<span class="material-symbols-outlined fs-22"> payment </span>', 5, 1, 1, '2026-03-02 00:16:46', '2026-03-02 00:19:38'),
+	(47, 100, NULL, 'Expenses', NULL, '<span class="material-symbols-outlined fs-22"> payment </span>', 5, 1, 1, '2026-03-02 00:16:46', '2026-03-12 00:35:42'),
 	(48, 104, 43, 'Income Statement', 'admin.income-statement.index', NULL, 4, 1, 1, '2026-03-02 00:29:11', '2026-03-02 00:29:11'),
 	(49, 105, 26, 'Admin Menu', 'admin.admin-menu.index', NULL, 6, 1, 1, '2026-03-02 00:35:14', '2026-03-02 00:35:14'),
 	(50, 113, NULL, 'Purchase Manage', NULL, '<span class="material-symbols-outlined fs-22"> receipt_long </span>', 4, 1, 1, '2026-03-02 02:34:09', '2026-03-02 02:39:06'),
 	(51, 114, 50, 'Purchase Order', 'admin.purchase-order.index', NULL, 1, 1, 1, '2026-03-02 02:38:30', '2026-03-02 02:38:30'),
-	(52, 117, 50, 'Purchase Create', 'admin.purchase-order.create', NULL, 2, 1, 1, '2026-03-02 23:47:17', '2026-03-02 23:47:17');
+	(52, 117, 50, 'Purchase Create', 'admin.purchase-order.create', NULL, 2, 1, 1, '2026-03-02 23:47:17', '2026-03-02 23:47:17'),
+	(53, 118, 26, 'Coa Setup', 'admin.coa.index', NULL, 7, 1, 1, '2026-03-08 00:05:14', '2026-03-08 00:11:51'),
+	(54, 123, 39, 'Sales Return', 'admin.sales-return.index', NULL, 4, 1, 1, '2026-03-10 03:05:29', '2026-03-10 03:05:29'),
+	(55, 127, 47, 'Expense List', 'admin.expense.index', NULL, 1, 1, 1, '2026-03-12 00:52:34', '2026-03-12 00:52:34'),
+	(56, 128, 47, 'Expense Create', 'admin.expense.create', NULL, 2, 1, 1, '2026-03-12 00:53:19', '2026-03-12 00:53:19'),
+	(57, 131, 9, 'Book Create', 'admin.product.create', NULL, 2, 1, 1, '2026-03-12 02:04:23', '2026-03-12 02:24:58'),
+	(58, 132, 39, 'Sales Create', 'admin.sales.create', NULL, 5, 1, 1, '2026-03-12 02:17:34', '2026-03-12 02:17:34'),
+	(59, 133, 39, 'Collection Create', 'admin.collection.create', NULL, 6, 1, 1, '2026-03-12 02:19:17', '2026-03-12 02:19:17'),
+	(60, 134, 39, 'Sales Return Create', 'admin.sales-return.create', NULL, 7, 1, 1, '2026-03-12 02:20:29', '2026-03-12 02:20:29'),
+	(61, 135, 28, 'Production Create', 'admin.production.create', NULL, 1, 1, 1, '2026-03-12 02:23:36', '2026-03-12 02:42:47');
 
 -- Dumping structure for table e_commerce_like_rokomary.admin_menu_actions
 DROP TABLE IF EXISTS `admin_menu_actions`;
@@ -187,7 +277,7 @@ CREATE TABLE IF NOT EXISTS `admin_menu_actions` (
   KEY `admin_menu_actions_admin_menu_id_foreign` (`admin_menu_id`),
   CONSTRAINT `admin_menu_actions_admin_menu_id_foreign` FOREIGN KEY (`admin_menu_id`) REFERENCES `admin_menus` (`id`) ON DELETE CASCADE,
   CONSTRAINT `admin_menu_actions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table e_commerce_like_rokomary.admin_menu_actions: ~54 rows (approximately)
 DELETE FROM `admin_menu_actions`;
@@ -235,8 +325,6 @@ INSERT INTO `admin_menu_actions` (`id`, `permission_id`, `admin_menu_id`, `name`
 	(51, 92, 41, 'show', 'admin.sales.show', 1, '2026-03-01 22:47:20', '2026-03-01 22:47:20'),
 	(52, 94, 42, 'create', 'admin.collection.create', 1, '2026-03-01 22:51:54', '2026-03-01 22:51:54'),
 	(53, 95, 42, 'show', 'admin.collection.show', 1, '2026-03-01 22:52:07', '2026-03-01 22:52:07'),
-	(55, 102, 47, 'create', 'admin.expense.create', 1, '2026-03-02 00:20:20', '2026-03-02 00:20:20'),
-	(56, 103, 47, 'show', 'admin.expense.show', 1, '2026-03-02 00:21:24', '2026-03-02 00:21:24'),
 	(57, 106, 49, 'create', 'admin.admin-menu.create', 1, '2026-03-02 00:51:22', '2026-03-02 00:51:22'),
 	(58, 107, 49, 'edit', 'admin.admin-menu.edit', 1, '2026-03-02 00:52:37', '2026-03-02 00:52:37'),
 	(59, 108, 49, 'view actions', 'admin.admin-menu-action.index', 1, '2026-03-02 00:56:38', '2026-03-02 00:56:38'),
@@ -245,7 +333,14 @@ INSERT INTO `admin_menu_actions` (`id`, `permission_id`, `admin_menu_id`, `name`
 	(62, 111, 49, 'delete action', 'admin.admin-menu-action.destroy', 1, '2026-03-02 00:59:45', '2026-03-02 00:59:45'),
 	(63, 112, 49, 'destroy', 'admin.admin-menu.destroy', 1, '2026-03-02 01:00:30', '2026-03-02 01:00:30'),
 	(64, 115, 51, 'create', 'admin.purchase-order.create', 1, '2026-03-02 02:39:57', '2026-03-02 02:39:57'),
-	(65, 116, 51, 'show', 'admin.purchase-order.show', 1, '2026-03-02 02:40:17', '2026-03-02 02:40:17');
+	(65, 116, 51, 'show', 'admin.purchase-order.show', 1, '2026-03-02 02:40:17', '2026-03-02 02:40:17'),
+	(67, 120, 53, 'edit', 'admin.coa.edit', 1, '2026-03-08 00:06:01', '2026-03-08 00:06:01'),
+	(68, 121, 53, 'create', 'admin.coa.create', 1, '2026-03-08 00:13:54', '2026-03-08 00:13:54'),
+	(69, 122, 29, 'view', 'admin.production.show', 1, '2026-03-09 02:24:08', '2026-03-09 02:24:08'),
+	(70, 124, 54, 'create', 'admin.sales-return.create', 1, '2026-03-10 03:06:59', '2026-03-10 03:06:59'),
+	(71, 125, 54, 'show', 'admin.sales-return.show', 1, '2026-03-10 03:07:41', '2026-03-10 03:07:41'),
+	(73, 129, 55, 'show', 'admin.expense.show', 1, '2026-03-12 00:54:01', '2026-03-12 00:54:01'),
+	(74, 130, 55, 'create', 'admin.expense.create', 1, '2026-03-12 00:54:22', '2026-03-12 00:54:22');
 
 -- Dumping structure for table e_commerce_like_rokomary.admin_settings
 DROP TABLE IF EXISTS `admin_settings`;
@@ -253,6 +348,7 @@ CREATE TABLE IF NOT EXISTS `admin_settings` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `small_logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `invest_value` double DEFAULT NULL,
   `favicon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `footer_text` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -270,8 +366,8 @@ CREATE TABLE IF NOT EXISTS `admin_settings` (
 
 -- Dumping data for table e_commerce_like_rokomary.admin_settings: ~1 rows (approximately)
 DELETE FROM `admin_settings`;
-INSERT INTO `admin_settings` (`id`, `logo`, `small_logo`, `favicon`, `title`, `footer_text`, `primary_color`, `secondary_color`, `facebook`, `twitter`, `linkedin`, `whatsapp`, `google`, `created_at`, `updated_at`) VALUES
-	(1, 'storage/admin-setting//2026-01-19-WOkDhHTNPYsXyYppCJmHwrY9oLAUS0GyfybMRVZ0.webp', 'storage/admin-setting//2026-01-19-OJFe5jFdx2IBzbbmhVTaY0E5lm2I5ER7OwoEGMPA.webp', 'storage/admin-setting//2026-01-19-DhG2fWtAwUI17NKIMiQKmQQZKanvyCBQnFoRYhUl.webp', 'Books', 'sdfsdfsdf', '#e80c9b', '#18ba64', 'sdfs', 'fsdf', 'sdfsd', 'dfsdf', NULL, '2026-01-19 05:04:11', '2026-01-19 05:04:11');
+INSERT INTO `admin_settings` (`id`, `logo`, `small_logo`, `invest_value`, `favicon`, `title`, `footer_text`, `primary_color`, `secondary_color`, `facebook`, `twitter`, `linkedin`, `whatsapp`, `google`, `created_at`, `updated_at`) VALUES
+	(1, 'storage/admin-setting//2026-01-19-WOkDhHTNPYsXyYppCJmHwrY9oLAUS0GyfybMRVZ0.webp', 'storage/admin-setting//2026-01-19-OJFe5jFdx2IBzbbmhVTaY0E5lm2I5ER7OwoEGMPA.webp', 10000, 'storage/admin-setting//2026-01-19-DhG2fWtAwUI17NKIMiQKmQQZKanvyCBQnFoRYhUl.webp', 'Books and Books', 'All right reserved by Books and Books', '#e80c9b', '#18ba64', 'Books and Books', 'Books and Books', 'Books and Books', 'Books and Books', NULL, '2026-01-19 05:04:11', '2026-03-09 03:30:20');
 
 -- Dumping structure for table e_commerce_like_rokomary.areas
 DROP TABLE IF EXISTS `areas`;
@@ -529,14 +625,14 @@ CREATE TABLE IF NOT EXISTS `categories` (
   CONSTRAINT `categories_deleted_by_foreign` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `categories_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL,
   CONSTRAINT `categories_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.categories: ~57 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.categories: ~69 rows (approximately)
 DELETE FROM `categories`;
 INSERT INTO `categories` (`id`, `parent_id`, `name`, `type`, `slug`, `image`, `description`, `status`, `position`, `url`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
-	(1, NULL, 'বই', '', 'amar-itihas', 'storage/category/2026-01-20-ML4RobJCoxQrhxcUTXiRgZC4TXdfkN8vNe14bkcA.webp', 'সকল আলোচনা', 1, 'header', '#', 1, 1, NULL, NULL, '2026-01-20 03:44:44', '2026-02-02 23:52:48'),
-	(2, 1, 'ইতিহাস', 'book', 'itihas', 'storage/category/2026-01-25-A5GUscpZWSmrLr0xXmWYQSegvXP9ZN2fhgMSSjAd.webp', 'সকল', 1, 'header', NULL, 1, 1, NULL, NULL, '2026-01-20 03:46:02', '2026-01-25 21:58:31'),
-	(3, 4, 'Water Heater', NULL, 'es-es-si', 'storage/category/2026-01-25-X7ut7OeRn9ZovzDhNdGSxUNwZ8inNzNx51OBw2Zt.webp', 'Water Heater', 1, 'header', '#', 1, 1, NULL, NULL, '2026-01-21 04:33:12', '2026-02-03 00:20:46'),
+	(1, NULL, 'বই', 'book', 'amar-itihas', 'storage/category/2026-01-20-ML4RobJCoxQrhxcUTXiRgZC4TXdfkN8vNe14bkcA.webp', 'সকল আলোচনা', 1, 'header', '#', 1, 1, NULL, NULL, '2026-01-20 03:44:44', '2026-02-02 23:52:48'),
+	(2, 1, 'Itihas', 'book', 'itihas', 'storage/category/2026-01-25-A5GUscpZWSmrLr0xXmWYQSegvXP9ZN2fhgMSSjAd.webp', NULL, 1, 'header', '#', 1, 1, NULL, NULL, '2026-01-20 03:46:02', '2026-03-12 03:55:16'),
+	(3, 4, 'Water Heater3', 'book', 'es-es-si', 'storage/category/2026-01-25-X7ut7OeRn9ZovzDhNdGSxUNwZ8inNzNx51OBw2Zt.webp', 'sadadasda', 1, 'header', '#', 1, 1, NULL, NULL, '2026-01-21 04:33:12', '2026-03-12 03:20:08'),
 	(4, NULL, 'ইলেক্ট্রনিক্স', 'other', 'ekademik', 'storage/category/2026-01-21-pLTcQNE1TC5RKHwntlvgDiX9wYN9vbisByj7KeVu.webp', 'ইলেক্ট্রনিক্স', 1, 'header', '#', 1, 1, NULL, NULL, '2026-01-21 05:50:48', '2026-02-24 22:26:23'),
 	(5, NULL, 'সুপার স্টোর', NULL, 'kartun-er-glp', 'storage/category/2026-01-20-HS8XmhC2g9rbCbXWO8fNyt5dKzaM370aar4KZM1M.webp', 'সকল', 1, 'header', '#', 1, 1, NULL, NULL, '2026-01-21 22:39:35', '2026-02-02 23:54:01'),
 	(6, 4, 'Mobile', NULL, 'eisessi', 'storage/category/2026-01-25-WCUZ8WW5OfIAtRyi4yvV0lSWSokmTxYrWCkSQAbj.webp', 'Mobile', 1, 'header_top', '#', 1, 1, NULL, NULL, '2026-01-21 23:44:00', '2026-02-03 00:21:02'),
@@ -544,12 +640,12 @@ INSERT INTO `categories` (`id`, `parent_id`, `name`, `type`, `slug`, `image`, `d
 	(8, 5, 'কার্টুন এর ভাল গল্প', NULL, 'kartun-er-val-glp', 'storage/category/2026-01-25-eXypOGkciWmMflByx1hhc6P9uarA7XRZklaxAR7B.webp', NULL, 1, NULL, NULL, 1, NULL, NULL, NULL, '2026-01-25 05:24:59', '2026-01-25 05:24:59'),
 	(9, 5, 'আজব ঠাকুরের কথা', NULL, 'ajb-thakurer-ktha', 'storage/category/2026-01-25-o95VBf7carOoVlVnUd9J718AlcnCmldK2jKTuT1L.webp', 'সদফসদ', 1, NULL, NULL, 1, NULL, NULL, NULL, '2026-01-25 05:26:01', '2026-01-25 05:26:01'),
 	(10, 1, 'গেরিলা যুদ্ধ', 'book', 'gerila-zuddh', 'storage/category/2026-01-25-lSfUto37Rogh00r0HFPSi5rP3cBwwWbLVZ9YaCtO.webp', 'সদফসদ', 1, 'header', NULL, 1, 1, NULL, NULL, '2026-01-25 05:26:39', '2026-01-25 21:58:41'),
-	(11, NULL, 'ঘরে বসে আয় করুন', NULL, 'ghre-bse-ay-krun', 'storage/category/2026-01-26-RsPtfwny0ZVUNEiVFvOK4JhryKDUjqm17WMcIBeC.webp', 'csdsdsasd', 1, 'header_top', NULL, 1, NULL, NULL, NULL, '2026-01-25 22:07:30', '2026-01-25 22:07:30'),
-	(12, NULL, 'রকমারি কুইজ', NULL, 'rkmari-kuij', 'storage/category/2026-01-26-cgw8o9oGv4zJvYYgY5OFEC1WLfVgYmAhOYGaBn8o.webp', 'রকমারি কুইজ', 1, 'header_top', NULL, 1, NULL, NULL, NULL, '2026-01-25 22:08:06', '2026-01-25 22:08:06'),
-	(13, NULL, 'রকমারি কুইজ', NULL, 'rkmari-kuij-1', 'storage/category/2026-01-26-Q8K7EgW5ik9eGB1EP7NeXUDhjfZncAbfJ9mn7E7L.webp', 'রকমারি কুইজ', 1, 'header_top', NULL, 1, NULL, NULL, NULL, '2026-01-25 22:08:07', '2026-01-25 22:08:07'),
-	(14, NULL, 'রকমারি উদ্যোক্তা', NULL, 'rkmari-udzokta', 'storage/category/2026-01-26-8uiOFhGGQoMb5pPKdE3mmljXPX4T7OTlhPx5TUaQ.webp', 'রকমারি উদ্যোক্তা', 1, 'header_top', NULL, 1, NULL, NULL, NULL, '2026-01-25 22:08:49', '2026-01-25 22:08:49'),
-	(15, NULL, 'অর্ডার ট্র্যাক করুন', NULL, 'ordar-trzak-krun', 'storage/category/2026-01-26-oNZHh0hRfmJoBHZdOK6Kx9effoeTonOmdWV3T6dP.webp', 'অর্ডার ট্র্যাক করুন', 1, 'header_top', 'order/trucking/system', 1, 1, NULL, NULL, '2026-01-25 22:09:26', '2026-01-26 00:03:21'),
-	(16, NULL, 'বই ডোনেশন', NULL, 'bi-donesn', 'storage/category/2026-01-26-j7LgSvY4BsKOJtIk5ZSN35XZVGIgsVOzatOfms7l.webp', 'বই ডোনেশন', 1, 'header_top', NULL, 1, NULL, NULL, NULL, '2026-01-25 22:09:49', '2026-01-25 22:09:49'),
+	(11, NULL, 'ঘরে বসে আয় করুন', 'book', 'ghre-bse-ay-krun', 'storage/category/2026-01-26-RsPtfwny0ZVUNEiVFvOK4JhryKDUjqm17WMcIBeC.webp', '<h6 style="color:#0d6efd;font-weight:700;">বুকস অ্যান্ড বুকসে ঘরে বসে আয় করুন</h6>\r\n\r\n<p style="font-size:16px; line-height:1.8; color:#555;">\r\n<b>বুকস অ্যান্ড বুকস</b> আপনাদের জন্য নিয়ে এসেছে ঘরে বসে সহজে আয় করার একটি সুযোগ। \r\nআপনি আমাদের বইগুলো বন্ধু, পরিবার বা সোশ্যাল মিডিয়ার মাধ্যমে শেয়ার করে বিক্রি করতে পারবেন। \r\nপ্রতিটি সফল বিক্রয়ের জন্য আপনাকে <b style="color:#28a745;">৫% কমিশন</b> প্রদান করা হবে।\r\n</p>\r\n\r\n<p style="font-size:16px; line-height:1.8; color:#555;">\r\nএটি সম্পূর্ণ সহজ এবং ঝামেলামুক্ত একটি আয় করার মাধ্যম। \r\nআপনি যত বেশি বই বিক্রি করবেন, তত বেশি কমিশন অর্জন করতে পারবেন। \r\nকোনো বিশেষ দক্ষতার প্রয়োজন নেই, শুধু আমাদের বইগুলো মানুষের কাছে পৌঁছে দিন \r\nএবং বিক্রয়ের মাধ্যমে নিয়মিত আয় করুন।\r\n</p>\r\n\r\n<p style="font-size:16px; line-height:1.8; color:#555;">\r\nআজই <b>বুকস অ্যান্ড বুকস</b> এর সাথে যুক্ত হন এবং ঘরে বসেই একটি বাড়তি আয়ের সুযোগ তৈরি করুন।\r\n</p>', 1, 'header_top', '#', 1, 1, NULL, NULL, '2026-01-25 22:07:30', '2026-03-08 21:52:00'),
+	(12, NULL, 'বুকস অ্যান্ড বুকস কুইজ', 'book', 'rkmari-kuij', 'storage/category/2026-01-26-cgw8o9oGv4zJvYYgY5OFEC1WLfVgYmAhOYGaBn8o.webp', '<h6 style="color:#0d6efd;font-weight:700;">বুকস অ্যান্ড বুকস কুইজ</h6>\r\n\r\n<p style="font-size:16px; line-height:1.8; color:#555;">\r\n<b>বুকস অ্যান্ড বুকস</b> পাঠকদের জন্য আয়োজন করেছে আকর্ষণীয় <b>বুকস অ্যান্ড বুকস কুইজ</b>। \r\nএই কুইজে অংশগ্রহণ করে আপনি আপনার জ্ঞান যাচাই করার পাশাপাশি জিতে নিতে পারেন \r\nবিভিন্ন আকর্ষণীয় পুরস্কার। কুইজের প্রশ্নগুলো মূলত বই, জ্ঞান ও সাধারণ বিষয়বস্তুর উপর ভিত্তি করে তৈরি করা হয়।\r\n</p>\r\n\r\n<p style="font-size:16px; line-height:1.8; color:#555;">\r\nকুইজে অংশ নেওয়া খুবই সহজ। নির্ধারিত সময়ের মধ্যে সঠিক উত্তর দিয়ে আপনি \r\nলিডারবোর্ডে জায়গা করে নিতে পারবেন। সেরা অংশগ্রহণকারীদের জন্য থাকবে \r\nবিশেষ পুরস্কার এবং সম্মাননা।\r\n</p>\r\n\r\n<p style="font-size:16px; line-height:1.8; color:#555;">\r\nআজই <b>বুকস অ্যান্ড বুকস কুইজ</b> এ অংশগ্রহণ করুন, আপনার জ্ঞানকে চ্যালেঞ্জ করুন \r\nএবং জিতে নিন দারুণ সব পুরস্কার।\r\n</p>', 1, 'header_top', '#', 1, 1, NULL, NULL, '2026-01-25 22:08:06', '2026-03-08 21:53:52'),
+	(13, NULL, 'বুকস অ্যান্ড বুকস সম্পর্কে', 'book', 'rkmari-kuij-1', 'storage/category/2026-01-26-Q8K7EgW5ik9eGB1EP7NeXUDhjfZncAbfJ9mn7E7L.webp', '<h6 style="color:#0d6efd;font-weight:700;">বুকস অ্যান্ড বুকস সম্পর্কে</h6>\r\n\r\n<p style="font-size:16px; line-height:1.8; color:#555;">\r\n<b>বুকস অ্যান্ড বুকস</b> একটি অনলাইন বইভিত্তিক প্ল্যাটফর্ম যেখানে পাঠকদের জন্য \r\nবিভিন্ন ধরনের মানসম্মত বই সহজে পাওয়ার সুযোগ তৈরি করা হয়েছে। আমাদের লক্ষ্য হলো \r\nবইকে মানুষের কাছে আরও সহজলভ্য করা এবং পাঠাভ্যাসকে উৎসাহিত করা।\r\n</p>\r\n\r\n<p style="font-size:16px; line-height:1.8; color:#555;">\r\nএখানে আপনি সাহিত্য, ইসলামিক, শিক্ষামূলক, গল্প, উপন্যাসসহ বিভিন্ন ধরনের বই \r\nএক জায়গা থেকেই সংগ্রহ করতে পারবেন। আমরা চেষ্টা করি পাঠকদের কাছে \r\nবিশ্বস্ত সেবা এবং সেরা বইগুলো পৌঁছে দিতে।\r\n</p>\r\n\r\n<p style="font-size:16px; line-height:1.8; color:#555;">\r\n<b>বুকস অ্যান্ড বুকস</b> শুধু বই বিক্রির একটি প্ল্যাটফর্ম নয়, এটি বইপ্রেমীদের জন্য \r\nএকটি কমিউনিটি যেখানে জ্ঞান, শিক্ষা এবং সৃজনশীলতার বিকাশকে গুরুত্ব দেওয়া হয়।</p><p style="font-size:16px; line-height:1.8; color:#555;">\r\n</p>', 1, 'header_top', '#', 1, 1, NULL, NULL, '2026-01-25 22:08:07', '2026-03-12 03:46:14'),
+	(14, NULL, 'বুকস অ্যান্ড বুকস নিয়ম-নীতি', 'book', 'rkmari-udzokta', 'storage/category/2026-01-26-8uiOFhGGQoMb5pPKdE3mmljXPX4T7OTlhPx5TUaQ.webp', '<h6 style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; font-weight: 700;"><span style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; font-size: 14px;"><font color="#ff0000" style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ;">বুকস অ্যান্ড বুকস নিয়ম-নীতি</font></span></h6><p style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; font-size: 16px; line-height: 1.8; color: rgb(85, 85, 85);"><span style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; font-weight: 600;"><span style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; font-size: 14px;">বুকস অ্যান্ড বুকস</span></span><span style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; font-size: 14px;">&nbsp;এর সকল সেবা ব্যবহার করার ক্ষেত্রে কিছু নিয়ম ও নীতি অনুসরণ করা প্রয়োজন। আমাদের প্ল্যাটফর্ম ব্যবহার করার মাধ্যমে আপনি এই নিয়মগুলো মেনে চলতে সম্মত হচ্ছেন।</span></p><ul><li style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; font-size: 16px; line-height: 1.8; color: rgb(85, 85, 85);"><span style="font-size: 14px;">সঠিক তথ্য দিয়ে অর্ডার প্রদান করতে হবে।</span></li><li style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ;"><span style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; font-size: 14px;">বই বিক্রি বা কমিশন কার্যক্রমে কোনো ধরনের প্রতারণামূলক কাজ করা যাবে না।</span></li><li style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ;"><span style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; font-size: 14px;">অর্ডার নিশ্চিত হওয়ার পর নির্ধারিত নিয়ম অনুযায়ী ডেলিভারি সম্পন্ন করা হবে।</span></li><li style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ;"><span style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; font-size: 14px;">কমিশন সংক্রান্ত সকল তথ্য আমাদের নির্ধারিত নীতিমালা অনুযায়ী প্রদান করা হবে।</span></li><li style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ;"><span style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; font-size: 14px;">প্ল্যাটফর্মের সেবা উন্নয়নের জন্য বুকস অ্যান্ড বুকস যেকোনো সময় নিয়ম পরিবর্তন করতে পারে।</span></li><li style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ;"><span style="--tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; font-size: 14px;">আমাদের লক্ষ্য হলো সকল গ্রাহক ও সহযোগীদের জন্য একটি নিরাপদ, স্বচ্ছ এবং বিশ্বস্ত সেবা নিশ্চিত করা।</span></li></ul>', 1, 'header_top', '#', 1, 1, NULL, NULL, '2026-01-25 22:08:49', '2026-03-12 03:50:30'),
+	(15, NULL, 'অর্ডার ট্র্যাক করুন', 'book', 'ordar-trzak-krun', 'storage/category/2026-01-26-oNZHh0hRfmJoBHZdOK6Kx9effoeTonOmdWV3T6dP.webp', '<h6 style="color:#0d6efd;font-weight:700;">অর্ডার ট্র্যাক করুন</h6>\r\n\r\n<p style="font-size:16px; line-height:1.8; color:#555;">\r\nআপনি <b>বুকস অ্যান্ড বুকস</b> থেকে অর্ডার করার পর সহজেই আপনার অর্ডারের \r\nস্থিতি ট্র্যাক করতে পারবেন। আমাদের সিস্টেম আপনাকে প্রতিটি ধাপের তথ্য সরবরাহ করে — \r\nঅর্ডার গ্রহণ, প্রক্রিয়াকরণ, প্যাকিং এবং ডেলিভারি পর্যন্ত।\r\n</p>\r\n\r\n<p style="font-size:16px; line-height:1.8; color:#555;">\r\nঅর্ডার ট্র্যাক করতে আপনার অর্ডার নম্বর এবং রেজিস্ট্রেশন ইমেইল ব্যবহার করুন। \r\nসফল লগইন করার পর আপনি জানতে পারবেন অর্ডারের বর্তমান অবস্থান এবং \r\nপ্রত্যাশিত ডেলিভারি সময়।\r\n</p>\r\n\r\n<p style="font-size:16px; line-height:1.8; color:#555;">\r\nযদি কোনো সমস্যা বা বিলম্ব দেখা দেয়, আমাদের কাস্টমার সার্ভিসের সাথে যোগাযোগ করুন। \r\nআমরা নিশ্চিত করি যে আপনার অর্ডার নিরাপদে এবং সময়মতো পৌঁছে যাবে।\r\n</p>', 1, 'header_top', 'order/trucking/system', 1, 1, NULL, NULL, '2026-01-25 22:09:26', '2026-03-08 21:57:13'),
+	(16, NULL, 'বুকস অ্যান্ড বুকসে ইনভেস্টিং তথ্য', 'book', 'bi-donesn', 'storage/category/2026-01-26-j7LgSvY4BsKOJtIk5ZSN35XZVGIgsVOzatOfms7l.webp', '<h6 style="color:#0d6efd;font-weight:700;">বুকস অ্যান্ড বুকসে ইনভেস্টিং তথ্য</h6>\r\n\r\n<p style="font-size:16px; line-height:1.8; color:#555;">\r\n<b>বুকস অ্যান্ড বুকস</b> এ ইনভেস্টিং করার মাধ্যমে আপনি ঘরে বসে আয় করতে পারেন। \r\nআপনি আমাদের বই শেয়ার বিনিয়োগের কার্যক্রমে অংশগ্রহণ করে প্রতিটি সফল শেয়ার বিনিয়োগের থেকে  \r\nমুনাফা উপার্জন করতে পারবেন। এটি একটি সহজ ও ঝামেলামুক্ত ইনকামের মাধ্যম।\r\n</p>\r\n\r\n<p style="font-size:16px; line-height:1.8; color:#555;">\r\nআপনাকে শুধু আমাদের বই শেয়ার ক্রয় করতে হবে প্রতিটি শেয়ার মূল্য ১০,০০০ টাকা। \r\nবিক্রয় সম্পন্ন হলে আপনার অ্যাকাউন্টে স্বয়ংক্রিয়ভাবে <b style="color:#28a745;">২.৫% মুনাফা</b> যোগ হবে। \r\nযত বেশি বিনিয়োগ করবেন, তত বেশি আয়। বিস্তারিত জানতে ফোন করুন ওয়েবসাইটে দেওয়া নাম্বারে।  \r\n</p>\r\n\r\n<p style="font-size:16px; line-height:1.8; color:#555;">\r\nইনভেস্টমেন্টের জন্য কোন বড় অর্থের প্রয়োজন নেই। এটি যে কেউ করতে পারে এবং \r\nনিয়মিত আয়ের সুযোগ পেতে পারে। আজই যুক্ত হন এবং আপনার আয় শুরু করুন।\r\n</p>', 1, 'header_top', '#', 1, 1, NULL, NULL, '2026-01-25 22:09:49', '2026-03-08 22:07:49'),
 	(17, NULL, 'লেখক', NULL, 'kartun-glper-byer-skl-bi', 'storage/category/2026-01-26-DnYnRjci4O9zupNxTqAeCNux2YfuGoXNqXMOpNiV.webp', 'লেখক', 1, 'mega_menu_parent', '#', 1, 1, NULL, NULL, '2026-01-25 22:11:01', '2026-02-02 23:57:57'),
 	(18, NULL, 'বিষয়', NULL, 'islamik-glper-byer-skl-bi', 'storage/category/2026-01-26-mpfI28njiOcwM9MBKsoJqoTPuag0ZXM4tvDpratp.webp', 'বিষয়', 1, 'mega_menu_parent', '#', 1, 1, NULL, NULL, '2026-01-25 22:11:32', '2026-02-02 23:58:25'),
 	(19, NULL, 'প্রকাশনী', NULL, 'gariyal', 'storage/category/2026-01-26-hfA942qSdI82Nz67CmPMuet3ZVzkUQojPlgbbYB9.webp', 'প্রকাশনী', 1, 'mega_menu_parent', '#', 1, 1, NULL, NULL, '2026-01-25 22:11:52', '2026-02-02 23:59:07'),
@@ -574,9 +670,9 @@ INSERT INTO `categories` (`id`, `parent_id`, `name`, `type`, `slug`, `image`, `d
 	(39, 30, 'এক্টুখানি  সুন্নাহ', 'book', 'ektukhani-sunnah', 'storage/category/2026-03-01-NgxxaYO2pJetOQhMwLpKYhPQoLvdvOEwv0nhnAux.webp', 'এক্টুখানি  সুন্নাহ', 1, 'homepage_banner_category', '#', 1, 1, NULL, NULL, '2026-02-01 22:30:06', '2026-03-01 03:45:21'),
 	(40, 30, 'মানানসই পোশাক', 'book', 'manansi-posak', 'storage/category/2026-03-01-sjvjjIebAiKPIzQMJmh97FL3jtLhVPUHtlLIzbgP.webp', 'মানানসই পোশাক', 1, 'homepage_banner_category', '#', 1, 1, NULL, NULL, '2026-02-01 22:34:07', '2026-03-01 03:45:40'),
 	(41, 30, 'সুঘ্রাণময় থাকুক চারপাশ', 'book', 'sughranmy-thakuk-carpas', 'storage/category/2026-03-01-rRqxkRlhzkUBdiGhGnVEclZ19vFkfhldT46U0fwV.webp', 'সুঘ্রাণময় থাকুক চারপাশ', 1, 'homepage_banner_category', '#', 1, 1, NULL, NULL, '2026-02-01 22:35:38', '2026-03-01 03:45:58'),
-	(42, 30, 'মিজানুর রহমান আজহারি', NULL, 'mijanur-rhman-ajhari', 'storage/category/2026-02-02-tmLPonwx4q3ZOVpd2KaCJgybUfOu982ascQleyBh.webp', 'মিজানুর রহমান আজহারি', 1, 'homepage_writter_category', '#', 1, NULL, NULL, NULL, '2026-02-01 23:28:09', '2026-02-01 23:28:09'),
-	(43, 30, 'আরিফ আজাদ', NULL, 'arif-ajad', 'storage/category/2026-02-02-SELttpnM6YEmaxD4LyTK4ftA8OSZ3UsJe550prEO.webp', 'আরিফ আজাদ', 1, 'homepage_writter_category', '#', 1, NULL, NULL, NULL, '2026-02-01 23:29:14', '2026-02-01 23:29:14'),
-	(44, 30, 'মিজানুর রহমান আজহারি', NULL, 'mijanur-rhman-ajhari-1', 'storage/category/2026-02-02-UReJoIMjJ3OSbiWjlJA36T9mAaZfilaNkqaVRudg.webp', 'মিজানুর রহমান আজহারি', 1, 'homepage_writter_category', '#', 1, NULL, NULL, NULL, '2026-02-01 23:30:26', '2026-02-01 23:30:26'),
+	(42, 30, 'মিজানুর রহমান আজহারি', 'book', 'mijanur-rhman-ajhari', 'storage/category/2026-03-09-uRneGM28EdcOz1lrI4H2YRI6KSSBucW33t76k5kn.webp', 'মিজানুর রহমান আজহারি', 1, 'homepage_writter_category', '#', 1, 1, NULL, NULL, '2026-02-01 23:28:09', '2026-03-08 22:42:48'),
+	(43, 30, 'আরিফ আজাদ', 'book', 'arif-ajad', 'storage/category/2026-03-09-YLLUOnFnJIxG1jCeYkqrYMlCNDwW560aLf0QhOCG.webp', 'আরিফ আজাদ', 1, 'homepage_writter_category', '#', 1, 1, NULL, NULL, '2026-02-01 23:29:14', '2026-03-08 22:43:08'),
+	(44, 30, 'ডঃ আব্দুল্লাহ জাহাঙ্গির', 'book', 'mijanur-rhman-ajhari-1', 'storage/category/2026-03-09-qcJzdl7qN1gmeeQoaF0TrB2l9XNTtbng8A58vTG5.webp', 'ডঃ আব্দুল্লাহ জাহাঙ্গির', 1, 'homepage_writter_category', '#', 1, 1, NULL, NULL, '2026-02-01 23:30:26', '2026-03-08 22:45:01'),
 	(45, 30, 'আতর', NULL, 'atr', 'storage/category/2026-02-02-AVpbSa9BUgCEoUwuhqceQIr0vU4PHfzZu7Wlw8Ul.webp', 'আতর', 1, 'homepage_others_category', '#', 1, NULL, NULL, NULL, '2026-02-02 00:16:58', '2026-02-02 00:16:58'),
 	(46, 30, 'টি-শার্ট', NULL, 'ti-sart', 'storage/category/2026-02-02-tzjGn7lu31W6SBrjvg69GuRi5FoPGPqfh4cen2NG.webp', 'টি-শার্ট', 1, 'homepage_others_category', '#', 1, 1, NULL, NULL, '2026-02-02 00:17:57', '2026-02-02 00:18:14'),
 	(47, 30, 'ব্র্যান্ডসমূহ', NULL, 'brzandsmuuh-1', 'storage/category/2026-02-02-QYNPg5a9Nd5eEJh9wWJVNJXY7f1MDueynCY1rlQv.webp', 'ব্র্যান্ডসমূহw', 1, 'homepage_brands_category', '#', 1, 1, NULL, NULL, '2026-02-02 00:29:27', '2026-02-02 23:46:36'),
@@ -584,15 +680,25 @@ INSERT INTO `categories` (`id`, `parent_id`, `name`, `type`, `slug`, `image`, `d
 	(49, NULL, 'প্রাতিষ্ঠানিক অর্ডার', NULL, 'pratishthanik-ordar', NULL, NULL, 1, 'header', '#', 1, NULL, NULL, NULL, '2026-02-02 23:55:04', '2026-02-02 23:55:04'),
 	(50, NULL, 'বেস্টসেলার অ্যাওয়ার্ড, ২৫', NULL, 'bestselar-ozaoozard-25', NULL, NULL, 1, 'header', '#', 1, NULL, NULL, NULL, '2026-02-02 23:55:28', '2026-02-02 23:55:28'),
 	(51, NULL, 'আজকের অফার !', NULL, 'ajker-ofar', NULL, NULL, 1, 'header', '#', 1, NULL, NULL, NULL, '2026-02-02 23:56:03', '2026-02-02 23:56:03'),
-	(52, NULL, 'Just for you', NULL, 'just-for-you', NULL, NULL, 1, 'header', '#', 1, NULL, NULL, NULL, '2026-02-02 23:56:55', '2026-02-02 23:56:55'),
-	(53, NULL, 'প্যারালাল TEXT', NULL, 'pzaralal-text', NULL, NULL, 1, 'mega_menu_parent', '#', 1, NULL, NULL, NULL, '2026-02-03 00:01:35', '2026-02-03 00:01:35'),
+	(52, NULL, 'প্রয়োজনীয় বই', 'book', 'just-for-you', NULL, 'প্রয়োজনীয় বই', 1, 'header', '#', 1, 1, NULL, NULL, '2026-02-02 23:56:55', '2026-03-10 23:44:14'),
+	(53, NULL, 'প্যারালাল', 'book', 'pzaralal-text', NULL, NULL, 1, 'mega_menu_parent', '#', 1, 1, NULL, NULL, '2026-02-03 00:01:35', '2026-03-10 23:43:16'),
 	(54, NULL, 'ভর্তি প্রস্তুতি', NULL, 'vrti-prstuti', NULL, NULL, 1, 'mega_menu_parent', '#', 1, NULL, NULL, NULL, '2026-02-03 00:01:57', '2026-02-03 00:01:57'),
 	(55, NULL, 'ইসলামি বই', NULL, 'islami-bi', NULL, 'ইসলামি বই', 1, 'mega_menu_parent', '#', 1, NULL, NULL, NULL, '2026-02-03 00:02:15', '2026-02-03 00:02:15'),
 	(56, NULL, 'ইংরেজি ভাষার বই', NULL, 'ingreji-vashar-bi', NULL, 'ইংরেজি ভাষার বই', 1, 'mega_menu_parent', '#', 1, NULL, NULL, NULL, '2026-02-03 00:02:31', '2026-02-03 00:02:31'),
 	(57, NULL, 'পশ্চিমবঙ্গের বই', NULL, 'pscimbngoer-bi', NULL, 'পশ্চিমবঙ্গের বই', 1, 'mega_menu_parent', '#', 1, NULL, NULL, NULL, '2026-02-03 00:02:45', '2026-02-03 00:02:45'),
 	(58, NULL, 'অতিরিক্ত ছাড়ের বই', NULL, 'otirikt-charer-bi', NULL, 'অতিরিক্ত ছাড়ের বই', 1, 'mega_menu_parent', '#', 1, NULL, NULL, NULL, '2026-02-03 00:03:04', '2026-02-03 00:03:04'),
-	(59, NULL, 'যোগাযোগ করুন', 'book', 'zogazog-krun', NULL, 'যোগাযোগ করুন', 1, 'footer', '#', 1, 1, NULL, NULL, '2026-03-01 03:28:39', '2026-03-01 03:30:57'),
-	(60, NULL, 'পছন্দের তালিকা', 'book', 'pchnder-talika', NULL, 'পছন্দের তালিকা', 1, 'footer_col2', '#', 1, NULL, NULL, NULL, '2026-03-01 03:29:26', '2026-03-01 03:29:26');
+	(59, NULL, 'ডেলিভারি তথ্য', 'book', 'zogazog-krun', NULL, 'ডেলিভারি তথ্য', 1, 'footer_col2', '#', 1, 1, NULL, NULL, '2026-03-01 03:28:39', '2026-03-10 23:52:43'),
+	(60, NULL, 'আমাদের সম্পর্কে', 'book', 'pchnder-talika', NULL, 'বুকস অ্যান্ড বুকস একটি অনলাইন বইভিত্তিক প্ল্যাটফর্ম যেখানে পাঠকদের জন্য বিভিন্ন ধরনের মানসম্মত বই সহজে পাওয়ার সুযোগ তৈরি করা হয়েছে। আমাদের লক্ষ্য হলো বইকে মানুষের কাছে আরও সহজলভ্য করা এবং পাঠাভ্যাসকে উৎসাহিত করা।\r\n\r\nএখানে আপনি সাহিত্য, ইসলামিক, শিক্ষামূলক, গল্প, উপন্যাসসহ বিভিন্ন ধরনের বই এক জায়গা থেকেই সংগ্রহ করতে পারবেন। আমরা চেষ্টা করি পাঠকদের কাছে বিশ্বস্ত সেবা এবং সেরা বইগুলো পৌঁছে দিতে।\r\n\r\nবুকস অ্যান্ড বুকস শুধু বই বিক্রির একটি প্ল্যাটফর্ম নয়, এটি বইপ্রেমীদের জন্য একটি কমিউনিটি যেখানে জ্ঞান, শিক্ষা এবং সৃজনশীলতার বিকাশকে গুরুত্ব দেওয়া হয়।', 1, 'footer_col2', '#', 1, 1, NULL, NULL, '2026-03-01 03:29:26', '2026-03-10 23:41:31'),
+	(62, NULL, 'যোগাযোগ করুন', 'book', 'zogazog-krun-1', NULL, 'বুকস অ্যান্ড বুকস\r\nকর্পোরেট অফিস – ৩১৬/২\r\nডিআইটি রোড, পূর্ব রামপুরা, ঢাকা – ১২১৯', 1, 'footer_col2', '#', 1, NULL, NULL, NULL, '2026-03-10 23:51:44', '2026-03-10 23:51:44'),
+	(63, NULL, 'রিটার্ন পলিসি', 'book', 'ritarn-plisi', NULL, 'রিটার্ন পলিসি', 1, 'footer_col2', '#', 1, NULL, NULL, NULL, '2026-03-10 23:53:43', '2026-03-10 23:53:43'),
+	(64, NULL, 'প্রাইভেসি পলিসি', 'book', 'praivesi-plisi', NULL, 'প্রাইভেসি পলিসি', 1, 'footer_col2', '#', 1, NULL, NULL, NULL, '2026-03-10 23:53:55', '2026-03-10 23:53:55'),
+	(65, NULL, 'টার্মস & কন্ডিশন', 'book', 'tarms-kndisn', NULL, 'টার্মস & কন্ডিশন', 1, 'footer_col2', '#', 1, NULL, NULL, NULL, '2026-03-10 23:54:09', '2026-03-10 23:54:09'),
+	(66, NULL, 'FAQ / সাধারণ প্রশ্ন', 'book', 'faq-sadharn-prsn', NULL, 'FAQ / সাধারণ প্রশ্ন', 1, 'footer_col2', '#', 1, NULL, NULL, NULL, '2026-03-10 23:54:29', '2026-03-10 23:54:29'),
+	(67, NULL, 'ব্লগ / আর্টিকেল', 'book', 'blg-artikel', NULL, 'ব্লগ / আর্টিকেল', 1, 'footer_col2', '#', 1, NULL, NULL, NULL, '2026-03-10 23:54:42', '2026-03-10 23:54:42'),
+	(68, NULL, 'কাস্টমার সাপোর্ট', 'book', 'kastmar-saport', NULL, 'কাস্টমার সাপোর্ট', 1, 'footer_col2', '#', 1, NULL, NULL, NULL, '2026-03-10 23:54:56', '2026-03-10 23:54:56'),
+	(69, NULL, 'আমাদের অন্যান্য ওয়েবসাইটসমূহ', 'book', 'amader-onzanz-websaitsmuuh', NULL, NULL, 1, 'footer', '#', 1, NULL, NULL, NULL, '2026-03-11 00:32:29', '2026-03-11 00:32:29'),
+	(70, NULL, 'আমাদের অন্যান্য সেবাসমূহ', 'book', 'amader-onzanz-sebasmuuh', NULL, 'আমাদের অন্যান্য সেবাসমূহ', 1, 'footer', '#', 1, NULL, NULL, NULL, '2026-03-11 00:33:31', '2026-03-11 00:33:31'),
+	(71, NULL, 'বিজনেস বক্স সম্পর্কে জানুন', 'book', 'bijnes-bks-smprke-janun', NULL, 'বিজনেস বক্স সম্পর্কে জানুন', 1, 'footer', '#', 1, NULL, NULL, NULL, '2026-03-11 00:34:51', '2026-03-11 00:34:51');
 
 -- Dumping structure for table e_commerce_like_rokomary.clients
 DROP TABLE IF EXISTS `clients`;
@@ -634,7 +740,7 @@ CREATE TABLE IF NOT EXISTS `clients` (
   CONSTRAINT `clients_region_id_foreign` FOREIGN KEY (`region_id`) REFERENCES `regions` (`id`) ON DELETE SET NULL,
   CONSTRAINT `clients_territory_id_foreign` FOREIGN KEY (`territory_id`) REFERENCES `territories` (`id`) ON DELETE SET NULL,
   CONSTRAINT `clients_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table e_commerce_like_rokomary.clients: ~64 rows (approximately)
 DELETE FROM `clients`;
@@ -703,10 +809,11 @@ INSERT INTO `clients` (`id`, `coa_id`, `region_id`, `area_id`, `territory_id`, `
 	(65, 271, 4, 31, 21, NULL, NULL, 'পপুলার লাইব্রেরী ক্তাগাছা, ময়মনসিংহ', NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, NULL, NULL, '2026-01-30 09:52:50', '2026-01-30 09:52:50'),
 	(66, 272, 4, 31, 21, NULL, NULL, 'আরাফাত লাইব্রেরী ক্তাগাছা, ময়মনসিংহ', NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, NULL, NULL, '2026-01-30 09:53:11', '2026-01-30 09:53:11'),
 	(67, 273, 6, 45, 5, NULL, NULL, 'ঠাকুর গাঁও', NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, NULL, NULL, '2026-02-04 05:38:55', '2026-02-04 05:38:55'),
-	(68, 277, 2, 48, 50, 2, 'cde111', 'Aira', NULL, '22222222', 'aira@gmail.com', NULL, NULL, NULL, 1, 1, NULL, NULL, NULL, '2026-03-03 22:43:38', '2026-03-03 22:43:38'),
+	(68, 277, 2, 48, 50, 9, 'cde111', 'Aira', NULL, '22222222', 'aira@gmail.com', 'Basabo Dhaka', NULL, NULL, 1, 1, NULL, NULL, NULL, '2026-03-03 22:43:38', '2026-03-03 22:43:38'),
 	(69, 278, 2, 48, 50, 8, NULL, 'Mitul', NULL, '44444444', 'mitul@gmail.com', NULL, NULL, NULL, 1, 8, 1, NULL, NULL, '2026-03-03 22:57:35', '2026-03-03 22:59:46'),
 	(70, 279, 7, 32, 19, 1, NULL, 'Admin', NULL, '33333333333', 'wali@gmail.com', NULL, NULL, NULL, 1, 1, NULL, NULL, NULL, '2026-03-03 23:04:39', '2026-03-03 23:04:39'),
-	(71, 280, 7, 16, 4, 3, 'code3', 'warid', NULL, '333333333333', 'warid@gmail.com', NULL, NULL, NULL, 1, 1, 1, NULL, NULL, '2026-03-04 00:34:21', '2026-03-04 00:34:42');
+	(71, 280, 7, 16, 4, 3, 'code3', 'warid', NULL, '333333333333', 'warid@gmail.com', NULL, NULL, NULL, 1, 1, 1, NULL, NULL, '2026-03-04 00:34:21', '2026-03-04 00:34:42'),
+	(72, 293, 2, 4, 45, 16, NULL, 'Mr. Arif', NULL, '01921588567', '01921588567@email.com', 'asdasdasa', NULL, NULL, 1, 16, 1, NULL, NULL, '2026-03-11 01:07:31', '2026-03-12 00:49:14');
 
 -- Dumping structure for table e_commerce_like_rokomary.coas
 DROP TABLE IF EXISTS `coas`;
@@ -736,7 +843,7 @@ CREATE TABLE IF NOT EXISTS `coas` (
   CONSTRAINT `coas_deleted_by_foreign` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `coas_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `coas` (`id`) ON DELETE SET NULL,
   CONSTRAINT `coas_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=281 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=294 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table e_commerce_like_rokomary.coas: ~212 rows (approximately)
 DELETE FROM `coas`;
@@ -956,7 +1063,12 @@ INSERT INTO `coas` (`id`, `parent_id`, `head_code`, `head_name`, `transaction`, 
 	(277, 7, 1010168, 'Aira', 1, 0, 'A', 1, 0, 1, NULL, NULL, NULL, '2026-03-03 22:43:38', '2026-03-03 22:43:38'),
 	(278, 7, 1010169, 'Mitul', 1, 0, 'A', 1, 0, 8, 1, NULL, NULL, '2026-03-03 22:57:35', '2026-03-03 22:59:46'),
 	(279, 7, 1010170, 'Admin', 1, 0, 'A', 1, 0, 1, NULL, NULL, NULL, '2026-03-03 23:04:39', '2026-03-03 23:04:39'),
-	(280, 7, 1010171, 'warid', 1, 0, 'A', 1, 0, 1, 1, NULL, NULL, '2026-03-04 00:34:21', '2026-03-04 00:34:42');
+	(280, 7, 1010171, 'warid', 1, 0, 'A', 1, 0, 1, 1, NULL, NULL, '2026-03-04 00:34:21', '2026-03-04 00:34:42'),
+	(289, 11, 20218, 'Mr. Ex Investor', 1, 0, 'L', 1, 0, 1, NULL, NULL, NULL, '2026-03-09 03:13:01', '2026-03-09 03:13:01'),
+	(290, 42, 40218, 'Mr. Ex Investor - Profit', 1, 0, 'E', 1, 0, 1, NULL, NULL, NULL, '2026-03-09 03:13:01', '2026-03-09 03:13:01'),
+	(291, 11, 20219, 'Mr. Y Investor', 1, 0, 'L', 1, 0, 1, NULL, NULL, NULL, '2026-03-09 03:45:47', '2026-03-09 03:45:47'),
+	(292, 42, 40219, 'Mr. Y Investor - Profit', 1, 0, 'E', 1, 0, 1, NULL, NULL, NULL, '2026-03-09 03:45:47', '2026-03-09 03:45:47'),
+	(293, 7, 1010172, 'Mr. Arif', 1, 0, 'A', 1, 0, 16, 1, NULL, NULL, '2026-03-11 01:07:31', '2026-03-12 00:49:14');
 
 -- Dumping structure for table e_commerce_like_rokomary.collections
 DROP TABLE IF EXISTS `collections`;
@@ -994,10 +1106,15 @@ CREATE TABLE IF NOT EXISTS `collections` (
   CONSTRAINT `collections_sales_id_foreign` FOREIGN KEY (`sales_id`) REFERENCES `sales` (`id`) ON DELETE CASCADE,
   CONSTRAINT `collections_sales_return_id_foreign` FOREIGN KEY (`sales_return_id`) REFERENCES `sales_returns` (`id`) ON DELETE CASCADE,
   CONSTRAINT `collections_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.collections: ~12 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.collections: ~3 rows (approximately)
 DELETE FROM `collections`;
+INSERT INTO `collections` (`id`, `client_id`, `coa_id`, `sales_id`, `sales_return_id`, `payment_no`, `date`, `payment_type`, `collection_type`, `amount`, `remarks`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
+	(1, 5, 13, NULL, NULL, 'CC2603001', '2026-03-08', 'Cash', 'Payment', 266.00, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:24:04', '2026-03-07 23:24:04'),
+	(2, 5, 13, NULL, NULL, 'CC2603002', '2026-03-08', 'Cash', 'Payment', 774.00, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:57:09', '2026-03-07 23:57:09'),
+	(3, 69, 13, NULL, NULL, 'CC2603003', '2026-03-08', 'Cash', 'Payment', 306.00, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:59:53', '2026-03-07 23:59:53'),
+	(4, 68, 13, 15, NULL, 'CC2603004', '2026-03-10', 'Cash', 'Payment', 3671.00, 'Cash Sales', 1, NULL, NULL, NULL, '2026-03-10 00:58:58', '2026-03-10 00:58:58');
 
 -- Dumping structure for table e_commerce_like_rokomary.collection_lists
 DROP TABLE IF EXISTS `collection_lists`;
@@ -1013,10 +1130,16 @@ CREATE TABLE IF NOT EXISTS `collection_lists` (
   KEY `collection_lists_sales_id_foreign` (`sales_id`),
   CONSTRAINT `collection_lists_collection_id_foreign` FOREIGN KEY (`collection_id`) REFERENCES `collections` (`id`) ON DELETE CASCADE,
   CONSTRAINT `collection_lists_sales_id_foreign` FOREIGN KEY (`sales_id`) REFERENCES `sales` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.collection_lists: ~25 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.collection_lists: ~3 rows (approximately)
 DELETE FROM `collection_lists`;
+INSERT INTO `collection_lists` (`id`, `collection_id`, `sales_id`, `amount`, `created_at`, `updated_at`) VALUES
+	(1, 1, 2, 266.00, '2026-03-07 23:24:04', '2026-03-07 23:24:04'),
+	(2, 2, 3, 468.00, '2026-03-07 23:57:09', '2026-03-07 23:57:09'),
+	(3, 2, 4, 306.00, '2026-03-07 23:57:09', '2026-03-07 23:57:09'),
+	(4, 3, 5, 306.00, '2026-03-07 23:59:53', '2026-03-07 23:59:53'),
+	(5, 4, 15, 3671.00, '2026-03-10 00:58:58', '2026-03-10 00:58:58');
 
 -- Dumping structure for table e_commerce_like_rokomary.expenses
 DROP TABLE IF EXISTS `expenses`;
@@ -1044,10 +1167,14 @@ CREATE TABLE IF NOT EXISTS `expenses` (
   CONSTRAINT `expenses_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `expenses_deleted_by_foreign` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `expenses_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.expenses: ~117 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.expenses: ~3 rows (approximately)
 DELETE FROM `expenses`;
+INSERT INTO `expenses` (`id`, `coa_id`, `transaction_no`, `date`, `remarks`, `document`, `amount`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
+	(1, 98, 'EXP-2603001', '2026-03-08', NULL, NULL, 267.00, 1, 1, NULL, NULL, '2026-03-07 23:19:09', '2026-03-07 23:19:09'),
+	(2, 98, 'EXP-2603002', '2026-03-08', NULL, NULL, 267.00, 1, 1, NULL, NULL, '2026-03-07 23:56:19', '2026-03-07 23:56:19'),
+	(3, 98, 'EXP-2603003', '2026-03-08', 'ttt', NULL, 100.00, 1, 1, NULL, NULL, '2026-03-08 00:00:48', '2026-03-08 00:00:48');
 
 -- Dumping structure for table e_commerce_like_rokomary.expense_items
 DROP TABLE IF EXISTS `expense_items`;
@@ -1064,10 +1191,14 @@ CREATE TABLE IF NOT EXISTS `expense_items` (
   KEY `expense_items_coa_id_foreign` (`coa_id`),
   CONSTRAINT `expense_items_coa_id_foreign` FOREIGN KEY (`coa_id`) REFERENCES `coas` (`id`) ON DELETE CASCADE,
   CONSTRAINT `expense_items_expense_id_foreign` FOREIGN KEY (`expense_id`) REFERENCES `expenses` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.expense_items: ~117 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.expense_items: ~0 rows (approximately)
 DELETE FROM `expense_items`;
+INSERT INTO `expense_items` (`id`, `expense_id`, `coa_id`, `amount`, `is_distributed`, `created_at`, `updated_at`) VALUES
+	(1, 1, 100, 267.00, 0, '2026-03-07 23:19:09', '2026-03-07 23:19:09'),
+	(2, 2, 100, 267.00, 0, '2026-03-07 23:56:19', '2026-03-07 23:56:19'),
+	(3, 3, 244, 100.00, 0, '2026-03-08 00:00:48', '2026-03-08 00:00:48');
 
 -- Dumping structure for table e_commerce_like_rokomary.failed_jobs
 DROP TABLE IF EXISTS `failed_jobs`;
@@ -1166,27 +1297,13 @@ CREATE TABLE IF NOT EXISTS `investors` (
   CONSTRAINT `investors_profit_head_foreign` FOREIGN KEY (`profit_head`) REFERENCES `coas` (`id`) ON DELETE SET NULL,
   CONSTRAINT `investors_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `investors_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.investors: ~16 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.investors: ~2 rows (approximately)
 DELETE FROM `investors`;
 INSERT INTO `investors` (`id`, `user_id`, `coa_id`, `profit_head`, `name`, `image`, `email`, `phone`, `address`, `nid`, `document`, `bkash`, `rocket`, `nagad`, `bank`, `branch`, `account_name`, `account_no`, `profit_percentage`, `status`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
-	(3, 14, 70, 71, 'Faysal Ovi', NULL, NULL, '01819809095', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40, 1, 1, NULL, NULL, NULL, '2025-07-26 05:54:59', '2025-07-26 05:54:59'),
-	(4, 15, 72, 73, 'SK Turag', NULL, NULL, '01611869202', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40, 1, 1, NULL, NULL, NULL, '2025-07-26 05:56:27', '2025-07-26 05:56:27'),
-	(5, 16, 74, 75, 'Ibrahim Kholil', NULL, NULL, '01716552438', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40, 1, 1, NULL, NULL, NULL, '2025-08-03 06:26:44', '2025-08-03 06:26:44'),
-	(6, 17, 77, 78, 'Rana Ibrahim', NULL, NULL, '01891794391', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40, 1, 1, NULL, NULL, NULL, '2025-08-04 00:29:56', '2025-08-04 00:29:56'),
-	(7, 18, 79, 80, 'Kartik Biswas', NULL, NULL, '01717363833', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40, 1, 1, NULL, NULL, NULL, '2025-08-13 02:44:17', '2025-08-13 02:44:17'),
-	(8, 19, 83, 84, 'Mamunur Rashid', NULL, NULL, '01916304877', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40, 1, 1, NULL, NULL, NULL, '2025-08-31 22:36:09', '2025-08-31 22:36:09'),
-	(9, 20, 96, 97, 'Abdullah Faysal', NULL, NULL, '01920622566', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40, 1, 1, NULL, NULL, NULL, '2025-09-08 03:55:39', '2025-09-08 03:55:39'),
-	(10, 21, 195, 196, 'Mehedi Khan', NULL, NULL, '01911592580', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40, 1, 10, NULL, NULL, NULL, '2025-11-22 22:29:00', '2025-11-22 22:29:00'),
-	(11, 22, 197, 198, 'Al Emran', NULL, NULL, '01836599470', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40, 1, 10, NULL, NULL, NULL, '2025-11-22 23:09:01', '2025-11-22 23:09:01'),
-	(12, 23, 199, 200, 'Subal Mahato Rahul', NULL, NULL, '01737064119', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40, 1, 10, NULL, NULL, NULL, '2025-11-22 23:10:18', '2025-11-22 23:10:18'),
-	(13, 24, 201, 202, 'মুফতি মাওলানা আব্দুল্লাহ', NULL, NULL, '966504858615', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40, 1, 10, NULL, NULL, NULL, '2025-11-22 23:11:49', '2025-11-22 23:11:49'),
-	(14, 25, 203, 204, 'Islam Zahirul', NULL, NULL, '6590671541', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40, 1, 10, NULL, NULL, NULL, '2025-11-23 00:05:32', '2025-11-23 00:05:32'),
-	(15, 26, 207, 208, 'Abeda Sultana', NULL, NULL, '01732232337', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40, 1, 10, NULL, NULL, NULL, '2025-11-24 00:39:55', '2025-11-24 00:39:55'),
-	(16, 27, 225, 226, 'Ahmedul Haq', NULL, NULL, '01711075195', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40, 1, 10, NULL, NULL, NULL, '2025-11-25 23:04:21', '2025-11-25 23:04:21'),
-	(17, 29, 256, 257, 'Ashfaque Rahman', NULL, NULL, '01625496989', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40, 1, 1, NULL, NULL, NULL, '2026-01-01 01:45:27', '2026-01-01 01:45:27'),
-	(18, 30, 258, 259, 'Md. Zakir Hossain suny', NULL, NULL, '01715138858', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40, 1, 1, NULL, NULL, NULL, '2026-01-08 00:50:14', '2026-01-08 00:50:14');
+	(5, 14, 289, 290, 'Mr. Ex Investor', NULL, NULL, '333', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40, 1, 1, NULL, NULL, NULL, '2026-03-09 03:13:01', '2026-03-09 03:13:01'),
+	(6, 15, 291, 292, 'Mr. Y Investor', NULL, NULL, '444', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40, 1, 1, NULL, NULL, NULL, '2026-03-09 03:45:47', '2026-03-09 03:45:47');
 
 -- Dumping structure for table e_commerce_like_rokomary.invests
 DROP TABLE IF EXISTS `invests`;
@@ -1227,42 +1344,17 @@ CREATE TABLE IF NOT EXISTS `invests` (
   CONSTRAINT `invests_investor_id_foreign` FOREIGN KEY (`investor_id`) REFERENCES `investors` (`id`) ON DELETE CASCADE,
   CONSTRAINT `invests_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
   CONSTRAINT `invests_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.invests: ~31 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.invests: ~6 rows (approximately)
 DELETE FROM `invests`;
 INSERT INTO `invests` (`id`, `investor_id`, `product_id`, `invest_no`, `date`, `qty`, `amount`, `deposit_type`, `bkash`, `rocket`, `nagad`, `bank_account`, `remarks`, `approved`, `sattled`, `coa_id`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
-	(10, 3, 3, 'I2509001', '2025-07-01', 1, 30000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 13, 1, 10, NULL, NULL, '2025-08-31 22:34:19', '2025-12-30 00:34:32'),
-	(11, 4, 3, 'I2509002', '2025-07-02', 1, 30000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 13, 1, 10, NULL, NULL, '2025-08-31 22:34:50', '2025-12-30 00:33:41'),
-	(12, 8, 16, 'I2509003', '2025-07-25', 3, 90000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 1, 10, NULL, NULL, '2025-08-31 22:36:57', '2025-11-22 23:30:48'),
-	(13, 5, 3, 'I2509004', '2025-08-02', 1, 30000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 13, 1, NULL, NULL, NULL, '2025-08-31 22:37:30', '2025-12-30 00:36:19'),
-	(14, 6, 3, 'I2509005', '2025-07-30', 1, 30000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 13, 1, 10, NULL, NULL, '2025-08-31 22:38:14', '2025-12-30 00:36:43'),
-	(15, 7, 3, 'I2509006', '2025-08-12', 2, 60000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 13, 1, NULL, NULL, NULL, '2025-08-31 22:38:45', '2025-12-30 08:22:08'),
-	(16, 8, 12, 'I2509007', '2025-08-31', 3, 90000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 13, 1, 10, NULL, NULL, '2025-08-31 22:39:40', '2025-11-24 21:45:08'),
-	(17, 9, 4, 'I2509008', '2025-09-06', 3, 90000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 13, 1, NULL, NULL, NULL, '2025-09-08 03:57:40', '2025-12-23 22:41:04'),
-	(18, 8, 7, 'I2509009', '2025-09-27', 2, 60000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 10, 10, NULL, NULL, '2025-09-27 05:36:00', '2025-11-22 23:35:03'),
-	(19, 4, 16, 'I2510001', '2025-10-13', 1, 30000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 10, 10, NULL, NULL, '2025-10-13 00:08:05', '2025-12-30 00:16:55'),
-	(20, 15, 2, 'I2510002', '2025-10-16', 1, 30000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 13, 10, 10, NULL, NULL, '2025-10-15 22:31:03', '2025-12-30 00:38:20'),
-	(21, 8, 7, 'I2510003', '2025-09-06', 2, 60000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 10, 10, NULL, NULL, '2025-10-15 23:39:51', '2025-11-22 23:34:53'),
-	(22, 8, 12, 'I2511001', '2025-11-01', 3, 90000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 13, 10, 10, NULL, NULL, '2025-11-01 00:42:22', '2025-11-24 21:45:08'),
-	(23, 9, 4, 'I2511002', '2025-11-11', 3, 90000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 13, 10, 10, NULL, NULL, '2025-11-11 06:45:17', '2025-12-23 22:41:04'),
-	(24, 8, 2, 'I2511003', '2025-06-01', 5, 150000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 13, 10, 10, NULL, NULL, '2025-11-19 00:55:25', '2025-12-30 00:37:52'),
-	(25, 8, 7, 'I2511004', '2025-11-22', 2, 60000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 10, 10, NULL, NULL, '2025-11-22 22:27:02', '2025-11-22 23:34:39'),
-	(26, 10, 13, 'I2511005', '2025-11-23', 1, 30000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 10, 10, NULL, NULL, '2025-11-22 22:29:42', '2025-11-22 23:11:11'),
-	(27, 11, 13, 'I2511006', '2025-11-30', 2, 60000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 10, 10, NULL, NULL, '2025-11-22 23:09:19', '2025-11-22 23:09:27'),
-	(28, 12, 13, 'I2511007', '2025-11-30', 2, 60000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 10, NULL, NULL, NULL, '2025-11-22 23:10:52', '2025-11-22 23:10:52'),
-	(29, 13, 16, 'I2511008', '2025-11-22', 3, 90000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 10, NULL, NULL, NULL, '2025-11-22 23:12:17', '2025-11-22 23:12:17'),
-	(30, 14, 13, 'I2511009', '2025-11-30', 2, 60000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 10, NULL, NULL, NULL, '2025-11-23 00:07:06', '2025-11-23 00:07:06'),
-	(32, 16, 17, 'I2511010', '2025-11-25', 1, 30000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 10, NULL, NULL, NULL, '2025-11-25 23:06:14', '2025-11-25 23:06:14'),
-	(33, 14, 17, 'I2511011', '2025-11-25', 1, 30000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 10, NULL, NULL, NULL, '2025-11-26 00:36:59', '2025-11-26 00:36:59'),
-	(34, 14, 17, 'I2511012', '2025-11-27', 2, 60000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 1, NULL, NULL, NULL, '2025-11-26 22:32:35', '2025-11-26 22:32:35'),
-	(35, 8, 13, 'I2512001', '2025-12-14', 1, 30000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 10, 10, NULL, NULL, '2025-12-14 00:17:31', '2025-12-15 03:19:36'),
-	(36, 5, 13, 'I2512002', '2025-12-15', 1, 30000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 10, NULL, NULL, NULL, '2025-12-15 03:19:53', '2025-12-15 03:19:53'),
-	(37, 8, 17, 'I2512003', '2025-12-21', 1, 30000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 10, NULL, NULL, NULL, '2025-12-22 01:41:57', '2025-12-22 01:41:57'),
-	(38, 17, 17, 'I2601001', '2026-01-01', 2, 60000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 14, 1, 1, NULL, NULL, '2026-01-01 01:45:47', '2026-01-01 03:16:36'),
-	(39, 18, 17, 'I2601002', '2026-01-05', 5, 150000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 98, 1, 1, NULL, NULL, '2026-01-08 00:50:43', '2026-01-11 08:54:14'),
-	(40, 9, 18, 'I2601003', '2026-01-15', 3, 90000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 1, NULL, NULL, NULL, '2026-01-19 01:31:09', '2026-01-19 01:31:09'),
-	(41, 9, 18, 'I2601004', '2026-01-31', 3, 90000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 14, 1, NULL, NULL, NULL, '2026-01-31 05:27:12', '2026-01-31 05:27:12');
+	(1, 5, 31, 'I2603001', '2026-03-10', 13, 130000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 13, 1, NULL, NULL, NULL, '2026-03-09 22:28:35', '2026-03-10 00:51:17'),
+	(2, 5, 27, 'I2603002', '2026-03-10', 13, 130000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 13, 1, NULL, NULL, NULL, '2026-03-09 22:59:38', '2026-03-10 00:51:17'),
+	(3, 5, 31, 'I2603003', '2026-03-10', 9, 90000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 1, NULL, NULL, NULL, '2026-03-10 00:52:56', '2026-03-10 00:52:56'),
+	(4, 5, 10, 'I2603004', '2026-03-10', 7, 70000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 1, NULL, NULL, NULL, '2026-03-10 01:15:47', '2026-03-10 01:15:47'),
+	(5, 5, 11, 'I2603005', '2026-03-10', 6, 60000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 1, NULL, NULL, NULL, '2026-03-10 03:41:41', '2026-03-10 03:41:41'),
+	(6, 5, 12, 'I2603006', '2026-03-10', 5, 50000, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 13, 1, NULL, NULL, NULL, '2026-03-10 03:55:32', '2026-03-10 03:55:32');
 
 -- Dumping structure for table e_commerce_like_rokomary.invest_sattlements
 DROP TABLE IF EXISTS `invest_sattlements`;
@@ -1294,20 +1386,12 @@ CREATE TABLE IF NOT EXISTS `invest_sattlements` (
   CONSTRAINT `invest_sattlements_deleted_by_foreign` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `invest_sattlements_investor_id_foreign` FOREIGN KEY (`investor_id`) REFERENCES `investors` (`id`) ON DELETE CASCADE,
   CONSTRAINT `invest_sattlements_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.invest_sattlements: ~9 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.invest_sattlements: ~0 rows (approximately)
 DELETE FROM `invest_sattlements`;
 INSERT INTO `invest_sattlements` (`id`, `investor_id`, `coa_id`, `sattlement_no`, `date`, `invest_qty`, `invest_amount`, `payment`, `remarks`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
-	(9, 8, 13, 'IS2511004', '2025-11-24', 6, 180000, 180000, NULL, 10, NULL, NULL, NULL, '2025-11-24 21:45:08', '2025-11-24 21:45:08'),
-	(12, 9, 13, 'IS2512002', '2025-12-24', 6, 180000, 180000, NULL, 10, NULL, NULL, NULL, '2025-12-23 22:41:04', '2025-12-23 22:41:04'),
-	(16, 4, 13, 'IS2512003', '2025-11-23', 1, 30000, 30000, NULL, 10, NULL, NULL, NULL, '2025-12-30 00:33:41', '2025-12-30 00:33:41'),
-	(17, 3, 13, 'IS2512004', '2025-11-23', 1, 30000, 30000, NULL, 10, NULL, NULL, NULL, '2025-12-30 00:34:32', '2025-12-30 00:34:32'),
-	(18, 5, 13, 'IS2512005', '2025-12-15', 1, 30000, 30000, NULL, 10, NULL, NULL, NULL, '2025-12-30 00:36:19', '2025-12-30 00:36:19'),
-	(19, 6, 13, 'IS2512006', '2025-12-29', 1, 30000, 30000, NULL, 10, NULL, NULL, NULL, '2025-12-30 00:36:43', '2025-12-30 00:36:43'),
-	(20, 8, 13, 'IS2512007', '2025-12-29', 5, 150000, 150000, NULL, 10, NULL, NULL, NULL, '2025-12-30 00:37:52', '2025-12-30 00:37:52'),
-	(21, 15, 13, 'IS2512008', '2025-12-29', 1, 30000, 30000, NULL, 10, NULL, NULL, NULL, '2025-12-30 00:38:20', '2025-12-30 00:38:20'),
-	(22, 7, 13, 'IS2512009', '2025-12-30', 2, 60000, 60000, NULL, 10, NULL, NULL, NULL, '2025-12-30 08:22:08', '2025-12-30 08:22:08');
+	(1, 5, 13, 'IS2603001', '2026-03-10', 26, 260000, 260000, NULL, 1, NULL, NULL, NULL, '2026-03-10 00:51:17', '2026-03-10 00:51:17');
 
 -- Dumping structure for table e_commerce_like_rokomary.invest_sattlement_lists
 DROP TABLE IF EXISTS `invest_sattlement_lists`;
@@ -1331,22 +1415,13 @@ CREATE TABLE IF NOT EXISTS `invest_sattlement_lists` (
   CONSTRAINT `invest_sattlement_lists_invest_sattlement_id_foreign` FOREIGN KEY (`invest_sattlement_id`) REFERENCES `invest_sattlements` (`id`) ON DELETE CASCADE,
   CONSTRAINT `invest_sattlement_lists_investor_id_foreign` FOREIGN KEY (`investor_id`) REFERENCES `investors` (`id`) ON DELETE CASCADE,
   CONSTRAINT `invest_sattlement_lists_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.invest_sattlement_lists: ~11 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.invest_sattlement_lists: ~2 rows (approximately)
 DELETE FROM `invest_sattlement_lists`;
 INSERT INTO `invest_sattlement_lists` (`id`, `invest_sattlement_id`, `investor_id`, `invest_id`, `product_id`, `invest_qty`, `invest_amount`, `payment`, `created_at`, `updated_at`) VALUES
-	(10, 9, 8, 16, 12, 3, 90000, 90000, '2025-11-24 21:45:08', '2025-11-24 21:45:08'),
-	(11, 9, 8, 22, 12, 3, 90000, 90000, '2025-11-24 21:45:08', '2025-11-24 21:45:08'),
-	(15, 12, 9, 17, 4, 3, 90000, 90000, '2025-12-23 22:41:04', '2025-12-23 22:41:04'),
-	(16, 12, 9, 23, 4, 3, 90000, 90000, '2025-12-23 22:41:04', '2025-12-23 22:41:04'),
-	(23, 16, 4, 11, 3, 1, 30000, 30000, '2025-12-30 00:33:41', '2025-12-30 00:33:41'),
-	(24, 17, 3, 10, 3, 1, 30000, 30000, '2025-12-30 00:34:32', '2025-12-30 00:34:32'),
-	(25, 18, 5, 13, 3, 1, 30000, 30000, '2025-12-30 00:36:19', '2025-12-30 00:36:19'),
-	(26, 19, 6, 14, 3, 1, 30000, 30000, '2025-12-30 00:36:43', '2025-12-30 00:36:43'),
-	(27, 20, 8, 24, 2, 5, 150000, 150000, '2025-12-30 00:37:52', '2025-12-30 00:37:52'),
-	(28, 21, 15, 20, 2, 1, 30000, 30000, '2025-12-30 00:38:20', '2025-12-30 00:38:20'),
-	(29, 22, 7, 15, 3, 2, 60000, 60000, '2025-12-30 08:22:08', '2025-12-30 08:22:08');
+	(1, 1, 5, 1, 31, 13, 130000, 130000, '2026-03-10 00:51:17', '2026-03-10 00:51:17'),
+	(2, 1, 5, 2, 27, 13, 130000, 130000, '2026-03-10 00:51:17', '2026-03-10 00:51:17');
 
 -- Dumping structure for table e_commerce_like_rokomary.jobs
 DROP TABLE IF EXISTS `jobs`;
@@ -1543,10 +1618,12 @@ CREATE TABLE IF NOT EXISTS `model_has_roles` (
   CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.model_has_roles: ~1 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.model_has_roles: ~3 rows (approximately)
 DELETE FROM `model_has_roles`;
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
-	(1, 'App\\Models\\User', 1);
+	(1, 'App\\Models\\User', 1),
+	(2, 'App\\Models\\User', 14),
+	(2, 'App\\Models\\User', 15);
 
 -- Dumping structure for table e_commerce_like_rokomary.orders
 DROP TABLE IF EXISTS `orders`;
@@ -1566,12 +1643,15 @@ CREATE TABLE IF NOT EXISTS `orders` (
   UNIQUE KEY `orders_order_number_unique` (`order_number`),
   KEY `orders_user_id_foreign` (`user_id`),
   CONSTRAINT `orders_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.orders: ~15 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.orders: ~4 rows (approximately)
 DELETE FROM `orders`;
 INSERT INTO `orders` (`id`, `user_id`, `order_number`, `subtotal`, `discount`, `tax`, `total`, `payment_method`, `status`, `created_at`, `updated_at`) VALUES
-	(1, 8, 'ORD-1772611138', 1163.00, 116.30, 58.15, 1104.85, 'cod', 'pending', '2026-03-04 01:58:58', '2026-03-04 01:58:58');
+	(1, 8, 'ORD-1772611138', 1163.00, 116.30, 58.15, 1104.85, 'cod', 'delivered', '2026-03-04 01:58:58', '2026-03-11 03:39:41'),
+	(2, 8, 'ORD-1772951919', 266.00, 26.60, 39.90, 279.30, 'cod', 'processing', '2026-03-08 00:38:39', '2026-03-08 00:40:22'),
+	(3, 9, 'ORD-1773035960', 289.03, 28.90, 43.35, 303.48, 'cod', 'pending', '2026-03-08 23:59:20', '2026-03-08 23:59:20'),
+	(4, 9, 'ORD-1773036157', 22.00, 2.20, 3.30, 23.10, 'cod', 'confirmed', '2026-03-09 00:02:37', '2026-03-11 03:40:03');
 
 -- Dumping structure for table e_commerce_like_rokomary.order_items
 DROP TABLE IF EXISTS `order_items`;
@@ -1592,13 +1672,17 @@ CREATE TABLE IF NOT EXISTS `order_items` (
   CONSTRAINT `order_items_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
   CONSTRAINT `order_items_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
   CONSTRAINT `order_items_product_variant_id_foreign` FOREIGN KEY (`product_variant_id`) REFERENCES `product_variants` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.order_items: ~30 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.order_items: ~5 rows (approximately)
 DELETE FROM `order_items`;
 INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `product_variant_id`, `qty`, `price`, `total`, `created_at`, `updated_at`) VALUES
 	(1, 1, 28, NULL, 3, 33.00, 99.00, '2026-03-04 01:58:58', '2026-03-04 01:58:58'),
-	(2, 1, 31, 16, 4, 266.00, 1064.00, '2026-03-04 01:58:58', '2026-03-04 01:58:58');
+	(2, 1, 31, 16, 4, 266.00, 1064.00, '2026-03-04 01:58:58', '2026-03-04 01:58:58'),
+	(3, 2, 31, NULL, 1, 266.00, 266.00, '2026-03-08 00:38:39', '2026-03-08 00:38:39'),
+	(4, 3, 11, NULL, 1, 119.93, 119.93, '2026-03-08 23:59:21', '2026-03-08 23:59:21'),
+	(5, 3, 12, NULL, 1, 169.10, 169.10, '2026-03-08 23:59:22', '2026-03-08 23:59:22'),
+	(6, 4, 3, 3, 1, 22.00, 22.00, '2026-03-09 00:02:37', '2026-03-09 00:02:37');
 
 -- Dumping structure for table e_commerce_like_rokomary.password_reset_tokens
 DROP TABLE IF EXISTS `password_reset_tokens`;
@@ -1641,10 +1725,13 @@ CREATE TABLE IF NOT EXISTS `payments` (
   CONSTRAINT `payments_deleted_by_foreign` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `payments_investor_id_foreign` FOREIGN KEY (`investor_id`) REFERENCES `investors` (`id`) ON DELETE CASCADE,
   CONSTRAINT `payments_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.payments: ~23 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.payments: ~2 rows (approximately)
 DELETE FROM `payments`;
+INSERT INTO `payments` (`id`, `investor_id`, `coa_id`, `payment_type`, `payment_no`, `date`, `amount`, `remarks`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
+	(1, 5, 13, 'Payment', 'IP2603001', '2026-03-10', 9, 'paid investor', 1, NULL, NULL, NULL, '2026-03-10 00:05:33', '2026-03-10 00:05:33'),
+	(2, 5, 13, 'Payment', 'IP2603002', '2026-03-10', 60, NULL, 1, NULL, NULL, NULL, '2026-03-10 00:50:36', '2026-03-10 00:50:36');
 
 -- Dumping structure for table e_commerce_like_rokomary.payment_lists
 DROP TABLE IF EXISTS `payment_lists`;
@@ -1666,10 +1753,14 @@ CREATE TABLE IF NOT EXISTS `payment_lists` (
   CONSTRAINT `payment_lists_invest_id_foreign` FOREIGN KEY (`invest_id`) REFERENCES `invests` (`id`) ON DELETE CASCADE,
   CONSTRAINT `payment_lists_investor_id_foreign` FOREIGN KEY (`investor_id`) REFERENCES `investors` (`id`) ON DELETE CASCADE,
   CONSTRAINT `payment_lists_payment_id_foreign` FOREIGN KEY (`payment_id`) REFERENCES `payments` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.payment_lists: ~17 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.payment_lists: ~2 rows (approximately)
 DELETE FROM `payment_lists`;
+INSERT INTO `payment_lists` (`id`, `payment_id`, `distribution_list_id`, `invest_id`, `investor_id`, `amount`, `created_at`, `updated_at`) VALUES
+	(1, 1, 1, 1, 5, 2, '2026-03-10 00:05:33', '2026-03-10 00:05:33'),
+	(2, 1, 2, 2, 5, 7, '2026-03-10 00:05:33', '2026-03-10 00:05:33'),
+	(3, 2, 2, 2, 5, 60, '2026-03-10 00:50:36', '2026-03-10 00:50:36');
 
 -- Dumping structure for table e_commerce_like_rokomary.permissions
 DROP TABLE IF EXISTS `permissions`;
@@ -1681,9 +1772,9 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.permissions: ~91 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.permissions: ~113 rows (approximately)
 DELETE FROM `permissions`;
 INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
 	(1, 'Dashboard', 'web', '2026-01-19 05:33:09', '2026-01-19 05:33:09'),
@@ -1771,8 +1862,6 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 	(98, 'Collection Report', 'web', '2026-03-01 23:57:00', '2026-03-01 23:57:00'),
 	(99, 'Sales Return Report', 'web', '2026-03-02 00:03:47', '2026-03-02 00:03:47'),
 	(100, 'Expenses', 'web', '2026-03-02 00:16:46', '2026-03-02 00:16:46'),
-	(102, 'admin.expense.create', 'web', '2026-03-02 00:20:19', '2026-03-02 00:20:19'),
-	(103, 'admin.expense.show', 'web', '2026-03-02 00:21:24', '2026-03-02 00:21:24'),
 	(104, 'Income Statement', 'web', '2026-03-02 00:29:11', '2026-03-02 00:29:11'),
 	(105, 'Admin Menu', 'web', '2026-03-02 00:35:14', '2026-03-02 00:35:14'),
 	(106, 'admin.admin-menu.create', 'web', '2026-03-02 00:51:22', '2026-03-02 00:51:22'),
@@ -1786,7 +1875,23 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 	(114, 'Purchase Order', 'web', '2026-03-02 02:38:30', '2026-03-02 02:38:30'),
 	(115, 'admin.purchase-order.create', 'web', '2026-03-02 02:39:57', '2026-03-02 02:39:57'),
 	(116, 'admin.purchase-order.show', 'web', '2026-03-02 02:40:17', '2026-03-03 00:06:41'),
-	(117, 'Purchase Create', 'web', '2026-03-02 23:47:16', '2026-03-02 23:47:16');
+	(117, 'Purchase Create', 'web', '2026-03-02 23:47:16', '2026-03-02 23:47:16'),
+	(118, 'Coa Setup', 'web', '2026-03-08 00:05:13', '2026-03-08 00:05:13'),
+	(120, 'admin.coa.edit', 'web', '2026-03-08 00:06:01', '2026-03-08 00:06:01'),
+	(121, 'admin.coa.create', 'web', '2026-03-08 00:13:54', '2026-03-08 00:13:54'),
+	(122, 'admin.production.show', 'web', '2026-03-09 02:24:08', '2026-03-09 02:24:08'),
+	(123, 'Sales Return 1', 'web', '2026-03-10 03:05:29', '2026-03-10 03:05:29'),
+	(124, 'admin.sales-return.create', 'web', '2026-03-10 03:06:59', '2026-03-10 03:06:59'),
+	(125, 'admin.sales-return.show', 'web', '2026-03-10 03:07:40', '2026-03-10 03:07:40'),
+	(127, 'Expense List', 'web', '2026-03-12 00:52:34', '2026-03-12 00:52:34'),
+	(128, 'Expense Create', 'web', '2026-03-12 00:53:19', '2026-03-12 00:53:19'),
+	(129, 'admin.expense.show', 'web', '2026-03-12 00:54:01', '2026-03-12 00:54:01'),
+	(130, 'admin.expense.create', 'web', '2026-03-12 00:54:22', '2026-03-12 00:54:22'),
+	(131, 'Book Create', 'web', '2026-03-12 02:04:23', '2026-03-12 02:04:23'),
+	(132, 'Sales Create', 'web', '2026-03-12 02:17:34', '2026-03-12 02:17:34'),
+	(133, 'Collection Create', 'web', '2026-03-12 02:19:17', '2026-03-12 02:19:17'),
+	(134, 'Sales Return Create', 'web', '2026-03-12 02:20:29', '2026-03-12 02:20:29'),
+	(135, 'Production Create', 'web', '2026-03-12 02:23:36', '2026-03-12 02:23:36');
 
 -- Dumping structure for table e_commerce_like_rokomary.productions
 DROP TABLE IF EXISTS `productions`;
@@ -1814,10 +1919,14 @@ CREATE TABLE IF NOT EXISTS `productions` (
   CONSTRAINT `productions_deleted_by_foreign` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `productions_store_id_foreign` FOREIGN KEY (`store_id`) REFERENCES `stores` (`id`) ON DELETE CASCADE,
   CONSTRAINT `productions_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table e_commerce_like_rokomary.productions: ~3 rows (approximately)
 DELETE FROM `productions`;
+INSERT INTO `productions` (`id`, `store_id`, `production_no`, `date`, `total_qty`, `remarks`, `is_approved`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
+	(1, 1, 'PP2603001', '2026-03-08', 100, NULL, 0, 1, NULL, NULL, NULL, '2026-03-07 22:12:22', '2026-03-07 22:12:22'),
+	(2, 1, 'PP2603002', '2026-03-11', 3, NULL, 0, 1, NULL, NULL, NULL, '2026-03-10 21:37:40', '2026-03-10 21:37:40'),
+	(3, 1, 'PP2603003', '2026-03-11', 10, NULL, 0, 1, NULL, NULL, NULL, '2026-03-10 22:01:58', '2026-03-10 22:01:58');
 
 -- Dumping structure for table e_commerce_like_rokomary.production_lists
 DROP TABLE IF EXISTS `production_lists`;
@@ -1839,10 +1948,14 @@ CREATE TABLE IF NOT EXISTS `production_lists` (
   CONSTRAINT `production_lists_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
   CONSTRAINT `production_lists_production_id_foreign` FOREIGN KEY (`production_id`) REFERENCES `productions` (`id`) ON DELETE CASCADE,
   CONSTRAINT `production_lists_store_id_foreign` FOREIGN KEY (`store_id`) REFERENCES `stores` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.production_lists: ~2 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.production_lists: ~3 rows (approximately)
 DELETE FROM `production_lists`;
+INSERT INTO `production_lists` (`id`, `production_id`, `store_id`, `product_id`, `product_edition_id`, `qty`, `created_at`, `updated_at`) VALUES
+	(1, 1, 1, 31, 16, 100, '2026-03-07 22:12:23', '2026-03-07 22:12:23'),
+	(2, 2, 1, 11, 14, 3, '2026-03-10 21:37:40', '2026-03-10 21:37:40'),
+	(3, 3, 1, 11, 14, 10, '2026-03-10 22:01:59', '2026-03-10 22:01:59');
 
 -- Dumping structure for table e_commerce_like_rokomary.products
 DROP TABLE IF EXISTS `products`;
@@ -1861,6 +1974,11 @@ CREATE TABLE IF NOT EXISTS `products` (
   `thumbnail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `short_description` text COLLATE utf8mb4_unicode_ci,
   `description` longtext COLLATE utf8mb4_unicode_ci,
+  `profit` double DEFAULT '0',
+  `profit_percent` double DEFAULT '0',
+  `show_dashboard` int DEFAULT '1',
+  `serial` int DEFAULT NULL,
+  `required_share` double DEFAULT '0',
   `purchase_price` decimal(16,2) NOT NULL DEFAULT '0.00',
   `regular_price` decimal(16,2) NOT NULL DEFAULT '0.00',
   `sale_price` decimal(16,2) NOT NULL DEFAULT '0.00',
@@ -1905,29 +2023,29 @@ CREATE TABLE IF NOT EXISTS `products` (
 
 -- Dumping data for table e_commerce_like_rokomary.products: ~22 rows (approximately)
 DELETE FROM `products`;
-INSERT INTO `products` (`id`, `name`, `code`, `slug`, `category_id`, `uom_id`, `brand_id`, `publication_id`, `product_type`, `barcode`, `file`, `thumbnail`, `short_description`, `description`, `purchase_price`, `regular_price`, `sale_price`, `discount`, `discount_type`, `discount_start_date`, `discount_end_date`, `sku`, `meta_title`, `meta_description`, `meta_image`, `custom_barcode`, `favorite`, `trending`, `new_arrival`, `best_seller`, `status`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
-	(1, 'Book1', NULL, 'book1', 1, 1, 1, NULL, 'book', 'asdsas', NULL, 'storage/media/product/2026-01-25-ohsvTRcZVvt6d3SOWJRqqL5gxdGsAfsTpogwuJoG.webp', '<p>dadadasda</p>', '<p>sdsdasd</p>', 234.00, 300.00, 320.00, 1.00, 'amount', '2026-01-20', '2026-02-21', 'SKUS', 'meta', 'cssdsfsf', 'storage/media/product/2026-01-20-FLxMajI5xjcg9zj2q2IBLQh6RqZUGujs5DiDmI6I.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-01-20 04:15:44', '2026-01-24 23:17:55'),
-	(2, 'Book2', NULL, 'book2', 1, 1, 1, NULL, 'book', 'sdasd', NULL, 'storage/media/product/2026-01-25-fQxUtYHO76XI21NVyXZ7weRAsPQpdbmXQwaJHczN.webp', '<p>dsdasda</p>', '<p>dasdas</p>', 11.00, 33.00, 31.00, 2.00, 'amount', '2026-01-20', '2026-02-26', 'ssds', 'sdsadad', 'sadasdasd', 'storage/media/product/2026-01-20-NPtdHB2jK5Qnb7ZQHRfq1tlCqh3GLhOoYfA8dHbZ.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-01-20 04:26:34', '2026-01-24 23:17:37'),
-	(3, 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড', NULL, 'eknjre-ummahr-itihas-3-khnd', 2, 1, 1, 2, 'book', 'sdfsd', NULL, 'storage/media/product/2026-01-25-OeGX8HlaQ779JWdmB6KHD84OpPmkARBeql8VyfvA.webp', '<p>আল্লামা ইবনুল কায়্যিম জাওযিয়্যাহ রহ</p>', '<p>sdfsd</p>', 22.00, 23.00, 22.00, 1.00, 'amount', NULL, NULL, NULL, 'sdfsddf', 'sdfsd', 'storage/media/product/2026-01-25-OeGX8HlaQ779JWdmB6KHD84OpPmkARBeql8VyfvA.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-01-22 04:46:01', '2026-02-28 21:27:50'),
-	(5, 'Electric Ketle', NULL, 'electric-ketle', 3, 1, 1, 2, 'other', 'sds', NULL, 'storage/media/product/2026-02-03-EB2TqjB4St9q72M2f8GOo8FWAAkIM0PB7bmFM9sa.webp', '<p>Electric Ketle</p>', '<p>Electric Ketle</p>', 800.00, 1200.00, 1188.00, 1.00, 'percent', NULL, NULL, NULL, 'sdfsdf', 'dsfsdf', 'storage/media/product/2026-02-03-EB2TqjB4St9q72M2f8GOo8FWAAkIM0PB7bmFM9sa.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-01-22 06:36:18', '2026-02-03 00:25:05'),
-	(7, 'Smart Phone Model12222', NULL, 'smart-phone-model12222', 6, 1, 1, 1, 'other', 'sasa', NULL, 'storage/media/product/2026-02-03-AaEwp89prQkVMnUeryd9zWDClt1a0seH4xMJYlUL.webp', '<p><span style="color: rgb(108, 117, 125); font-family: Inter, sans-serif; background-color: rgb(248, 249, 250);">Smart Phone Model12222</span></p>', '<p><span style="color: rgb(108, 117, 125); font-family: Inter, sans-serif; background-color: rgb(248, 249, 250);">Smart Phone Model12222</span></p>', 13000.00, 20000.00, 13400.00, 33.00, 'percent', NULL, NULL, NULL, 'fsd', 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড', 'storage/media/product/2026-02-03-AaEwp89prQkVMnUeryd9zWDClt1a0seH4xMJYlUL.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-01-25 02:06:22', '2026-02-03 00:24:05'),
-	(10, 'শেষের কবিতা', 'COD2026030510', 'sesher-kbita', 31, 1, 1, 2, 'book', 'wqsa', NULL, 'storage/media/product/2026-02-03-rb9Jdd1upUcXFKsCuruAHGJPitvu7OMJ15JZqU70.webp', 'লেখক: <strong data-start="161" data-end="182">রবীন্দ্রনাথ ঠাকুর</strong><br data-start="360" data-end="363">ভাষা: বাংলা<br data-start="374" data-end="377">সংকলন ও রচনা: <strong data-start="161" data-end="182">রবীন্দ্রনাথ ঠাকুর</strong>', '<h2 data-start="113" data-end="130">📘 বইয়ের নাম</h2>\r\n<p data-start="131" data-end="146"><strong data-start="131" data-end="146">শেষের কবিতা</strong></p>\r\n<h2 data-start="148" data-end="160">✍️ লেখক</h2>\r\n<p data-start="161" data-end="182"><strong data-start="161" data-end="182">রবীন্দ্রনাথ ঠাকুর</strong></p>\r\n<h2 data-start="184" data-end="202">🏷️ ক্যাটাগরি</h2>\r\n<p data-start="203" data-end="246">উপন্যাস / রোমান্টিক সাহিত্য / বাংলা ক্লাসিক</p>\r\n<h2 data-start="248" data-end="260">🌐 ভাষা</h2>\r\n<p data-start="261" data-end="266">বাংলা</p>\r\n<h2 data-start="268" data-end="297">📖 বইয়ের সংক্ষিপ্ত বিবরণ</h2>\r\n<p data-start="298" data-end="500"><strong data-start="298" data-end="313">শেষের কবিতা</strong> বাংলা সাহিত্যের অন্যতম জনপ্রিয় ও গভীর রোমান্টিক উপন্যাস। এই উপন্যাসে প্রেমকে দেখা হয়েছে নতুন দৃষ্টিভঙ্গিতে—যেখানে আবেগ, বুদ্ধিবৃত্তিক দ্বন্দ্ব, আত্মসম্মান ও স্বাধীন চিন্তার সমন্বয় রয়েছে।</p>\r\n<p data-start="502" data-end="679">গল্পের মূল চরিত্র <strong data-start="520" data-end="532">অমিত রায়</strong> ও <strong data-start="535" data-end="545">লাবণ্য</strong>—দুজনের কথোপকথন, মানসিক টানাপোড়েন এবং দর্শনভিত্তিক প্রেমই এই উপন্যাসের প্রাণ। এখানে প্রেম শুধু অনুভূতি নয়, বরং চিন্তা ও উপলব্ধির বিষয়।</p>\r\n<h2 data-start="681" data-end="707">⭐ বইয়ের মূল বিষয়বস্তু</h2>\r\n<ul data-start="708" data-end="882"><li data-start="708" data-end="741">\r\n<p data-start="710" data-end="741">প্রেম ও আত্মসম্মানের দ্বন্দ্ব</p>\r\n</li><li data-start="742" data-end="782">\r\n<p data-start="744" data-end="782">আধুনিক চিন্তাধারা ও ব্যক্তিস্বাধীনতা</p>\r\n</li><li data-start="783" data-end="810">\r\n<p data-start="785" data-end="810">আবেগ বনাম যুক্তির সংঘাত</p>\r\n</li><li data-start="811" data-end="847">\r\n<p data-start="813" data-end="847">নারীর আত্মমর্যাদা ও মানসিক শক্তি</p>\r\n</li><li data-start="848" data-end="882">\r\n<p data-start="850" data-end="882">দর্শনভিত্তিক রোমান্টিক সম্পর্ক</p>\r\n</li></ul>\r\n<h2 data-start="884" data-end="906">🎯 কেন বইটি পড়বেন</h2>\r\n<ul data-start="907" data-end="1099"><li data-start="907" data-end="965">\r\n<p data-start="909" data-end="965">বাংলা সাহিত্যের <strong data-start="925" data-end="952">ক্লাসিক প্রেমের উপন্যাস</strong> পড়তে চাইলে</p>\r\n</li><li data-start="966" data-end="1008">\r\n<p data-start="968" data-end="1008">প্রেমকে গভীর ও বুদ্ধিবৃত্তিকভাবে বুঝতে</p>\r\n</li><li data-start="1009" data-end="1055">\r\n<p data-start="1011" data-end="1055">রবীন্দ্রনাথের চিন্তা ও ভাষাশৈলী উপভোগ করতে</p>\r\n</li><li data-start="1056" data-end="1099">\r\n<p data-start="1058" data-end="1099">বারবার পড়ার মতো একটি সাহিত্যকর্ম হিসেবে</p>\r\n</li></ul>\r\n<h2 data-start="1101" data-end="1125">📚 কার জন্য উপযুক্ত</h2>\r\n<ul data-start="1126" data-end="1243"><li data-start="1126" data-end="1148">\r\n<p data-start="1128" data-end="1148">সাহিত্যপ্রেমী পাঠক</p>\r\n</li><li data-start="1149" data-end="1184">\r\n<p data-start="1151" data-end="1184">কলেজ–বিশ্ববিদ্যালয়ের শিক্ষার্থী</p>\r\n</li><li data-start="1185" data-end="1208">\r\n<p data-start="1187" data-end="1208">রবীন্দ্রনাথ অনুরাগী</p>\r\n</li><li data-start="1209" data-end="1243">\r\n<p data-start="1211" data-end="1243">ক্লাসিক বাংলা উপন্যাস সংগ্রাহক</p>\r\n</li></ul>\r\n<h2 data-start="1245" data-end="1265">🧠 লেখক পরিচিতি</h2>\r\n<p data-start="1266" data-end="1435"><strong data-start="1266" data-end="1287">রবীন্দ্রনাথ ঠাকুর</strong> (১৮৬১–১৯৪১) বাংলা সাহিত্যের সর্বশ্রেষ্ঠ সাহিত্যিকদের একজন এবং <strong data-start="1350" data-end="1379">নোবেল পুরস্কারপ্রাপ্ত কবি</strong>। তাঁর উপন্যাস, কবিতা ও প্রবন্ধ আজও সমানভাবে প্রাসঙ্গিক।</p>', 150.00, 160.00, 140.80, 12.00, 'percent', '2026-02-26', '2026-02-27', 'SHSEK', 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড3', 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড', 'storage/media/product/2026-02-03-rb9Jdd1upUcXFKsCuruAHGJPitvu7OMJ15JZqU70.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-01-25 02:11:41', '2026-03-04 23:17:45'),
-	(11, 'অনুভূতির কাব্য', 'COD2026030511', 'onuvuutir-kabz', 31, 1, 1, 2, 'book', 'BARKABB', NULL, 'storage/media/product/2026-02-03-8FjavixMHLPCAdGiq8fTy7q0qjCY3f4bLTPcV3Wy.webp', 'লেখক: হিল্লোল তালুকদার<br data-start="360" data-end="363">ভাষা: বাংলা<br data-start="374" data-end="377">সংকলন ও রচনা: প্রিয় বাংলা প্রকাশন', '<h2 data-start="157" data-end="174">📘 বইয়ের নাম</h2>\r\n<p data-start="175" data-end="193"><strong data-start="175" data-end="193">অনুভূতির কাব্য</strong></p>\r\n<h2 data-start="195" data-end="213">🏷️ ক্যাটাগরি</h2>\r\n<p data-start="214" data-end="258">কবিতা / আধুনিক বাংলা কাব্য / অনুভূতি ও প্রেম</p>\r\n<h2 data-start="260" data-end="272">🌐 ভাষা</h2>\r\n<p data-start="273" data-end="278">বাংলা</p>\r\n<h2 data-start="280" data-end="309">📖 বইয়ের সংক্ষিপ্ত বিবরণ</h2>\r\n<p data-start="310" data-end="552"><strong data-start="310" data-end="328">অনুভূতির কাব্য</strong> একটি আবেগপ্রবণ কবিতার সংকলন, যেখানে মানুষের অন্তর্গত অনুভূতি—ভালোবাসা, কষ্ট, অপেক্ষা, বিচ্ছেদ, নীরবতা ও জীবনের বাস্তবতা—কবিতার ছন্দে তুলে ধরা হয়েছে। প্রতিটি কবিতা পাঠকের হৃদয়ের গভীরে লুকিয়ে থাকা না বলা কথাগুলোকে স্পর্শ করে।</p>\r\n<p data-start="554" data-end="692">এই বইয়ের কবিতাগুলো সহজ ভাষায় লেখা, কিন্তু অনুভূতিতে গভীর। পাঠক নিজের জীবনের গল্পের সঙ্গে কবিতার পঙ্‌ক্তিগুলো মিলিয়ে নিতে পারবেন খুব সহজেই।</p>\r\n<h2 data-start="694" data-end="720">⭐ বইয়ের মূল বিষয়বস্তু</h2>\r\n<ul data-start="721" data-end="871"><li data-start="721" data-end="750">\r\n<p data-start="723" data-end="750">প্রেম ও ভালোবাসার অনুভূতি</p>\r\n</li><li data-start="751" data-end="782">\r\n<p data-start="753" data-end="782">না বলা কষ্ট ও নীরব যন্ত্রণা</p>\r\n</li><li data-start="783" data-end="812">\r\n<p data-start="785" data-end="812">স্মৃতি, অপেক্ষা ও বিচ্ছেদ</p>\r\n</li><li data-start="813" data-end="839">\r\n<p data-start="815" data-end="839">জীবনের বাস্তব অভিজ্ঞতা</p>\r\n</li><li data-start="840" data-end="871">\r\n<p data-start="842" data-end="871">হৃদয়ছোঁয়া ও ভাবনামূলক কবিতা</p>\r\n</li></ul>\r\n<h2 data-start="873" data-end="895">🎯 কেন বইটি পড়বেন</h2>\r\n<ul data-start="896" data-end="1066"><li data-start="896" data-end="933">\r\n<p data-start="898" data-end="933">অনুভূতিপ্রবণ কবিতা পড়তে ভালোবাসলে</p>\r\n</li><li data-start="934" data-end="973">\r\n<p data-start="936" data-end="973">একাকিত্ব বা নীরব সময়ের সঙ্গী হিসেবে</p>\r\n</li><li data-start="974" data-end="1013">\r\n<p data-start="976" data-end="1013">সহজ কিন্তু গভীর অর্থবহ কবিতা খুঁজলে</p>\r\n</li><li data-start="1014" data-end="1066">\r\n<p data-start="1016" data-end="1066">উপহার দেওয়ার জন্য একটি সুন্দর কাব্যগ্রন্থ হিসেবে</p>\r\n</li></ul>\r\n<h2 data-start="1068" data-end="1092">📚 কার জন্য উপযুক্ত</h2>\r\n<ul data-start="1093" data-end="1201"><li data-start="1093" data-end="1114">\r\n<p data-start="1095" data-end="1114">কবিতা প্রেমী পাঠক</p>\r\n</li><li data-start="1115" data-end="1134">\r\n<p data-start="1117" data-end="1134">তরুণ ও যুব সমাজ</p>\r\n</li><li data-start="1135" data-end="1180">\r\n<p data-start="1137" data-end="1180">যারা অনুভূতির লেখায় নিজেকে খুঁজে পেতে চান</p>\r\n</li><li data-start="1181" data-end="1201">\r\n<p data-start="1183" data-end="1201">সাহিত্য সংগ্রাহক</p></li></ul>', 130.00, 179.00, 119.93, 33.00, 'percent', '2026-01-16', '2026-02-20', 'ONUVTTIK', 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড4', 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড', 'storage/media/product/2026-02-03-8FjavixMHLPCAdGiq8fTy7q0qjCY3f4bLTPcV3Wy.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-01-25 02:13:34', '2026-03-04 23:17:12'),
-	(12, 'একাত্তরের চিঠি', 'COD2026030512', 'ekattrer-cithi', 31, 1, 1, 2, 'book', 'AKATCHTI', NULL, 'storage/media/product/2026-02-03-WSrTGyJMmzR3tLWgEctfyrrLJatgmAX3AgZmmu6b.webp', 'লেখক: <strong data-start="157" data-end="175">মুনতাসীর মামুন</strong><br data-start="360" data-end="363">ভাষা: বাংলা<br data-start="374" data-end="377">সংকলন ও রচনা: <strong data-start="157" data-end="175">মুনতাসীর মামুন</strong>', '<h2 data-start="105" data-end="122">📘 বইয়ের নাম</h2>\r\n<p data-start="123" data-end="141"><strong data-start="123" data-end="141">একাত্তরের চিঠি</strong></p>\r\n<h2 data-start="143" data-end="156">✍️ সংকলক</h2>\r\n<p data-start="157" data-end="175"><strong data-start="157" data-end="175">মুনতাসীর মামুন</strong></p>\r\n<h2 data-start="177" data-end="195">🏷️ ক্যাটাগরি</h2>\r\n<p data-start="196" data-end="240">মুক্তিযুদ্ধ / ইতিহাস / দলিলপত্র / চিঠি সংকলন</p>\r\n<h2 data-start="242" data-end="254">🌐 ভাষা</h2>\r\n<p data-start="255" data-end="260">বাংলা</p>\r\n<h2 data-start="262" data-end="291">📖 বইয়ের সংক্ষিপ্ত বিবরণ</h2>\r\n<p data-start="292" data-end="488"><strong data-start="292" data-end="310">একাত্তরের চিঠি</strong> হলো বাংলাদেশের মুক্তিযুদ্ধকালীন (১৯৭১) সময়ের বাস্তব ও হৃদয়স্পর্শী চিঠির সংকলন। যুদ্ধের ভয়াবহতা, আশা-নিরাশা, ভালোবাসা, দেশপ্রেম ও আত্মত্যাগ—সবকিছু উঠে এসেছে এই চিঠিগুলোর মাধ্যমে।</p>\r\n<p data-start="490" data-end="512">এই চিঠিগুলো লিখেছিলেন—</p>\r\n<ul data-start="513" data-end="634"><li data-start="513" data-end="531">\r\n<p data-start="515" data-end="531">মুক্তিযোদ্ধারা</p>\r\n</li><li data-start="532" data-end="557">\r\n<p data-start="534" data-end="557">শহীদ পরিবারের সদস্যরা</p>\r\n</li><li data-start="558" data-end="594">\r\n<p data-start="560" data-end="594">যুদ্ধরত সন্তানকে লেখা মায়ের চিঠি</p>\r\n</li><li data-start="595" data-end="634">\r\n<p data-start="597" data-end="634">প্রিয়জনের কাছে লেখা শেষ বিদায়ের কথা</p>\r\n</li></ul>\r\n<h2 data-start="636" data-end="662">⭐ বইয়ের মূল বিষয়বস্তু</h2>\r\n<ul data-start="663" data-end="862"><li data-start="663" data-end="730">\r\n<p data-start="665" data-end="730">মুক্তিযুদ্ধের সময় সাধারণ মানুষের আবেগ ও মানসিক অবস্থার প্রতিফলন</p>\r\n</li><li data-start="731" data-end="779">\r\n<p data-start="733" data-end="779">যুদ্ধক্ষেত্র ও পরিবারের মধ্যে দূরত্বের বেদনা</p>\r\n</li><li data-start="780" data-end="823">\r\n<p data-start="782" data-end="823">স্বাধীনতার জন্য আত্মত্যাগের বাস্তব দলিল</p>\r\n</li><li data-start="824" data-end="862">\r\n<p data-start="826" data-end="862">ইতিহাসের বইয়ে না পাওয়া মানবিক গল্প</p>\r\n</li></ul>\r\n<h2 data-start="864" data-end="886">🎯 কেন বইটি পড়বেন</h2>\r\n<ul data-start="887" data-end="1074"><li data-start="887" data-end="936">\r\n<p data-start="889" data-end="936">মুক্তিযুদ্ধকে <strong data-start="903" data-end="923">মানবিক দৃষ্টিকোণ</strong> থেকে জানতে</p>\r\n</li><li data-start="937" data-end="979">\r\n<p data-start="939" data-end="979">বাস্তব চিঠির মাধ্যমে ইতিহাস অনুভব করতে</p>\r\n</li><li data-start="980" data-end="1033">\r\n<p data-start="982" data-end="1033">শিক্ষার্থী ও গবেষকদের জন্য গুরুত্বপূর্ণ রেফারেন্স</p>\r\n</li><li data-start="1034" data-end="1074">\r\n<p data-start="1036" data-end="1074">দেশপ্রেম ও মূল্যবোধ জাগ্রত করার জন্য</p>\r\n</li></ul>\r\n<h2 data-start="1076" data-end="1100">📚 কার জন্য উপযুক্ত</h2>\r\n<ul data-start="1101" data-end="1231"><li data-start="1101" data-end="1142">\r\n<p data-start="1103" data-end="1142">স্কুল-কলেজ-বিশ্ববিদ্যালয়ের শিক্ষার্থী</p>\r\n</li><li data-start="1143" data-end="1169">\r\n<p data-start="1145" data-end="1169">মুক্তিযুদ্ধপ্রেমী পাঠক</p>\r\n</li><li data-start="1170" data-end="1196">\r\n<p data-start="1172" data-end="1196">গবেষক ও ইতিহাস অনুরাগী</p>\r\n</li><li data-start="1197" data-end="1231">\r\n<p data-start="1199" data-end="1231">লাইব্রেরি ও সংগ্রহে রাখার জন্য</p>\r\n</li></ul>\r\n<h2 data-start="1233" data-end="1255">🧠 সংকলক সম্পর্কে</h2>\r\n<p data-start="1256" data-end="1389"><strong data-start="1256" data-end="1274">মুনতাসীর মামুন</strong> বাংলাদেশের প্রখ্যাত ইতিহাসবিদ ও মুক্তিযুদ্ধ গবেষক। মুক্তিযুদ্ধভিত্তিক বহু গুরুত্বপূর্ণ গ্রন্থ সংকলন ও রচনা করেছেন।</p><p></p>', 120.00, 190.00, 169.10, 11.00, 'percent', NULL, NULL, 'AKATTCHTI', 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড5', 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড', 'storage/media/product/2026-02-03-WSrTGyJMmzR3tLWgEctfyrrLJatgmAX3AgZmmu6b.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-01-25 02:14:33', '2026-03-04 23:16:32'),
-	(13, 'একাত্তরের জননী', 'COD2026030513', 'ekattrer-jnnee', 31, 1, 1, 2, 'book', '33', NULL, 'storage/media/product/2026-02-03-s9NU7e74PI9ZSp85NVkh2EmKvAQNxy8S8D0dRSIS.webp', 'লেখক: <strong data-start="346" data-end="360">রমা চৌধুরী</strong><br data-start="360" data-end="363">\r\nভাষা: বাংলা<br data-start="374" data-end="377">\r\nপ্রকাশনী: মাধুকরী প্রকাশন', '<h3 data-start="300" data-end="318">📘 বইয়ের নাম</h3>\r\n<p data-start="319" data-end="440"><strong data-start="319" data-end="337">একাত্তরের জননী</strong><br data-start="337" data-end="340">\r\nলেখক: <strong data-start="346" data-end="360">রমা চৌধুরী</strong><br data-start="360" data-end="363">\r\nভাষা: বাংলা<br data-start="374" data-end="377">\r\nপ্রকাশনী: মাধুকরী প্রকাশন <span class="" data-state="closed"></span></p>\r\n<h3 data-start="442" data-end="465">✍️ লেখকের পরিচিতি</h3>\r\n<p data-start="466" data-end="837">রমা চৌধুরী বাংলাদেশের <strong data-start="488" data-end="524">মুক্তিযুদ্ধের বীরাঙ্গনা ও লেখিকা</strong> ছিলেন। তাঁর লেখা <strong data-start="542" data-end="562">“একাত্তরের জননী”</strong> সবচেয়ে বেশি পরিচিত কাজগুলোর মধ্যে একটি, যেখানে তিনি ১৯৭১-এর মুক্তিযুদ্ধের সময়কার নির্যাতন, বেদনা ও স্বদেশপ্রেমের কথা নিজের জীবনের অভিজ্ঞতার আলোকে বসিয়েছেন। তিনি পরে <strong data-start="728" data-end="749">বেগম রোকেয়া পদকে</strong> ভূষিত হন (মরণোপরান্ত) বাংলাদেশ সরকারের পক্ষ থেকে। <span class="" data-state="closed"></span></p>\r\n<h3 data-start="839" data-end="871">📖 বইটির ধারণা ও বিষয়বস্তু</h3>\r\n<p data-start="872" data-end="950">“একাত্তরের জননী” বইটি মূলত রমা চৌধুরীর <strong data-start="911" data-end="930">আত্মজৈবনিক গল্প</strong> — যেখানে তিনি বলেন:</p>\r\n<ul data-start="951" data-end="1371"><li data-start="951" data-end="1124">\r\n<p data-start="953" data-end="1124">১৯৭১-এর মুক্তিযুদ্ধের সময় পাকহানাদার বাহিনীর হাতে নারীর উপর যেসব নির্যাতন ও ভয়াবহতা ঘটেছিল, তা কীভাবে তার জীবনে গভীর ক্ষত তৈরি করে। <span class="" data-state="closed"></span></p>\r\n</li><li data-start="1125" data-end="1238">\r\n<p data-start="1127" data-end="1238">তিনি তার <strong data-start="1136" data-end="1185">ব্যক্তিগত দুঃখ, হারানো সন্তান, বিপর্যয়ের গল্প</strong> তুলে ধরেছেন। <span class="" data-state="closed"></span></p>\r\n</li><li data-start="1239" data-end="1371">\r\n<p data-start="1241" data-end="1371">বইতে জীবনের বাস্তব অভিজ্ঞতার আলোকে দেশপ্রেম, শোষণ, বেদনা, এবং যুদ্ধের বাস্তব চিত্র ফুটে ওঠে। <span class="" data-state="closed"></span></p>\r\n</li></ul>\r\n<h3 data-start="1373" data-end="1395">📚 ব্যাকগ্রাউন্ড</h3>\r\n<ul data-start="1396" data-end="1673"><li data-start="1396" data-end="1512">\r\n<p data-start="1398" data-end="1512">এই গ্রন্থটি রাজনৈতিক ও মুক্তিযুদ্ধভিত্তিক উপন্যাস/স্মৃতিকথা হিসেবে ধরা হয়। <span class="" data-state="closed"></span></p>\r\n</li><li data-start="1513" data-end="1673">\r\n<p data-start="1515" data-end="1673">লেখক রমা চৌধুরী নিজেও ১৯৭১-এ বীরাঙ্গনা হিসেবে অংশগ্রহণ করেছিলেন এবং পরে তাঁর লেখালেখি সেই বাস্তব অভিজ্ঞতার অভিসারে গঠিত। <span class="" data-state="closed"></span></p>\r\n</li></ul>\r\n<h3 data-start="1675" data-end="1692">📘 সংক্ষেপে</h3>\r\n<p data-start="1693" data-end="1929">“একাত্তরের জননী” বইটি ১৯৭১-এর মুক্তিযুদ্ধের <strong data-start="1737" data-end="1766">ব্যক্তিগত ও মানবিক স্মৃতি</strong> হিসেবে অত্যন্ত আবেগপ্রবণ ভাষায় লেখা একটি গ্রন্থ, যা সেই বেদনাদায়ক সময়ের গল্প ও নারীর সংগ্রামকে পাঠকের সামনে জীবন্ত করে তোলে।</p>', 169.00, 190.00, 169.10, 11.00, 'percent', NULL, NULL, '71JNN', 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড7', 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড', 'storage/media/product/2026-02-03-s9NU7e74PI9ZSp85NVkh2EmKvAQNxy8S8D0dRSIS.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-01-25 02:18:09', '2026-03-04 23:15:59'),
-	(27, 'লিডারশীপ-১০১', 'COD2026030527', 'lidarseep-101', 31, 1, 1, 2, 'book', 'ASS', NULL, 'storage/media/product/2026-02-24-feiVUJP44wlPO1WT2K4ZoQNbiEojgsrFMu6tznvA.webp', 'লেখক: জন সি. ম্যাক্সওয়েল<br data-start="360" data-end="363">ভাষা: বাংলা<br data-start="374" data-end="377">অনুবাদক: মোঃ মোরশেদ আলম', '<h2 data-start="132" data-end="149"><span style="font-size: 14px;"><b>📘 বইয়ের নাম</b></span></h2><span style="font-size: 14px;">\r\n</span><p data-start="150" data-end="183"><span data-start="150" data-end="183" style="font-size: 14px;">লিডারশিপ ১০১ (Leadership 101)</span><span style="font-size: 14px;">﻿</span></p><span style="font-size: 14px;">\r\n</span><h2 data-start="185" data-end="197"><span style="font-size: 14px;"><b>✍️ লেখক</b></span></h2><span style="font-size: 14px;">\r\n</span><p data-start="198" data-end="238"><strong data-start="198" data-end="238"><span style="font-size: 14px;">জন সি. ম্যাক্সওয়েল (John C. Maxwell)</span></strong></p><span style="font-size: 14px;">\r\n</span><h2 data-start="240" data-end="256"><span style="font-size: 14px;"><b>🌐 মূল ভাষা</b></span></h2><span style="font-size: 14px;">\r\n</span><p data-start="257" data-end="303"><span style="font-size: 14px;">ইংরেজি (বাংলা অনুবাদ সংস্করণ বাজারে পাওয়া যায়)</span></p><span style="font-size: 14px;">\r\n</span><h2 data-start="305" data-end="323"><span style="font-size: 14px;"><b>🏷️ ক্যাটাগরি</b></span></h2><span style="font-size: 14px;">\r\n</span><p data-start="324" data-end="371"><span style="font-size: 14px;">লিডারশিপ / আত্মউন্নয়ন / ম্যানেজমেন্ট / মোটিভেশন</span></p><span style="font-size: 14px;">\r\n</span><h2 data-start="373" data-end="402"><span style="font-size: 14px;"><b>📖 বইয়ের সংক্ষিপ্ত বিবরণ</b></span></h2><span style="font-size: 14px;">\r\n</span><p data-start="403" data-end="580"><strong data-start="403" data-end="419"><span style="font-size: 14px;">লিডারশিপ ১০১</span></strong><span style="font-size: 14px;"> হলো নেতৃত্ব শেখার একদম বেসিক গাইড। এই বইয়ে জন সি. ম্যাক্সওয়েল খুব সহজ ভাষায় বুঝিয়েছেন—</span><br data-start="506" data-end="509"><span style="font-size: 8px;">\r\n<span style="font-size: 12px;">নেতৃত্ব মানে শুধু পদ বা ক্ষমতা নয়, নেতৃত্ব মানে </span></span><strong data-start="557" data-end="579"><span style="font-size: 12px;">প্রভাব (Influence)</span></strong><span style="font-size: 12px;">।</span></p><span style="font-size: 12px;">\r\n</span><p data-start="582" data-end="611"><span style="font-size: 12px;">এই বইটি বিশেষভাবে লেখা হয়েছে:</span></p><span style="font-size: 8px;">\r\n</span><ul data-start="612" data-end="717"><li data-start="612" data-end="634"><span style="font-size: 8px;">\r\n</span><p data-start="614" data-end="634">নতুন লিডারদের জন্য</p><span style="font-size: 8px;">\r\n</span></li><li data-start="635" data-end="676"><span style="font-size: 8px;">\r\n</span><p data-start="637" data-end="676">যারা নেতৃত্ব শিখতে চায় একদম শুরু থেকে</p><span style="font-size: 8px;">\r\n</span></li><li data-start="677" data-end="717"><span style="font-size: 8px;">\r\n</span><p data-start="679" data-end="717">ছাত্র, চাকরিজীবী ও উদ্যোক্তাদের জন্য</p><span style="font-size: 8px;">\r\n</span></li></ul><span style="font-size: 8px;">\r\n</span><h2 data-start="719" data-end="745"><span style="font-size: 14px;"><b>⭐ বইয়ের মূল বিষয়বস্তু</b></span></h2><span style="font-size: 12px;">\r\n</span><p data-start="746" data-end="766"><span style="font-size: 12px;">এই বইয়ে আপনি শিখবেন—</span></p><span style="font-size: 8px;">\r\n</span><ul data-start="768" data-end="993"><li data-start="768" data-end="797"><span style="font-size: 8px;">\r\n</span><p data-start="770" data-end="797">নেতৃত্ব আসলে কী এবং কী নয়</p><span style="font-size: 8px;">\r\n</span></li><li data-start="798" data-end="832"><span style="font-size: 8px;">\r\n</span><p data-start="800" data-end="832">ভালো লিডার হওয়ার মৌলিক গুণাবলি</p><span style="font-size: 8px;">\r\n</span></li><li data-start="833" data-end="879"><span style="font-size: 8px;">\r\n</span><p data-start="835" data-end="879">কীভাবে মানুষের উপর ইতিবাচক প্রভাব ফেলতে হয়</p><span style="font-size: 8px;">\r\n</span></li><li data-start="880" data-end="909"><span style="font-size: 8px;">\r\n</span><p data-start="882" data-end="909">লিডার ও ফলোয়ারের পার্থক্য</p><span style="font-size: 8px;">\r\n</span></li><li data-start="910" data-end="956"><span style="font-size: 8px;">\r\n</span><p data-start="912" data-end="956">ব্যক্তিগত উন্নতির মাধ্যমে নেতৃত্ব গড়ে তোলা</p><span style="font-size: 8px;">\r\n</span></li><li data-start="957" data-end="993"><span style="font-size: 8px;">\r\n</span><p data-start="959" data-end="993">বাস্তব জীবনের উদাহরণ ও সহজ সূত্র</p><span style="font-size: 8px;">\r\n</span></li></ul><span style="font-size: 8px;">\r\n</span><h2 data-start="995" data-end="1017"><span style="font-size: 14px;"><b>🎯 কেন বইটি পড়বেন</b></span></h2><span style="font-size: 8px;">\r\n</span><ul data-start="1018" data-end="1179"><li data-start="1018" data-end="1066"><span style="font-size: 8px;">\r\n</span><p data-start="1020" data-end="1066">নেতৃত্ব শেখার জন্য <strong data-start="1039" data-end="1064">পারফেক্ট স্টার্টার বই</strong></p><span style="font-size: 8px;">\r\n</span></li><li data-start="1067" data-end="1097"><span style="font-size: 8px;">\r\n</span><p data-start="1069" data-end="1097">কম পেজ, কিন্তু খুব কার্যকর</p><span style="font-size: 8px;">\r\n</span></li><li data-start="1098" data-end="1131"><span style="font-size: 8px;">\r\n</span><p data-start="1100" data-end="1131">বাস্তব জীবনে প্রয়োগযোগ্য টিপস</p><span style="font-size: 8px;">\r\n</span></li><li data-start="1132" data-end="1179"><span style="font-size: 8px;">\r\n</span><p data-start="1134" data-end="1179">আত্মবিশ্বাস ও সিদ্ধান্ত নেওয়ার ক্ষমতা বাড়ায়</p><span style="font-size: 8px;">\r\n</span></li></ul><span style="font-size: 8px;">\r\n</span><h2 data-start="1181" data-end="1205"><span style="font-size: 14px;"><b>📚 কার জন্য উপযুক্ত</b></span></h2><span style="font-size: 8px;">\r\n</span><ul data-start="1206" data-end="1297"><li data-start="1206" data-end="1219"><span style="font-size: 8px;">\r\n</span><p data-start="1208" data-end="1219">স্টুডেন্ট</p><span style="font-size: 8px;">\r\n</span></li><li data-start="1220" data-end="1238"><span style="font-size: 8px;">\r\n</span><p data-start="1222" data-end="1238">নতুন ম্যানেজার</p><span style="font-size: 8px;">\r\n</span></li><li data-start="1239" data-end="1252"><span style="font-size: 8px;">\r\n</span><p data-start="1241" data-end="1252">টিম লিডার</p><span style="font-size: 8px;">\r\n</span></li><li data-start="1253" data-end="1266"><span style="font-size: 8px;">\r\n</span><p data-start="1255" data-end="1266">উদ্যোক্তা</p><span style="font-size: 8px;">\r\n</span></li><li data-start="1267" data-end="1297"><span style="font-size: 8px;">\r\n</span><p data-start="1269" data-end="1297">যারা লিডারশিপ শিখতে আগ্রহী</p><span style="font-size: 8px;">\r\n</span></li></ul><span style="font-size: 8px;">\r\n</span><h2 data-start="1299" data-end="1320"><span style="font-size: 14px;"><b>🧠 লেখক সম্পর্কে</b></span></h2><span style="font-size: 14px;">\r\n</span><p data-start="1321" data-end="1470"><span style="font-size: 14px;">জন সি. ম্যাক্সওয়েল একজন বিশ্বখ্যাত লিডারশিপ এক্সপার্ট। তিনি</span><br data-start="1380" data-end="1383"><span style="font-size: 12px;">\r\n</span><strong data-start="1383" data-end="1410">৭০টিরও বেশি লিডারশিপ বই</strong><span style="font-size: 12px;"> লিখেছেন, যেগুলো কোটি কপি বিক্রি হয়েছে এবং বহু ভাষায় অনূদিত।</span></p>', 120.00, 160.00, 120.00, 40.00, 'amount', '2026-02-06', '2026-03-03', NULL, 'একনজরে উম্মাহর ইতিহাস ৩ খন্ডWA', 'sAS', 'storage/media/product/2026-02-24-feiVUJP44wlPO1WT2K4ZoQNbiEojgsrFMu6tznvA.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-02-01 06:30:48', '2026-03-04 23:15:27'),
-	(28, 'Itihas', NULL, 'itihas', 2, 1, 1, 2, 'book', 'dsdsa', NULL, 'storage/media/product/2026-02-25-zVkMnkTW3cZwFd47CTfgrzB238BmQX2w4kfWy1gc.webp', '<p>dasd</p>', '<p>dasdas</p>', 55.00, 33.00, 33.00, 0.00, 'amount', NULL, NULL, NULL, 'Itihas', 'dasdas', 'storage/media/product/2026-02-25-zVkMnkTW3cZwFd47CTfgrzB238BmQX2w4kfWy1gc.webp', 1, 0, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-02-24 22:49:29', '2026-03-04 01:02:48'),
-	(29, 'Gerila', NULL, 'gerila', 10, 1, 1, 1, 'book', '34fede', NULL, 'storage/media/product/2026-02-25-aQyaIxZ1q44p5S1WuPLM1tkjUvHd36Twpjk4hKN5.webp', '<p>asdsa</p>', '<p>dasd</p>', 12.00, 14.00, 14.00, 0.00, 'amount', NULL, NULL, NULL, 'Gerila', 'dasd', 'storage/media/product/2026-02-25-aQyaIxZ1q44p5S1WuPLM1tkjUvHd36Twpjk4hKN5.webp', 1, 0, 0, 0, 0, 1, 1, NULL, NULL, NULL, '2026-02-24 23:02:38', '2026-02-24 23:02:38'),
-	(30, 'Gerila2', NULL, 'gerila2', 10, 1, 1, 1, 'book', '417345298821', NULL, 'storage/media/product/2026-02-25-YfMdlWJKe0qeuJC1QSsjaG3WvzBJLiW4CqzeKBQo.webp', '<p>q</p>', '<p>eqwe</p>', 15.00, 16.00, 16.00, 0.00, 'amount', NULL, NULL, NULL, 'Gerila2', 'eqwe', 'storage/media/product/2026-02-25-YfMdlWJKe0qeuJC1QSsjaG3WvzBJLiW4CqzeKBQo.webp', 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-02-24 23:03:35', '2026-02-24 23:11:35'),
-	(31, 'test prod', NULL, 'test-prod', 2, 1, 1, 1, 'book', 'fff', NULL, 'storage/media/product/2026-02-25-J3OBoi3kVZrs3jNNf3WJzrRrOXsqF36haCbpSQDx.webp', '<p>sddas</p>', '<p>asdas</p>', 255.00, 266.00, 266.00, 0.00, 'amount', NULL, NULL, NULL, 'test prod', 'asdas', 'storage/media/product/2026-02-25-J3OBoi3kVZrs3jNNf3WJzrRrOXsqF36haCbpSQDx.webp', 1, 0, 0, 0, 0, 1, 1, NULL, NULL, NULL, '2026-02-25 00:23:57', '2026-02-25 00:23:57'),
-	(32, 'teddd', '', 'teddd', 10, 1, 1, 1, 'book', 'yyyy', NULL, 'storage/media/product/2026-02-25-BT8UrUQ43xHxjiCGG0ogQI0noci3Y3byotgdkqVT.webp', '<p>sadsa</p>', '<p>adasd</p>', 577.00, 588.00, 588.00, 0.00, 'amount', NULL, NULL, NULL, 'teddd', 'adasd', 'storage/media/product/2026-02-25-BT8UrUQ43xHxjiCGG0ogQI0noci3Y3byotgdkqVT.webp', 1, 0, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-02-25 00:25:11', '2026-03-04 21:53:32'),
-	(33, 'gggrrr', '', 'gggrrr', 10, 1, 1, 2, 'book', 'ttttt', NULL, 'storage/media/product/2026-02-25-GfVIfGLk8NJyrb75Y2JySij2r7y0B5DQ14aqjL6Y.webp', '<p>dff</p>', '<p>fd</p>', 699.00, 888.00, 888.00, 0.00, 'amount', NULL, NULL, NULL, 'gggrrr', 'fd', 'storage/media/product/2026-02-25-GfVIfGLk8NJyrb75Y2JySij2r7y0B5DQ14aqjL6Y.webp', 1, 0, 0, 0, 0, 0, 1, 1, NULL, NULL, '2026-02-25 02:53:25', '2026-03-04 22:06:28'),
-	(34, 'Test33', '', 'test33', 2, 1, 1, 2, 'book', 'eeeee', NULL, 'storage/media/product/2026-02-26-Xya5bRC9GWaIc5yQG3eyKtC0cnqjlWguxVtkgdAA.webp', NULL, NULL, 66.00, 77.00, 77.00, 0.00, 'amount', NULL, NULL, NULL, 'Test33', '', 'storage/media/product/2026-02-26-Xya5bRC9GWaIc5yQG3eyKtC0cnqjlWguxVtkgdAA.webp', 1, 0, 0, 0, 0, 0, 1, 1, NULL, NULL, '2026-02-26 00:12:31', '2026-03-04 22:00:28'),
-	(35, 'gggg', 'COD2026030535', 'gggg', 2, 1, 1, 2, 'book', 'gfgfgfg', NULL, 'storage/media/product/2026-03-05-PuOiR3zvjoCQTk55uzqOwGYxJdgeGmmGLM71lmSs.webp', NULL, NULL, 44.00, 55.00, 55.00, 0.00, 'amount', NULL, NULL, NULL, 'gggg', '', 'storage/media/product/2026-03-05-PuOiR3zvjoCQTk55uzqOwGYxJdgeGmmGLM71lmSs.webp', 1, 0, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-03-04 21:37:26', '2026-03-04 22:39:54'),
-	(36, 'hhh', 'COD2026030536', 'hhh', 10, 1, 1, 2, 'book', 'fgfdgdg', NULL, 'storage/media/product/2026-03-05-RR4l03EXIwvaASjbDVVRjrpBRKqc0GvB05N0aE8B.webp', NULL, NULL, 77.00, 88.00, 88.00, 0.00, 'amount', NULL, NULL, NULL, 'hhh', '', 'storage/media/product/2026-03-05-RR4l03EXIwvaASjbDVVRjrpBRKqc0GvB05N0aE8B.webp', 1, 0, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-03-04 22:10:40', '2026-03-04 22:36:49'),
-	(37, 'jjj', 'COD2026030537', 'jjj', 2, 1, 1, 2, 'book', 'fdd', NULL, 'storage/media/product/2026-03-05-4ZDtSvHTkzqOKUlFhdDj8TMdjm3vYyoAEQ7uoj40.webp', NULL, NULL, 66.00, 77.00, 77.00, 0.00, 'amount', NULL, NULL, NULL, 'jjj', '', 'storage/media/product/2026-03-05-4ZDtSvHTkzqOKUlFhdDj8TMdjm3vYyoAEQ7uoj40.webp', 1, 0, 0, 0, 0, 1, 1, NULL, NULL, NULL, '2026-03-04 22:29:01', '2026-03-04 22:29:01'),
-	(38, 'kk', 'COD2026030538', 'kk', 2, 1, 1, 2, 'book', '333', NULL, 'storage/media/product/2026-03-05-1IfsybrYpNZfKEmhpiWRvx7BgDrUAEhaCoil9rX9.webp', NULL, NULL, 88.00, 99.00, 99.00, 0.00, 'amount', NULL, NULL, NULL, 'kk', '', 'storage/media/product/2026-03-05-1IfsybrYpNZfKEmhpiWRvx7BgDrUAEhaCoil9rX9.webp', 1, 0, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-03-04 22:32:44', '2026-03-04 23:01:20'),
-	(39, 'gh', 'COD2026030539', 'gh', 10, 1, 1, 2, 'book', 'ewee', NULL, 'storage/media/product/2026-03-05-xnQoyhgqkf0FC3NZmT12qVDxlgpz9p3I4E3cAeiv.webp', NULL, NULL, 44.00, 55.00, 55.00, 0.00, 'amount', NULL, NULL, NULL, 'gh', '', 'storage/media/product/2026-03-05-xnQoyhgqkf0FC3NZmT12qVDxlgpz9p3I4E3cAeiv.webp', 1, 0, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-03-04 22:41:43', '2026-03-04 22:51:35');
+INSERT INTO `products` (`id`, `name`, `code`, `slug`, `category_id`, `uom_id`, `brand_id`, `publication_id`, `product_type`, `barcode`, `file`, `thumbnail`, `short_description`, `description`, `profit`, `profit_percent`, `show_dashboard`, `serial`, `required_share`, `purchase_price`, `regular_price`, `sale_price`, `discount`, `discount_type`, `discount_start_date`, `discount_end_date`, `sku`, `meta_title`, `meta_description`, `meta_image`, `custom_barcode`, `favorite`, `trending`, `new_arrival`, `best_seller`, `status`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
+	(1, 'Book1', NULL, 'book1', 1, 1, 1, NULL, 'book', 'asdsas', NULL, 'storage/media/product/2026-01-25-ohsvTRcZVvt6d3SOWJRqqL5gxdGsAfsTpogwuJoG.webp', '<p>dadadasda</p>', '<p>sdsdasd</p>', 0, 0, 1, NULL, 0, 234.00, 300.00, 320.00, 1.00, 'amount', '2026-01-20', '2026-02-21', 'SKUS', 'meta', 'cssdsfsf', 'storage/media/product/2026-01-20-FLxMajI5xjcg9zj2q2IBLQh6RqZUGujs5DiDmI6I.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-01-20 04:15:44', '2026-01-24 23:17:55'),
+	(2, 'Book2', NULL, 'book2', 1, 1, 1, NULL, 'book', 'sdasd', NULL, 'storage/media/product/2026-01-25-fQxUtYHO76XI21NVyXZ7weRAsPQpdbmXQwaJHczN.webp', '<p>dsdasda</p>', '<p>dasdas</p>', 0, 0, 1, NULL, 0, 11.00, 33.00, 31.00, 2.00, 'amount', '2026-01-20', '2026-02-26', 'ssds', 'sdsadad', 'sadasdasd', 'storage/media/product/2026-01-20-NPtdHB2jK5Qnb7ZQHRfq1tlCqh3GLhOoYfA8dHbZ.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-01-20 04:26:34', '2026-01-24 23:17:37'),
+	(3, 'একনজরে উম্মাহর', 'COD202603083', 'eknjre-ummahr', 2, 1, 1, 2, 'book', 'sdfsd', NULL, 'storage/media/product/2026-01-25-OeGX8HlaQ779JWdmB6KHD84OpPmkARBeql8VyfvA.webp', '<p>আল্লামা ইবনুল কায়্যিম জাওযিয়্যাহ রহ</p>', '<p>sdfsd</p>', 0, 0, 1, NULL, 0, 22.00, 23.00, 22.00, 1.00, 'amount', NULL, NULL, NULL, 'sdfsddf', 'sdfsd', 'storage/media/product/2026-01-25-OeGX8HlaQ779JWdmB6KHD84OpPmkARBeql8VyfvA.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-01-22 04:46:01', '2026-03-08 02:18:00'),
+	(5, 'Electric Ketle', NULL, 'electric-ketle', 3, 1, 1, 2, 'other', 'sds', NULL, 'storage/media/product/2026-02-03-EB2TqjB4St9q72M2f8GOo8FWAAkIM0PB7bmFM9sa.webp', '<p>Electric Ketle</p>', '<p>Electric Ketle</p>', 0, 0, 1, NULL, 0, 800.00, 1200.00, 1188.00, 1.00, 'percent', NULL, NULL, NULL, 'sdfsdf', 'dsfsdf', 'storage/media/product/2026-02-03-EB2TqjB4St9q72M2f8GOo8FWAAkIM0PB7bmFM9sa.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-01-22 06:36:18', '2026-02-03 00:25:05'),
+	(7, 'Smart Phone Model12222', NULL, 'smart-phone-model12222', 6, 1, 1, 1, 'other', 'sasa', NULL, 'storage/media/product/2026-02-03-AaEwp89prQkVMnUeryd9zWDClt1a0seH4xMJYlUL.webp', '<p><span style="color: rgb(108, 117, 125); font-family: Inter, sans-serif; background-color: rgb(248, 249, 250);">Smart Phone Model12222</span></p>', '<p><span style="color: rgb(108, 117, 125); font-family: Inter, sans-serif; background-color: rgb(248, 249, 250);">Smart Phone Model12222</span></p>', 0, 0, 1, NULL, 0, 13000.00, 20000.00, 13400.00, 33.00, 'percent', NULL, NULL, NULL, 'fsd', 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড', 'storage/media/product/2026-02-03-AaEwp89prQkVMnUeryd9zWDClt1a0seH4xMJYlUL.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-01-25 02:06:22', '2026-02-03 00:24:05'),
+	(10, 'শেষের কবিতা', 'COD2026030510', 'sesher-kbita', 31, 1, 1, 2, 'book', 'wqsa', NULL, 'storage/media/product/2026-02-03-rb9Jdd1upUcXFKsCuruAHGJPitvu7OMJ15JZqU70.webp', 'লেখক: <strong data-start="161" data-end="182">রবীন্দ্রনাথ ঠাকুর</strong><br data-start="360" data-end="363">ভাষা: বাংলা<br data-start="374" data-end="377">সংকলন ও রচনা: <strong data-start="161" data-end="182">রবীন্দ্রনাথ ঠাকুর</strong>', '<h2 data-start="113" data-end="130">📘 বইয়ের নাম</h2>\r\n<p data-start="131" data-end="146"><strong data-start="131" data-end="146">শেষের কবিতা</strong></p>\r\n<h2 data-start="148" data-end="160">✍️ লেখক</h2>\r\n<p data-start="161" data-end="182"><strong data-start="161" data-end="182">রবীন্দ্রনাথ ঠাকুর</strong></p>\r\n<h2 data-start="184" data-end="202">🏷️ ক্যাটাগরি</h2>\r\n<p data-start="203" data-end="246">উপন্যাস / রোমান্টিক সাহিত্য / বাংলা ক্লাসিক</p>\r\n<h2 data-start="248" data-end="260">🌐 ভাষা</h2>\r\n<p data-start="261" data-end="266">বাংলা</p>\r\n<h2 data-start="268" data-end="297">📖 বইয়ের সংক্ষিপ্ত বিবরণ</h2>\r\n<p data-start="298" data-end="500"><strong data-start="298" data-end="313">শেষের কবিতা</strong> বাংলা সাহিত্যের অন্যতম জনপ্রিয় ও গভীর রোমান্টিক উপন্যাস। এই উপন্যাসে প্রেমকে দেখা হয়েছে নতুন দৃষ্টিভঙ্গিতে—যেখানে আবেগ, বুদ্ধিবৃত্তিক দ্বন্দ্ব, আত্মসম্মান ও স্বাধীন চিন্তার সমন্বয় রয়েছে।</p>\r\n<p data-start="502" data-end="679">গল্পের মূল চরিত্র <strong data-start="520" data-end="532">অমিত রায়</strong> ও <strong data-start="535" data-end="545">লাবণ্য</strong>—দুজনের কথোপকথন, মানসিক টানাপোড়েন এবং দর্শনভিত্তিক প্রেমই এই উপন্যাসের প্রাণ। এখানে প্রেম শুধু অনুভূতি নয়, বরং চিন্তা ও উপলব্ধির বিষয়।</p>\r\n<h2 data-start="681" data-end="707">⭐ বইয়ের মূল বিষয়বস্তু</h2>\r\n<ul data-start="708" data-end="882"><li data-start="708" data-end="741">\r\n<p data-start="710" data-end="741">প্রেম ও আত্মসম্মানের দ্বন্দ্ব</p>\r\n</li><li data-start="742" data-end="782">\r\n<p data-start="744" data-end="782">আধুনিক চিন্তাধারা ও ব্যক্তিস্বাধীনতা</p>\r\n</li><li data-start="783" data-end="810">\r\n<p data-start="785" data-end="810">আবেগ বনাম যুক্তির সংঘাত</p>\r\n</li><li data-start="811" data-end="847">\r\n<p data-start="813" data-end="847">নারীর আত্মমর্যাদা ও মানসিক শক্তি</p>\r\n</li><li data-start="848" data-end="882">\r\n<p data-start="850" data-end="882">দর্শনভিত্তিক রোমান্টিক সম্পর্ক</p>\r\n</li></ul>\r\n<h2 data-start="884" data-end="906">🎯 কেন বইটি পড়বেন</h2>\r\n<ul data-start="907" data-end="1099"><li data-start="907" data-end="965">\r\n<p data-start="909" data-end="965">বাংলা সাহিত্যের <strong data-start="925" data-end="952">ক্লাসিক প্রেমের উপন্যাস</strong> পড়তে চাইলে</p>\r\n</li><li data-start="966" data-end="1008">\r\n<p data-start="968" data-end="1008">প্রেমকে গভীর ও বুদ্ধিবৃত্তিকভাবে বুঝতে</p>\r\n</li><li data-start="1009" data-end="1055">\r\n<p data-start="1011" data-end="1055">রবীন্দ্রনাথের চিন্তা ও ভাষাশৈলী উপভোগ করতে</p>\r\n</li><li data-start="1056" data-end="1099">\r\n<p data-start="1058" data-end="1099">বারবার পড়ার মতো একটি সাহিত্যকর্ম হিসেবে</p>\r\n</li></ul>\r\n<h2 data-start="1101" data-end="1125">📚 কার জন্য উপযুক্ত</h2>\r\n<ul data-start="1126" data-end="1243"><li data-start="1126" data-end="1148">\r\n<p data-start="1128" data-end="1148">সাহিত্যপ্রেমী পাঠক</p>\r\n</li><li data-start="1149" data-end="1184">\r\n<p data-start="1151" data-end="1184">কলেজ–বিশ্ববিদ্যালয়ের শিক্ষার্থী</p>\r\n</li><li data-start="1185" data-end="1208">\r\n<p data-start="1187" data-end="1208">রবীন্দ্রনাথ অনুরাগী</p>\r\n</li><li data-start="1209" data-end="1243">\r\n<p data-start="1211" data-end="1243">ক্লাসিক বাংলা উপন্যাস সংগ্রাহক</p>\r\n</li></ul>\r\n<h2 data-start="1245" data-end="1265">🧠 লেখক পরিচিতি</h2>\r\n<p data-start="1266" data-end="1435"><strong data-start="1266" data-end="1287">রবীন্দ্রনাথ ঠাকুর</strong> (১৮৬১–১৯৪১) বাংলা সাহিত্যের সর্বশ্রেষ্ঠ সাহিত্যিকদের একজন এবং <strong data-start="1350" data-end="1379">নোবেল পুরস্কারপ্রাপ্ত কবি</strong>। তাঁর উপন্যাস, কবিতা ও প্রবন্ধ আজও সমানভাবে প্রাসঙ্গিক।</p>', 421.67, 2.5, 1, NULL, 27, 150.00, 160.00, 140.80, 12.00, 'percent', '2026-02-26', '2026-02-27', 'SHSEK', 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড3', 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড', 'storage/media/product/2026-02-03-rb9Jdd1upUcXFKsCuruAHGJPitvu7OMJ15JZqU70.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-01-25 02:11:41', '2026-03-10 01:21:51'),
+	(11, 'অনুভূতির কাব্য', 'COD2026030511', 'onuvuutir-kabz', 31, 1, 1, 2, 'book', 'BARKABB', NULL, 'storage/media/product/2026-02-03-8FjavixMHLPCAdGiq8fTy7q0qjCY3f4bLTPcV3Wy.webp', 'লেখক: হিল্লোল তালুকদার<br data-start="360" data-end="363">ভাষা: বাংলা<br data-start="374" data-end="377">সংকলন ও রচনা: প্রিয় বাংলা প্রকাশন', '<h2 data-start="157" data-end="174">📘 বইয়ের নাম</h2>\r\n<p data-start="175" data-end="193"><strong data-start="175" data-end="193">অনুভূতির কাব্য</strong></p>\r\n<h2 data-start="195" data-end="213">🏷️ ক্যাটাগরি</h2>\r\n<p data-start="214" data-end="258">কবিতা / আধুনিক বাংলা কাব্য / অনুভূতি ও প্রেম</p>\r\n<h2 data-start="260" data-end="272">🌐 ভাষা</h2>\r\n<p data-start="273" data-end="278">বাংলা</p>\r\n<h2 data-start="280" data-end="309">📖 বইয়ের সংক্ষিপ্ত বিবরণ</h2>\r\n<p data-start="310" data-end="552"><strong data-start="310" data-end="328">অনুভূতির কাব্য</strong> একটি আবেগপ্রবণ কবিতার সংকলন, যেখানে মানুষের অন্তর্গত অনুভূতি—ভালোবাসা, কষ্ট, অপেক্ষা, বিচ্ছেদ, নীরবতা ও জীবনের বাস্তবতা—কবিতার ছন্দে তুলে ধরা হয়েছে। প্রতিটি কবিতা পাঠকের হৃদয়ের গভীরে লুকিয়ে থাকা না বলা কথাগুলোকে স্পর্শ করে।</p>\r\n<p data-start="554" data-end="692">এই বইয়ের কবিতাগুলো সহজ ভাষায় লেখা, কিন্তু অনুভূতিতে গভীর। পাঠক নিজের জীবনের গল্পের সঙ্গে কবিতার পঙ্‌ক্তিগুলো মিলিয়ে নিতে পারবেন খুব সহজেই।</p>\r\n<h2 data-start="694" data-end="720">⭐ বইয়ের মূল বিষয়বস্তু</h2>\r\n<ul data-start="721" data-end="871"><li data-start="721" data-end="750">\r\n<p data-start="723" data-end="750">প্রেম ও ভালোবাসার অনুভূতি</p>\r\n</li><li data-start="751" data-end="782">\r\n<p data-start="753" data-end="782">না বলা কষ্ট ও নীরব যন্ত্রণা</p>\r\n</li><li data-start="783" data-end="812">\r\n<p data-start="785" data-end="812">স্মৃতি, অপেক্ষা ও বিচ্ছেদ</p>\r\n</li><li data-start="813" data-end="839">\r\n<p data-start="815" data-end="839">জীবনের বাস্তব অভিজ্ঞতা</p>\r\n</li><li data-start="840" data-end="871">\r\n<p data-start="842" data-end="871">হৃদয়ছোঁয়া ও ভাবনামূলক কবিতা</p>\r\n</li></ul>\r\n<h2 data-start="873" data-end="895">🎯 কেন বইটি পড়বেন</h2>\r\n<ul data-start="896" data-end="1066"><li data-start="896" data-end="933">\r\n<p data-start="898" data-end="933">অনুভূতিপ্রবণ কবিতা পড়তে ভালোবাসলে</p>\r\n</li><li data-start="934" data-end="973">\r\n<p data-start="936" data-end="973">একাকিত্ব বা নীরব সময়ের সঙ্গী হিসেবে</p>\r\n</li><li data-start="974" data-end="1013">\r\n<p data-start="976" data-end="1013">সহজ কিন্তু গভীর অর্থবহ কবিতা খুঁজলে</p>\r\n</li><li data-start="1014" data-end="1066">\r\n<p data-start="1016" data-end="1066">উপহার দেওয়ার জন্য একটি সুন্দর কাব্যগ্রন্থ হিসেবে</p>\r\n</li></ul>\r\n<h2 data-start="1068" data-end="1092">📚 কার জন্য উপযুক্ত</h2>\r\n<ul data-start="1093" data-end="1201"><li data-start="1093" data-end="1114">\r\n<p data-start="1095" data-end="1114">কবিতা প্রেমী পাঠক</p>\r\n</li><li data-start="1115" data-end="1134">\r\n<p data-start="1117" data-end="1134">তরুণ ও যুব সমাজ</p>\r\n</li><li data-start="1135" data-end="1180">\r\n<p data-start="1137" data-end="1180">যারা অনুভূতির লেখায় নিজেকে খুঁজে পেতে চান</p>\r\n</li><li data-start="1181" data-end="1201">\r\n<p data-start="1183" data-end="1201">সাহিত্য সংগ্রাহক</p></li></ul>', 435, 2.5, 1, NULL, 31, 130.00, 179.00, 119.93, 33.00, 'percent', '2026-01-16', '2026-02-20', 'ONUVTTIK', 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড4', 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড', 'storage/media/product/2026-02-03-8FjavixMHLPCAdGiq8fTy7q0qjCY3f4bLTPcV3Wy.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-01-25 02:13:34', '2026-03-04 23:17:12'),
+	(12, 'একাত্তরের চিঠি', 'COD2026030512', 'ekattrer-cithi', 31, 1, 1, 2, 'book', 'AKATCHTI', NULL, 'storage/media/product/2026-02-03-WSrTGyJMmzR3tLWgEctfyrrLJatgmAX3AgZmmu6b.webp', 'লেখক: <strong data-start="157" data-end="175">মুনতাসীর মামুন</strong><br data-start="360" data-end="363">ভাষা: বাংলা<br data-start="374" data-end="377">সংকলন ও রচনা: <strong data-start="157" data-end="175">মুনতাসীর মামুন</strong>', '<h2 data-start="105" data-end="122">📘 বইয়ের নাম</h2>\r\n<p data-start="123" data-end="141"><strong data-start="123" data-end="141">একাত্তরের চিঠি</strong></p>\r\n<h2 data-start="143" data-end="156">✍️ সংকলক</h2>\r\n<p data-start="157" data-end="175"><strong data-start="157" data-end="175">মুনতাসীর মামুন</strong></p>\r\n<h2 data-start="177" data-end="195">🏷️ ক্যাটাগরি</h2>\r\n<p data-start="196" data-end="240">মুক্তিযুদ্ধ / ইতিহাস / দলিলপত্র / চিঠি সংকলন</p>\r\n<h2 data-start="242" data-end="254">🌐 ভাষা</h2>\r\n<p data-start="255" data-end="260">বাংলা</p>\r\n<h2 data-start="262" data-end="291">📖 বইয়ের সংক্ষিপ্ত বিবরণ</h2>\r\n<p data-start="292" data-end="488"><strong data-start="292" data-end="310">একাত্তরের চিঠি</strong> হলো বাংলাদেশের মুক্তিযুদ্ধকালীন (১৯৭১) সময়ের বাস্তব ও হৃদয়স্পর্শী চিঠির সংকলন। যুদ্ধের ভয়াবহতা, আশা-নিরাশা, ভালোবাসা, দেশপ্রেম ও আত্মত্যাগ—সবকিছু উঠে এসেছে এই চিঠিগুলোর মাধ্যমে।</p>\r\n<p data-start="490" data-end="512">এই চিঠিগুলো লিখেছিলেন—</p>\r\n<ul data-start="513" data-end="634"><li data-start="513" data-end="531">\r\n<p data-start="515" data-end="531">মুক্তিযোদ্ধারা</p>\r\n</li><li data-start="532" data-end="557">\r\n<p data-start="534" data-end="557">শহীদ পরিবারের সদস্যরা</p>\r\n</li><li data-start="558" data-end="594">\r\n<p data-start="560" data-end="594">যুদ্ধরত সন্তানকে লেখা মায়ের চিঠি</p>\r\n</li><li data-start="595" data-end="634">\r\n<p data-start="597" data-end="634">প্রিয়জনের কাছে লেখা শেষ বিদায়ের কথা</p>\r\n</li></ul>\r\n<h2 data-start="636" data-end="662">⭐ বইয়ের মূল বিষয়বস্তু</h2>\r\n<ul data-start="663" data-end="862"><li data-start="663" data-end="730">\r\n<p data-start="665" data-end="730">মুক্তিযুদ্ধের সময় সাধারণ মানুষের আবেগ ও মানসিক অবস্থার প্রতিফলন</p>\r\n</li><li data-start="731" data-end="779">\r\n<p data-start="733" data-end="779">যুদ্ধক্ষেত্র ও পরিবারের মধ্যে দূরত্বের বেদনা</p>\r\n</li><li data-start="780" data-end="823">\r\n<p data-start="782" data-end="823">স্বাধীনতার জন্য আত্মত্যাগের বাস্তব দলিল</p>\r\n</li><li data-start="824" data-end="862">\r\n<p data-start="826" data-end="862">ইতিহাসের বইয়ে না পাওয়া মানবিক গল্প</p>\r\n</li></ul>\r\n<h2 data-start="864" data-end="886">🎯 কেন বইটি পড়বেন</h2>\r\n<ul data-start="887" data-end="1074"><li data-start="887" data-end="936">\r\n<p data-start="889" data-end="936">মুক্তিযুদ্ধকে <strong data-start="903" data-end="923">মানবিক দৃষ্টিকোণ</strong> থেকে জানতে</p>\r\n</li><li data-start="937" data-end="979">\r\n<p data-start="939" data-end="979">বাস্তব চিঠির মাধ্যমে ইতিহাস অনুভব করতে</p>\r\n</li><li data-start="980" data-end="1033">\r\n<p data-start="982" data-end="1033">শিক্ষার্থী ও গবেষকদের জন্য গুরুত্বপূর্ণ রেফারেন্স</p>\r\n</li><li data-start="1034" data-end="1074">\r\n<p data-start="1036" data-end="1074">দেশপ্রেম ও মূল্যবোধ জাগ্রত করার জন্য</p>\r\n</li></ul>\r\n<h2 data-start="1076" data-end="1100">📚 কার জন্য উপযুক্ত</h2>\r\n<ul data-start="1101" data-end="1231"><li data-start="1101" data-end="1142">\r\n<p data-start="1103" data-end="1142">স্কুল-কলেজ-বিশ্ববিদ্যালয়ের শিক্ষার্থী</p>\r\n</li><li data-start="1143" data-end="1169">\r\n<p data-start="1145" data-end="1169">মুক্তিযুদ্ধপ্রেমী পাঠক</p>\r\n</li><li data-start="1170" data-end="1196">\r\n<p data-start="1172" data-end="1196">গবেষক ও ইতিহাস অনুরাগী</p>\r\n</li><li data-start="1197" data-end="1231">\r\n<p data-start="1199" data-end="1231">লাইব্রেরি ও সংগ্রহে রাখার জন্য</p>\r\n</li></ul>\r\n<h2 data-start="1233" data-end="1255">🧠 সংকলক সম্পর্কে</h2>\r\n<p data-start="1256" data-end="1389"><strong data-start="1256" data-end="1274">মুনতাসীর মামুন</strong> বাংলাদেশের প্রখ্যাত ইতিহাসবিদ ও মুক্তিযুদ্ধ গবেষক। মুক্তিযুদ্ধভিত্তিক বহু গুরুত্বপূর্ণ গ্রন্থ সংকলন ও রচনা করেছেন।</p><p></p>', 345, 2.5, 1, NULL, 29, 120.00, 190.00, 169.10, 11.00, 'percent', NULL, NULL, 'AKATTCHTI', 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড5', 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড', 'storage/media/product/2026-02-03-WSrTGyJMmzR3tLWgEctfyrrLJatgmAX3AgZmmu6b.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-01-25 02:14:33', '2026-03-04 23:16:32'),
+	(13, 'একাত্তরের জননী', 'COD2026030513', 'ekattrer-jnnee', 31, 1, 1, 2, 'book', '33', NULL, 'storage/media/product/2026-02-03-s9NU7e74PI9ZSp85NVkh2EmKvAQNxy8S8D0dRSIS.webp', 'লেখক: <strong data-start="346" data-end="360">রমা চৌধুরী</strong><br data-start="360" data-end="363">\r\nভাষা: বাংলা<br data-start="374" data-end="377">\r\nপ্রকাশনী: মাধুকরী প্রকাশন', '<h3 data-start="300" data-end="318">📘 বইয়ের নাম</h3>\r\n<p data-start="319" data-end="440"><strong data-start="319" data-end="337">একাত্তরের জননী</strong><br data-start="337" data-end="340">\r\nলেখক: <strong data-start="346" data-end="360">রমা চৌধুরী</strong><br data-start="360" data-end="363">\r\nভাষা: বাংলা<br data-start="374" data-end="377">\r\nপ্রকাশনী: মাধুকরী প্রকাশন <span class="" data-state="closed"></span></p>\r\n<h3 data-start="442" data-end="465">✍️ লেখকের পরিচিতি</h3>\r\n<p data-start="466" data-end="837">রমা চৌধুরী বাংলাদেশের <strong data-start="488" data-end="524">মুক্তিযুদ্ধের বীরাঙ্গনা ও লেখিকা</strong> ছিলেন। তাঁর লেখা <strong data-start="542" data-end="562">“একাত্তরের জননী”</strong> সবচেয়ে বেশি পরিচিত কাজগুলোর মধ্যে একটি, যেখানে তিনি ১৯৭১-এর মুক্তিযুদ্ধের সময়কার নির্যাতন, বেদনা ও স্বদেশপ্রেমের কথা নিজের জীবনের অভিজ্ঞতার আলোকে বসিয়েছেন। তিনি পরে <strong data-start="728" data-end="749">বেগম রোকেয়া পদকে</strong> ভূষিত হন (মরণোপরান্ত) বাংলাদেশ সরকারের পক্ষ থেকে। <span class="" data-state="closed"></span></p>\r\n<h3 data-start="839" data-end="871">📖 বইটির ধারণা ও বিষয়বস্তু</h3>\r\n<p data-start="872" data-end="950">“একাত্তরের জননী” বইটি মূলত রমা চৌধুরীর <strong data-start="911" data-end="930">আত্মজৈবনিক গল্প</strong> — যেখানে তিনি বলেন:</p>\r\n<ul data-start="951" data-end="1371"><li data-start="951" data-end="1124">\r\n<p data-start="953" data-end="1124">১৯৭১-এর মুক্তিযুদ্ধের সময় পাকহানাদার বাহিনীর হাতে নারীর উপর যেসব নির্যাতন ও ভয়াবহতা ঘটেছিল, তা কীভাবে তার জীবনে গভীর ক্ষত তৈরি করে। <span class="" data-state="closed"></span></p>\r\n</li><li data-start="1125" data-end="1238">\r\n<p data-start="1127" data-end="1238">তিনি তার <strong data-start="1136" data-end="1185">ব্যক্তিগত দুঃখ, হারানো সন্তান, বিপর্যয়ের গল্প</strong> তুলে ধরেছেন। <span class="" data-state="closed"></span></p>\r\n</li><li data-start="1239" data-end="1371">\r\n<p data-start="1241" data-end="1371">বইতে জীবনের বাস্তব অভিজ্ঞতার আলোকে দেশপ্রেম, শোষণ, বেদনা, এবং যুদ্ধের বাস্তব চিত্র ফুটে ওঠে। <span class="" data-state="closed"></span></p>\r\n</li></ul>\r\n<h3 data-start="1373" data-end="1395">📚 ব্যাকগ্রাউন্ড</h3>\r\n<ul data-start="1396" data-end="1673"><li data-start="1396" data-end="1512">\r\n<p data-start="1398" data-end="1512">এই গ্রন্থটি রাজনৈতিক ও মুক্তিযুদ্ধভিত্তিক উপন্যাস/স্মৃতিকথা হিসেবে ধরা হয়। <span class="" data-state="closed"></span></p>\r\n</li><li data-start="1513" data-end="1673">\r\n<p data-start="1515" data-end="1673">লেখক রমা চৌধুরী নিজেও ১৯৭১-এ বীরাঙ্গনা হিসেবে অংশগ্রহণ করেছিলেন এবং পরে তাঁর লেখালেখি সেই বাস্তব অভিজ্ঞতার অভিসারে গঠিত। <span class="" data-state="closed"></span></p>\r\n</li></ul>\r\n<h3 data-start="1675" data-end="1692">📘 সংক্ষেপে</h3>\r\n<p data-start="1693" data-end="1929">“একাত্তরের জননী” বইটি ১৯৭১-এর মুক্তিযুদ্ধের <strong data-start="1737" data-end="1766">ব্যক্তিগত ও মানবিক স্মৃতি</strong> হিসেবে অত্যন্ত আবেগপ্রবণ ভাষায় লেখা একটি গ্রন্থ, যা সেই বেদনাদায়ক সময়ের গল্প ও নারীর সংগ্রামকে পাঠকের সামনে জীবন্ত করে তোলে।</p>', 324, 2.5, 1, NULL, 28, 169.00, 190.00, 169.10, 11.00, 'percent', NULL, NULL, '71JNN', 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড7', 'একনজরে উম্মাহর ইতিহাস ৩ খন্ড', 'storage/media/product/2026-02-03-s9NU7e74PI9ZSp85NVkh2EmKvAQNxy8S8D0dRSIS.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-01-25 02:18:09', '2026-03-04 23:15:59'),
+	(27, 'লিডারশীপ-১০১', 'COD2026030527', 'lidarseep-101', 31, 1, 1, 2, 'book', 'ASS', NULL, 'storage/media/product/2026-02-24-feiVUJP44wlPO1WT2K4ZoQNbiEojgsrFMu6tznvA.webp', 'লেখক: জন সি. ম্যাক্সওয়েল<br data-start="360" data-end="363">ভাষা: বাংলা<br data-start="374" data-end="377">অনুবাদক: মোঃ মোরশেদ আলম', '<h2 data-start="132" data-end="149"><span style="font-size: 14px;"><b>📘 বইয়ের নাম</b></span></h2><span style="font-size: 14px;">\r\n</span><p data-start="150" data-end="183"><span data-start="150" data-end="183" style="font-size: 14px;">লিডারশিপ ১০১ (Leadership 101)</span><span style="font-size: 14px;">﻿</span></p><span style="font-size: 14px;">\r\n</span><h2 data-start="185" data-end="197"><span style="font-size: 14px;"><b>✍️ লেখক</b></span></h2><span style="font-size: 14px;">\r\n</span><p data-start="198" data-end="238"><strong data-start="198" data-end="238"><span style="font-size: 14px;">জন সি. ম্যাক্সওয়েল (John C. Maxwell)</span></strong></p><span style="font-size: 14px;">\r\n</span><h2 data-start="240" data-end="256"><span style="font-size: 14px;"><b>🌐 মূল ভাষা</b></span></h2><span style="font-size: 14px;">\r\n</span><p data-start="257" data-end="303"><span style="font-size: 14px;">ইংরেজি (বাংলা অনুবাদ সংস্করণ বাজারে পাওয়া যায়)</span></p><span style="font-size: 14px;">\r\n</span><h2 data-start="305" data-end="323"><span style="font-size: 14px;"><b>🏷️ ক্যাটাগরি</b></span></h2><span style="font-size: 14px;">\r\n</span><p data-start="324" data-end="371"><span style="font-size: 14px;">লিডারশিপ / আত্মউন্নয়ন / ম্যানেজমেন্ট / মোটিভেশন</span></p><span style="font-size: 14px;">\r\n</span><h2 data-start="373" data-end="402"><span style="font-size: 14px;"><b>📖 বইয়ের সংক্ষিপ্ত বিবরণ</b></span></h2><span style="font-size: 14px;">\r\n</span><p data-start="403" data-end="580"><strong data-start="403" data-end="419"><span style="font-size: 14px;">লিডারশিপ ১০১</span></strong><span style="font-size: 14px;"> হলো নেতৃত্ব শেখার একদম বেসিক গাইড। এই বইয়ে জন সি. ম্যাক্সওয়েল খুব সহজ ভাষায় বুঝিয়েছেন—</span><br data-start="506" data-end="509"><span style="font-size: 8px;">\r\n<span style="font-size: 12px;">নেতৃত্ব মানে শুধু পদ বা ক্ষমতা নয়, নেতৃত্ব মানে </span></span><strong data-start="557" data-end="579"><span style="font-size: 12px;">প্রভাব (Influence)</span></strong><span style="font-size: 12px;">।</span></p><span style="font-size: 12px;">\r\n</span><p data-start="582" data-end="611"><span style="font-size: 12px;">এই বইটি বিশেষভাবে লেখা হয়েছে:</span></p><span style="font-size: 8px;">\r\n</span><ul data-start="612" data-end="717"><li data-start="612" data-end="634"><span style="font-size: 8px;">\r\n</span><p data-start="614" data-end="634">নতুন লিডারদের জন্য</p><span style="font-size: 8px;">\r\n</span></li><li data-start="635" data-end="676"><span style="font-size: 8px;">\r\n</span><p data-start="637" data-end="676">যারা নেতৃত্ব শিখতে চায় একদম শুরু থেকে</p><span style="font-size: 8px;">\r\n</span></li><li data-start="677" data-end="717"><span style="font-size: 8px;">\r\n</span><p data-start="679" data-end="717">ছাত্র, চাকরিজীবী ও উদ্যোক্তাদের জন্য</p><span style="font-size: 8px;">\r\n</span></li></ul><span style="font-size: 8px;">\r\n</span><h2 data-start="719" data-end="745"><span style="font-size: 14px;"><b>⭐ বইয়ের মূল বিষয়বস্তু</b></span></h2><span style="font-size: 12px;">\r\n</span><p data-start="746" data-end="766"><span style="font-size: 12px;">এই বইয়ে আপনি শিখবেন—</span></p><span style="font-size: 8px;">\r\n</span><ul data-start="768" data-end="993"><li data-start="768" data-end="797"><span style="font-size: 8px;">\r\n</span><p data-start="770" data-end="797">নেতৃত্ব আসলে কী এবং কী নয়</p><span style="font-size: 8px;">\r\n</span></li><li data-start="798" data-end="832"><span style="font-size: 8px;">\r\n</span><p data-start="800" data-end="832">ভালো লিডার হওয়ার মৌলিক গুণাবলি</p><span style="font-size: 8px;">\r\n</span></li><li data-start="833" data-end="879"><span style="font-size: 8px;">\r\n</span><p data-start="835" data-end="879">কীভাবে মানুষের উপর ইতিবাচক প্রভাব ফেলতে হয়</p><span style="font-size: 8px;">\r\n</span></li><li data-start="880" data-end="909"><span style="font-size: 8px;">\r\n</span><p data-start="882" data-end="909">লিডার ও ফলোয়ারের পার্থক্য</p><span style="font-size: 8px;">\r\n</span></li><li data-start="910" data-end="956"><span style="font-size: 8px;">\r\n</span><p data-start="912" data-end="956">ব্যক্তিগত উন্নতির মাধ্যমে নেতৃত্ব গড়ে তোলা</p><span style="font-size: 8px;">\r\n</span></li><li data-start="957" data-end="993"><span style="font-size: 8px;">\r\n</span><p data-start="959" data-end="993">বাস্তব জীবনের উদাহরণ ও সহজ সূত্র</p><span style="font-size: 8px;">\r\n</span></li></ul><span style="font-size: 8px;">\r\n</span><h2 data-start="995" data-end="1017"><span style="font-size: 14px;"><b>🎯 কেন বইটি পড়বেন</b></span></h2><span style="font-size: 8px;">\r\n</span><ul data-start="1018" data-end="1179"><li data-start="1018" data-end="1066"><span style="font-size: 8px;">\r\n</span><p data-start="1020" data-end="1066">নেতৃত্ব শেখার জন্য <strong data-start="1039" data-end="1064">পারফেক্ট স্টার্টার বই</strong></p><span style="font-size: 8px;">\r\n</span></li><li data-start="1067" data-end="1097"><span style="font-size: 8px;">\r\n</span><p data-start="1069" data-end="1097">কম পেজ, কিন্তু খুব কার্যকর</p><span style="font-size: 8px;">\r\n</span></li><li data-start="1098" data-end="1131"><span style="font-size: 8px;">\r\n</span><p data-start="1100" data-end="1131">বাস্তব জীবনে প্রয়োগযোগ্য টিপস</p><span style="font-size: 8px;">\r\n</span></li><li data-start="1132" data-end="1179"><span style="font-size: 8px;">\r\n</span><p data-start="1134" data-end="1179">আত্মবিশ্বাস ও সিদ্ধান্ত নেওয়ার ক্ষমতা বাড়ায়</p><span style="font-size: 8px;">\r\n</span></li></ul><span style="font-size: 8px;">\r\n</span><h2 data-start="1181" data-end="1205"><span style="font-size: 14px;"><b>📚 কার জন্য উপযুক্ত</b></span></h2><span style="font-size: 8px;">\r\n</span><ul data-start="1206" data-end="1297"><li data-start="1206" data-end="1219"><span style="font-size: 8px;">\r\n</span><p data-start="1208" data-end="1219">স্টুডেন্ট</p><span style="font-size: 8px;">\r\n</span></li><li data-start="1220" data-end="1238"><span style="font-size: 8px;">\r\n</span><p data-start="1222" data-end="1238">নতুন ম্যানেজার</p><span style="font-size: 8px;">\r\n</span></li><li data-start="1239" data-end="1252"><span style="font-size: 8px;">\r\n</span><p data-start="1241" data-end="1252">টিম লিডার</p><span style="font-size: 8px;">\r\n</span></li><li data-start="1253" data-end="1266"><span style="font-size: 8px;">\r\n</span><p data-start="1255" data-end="1266">উদ্যোক্তা</p><span style="font-size: 8px;">\r\n</span></li><li data-start="1267" data-end="1297"><span style="font-size: 8px;">\r\n</span><p data-start="1269" data-end="1297">যারা লিডারশিপ শিখতে আগ্রহী</p><span style="font-size: 8px;">\r\n</span></li></ul><span style="font-size: 8px;">\r\n</span><h2 data-start="1299" data-end="1320"><span style="font-size: 14px;"><b>🧠 লেখক সম্পর্কে</b></span></h2><span style="font-size: 14px;">\r\n</span><p data-start="1321" data-end="1470"><span style="font-size: 14px;">জন সি. ম্যাক্সওয়েল একজন বিশ্বখ্যাত লিডারশিপ এক্সপার্ট। তিনি</span><br data-start="1380" data-end="1383"><span style="font-size: 12px;">\r\n</span><strong data-start="1383" data-end="1410">৭০টিরও বেশি লিডারশিপ বই</strong><span style="font-size: 12px;"> লিখেছেন, যেগুলো কোটি কপি বিক্রি হয়েছে এবং বহু ভাষায় অনূদিত।</span></p>', 266, 2.5, 1, NULL, 19, 120.00, 160.00, 120.00, 40.00, 'amount', '2026-02-06', '2026-03-03', NULL, 'একনজরে উম্মাহর ইতিহাস ৩ খন্ডWA', 'sAS', 'storage/media/product/2026-02-24-feiVUJP44wlPO1WT2K4ZoQNbiEojgsrFMu6tznvA.webp', 1, 1, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-02-01 06:30:48', '2026-03-09 23:02:46'),
+	(28, 'Itihas', NULL, 'itihas', 2, 1, 1, 2, 'book', 'dsdsa', NULL, 'storage/media/product/2026-02-25-zVkMnkTW3cZwFd47CTfgrzB238BmQX2w4kfWy1gc.webp', '<p>dasd</p>', '<p>dasdas</p>', 0, 0, 1, NULL, 0, 55.00, 33.00, 33.00, 0.00, 'amount', NULL, NULL, NULL, 'Itihas', 'dasdas', 'storage/media/product/2026-02-25-zVkMnkTW3cZwFd47CTfgrzB238BmQX2w4kfWy1gc.webp', 1, 0, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-02-24 22:49:29', '2026-03-04 01:02:48'),
+	(29, 'Gerila', NULL, 'gerila', 10, 1, 1, 1, 'book', '34fede', NULL, 'storage/media/product/2026-02-25-aQyaIxZ1q44p5S1WuPLM1tkjUvHd36Twpjk4hKN5.webp', '<p>asdsa</p>', '<p>dasd</p>', 0, 0, 1, NULL, 0, 12.00, 14.00, 14.00, 0.00, 'amount', NULL, NULL, NULL, 'Gerila', 'dasd', 'storage/media/product/2026-02-25-aQyaIxZ1q44p5S1WuPLM1tkjUvHd36Twpjk4hKN5.webp', 1, 0, 0, 0, 0, 1, 1, NULL, NULL, NULL, '2026-02-24 23:02:38', '2026-02-24 23:02:38'),
+	(30, 'Gerila2', NULL, 'gerila2', 10, 1, 1, 1, 'book', '417345298821', NULL, 'storage/media/product/2026-02-25-YfMdlWJKe0qeuJC1QSsjaG3WvzBJLiW4CqzeKBQo.webp', '<p>q</p>', '<p>eqwe</p>', 0, 0, 1, NULL, 0, 15.00, 16.00, 16.00, 0.00, 'amount', NULL, NULL, NULL, 'Gerila2', 'eqwe', 'storage/media/product/2026-02-25-YfMdlWJKe0qeuJC1QSsjaG3WvzBJLiW4CqzeKBQo.webp', 0, 0, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-02-24 23:03:35', '2026-02-24 23:11:35'),
+	(31, 'test prod', 'COD2026030831', 'test-prod', 2, 1, 1, 1, 'book', 'fff', NULL, 'storage/media/product/2026-02-25-J3OBoi3kVZrs3jNNf3WJzrRrOXsqF36haCbpSQDx.webp', '<p>sddas</p>', '<p>asdas</p>', 15, 0.9, 1, NULL, 28, 255.00, 266.00, 266.00, 0.00, 'amount', NULL, NULL, NULL, 'test prod', 'asdas', 'storage/media/product/2026-02-25-J3OBoi3kVZrs3jNNf3WJzrRrOXsqF36haCbpSQDx.webp', 1, 0, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-02-25 00:23:57', '2026-03-09 22:17:37'),
+	(32, 'teddd', '', 'teddd', 10, 1, 1, 1, 'book', 'yyyy', NULL, 'storage/media/product/2026-02-25-BT8UrUQ43xHxjiCGG0ogQI0noci3Y3byotgdkqVT.webp', '<p>sadsa</p>', '<p>adasd</p>', 0, 0, 1, NULL, 0, 577.00, 588.00, 588.00, 0.00, 'amount', NULL, NULL, NULL, 'teddd', 'adasd', 'storage/media/product/2026-02-25-BT8UrUQ43xHxjiCGG0ogQI0noci3Y3byotgdkqVT.webp', 1, 0, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-02-25 00:25:11', '2026-03-04 21:53:32'),
+	(33, 'gggrrr', '', 'gggrrr', 10, 1, 1, 2, 'book', 'ttttt', NULL, 'storage/media/product/2026-02-25-GfVIfGLk8NJyrb75Y2JySij2r7y0B5DQ14aqjL6Y.webp', '<p>dff</p>', '<p>fd</p>', 0, 0, 1, NULL, 0, 699.00, 888.00, 888.00, 0.00, 'amount', NULL, NULL, NULL, 'gggrrr', 'fd', 'storage/media/product/2026-02-25-GfVIfGLk8NJyrb75Y2JySij2r7y0B5DQ14aqjL6Y.webp', 1, 0, 0, 0, 0, 0, 1, 1, NULL, NULL, '2026-02-25 02:53:25', '2026-03-04 22:06:28'),
+	(34, 'Test33', '', 'test33', 2, 1, 1, 2, 'book', 'eeeee', NULL, 'storage/media/product/2026-02-26-Xya5bRC9GWaIc5yQG3eyKtC0cnqjlWguxVtkgdAA.webp', NULL, NULL, 0, 0, 1, NULL, 0, 66.00, 77.00, 77.00, 0.00, 'amount', NULL, NULL, NULL, 'Test33', '', 'storage/media/product/2026-02-26-Xya5bRC9GWaIc5yQG3eyKtC0cnqjlWguxVtkgdAA.webp', 1, 0, 0, 0, 0, 0, 1, 1, NULL, NULL, '2026-02-26 00:12:31', '2026-03-04 22:00:28'),
+	(35, 'gggg', 'COD2026030535', 'gggg', 2, 1, 1, 2, 'book', 'gfgfgfg', NULL, 'storage/media/product/2026-03-05-PuOiR3zvjoCQTk55uzqOwGYxJdgeGmmGLM71lmSs.webp', NULL, NULL, 0, 0, 1, NULL, 0, 44.00, 55.00, 55.00, 0.00, 'amount', NULL, NULL, NULL, 'gggg', '', 'storage/media/product/2026-03-05-PuOiR3zvjoCQTk55uzqOwGYxJdgeGmmGLM71lmSs.webp', 1, 0, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-03-04 21:37:26', '2026-03-04 22:39:54'),
+	(36, 'hhh', 'COD2026030536', 'hhh', 10, 1, 1, 2, 'book', 'fgfdgdg', NULL, 'storage/media/product/2026-03-05-RR4l03EXIwvaASjbDVVRjrpBRKqc0GvB05N0aE8B.webp', NULL, NULL, 0, 0, 1, NULL, 0, 77.00, 88.00, 88.00, 0.00, 'amount', NULL, NULL, NULL, 'hhh', '', 'storage/media/product/2026-03-05-RR4l03EXIwvaASjbDVVRjrpBRKqc0GvB05N0aE8B.webp', 1, 0, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-03-04 22:10:40', '2026-03-04 22:36:49'),
+	(37, 'jjj', 'COD2026030537', 'jjj', 2, 1, 1, 2, 'book', 'fdd', NULL, 'storage/media/product/2026-03-05-4ZDtSvHTkzqOKUlFhdDj8TMdjm3vYyoAEQ7uoj40.webp', NULL, NULL, 0, 0, 1, NULL, 0, 66.00, 77.00, 77.00, 0.00, 'amount', NULL, NULL, NULL, 'jjj', '', 'storage/media/product/2026-03-05-4ZDtSvHTkzqOKUlFhdDj8TMdjm3vYyoAEQ7uoj40.webp', 1, 0, 0, 0, 0, 1, 1, NULL, NULL, NULL, '2026-03-04 22:29:01', '2026-03-04 22:29:01'),
+	(38, 'kk', 'COD2026030538', 'kk', 2, 1, 1, 2, 'book', '333', NULL, 'storage/media/product/2026-03-05-1IfsybrYpNZfKEmhpiWRvx7BgDrUAEhaCoil9rX9.webp', NULL, NULL, 0, 0, 1, NULL, 0, 88.00, 99.00, 99.00, 0.00, 'amount', NULL, NULL, NULL, 'kk', '', 'storage/media/product/2026-03-05-1IfsybrYpNZfKEmhpiWRvx7BgDrUAEhaCoil9rX9.webp', 1, 0, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-03-04 22:32:44', '2026-03-04 23:01:20'),
+	(39, 'gh', 'COD2026030539', 'gh', 10, 1, 1, 2, 'book', 'ewee', NULL, 'storage/media/product/2026-03-05-xnQoyhgqkf0FC3NZmT12qVDxlgpz9p3I4E3cAeiv.webp', NULL, NULL, 0, 0, 1, NULL, 0, 44.00, 55.00, 55.00, 0.00, 'amount', NULL, NULL, NULL, 'gh', '', 'storage/media/product/2026-03-05-xnQoyhgqkf0FC3NZmT12qVDxlgpz9p3I4E3cAeiv.webp', 1, 0, 0, 0, 0, 1, 1, 1, NULL, NULL, '2026-03-04 22:41:43', '2026-03-04 22:51:35');
 
 -- Dumping structure for table e_commerce_like_rokomary.product_authors
 DROP TABLE IF EXISTS `product_authors`;
@@ -1944,7 +2062,7 @@ CREATE TABLE IF NOT EXISTS `product_authors` (
   CONSTRAINT `product_authors_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.product_authors: ~14 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.product_authors: ~18 rows (approximately)
 DELETE FROM `product_authors`;
 INSERT INTO `product_authors` (`id`, `product_id`, `author_id`, `created_at`, `updated_at`) VALUES
 	(1, 3, 1, '2026-01-22 04:46:02', '2026-01-22 04:46:02'),
@@ -1998,15 +2116,15 @@ CREATE TABLE IF NOT EXISTS `product_editions` (
   PRIMARY KEY (`id`),
   KEY `product_editions_product_id_foreign` (`product_id`),
   CONSTRAINT `product_editions_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.product_editions: ~11 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.product_editions: ~15 rows (approximately)
 DELETE FROM `product_editions`;
 INSERT INTO `product_editions` (`id`, `product_id`, `name`, `status`, `created_at`, `updated_at`) VALUES
 	(1, 34, '2nd Edition', 1, '2026-02-26 00:12:31', '2026-02-26 00:45:17'),
 	(2, 33, 'First Edition', 1, '2026-02-26 00:46:13', '2026-02-26 00:46:13'),
 	(3, 27, 'First Edition', 1, '2026-02-28 21:12:01', '2026-03-04 23:15:28'),
-	(4, 3, '3rd edition', 1, '2026-02-28 21:27:59', '2026-02-28 21:27:59'),
+	(4, 3, 'First Edition', 1, '2026-02-28 21:27:59', '2026-03-08 02:18:00'),
 	(5, 28, '3rd edition', 1, '2026-03-04 01:02:48', '2026-03-04 01:02:48'),
 	(6, 35, '2nd Edition', 1, '2026-03-04 21:37:26', '2026-03-04 21:37:26'),
 	(7, 32, '2nd', 1, '2026-03-04 21:53:33', '2026-03-04 21:53:33'),
@@ -2017,7 +2135,8 @@ INSERT INTO `product_editions` (`id`, `product_id`, `name`, `status`, `created_a
 	(12, 13, 'First Edition', 1, '2026-03-04 23:15:59', '2026-03-04 23:15:59'),
 	(13, 12, 'First Edition', 1, '2026-03-04 23:16:32', '2026-03-04 23:16:32'),
 	(14, 11, 'First Edition', 1, '2026-03-04 23:17:12', '2026-03-04 23:17:12'),
-	(15, 10, 'Fifth Edition', 1, '2026-03-04 23:17:45', '2026-03-04 23:17:45');
+	(15, 10, 'Fifth Edition', 1, '2026-03-04 23:17:45', '2026-03-04 23:17:45'),
+	(16, 31, 'First Edition', 1, '2026-03-07 21:05:30', '2026-03-07 21:05:30');
 
 -- Dumping structure for table e_commerce_like_rokomary.product_images
 DROP TABLE IF EXISTS `product_images`;
@@ -2059,7 +2178,7 @@ CREATE TABLE IF NOT EXISTS `product_tags` (
   PRIMARY KEY (`id`),
   KEY `product_tags_product_id_foreign` (`product_id`),
   CONSTRAINT `product_tags_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table e_commerce_like_rokomary.product_tags: ~10 rows (approximately)
 DELETE FROM `product_tags`;
@@ -2068,12 +2187,12 @@ INSERT INTO `product_tags` (`id`, `product_id`, `name`, `created_at`, `updated_a
 	(10, 1, 'asaa', '2026-01-24 23:17:55', '2026-01-24 23:17:55'),
 	(53, 7, 'sasa', '2026-02-03 00:24:05', '2026-02-03 00:24:05'),
 	(54, 5, 'dfsdf', '2026-02-03 00:25:06', '2026-02-03 00:25:06'),
-	(63, 3, 'dsfsd', '2026-02-28 21:27:59', '2026-02-28 21:27:59'),
-	(64, 27, 'aS', '2026-03-04 23:15:28', '2026-03-04 23:15:28'),
 	(65, 13, 'Zxazx', '2026-03-04 23:15:59', '2026-03-04 23:15:59'),
 	(66, 12, 'sd', '2026-03-04 23:16:33', '2026-03-04 23:16:33'),
 	(67, 11, 'sdfdsf', '2026-03-04 23:17:12', '2026-03-04 23:17:12'),
-	(68, 10, 'sads', '2026-03-04 23:17:45', '2026-03-04 23:17:45');
+	(69, 3, 'dsfsd', '2026-03-08 02:18:01', '2026-03-08 02:18:01'),
+	(70, 27, 'aS', '2026-03-09 23:02:46', '2026-03-09 23:02:46'),
+	(71, 10, 'sads', '2026-03-10 01:21:52', '2026-03-10 01:21:52');
 
 -- Dumping structure for table e_commerce_like_rokomary.product_variants
 DROP TABLE IF EXISTS `product_variants`;
@@ -2095,24 +2214,25 @@ CREATE TABLE IF NOT EXISTS `product_variants` (
   PRIMARY KEY (`id`),
   KEY `product_variants_product_id_foreign` (`product_id`),
   CONSTRAINT `product_variants_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.product_variants: ~12 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.product_variants: ~14 rows (approximately)
 DELETE FROM `product_variants`;
 INSERT INTO `product_variants` (`id`, `product_id`, `variant`, `sku`, `purchase_price`, `regular_price`, `sale_price`, `discount`, `discount_type`, `image`, `stock`, `status`, `created_at`, `updated_at`) VALUES
 	(1, 1, NULL, 'SKUS', 11.00, 12.00, 11.00, 1.00, 'amount', NULL, 1000, 1, '2026-01-20 04:15:44', '2026-01-24 23:17:55'),
 	(2, 2, NULL, 'ssds', 11.00, 33.00, 31.00, 2.00, 'amount', NULL, 1001, 1, '2026-01-20 04:26:34', '2026-03-03 21:24:06'),
-	(3, 3, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 'amount', NULL, 1000, 1, '2026-01-22 04:46:01', '2026-01-24 23:17:14'),
+	(3, 3, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 'amount', NULL, 999, 1, '2026-01-22 04:46:01', '2026-03-09 00:02:37'),
 	(5, 5, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 'amount', NULL, 1000, 1, '2026-01-22 06:36:18', '2026-02-01 02:11:02'),
 	(6, 7, NULL, NULL, 33.00, 33.00, 0.00, 33.00, 'amount', NULL, 1000, 1, '2026-01-25 02:06:22', '2026-01-28 23:10:06'),
-	(7, 10, NULL, 'dsfs', 33.00, 33.00, 0.00, 33.00, 'amount', NULL, 1000, 1, '2026-01-25 02:11:41', '2026-02-01 02:11:02'),
-	(8, 11, NULL, 'dfsdf', 33.00, 33.00, 0.00, 33.00, 'amount', NULL, 1000, 1, '2026-01-25 02:13:34', '2026-02-01 02:11:02'),
-	(9, 12, NULL, NULL, 77.00, 86.00, 85.00, 1.00, 'amount', NULL, 1000, 1, '2026-01-25 02:14:33', '2026-02-01 02:11:02'),
+	(7, 10, NULL, 'dsfs', 33.00, 33.00, 0.00, 33.00, 'amount', NULL, 968, 1, '2026-01-25 02:11:41', '2026-03-10 01:20:27'),
+	(8, 11, NULL, 'dfsdf', 33.00, 33.00, 0.00, 33.00, 'amount', NULL, 1001, 1, '2026-01-25 02:13:34', '2026-03-12 00:15:36'),
+	(9, 12, NULL, NULL, 77.00, 86.00, 85.00, 1.00, 'amount', NULL, 987, 1, '2026-01-25 02:14:33', '2026-03-12 00:15:36'),
 	(10, 13, NULL, 'dsf', 55.00, 55.00, 53.00, 2.00, 'amount', NULL, 1000, 1, '2026-01-25 02:18:09', '2026-01-25 02:18:09'),
-	(13, 27, NULL, 'dsf', 55.00, 120.00, 180.00, 20.00, 'amount', NULL, 1000, 1, '2026-01-25 02:18:09', '2026-01-25 02:18:09'),
+	(13, 27, NULL, 'dsf', 55.00, 120.00, 180.00, 20.00, 'amount', NULL, 990, 1, '2026-01-25 02:18:09', '2026-03-09 23:00:25'),
 	(14, 29, NULL, NULL, 12.00, 14.00, 14.00, 0.00, 'amount', NULL, 0, 1, '2026-02-24 23:02:38', '2026-02-24 23:02:38'),
 	(15, 34, NULL, NULL, 66.00, 77.00, 77.00, 0.00, 'amount', NULL, 5, 1, '2026-02-28 23:11:59', '2026-03-01 00:15:27'),
-	(16, 31, NULL, NULL, 255.00, 266.00, 266.00, 0.00, 'amount', NULL, -4, 1, '2026-03-03 21:33:11', '2026-03-04 01:58:58');
+	(16, 31, NULL, NULL, 255.00, 266.00, 266.00, 0.00, 'amount', NULL, 76, 1, '2026-03-03 21:33:11', '2026-03-10 00:58:57'),
+	(17, 28, NULL, NULL, 55.00, 33.00, 33.00, 0.00, 'amount', NULL, 3, 1, '2026-03-07 21:10:30', '2026-03-07 21:10:30');
 
 -- Dumping structure for table e_commerce_like_rokomary.product_variant_values
 DROP TABLE IF EXISTS `product_variant_values`;
@@ -2153,7 +2273,7 @@ CREATE TABLE IF NOT EXISTS `product_vendors` (
   CONSTRAINT `product_vendors_vendor_id_foreign` FOREIGN KEY (`vendor_id`) REFERENCES `vendors` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.product_vendors: ~16 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.product_vendors: ~20 rows (approximately)
 DELETE FROM `product_vendors`;
 INSERT INTO `product_vendors` (`id`, `product_id`, `vendor_id`, `created_at`, `updated_at`) VALUES
 	(1, 1, 1, '2026-01-20 04:15:44', '2026-01-20 04:15:44'),
@@ -2206,15 +2326,15 @@ CREATE TABLE IF NOT EXISTS `profit_distributions` (
   CONSTRAINT `profit_distributions_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `profit_distributions_deleted_by_foreign` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `profit_distributions_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table e_commerce_like_rokomary.profit_distributions: ~4 rows (approximately)
 DELETE FROM `profit_distributions`;
 INSERT INTO `profit_distributions` (`id`, `serial_no`, `year`, `month`, `date`, `product_id`, `invest_qty`, `production_qty`, `sales_qty`, `sales_amount`, `invest_amount`, `profit_amount`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
-	(14, 'PD2511001', 2025, 'November', '2025-11-26', 12, 6, 1013, 842, 185328, 180000, 37890, 10, NULL, NULL, NULL, '2025-11-26 01:17:55', '2025-11-26 01:17:55'),
-	(15, 'PD2512001', 2025, 'December', '2025-12-24', 4, 6, 1107, 897, 186638, 180000, 40365, 10, NULL, NULL, NULL, '2025-12-23 22:40:41', '2025-12-23 22:40:41'),
-	(19, 'PD2512002', 2025, 'December', '2025-12-29', 3, 6, 987, 878, 203580, 180000, 39510, 10, NULL, NULL, NULL, '2025-12-29 23:51:54', '2025-12-29 23:51:54'),
-	(20, 'PD2512003', 2025, 'December', '2025-12-30', 2, 6, 1100, 751, 144115, 180000, 33795, 10, NULL, NULL, NULL, '2025-12-29 23:54:16', '2025-12-29 23:54:16');
+	(1, 'PD2603001', 2026, 'March', '2026-03-10', 31, 13, 100, 18, 4761, 130000, 2, 1, NULL, NULL, NULL, '2026-03-09 23:03:34', '2026-03-09 23:03:34'),
+	(2, 'PD2603002', 2026, 'March', '2026-03-10', 27, 13, 0, 10, 1200, 130000, 67, 1, NULL, NULL, NULL, '2026-03-09 23:03:56', '2026-03-09 23:03:56'),
+	(3, 'PD2603003', 2026, 'March', '2026-03-10', 10, 7, 0, 33, 4653, 70000, 348, 1, NULL, NULL, NULL, '2026-03-10 01:38:17', '2026-03-10 01:38:17'),
+	(4, 'PD2603004', 2026, 'March', '2026-03-10', 12, 5, 0, 13, 2197, 50000, 1725, 1, NULL, NULL, NULL, '2026-03-10 03:58:24', '2026-03-10 03:58:24');
 
 -- Dumping structure for table e_commerce_like_rokomary.profit_distribution_lists
 DROP TABLE IF EXISTS `profit_distribution_lists`;
@@ -2241,22 +2361,15 @@ CREATE TABLE IF NOT EXISTS `profit_distribution_lists` (
   CONSTRAINT `profit_distribution_lists_investor_id_foreign` FOREIGN KEY (`investor_id`) REFERENCES `investors` (`id`) ON DELETE CASCADE,
   CONSTRAINT `profit_distribution_lists_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
   CONSTRAINT `profit_distribution_lists_profit_distribution_id_foreign` FOREIGN KEY (`profit_distribution_id`) REFERENCES `profit_distributions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.profit_distribution_lists: ~11 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.profit_distribution_lists: ~3 rows (approximately)
 DELETE FROM `profit_distribution_lists`;
 INSERT INTO `profit_distribution_lists` (`id`, `profit_distribution_id`, `invest_id`, `investor_id`, `product_id`, `profit_per_sale`, `sales_qty`, `invest_qty`, `invest_amount`, `amount`, `paid_amount`, `created_at`, `updated_at`) VALUES
-	(17, 14, 16, 8, 12, 45, 842, 3, 90000, 18945, 18945, '2025-11-26 01:17:55', '2025-11-26 01:24:18'),
-	(18, 14, 22, 8, 12, 45, 842, 3, 90000, 18945, 18945, '2025-11-26 01:17:55', '2025-11-26 01:24:18'),
-	(19, 15, 17, 9, 4, 45, 897, 3, 90000, 20184, 20184, '2025-12-23 22:40:41', '2025-12-23 22:42:14'),
-	(20, 15, 23, 9, 4, 45, 897, 3, 90000, 20184, 20184, '2025-12-23 22:40:41', '2025-12-23 22:42:14'),
-	(27, 19, 10, 3, 3, 45, 878, 1, 30000, 6585, 6585, '2025-12-29 23:51:54', '2025-12-30 00:53:35'),
-	(28, 19, 11, 4, 3, 45, 878, 1, 30000, 6585, 6585, '2025-12-29 23:51:54', '2025-12-30 00:55:12'),
-	(29, 19, 13, 5, 3, 45, 878, 1, 30000, 6585, 6585, '2025-12-29 23:51:54', '2025-12-30 00:56:52'),
-	(30, 19, 14, 6, 3, 45, 878, 1, 30000, 6585, 6585, '2025-12-29 23:51:54', '2025-12-31 03:37:38'),
-	(31, 19, 15, 7, 3, 45, 878, 2, 60000, 13170, 13170, '2025-12-29 23:51:54', '2025-12-30 00:58:05'),
-	(32, 20, 20, 15, 2, 45, 751, 1, 30000, 5633, 5633, '2025-12-29 23:54:16', '2025-12-30 01:00:39'),
-	(33, 20, 24, 8, 2, 45, 751, 5, 150000, 28165, 28165, '2025-12-29 23:54:16', '2025-12-30 00:59:54');
+	(1, 1, 1, 5, 31, 15, 18, 13, 130000, 2, 2, '2026-03-09 23:03:34', '2026-03-10 00:05:33'),
+	(2, 2, 2, 5, 27, 266, 10, 13, 130000, 67, 67, '2026-03-09 23:03:56', '2026-03-10 00:50:36'),
+	(3, 3, 4, 5, 10, 422, 33, 7, 70000, 350, 0, '2026-03-10 01:38:18', '2026-03-10 01:38:18'),
+	(4, 4, 6, 5, 12, 345, 13, 5, 50000, 1725, 0, '2026-03-10 03:58:25', '2026-03-10 03:58:25');
 
 -- Dumping structure for table e_commerce_like_rokomary.publications
 DROP TABLE IF EXISTS `publications`;
@@ -2326,10 +2439,12 @@ CREATE TABLE IF NOT EXISTS `purchase_orders` (
   CONSTRAINT `purchase_orders_store_id_foreign` FOREIGN KEY (`store_id`) REFERENCES `stores` (`id`) ON DELETE SET NULL,
   CONSTRAINT `purchase_orders_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `purchase_orders_vendor_id_foreign` FOREIGN KEY (`vendor_id`) REFERENCES `vendors` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.purchase_orders: ~10 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.purchase_orders: ~0 rows (approximately)
 DELETE FROM `purchase_orders`;
+INSERT INTO `purchase_orders` (`id`, `po_number`, `store_id`, `vendor_id`, `order_date`, `expected_date`, `total_amount`, `discount_amount`, `tax_amount`, `grand_total`, `payment_type`, `paid_amount`, `due_amount`, `status`, `notes`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
+	(1, 'PONO2603001', 1, 1, '08-03-2026', '08-03-2026', 255.00, 0.00, 12.75, 267.75, 'Cash', 0, 267.75, 'draft', NULL, 1, 1, NULL, NULL, '2026-03-07 23:18:25', '2026-03-07 23:18:25');
 
 -- Dumping structure for table e_commerce_like_rokomary.purchase_order_items
 DROP TABLE IF EXISTS `purchase_order_items`;
@@ -2364,10 +2479,12 @@ CREATE TABLE IF NOT EXISTS `purchase_order_items` (
   CONSTRAINT `purchase_order_items_product_variant_id_foreign` FOREIGN KEY (`product_variant_id`) REFERENCES `product_variants` (`id`) ON DELETE SET NULL,
   CONSTRAINT `purchase_order_items_purchase_order_id_foreign` FOREIGN KEY (`purchase_order_id`) REFERENCES `purchase_orders` (`id`) ON DELETE CASCADE,
   CONSTRAINT `purchase_order_items_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.purchase_order_items: ~18 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.purchase_order_items: ~0 rows (approximately)
 DELETE FROM `purchase_order_items`;
+INSERT INTO `purchase_order_items` (`id`, `purchase_order_id`, `product_id`, `product_variant_id`, `quantity`, `received_quantity`, `unit_price`, `discount_amount`, `tax_amount`, `total_amount`, `notes`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
+	(1, 1, 31, NULL, 1.00, 0.00, 255.00, 0.00, 0.00, 0.00, NULL, 1, 1, NULL, NULL, '2026-03-07 23:18:25', '2026-03-07 23:18:25');
 
 -- Dumping structure for table e_commerce_like_rokomary.purchase_receipts
 DROP TABLE IF EXISTS `purchase_receipts`;
@@ -2500,7 +2617,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
 DELETE FROM `roles`;
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
 	(1, 'Software Admin', 'web', '2026-01-19 04:51:11', '2026-01-19 04:51:11'),
-	(2, 'Test Role', 'web', '2026-01-19 06:27:50', '2026-01-19 06:27:50');
+	(2, 'Investor', 'web', '2026-01-19 06:27:50', '2026-01-19 06:27:50');
 
 -- Dumping structure for table e_commerce_like_rokomary.role_has_permissions
 DROP TABLE IF EXISTS `role_has_permissions`;
@@ -2513,7 +2630,7 @@ CREATE TABLE IF NOT EXISTS `role_has_permissions` (
   CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.role_has_permissions: ~91 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.role_has_permissions: ~116 rows (approximately)
 DELETE FROM `role_has_permissions`;
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 	(1, 1),
@@ -2601,8 +2718,6 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 	(98, 1),
 	(99, 1),
 	(100, 1),
-	(102, 1),
-	(103, 1),
 	(104, 1),
 	(105, 1),
 	(106, 1),
@@ -2616,7 +2731,24 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 	(114, 1),
 	(115, 1),
 	(116, 1),
-	(117, 1);
+	(117, 1),
+	(118, 1),
+	(120, 1),
+	(121, 1),
+	(122, 1),
+	(123, 1),
+	(124, 1),
+	(125, 1),
+	(127, 1),
+	(128, 1),
+	(129, 1),
+	(130, 1),
+	(131, 1),
+	(132, 1),
+	(133, 1),
+	(134, 1),
+	(135, 1),
+	(1, 2);
 
 -- Dumping structure for table e_commerce_like_rokomary.sales
 DROP TABLE IF EXISTS `sales`;
@@ -2631,6 +2763,8 @@ CREATE TABLE IF NOT EXISTS `sales` (
   `date` date NOT NULL,
   `amount` decimal(16,2) NOT NULL,
   `discount` decimal(16,2) NOT NULL DEFAULT '0.00',
+  `tax` double DEFAULT NULL,
+  `tax_amount` double DEFAULT NULL,
   `net_amount` decimal(16,2) NOT NULL,
   `paid` decimal(16,2) NOT NULL DEFAULT '0.00',
   `return_amount` decimal(16,2) NOT NULL DEFAULT '0.00',
@@ -2651,10 +2785,28 @@ CREATE TABLE IF NOT EXISTS `sales` (
   KEY `sales_created_by_foreign` (`created_by`),
   KEY `sales_updated_by_foreign` (`updated_by`),
   KEY `sales_deleted_by_foreign` (`deleted_by`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.sales: ~293 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.sales: ~17 rows (approximately)
 DELETE FROM `sales`;
+INSERT INTO `sales` (`id`, `client_id`, `store_id`, `sales_officer_id`, `coa_id`, `sale_type`, `invoice`, `date`, `amount`, `discount`, `tax`, `tax_amount`, `net_amount`, `paid`, `return_amount`, `return_paid`, `remarks`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
+	(2, 5, 1, 4, NULL, 'Credit', 'CS2603001', '2026-03-08', 266.00, 0.00, NULL, NULL, 266.00, 266.00, 0.00, 0.00, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:23:16', '2026-03-07 23:24:04'),
+	(3, 5, 1, 4, NULL, 'Credit', 'CS2603002', '2026-03-08', 407.00, 0.00, NULL, NULL, 468.00, 468.00, 0.00, 0.00, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:51:48', '2026-03-07 23:57:09'),
+	(4, 5, 1, 4, NULL, 'Credit', 'CS2603003', '2026-03-08', 266.00, 0.00, 15, 40, 306.00, 306.00, 0.00, 0.00, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:53:58', '2026-03-07 23:57:09'),
+	(5, 69, 1, 2, NULL, 'Credit', 'CS2603004', '2026-03-08', 266.00, 0.00, 15, 40, 306.00, 306.00, 0.00, 0.00, NULL, 1, NULL, NULL, NULL, '2026-03-07 23:59:28', '2026-03-07 23:59:53'),
+	(6, 69, 1, 4, NULL, 'Credit', 'CS2603005', '2026-03-08', 266.00, 0.00, 15, 40, 306.00, 0.00, 0.00, 0.00, NULL, 1, NULL, NULL, NULL, '2026-03-08 00:23:26', '2026-03-08 00:23:26'),
+	(8, 5, 1, 4, NULL, 'Credit', 'CS2603006', '2026-03-08', 266.00, 0.00, 15, 40, 306.00, 0.00, 0.00, 0.00, NULL, 1, NULL, NULL, NULL, '2026-03-08 00:36:43', '2026-03-08 00:36:43'),
+	(9, 69, 1, 6, 278, 'Credit', 'CS2603007', '2026-03-08', 266.00, 26.60, NULL, NULL, 279.30, 0.00, 0.00, 0.00, 'Online Order', 1, NULL, NULL, NULL, '2026-03-08 00:40:22', '2026-03-08 00:40:22'),
+	(10, 68, 1, 6, 277, 'Credit', 'CS2603008', '2026-03-09', 22.00, 2.20, NULL, 3.3, 23.10, 0.00, 0.00, 0.00, 'Online Order', 1, NULL, NULL, NULL, '2026-03-09 00:27:51', '2026-03-09 00:27:51'),
+	(11, 5, 1, 4, NULL, 'Credit', 'CS2603009', '2026-03-09', 1330.00, 0.00, 15, 200, 1530.00, 0.00, 0.00, 0.00, NULL, 1, NULL, NULL, NULL, '2026-03-09 03:43:53', '2026-03-09 03:43:53'),
+	(12, 68, 1, 4, NULL, 'Credit', 'CS2603010', '2026-03-10', 532.00, 0.00, 15, 80, 612.00, 0.00, 0.00, 0.00, NULL, 1, NULL, NULL, NULL, '2026-03-09 21:44:41', '2026-03-09 21:44:41'),
+	(13, 68, 1, 4, NULL, 'Credit', 'CS2603011', '2026-03-10', 1064.00, 0.00, 15, 160, 1224.00, 0.00, 0.00, 0.00, NULL, 1, NULL, NULL, NULL, '2026-03-09 22:30:27', '2026-03-09 22:30:27'),
+	(14, 68, 1, 4, NULL, 'Credit', 'CS2603012', '2026-03-10', 1200.00, 0.00, 15, 180, 1380.00, 0.00, 0.00, 0.00, NULL, 1, NULL, NULL, NULL, '2026-03-09 23:00:25', '2026-03-09 23:00:25'),
+	(15, 68, 1, 4, 13, 'Cash', 'CS2603013', '2026-03-10', 3192.00, 0.00, 15, 479, 3671.00, 3671.00, 0.00, 0.00, NULL, 1, NULL, NULL, NULL, '2026-03-10 00:58:57', '2026-03-10 00:58:57'),
+	(16, 68, 1, 4, NULL, 'Credit', 'CS2603014', '2026-03-10', 4512.00, 0.00, 15, 677, 5189.00, 0.00, 282.00, 0.00, NULL, 1, NULL, NULL, NULL, '2026-03-10 01:20:26', '2026-03-10 03:03:27'),
+	(17, 68, 1, 4, NULL, 'Credit', 'CS2603015', '2026-03-10', 1440.00, 0.00, 15, 216, 1656.00, 0.00, 720.00, 0.00, NULL, 1, NULL, NULL, NULL, '2026-03-10 03:46:54', '2026-03-10 21:53:37'),
+	(18, 68, 1, 4, NULL, 'Credit', 'CS2603016', '2026-03-10', 2197.00, 0.00, 15, 330, 2527.00, 0.00, 169.00, 0.00, NULL, 1, NULL, NULL, NULL, '2026-03-10 03:56:11', '2026-03-12 00:15:36'),
+	(19, 68, 1, 4, NULL, 'Credit', 'CS2603017', '2026-03-11', 360.00, 0.00, 15, 54, 414.00, 0.00, 120.00, 0.00, NULL, 1, NULL, NULL, NULL, '2026-03-10 21:54:35', '2026-03-12 00:15:36');
 
 -- Dumping structure for table e_commerce_like_rokomary.sales_lists
 DROP TABLE IF EXISTS `sales_lists`;
@@ -2689,10 +2841,29 @@ CREATE TABLE IF NOT EXISTS `sales_lists` (
   CONSTRAINT `sales_lists_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
   CONSTRAINT `sales_lists_sales_id_foreign` FOREIGN KEY (`sales_id`) REFERENCES `sales` (`id`) ON DELETE CASCADE,
   CONSTRAINT `sales_lists_store_id_foreign` FOREIGN KEY (`store_id`) REFERENCES `stores` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.sales_lists: ~316 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.sales_lists: ~18 rows (approximately)
 DELETE FROM `sales_lists`;
+INSERT INTO `sales_lists` (`id`, `sales_id`, `client_id`, `store_id`, `product_id`, `product_edition_id`, `price`, `commission`, `commission_amount`, `rate`, `qty`, `amount`, `discount`, `net_amount`, `return_qty`, `return_amount`, `distributed`, `created_at`, `updated_at`) VALUES
+	(1, 2, 5, 1, 31, 16, 266.00, 0.00, 0.00, 266.00, 1.00, 266.00, 0.00, 266.00, 0.00, 0.00, 0, '2026-03-07 23:23:16', '2026-03-07 23:23:16'),
+	(2, 3, 5, 1, 31, 16, 266.00, 0.00, 0.00, 266.00, 1.00, 266.00, 0.00, 266.00, 0.00, 0.00, 0, '2026-03-07 23:51:49', '2026-03-07 23:51:49'),
+	(3, 3, 5, 1, 10, 15, 140.80, 0.00, 0.00, 141.00, 1.00, 141.00, 0.00, 141.00, 0.00, 0.00, 0, '2026-03-07 23:51:49', '2026-03-07 23:51:49'),
+	(4, 4, 5, 1, 31, 16, 266.00, 0.00, 0.00, 266.00, 1.00, 266.00, 0.00, 266.00, 0.00, 0.00, 0, '2026-03-07 23:53:58', '2026-03-07 23:53:58'),
+	(5, 5, 69, 1, 31, 16, 266.00, 0.00, 0.00, 266.00, 1.00, 266.00, 0.00, 266.00, 0.00, 0.00, 0, '2026-03-07 23:59:28', '2026-03-07 23:59:28'),
+	(6, 6, 69, 1, 31, 16, 266.00, 0.00, 0.00, 266.00, 1.00, 266.00, 0.00, 266.00, 0.00, 0.00, 0, '2026-03-08 00:23:27', '2026-03-08 00:23:27'),
+	(8, 8, 5, 1, 31, 16, 266.00, 0.00, 0.00, 266.00, 1.00, 266.00, 0.00, 266.00, 0.00, 0.00, 0, '2026-03-08 00:36:43', '2026-03-08 00:36:43'),
+	(9, 9, 69, 1, 31, 16, 266.00, 0.00, 0.00, 266.00, 1.00, 266.00, 26.60, 239.40, 0.00, 0.00, 0, '2026-03-08 00:40:22', '2026-03-08 00:40:22'),
+	(10, 10, 68, 1, 3, 4, 22.00, 0.00, 0.00, 22.00, 1.00, 22.00, 2.20, 19.80, 0.00, 0.00, 0, '2026-03-09 00:27:51', '2026-03-09 00:27:51'),
+	(11, 11, 5, 1, 31, 16, 266.00, 0.00, 0.00, 266.00, 5.00, 1330.00, 0.00, 1330.00, 0.00, 0.00, 0, '2026-03-09 03:43:54', '2026-03-09 03:43:54'),
+	(12, 12, 68, 1, 31, 16, 266.00, 0.00, 0.00, 266.00, 2.00, 532.00, 0.00, 532.00, 0.00, 0.00, 0, '2026-03-09 21:44:41', '2026-03-09 21:44:41'),
+	(13, 13, 68, 1, 31, 16, 266.00, 0.00, 0.00, 266.00, 4.00, 1064.00, 0.00, 1064.00, 0.00, 0.00, 0, '2026-03-09 22:30:27', '2026-03-09 22:30:27'),
+	(14, 14, 68, 1, 27, 3, 120.00, 0.00, 0.00, 120.00, 10.00, 1200.00, 0.00, 1200.00, 0.00, 0.00, 0, '2026-03-09 23:00:25', '2026-03-09 23:00:25'),
+	(15, 15, 68, 1, 31, 16, 266.00, 0.00, 0.00, 266.00, 12.00, 3192.00, 0.00, 3192.00, 0.00, 0.00, 0, '2026-03-10 00:58:57', '2026-03-10 00:58:57'),
+	(16, 16, 68, 1, 10, 15, 140.80, 0.00, 0.00, 141.00, 32.00, 4512.00, 0.00, 4512.00, 2.00, 282.00, 0, '2026-03-10 01:20:27', '2026-03-10 03:03:27'),
+	(17, 17, 68, 1, 11, 14, 119.93, 0.00, 0.00, 120.00, 12.00, 1440.00, 0.00, 1440.00, 6.00, 720.00, 0, '2026-03-10 03:46:54', '2026-03-10 21:53:37'),
+	(18, 18, 68, 1, 12, 13, 169.10, 0.00, 0.00, 169.00, 13.00, 2197.00, 0.00, 2197.00, 1.00, 169.00, 0, '2026-03-10 03:56:11', '2026-03-12 00:15:36'),
+	(19, 19, 68, 1, 11, 14, 119.93, 0.00, 0.00, 120.00, 3.00, 360.00, 0.00, 360.00, 1.00, 120.00, 0, '2026-03-10 21:54:35', '2026-03-12 00:15:36');
 
 -- Dumping structure for table e_commerce_like_rokomary.sales_officers
 DROP TABLE IF EXISTS `sales_officers`;
@@ -2756,10 +2927,16 @@ CREATE TABLE IF NOT EXISTS `sales_returns` (
   CONSTRAINT `sales_returns_deleted_by_foreign` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `sales_returns_store_id_foreign` FOREIGN KEY (`store_id`) REFERENCES `stores` (`id`) ON DELETE CASCADE,
   CONSTRAINT `sales_returns_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.sales_returns: ~20 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.sales_returns: ~5 rows (approximately)
 DELETE FROM `sales_returns`;
+INSERT INTO `sales_returns` (`id`, `client_id`, `store_id`, `return_no`, `date`, `amount`, `remarks`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
+	(1, 68, 1, 'SR2603001', '2026-03-10', 282.00, NULL, 1, NULL, NULL, NULL, '2026-03-10 03:03:26', '2026-03-10 03:03:26'),
+	(4, 68, 1, 'SR2603002', '2026-03-11', 240.00, NULL, 1, NULL, NULL, NULL, '2026-03-10 21:39:30', '2026-03-10 21:39:30'),
+	(5, 68, 1, 'SR2603003', '2026-03-11', 240.00, NULL, 1, NULL, NULL, NULL, '2026-03-10 21:51:53', '2026-03-10 21:51:53'),
+	(6, 68, 1, 'SR2603004', '2026-03-11', 240.00, NULL, 1, NULL, NULL, NULL, '2026-03-10 21:53:37', '2026-03-10 21:53:37'),
+	(11, 68, 1, 'SR2603005', '2026-03-12', 289.00, NULL, 1, NULL, NULL, NULL, '2026-03-12 00:15:36', '2026-03-12 00:15:36');
 
 -- Dumping structure for table e_commerce_like_rokomary.sales_return_lists
 DROP TABLE IF EXISTS `sales_return_lists`;
@@ -2792,10 +2969,17 @@ CREATE TABLE IF NOT EXISTS `sales_return_lists` (
   CONSTRAINT `sales_return_lists_sales_list_id_foreign` FOREIGN KEY (`sales_list_id`) REFERENCES `sales_lists` (`id`) ON DELETE CASCADE,
   CONSTRAINT `sales_return_lists_sales_return_id_foreign` FOREIGN KEY (`sales_return_id`) REFERENCES `sales_returns` (`id`) ON DELETE CASCADE,
   CONSTRAINT `sales_return_lists_store_id_foreign` FOREIGN KEY (`store_id`) REFERENCES `stores` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.sales_return_lists: ~20 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.sales_return_lists: ~6 rows (approximately)
 DELETE FROM `sales_return_lists`;
+INSERT INTO `sales_return_lists` (`id`, `sales_return_id`, `client_id`, `store_id`, `sales_id`, `sales_list_id`, `product_id`, `product_edition_id`, `rate`, `qty`, `amount`, `created_at`, `updated_at`) VALUES
+	(1, 1, 68, 1, 16, 16, 10, 15, 141.00, 2.00, 282.00, '2026-03-10 03:03:27', '2026-03-10 03:03:27'),
+	(6, 4, 68, 1, 17, 17, 11, 14, 120.00, 2.00, 240.00, '2026-03-10 21:39:30', '2026-03-10 21:39:30'),
+	(7, 5, 68, 1, 17, 17, 11, 14, 120.00, 2.00, 240.00, '2026-03-10 21:51:54', '2026-03-10 21:51:54'),
+	(8, 6, 68, 1, 17, 17, 11, 14, 120.00, 2.00, 240.00, '2026-03-10 21:53:37', '2026-03-10 21:53:37'),
+	(17, 11, 68, 1, 19, 19, 11, 14, 120.00, 1.00, 120.00, '2026-03-12 00:15:36', '2026-03-12 00:15:36'),
+	(18, 11, 68, 1, 18, 18, 12, 13, 169.00, 1.00, 169.00, '2026-03-12 00:15:36', '2026-03-12 00:15:36');
 
 -- Dumping structure for table e_commerce_like_rokomary.sales_return_payments
 DROP TABLE IF EXISTS `sales_return_payments`;
@@ -2976,7 +3160,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 -- Dumping data for table e_commerce_like_rokomary.settings: ~1 rows (approximately)
 DELETE FROM `settings`;
 INSERT INTO `settings` (`id`, `app_name`, `title`, `primary_phone`, `secondary_phone`, `primary_email`, `secondary_email`, `office_time`, `address`, `tax`, `discount`, `discount_type`, `description`, `banner_one`, `banner_one_link`, `banner_one_status`, `banner_two`, `banner_two_link`, `banner_two_status`, `page_heading_bg`, `meta_title`, `meta_keyword`, `meta_description`, `meta_image`, `google_map`, `favicon`, `logo`, `footer_logo`, `placeholder`, `facebook_page`, `facebook_group`, `youtube`, `twitter`, `linkedin`, `google`, `whatsapp`, `instagram`, `pinterest`, `sms_api_url`, `sms_api_key`, `sms_api_id`, `bkash_status`, `nagad_status`, `created_at`, `updated_at`) VALUES
-	(1, 'Books and Books', 'Books and Books', '01575020231', '01921588567', 'books@gmail.com', 'books@gmail.com', NULL, 'Aftabnager, Dhaka-1212', 5, 10, 'percent', NULL, 'storage/settings/2026-02-02-GF8iNzEQw10DQX3hGgXKvIxe4fI7GR7kjt8TCcXZ.webp', NULL, 1, NULL, NULL, 1, 'storage/settings/2026-02-02-6btudjpIhD9wkXsltv1kfnMekRN4YTuKpP1eUaQT.webp', NULL, NULL, NULL, 'storage/settings/2026-02-02-9xnG106bbdYpc2rUuzNhoyqMKOGHlgoUWrK9aXuy.webp', NULL, 'storage/settings/2026-01-21-V4Q3LAERhKBYrp5zL6fOf2BdZ83NJFuqn0lf317n.webp', 'storage/settings/2026-01-21-3u5FB5fLxnC4FK4pIV24Pli0lW1d0I8gBIfHLqM3.webp', NULL, 'storage/settings/2026-02-02-JYguxUfcqzekqfG4Eh7ZmqP2bzGXy1Iuv5UxSuLC.webp', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, '2026-01-19 05:10:51', '2026-03-05 03:35:59');
+	(1, 'বুকস অ্যান্ড বুকস |  Online Book Publications', 'বুকস অ্যান্ড বুকস |  Online Book Publications', '01575020231', '01921588567', 'books@gmail.com', 'books@gmail.com', NULL, 'পূর্ব রামপুরা, ঢাকা – ১২১৯', 15, 10, 'percent', 'বুকস অ্যান্ড বুকস একটি অনলাইন বইভিত্তিক প্ল্যাটফর্ম যেখানে পাঠকদের জন্য বিভিন্ন ধরনের মানসম্মত বই সহজে পাওয়ার সুযোগ তৈরি করা হয়েছে। আমাদের লক্ষ্য হলো বইকে মানুষের কাছে আরও সহজলভ্য করা এবং পাঠাভ্যাসকে উৎসাহিত করা। এখানে আপনি সাহিত্য, ইসলামিক, শিক্ষামূলক, গল্প, উপন্যাসসহ বিভিন্ন ধরনের বই  এক জায়গা থেকেই সংগ্রহ করতে পারবেন। আমরা চেষ্টা করি পাঠকদের কাছে বিশ্বস্ত সেবা এবং সেরা বইগুলো পৌঁছে দিতে। বুকস অ্যান্ড বুকস শুধু বই বিক্রির একটি প্ল্যাটফর্ম নয়, এটি বইপ্রেমীদের জন্য একটি কমিউনিটি যেখানে জ্ঞান, শিক্ষা এবং সৃজনশীলতার বিকাশকে গুরুত্ব দেওয়া হয়।', 'storage/settings/2026-02-02-GF8iNzEQw10DQX3hGgXKvIxe4fI7GR7kjt8TCcXZ.webp', NULL, 1, NULL, NULL, 1, 'storage/settings/2026-02-02-6btudjpIhD9wkXsltv1kfnMekRN4YTuKpP1eUaQT.webp', 'বুকস অ্যান্ড বুকস |  Online Book Publications', 'বই, অনলাইন বই, বই বিক্রি, কমিশন, ঘরে বসে আয়', 'বুকস অ্যান্ড বুকস একটি অনলাইন বইভিত্তিক প্ল্যাটফর্ম যেখানে পাঠকদের জন্য বিভিন্ন ধরনের মানসম্মত বই সহজে পাওয়ার সুযোগ তৈরি করা হয়েছে। আমাদের লক্ষ্য হলো বইকে মানুষের কাছে আরও সহজলভ্য করা এবং পাঠাভ্যাসকে উৎসাহিত করা।', 'storage/settings/2026-02-02-9xnG106bbdYpc2rUuzNhoyqMKOGHlgoUWrK9aXuy.webp', NULL, 'storage/settings/2026-01-21-V4Q3LAERhKBYrp5zL6fOf2BdZ83NJFuqn0lf317n.webp', 'storage/settings/2026-01-21-3u5FB5fLxnC4FK4pIV24Pli0lW1d0I8gBIfHLqM3.webp', NULL, 'storage/settings/2026-02-02-JYguxUfcqzekqfG4Eh7ZmqP2bzGXy1Iuv5UxSuLC.webp', 'https://www.facebook.com/', NULL, 'https://www.youtube.com/', 'https://www.twitter.com/', NULL, NULL, 'https://www.whatsapp.com/', 'https://www.Instagram.com/', 'https://www.pinterest.com/', NULL, NULL, NULL, 1, 1, '2026-01-19 05:10:51', '2026-03-15 02:58:08');
 
 -- Dumping structure for table e_commerce_like_rokomary.sliders
 DROP TABLE IF EXISTS `sliders`;
@@ -3239,17 +3423,21 @@ CREATE TABLE IF NOT EXISTS `users` (
   CONSTRAINT `users_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `users_deleted_by_foreign` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `users_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table e_commerce_like_rokomary.users: ~4 rows (approximately)
+-- Dumping data for table e_commerce_like_rokomary.users: ~10 rows (approximately)
 DELETE FROM `users`;
 INSERT INTO `users` (`id`, `name`, `user_name`, `email`, `phone`, `address`, `image`, `cover_image`, `status`, `email_verified_at`, `role_status`, `otp`, `otp_expire`, `password`, `remember_token`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
 	(1, 'Admin', 'admin', 'wali@gmail.com', '01575020231', 'Dhaka', NULL, NULL, 1, NULL, 1, NULL, NULL, '$2y$12$gKjdlJg51/QNpFugdCaHsOx05nZNn28nktM7kUBhWToaVwk0wcHfO', NULL, NULL, NULL, NULL, NULL, '2026-01-19 04:51:10', '2026-01-26 22:26:43'),
 	(2, 'Abdullah Al-Wasi', 'wasi', 'wasi@gmail.com', '22222222', 'Adresss,gggfgd', NULL, NULL, 1, NULL, 0, NULL, NULL, '$2y$12$WAyduN/2SccBUdkF1.gILeTWcVRi/GTVU0qaC7ZUAeD8GCYDtFIvq', NULL, NULL, NULL, NULL, NULL, '2026-01-26 23:05:57', '2026-02-25 23:03:35'),
 	(3, 'warid', 'warid', 'warid@gmail.com', '55559999', 'H#5, R#4, Aftabanagar', 'storage/users/profile/2026-01-27-pQ8JiklKJo66CtAWiwxF4mONukP1Y5oEFBHT5TN1.webp', NULL, 1, NULL, 0, NULL, NULL, '$2y$12$m21rnvULrJK3aIZvXPlvl.EjP5lRJe7zRfxajqIQyQItvzq7fQMdu', NULL, NULL, NULL, NULL, NULL, '2026-01-27 00:03:34', '2026-01-27 05:14:38'),
-	(4, 'Sumon', NULL, 'sumon@gmail.com', NULL, NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, '$2y$12$2x5YHnPByWB/0rt/bF5NJ.kSB6/eTn1F9dHlUfZoSbCL55M5z8Gba', NULL, NULL, NULL, NULL, NULL, '2026-01-28 06:17:11', '2026-01-28 06:17:11'),
-	(6, 'Arman', NULL, 'arman@gmail.com', NULL, NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, '$2y$12$yjOOAududi/rrZ2QW4gq3eJj8gxZPmir1TYxhgX/8LPmYCtALtTgK', NULL, NULL, NULL, NULL, NULL, '2026-03-01 00:15:27', '2026-03-01 00:15:27'),
-	(8, 'Mitul', 'mitul', 'mitul@gmail.com', NULL, NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, '$2y$12$PFsA/yE.brrNBkN9sDI2ieKCgfTBo9Arh0tfDv2QonQuqt.WFVfcK', NULL, NULL, NULL, NULL, NULL, '2026-03-03 22:57:34', '2026-03-03 22:57:34');
+	(4, 'Sumon', NULL, 'sumon@gmail.com', '321', NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, '$2y$12$2x5YHnPByWB/0rt/bF5NJ.kSB6/eTn1F9dHlUfZoSbCL55M5z8Gba', NULL, NULL, NULL, NULL, NULL, '2026-01-28 06:17:11', '2026-01-28 06:17:11'),
+	(6, 'Arman', NULL, 'arman@gmail.com', '123', NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, '$2y$12$yjOOAududi/rrZ2QW4gq3eJj8gxZPmir1TYxhgX/8LPmYCtALtTgK', NULL, NULL, NULL, NULL, NULL, '2026-03-01 00:15:27', '2026-03-01 00:15:27'),
+	(8, 'Mitul', 'mitul', 'mitul@gmail.com', '222', NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, '$2y$12$PFsA/yE.brrNBkN9sDI2ieKCgfTBo9Arh0tfDv2QonQuqt.WFVfcK', NULL, NULL, NULL, NULL, NULL, '2026-03-03 22:57:34', '2026-03-03 22:57:34'),
+	(9, 'aira', NULL, 'aira@gmail.com', '01575020232', NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, '$2y$12$mGQSsUmRhprfIe9MzNNUt.Jgc0jDJ59aG6rdlvQ4JjkHELC7Fn982', NULL, NULL, NULL, NULL, NULL, '2026-03-08 23:59:20', '2026-03-11 21:25:39'),
+	(14, 'Mr. Ex Investor', '333', NULL, '333', NULL, NULL, NULL, 1, NULL, 2, NULL, NULL, '$2y$12$HtGEpLhX9trec44MVAN2ueAjij9B5LVInwK87liC8pcf90OV0rlLi', NULL, 1, NULL, NULL, NULL, '2026-03-09 03:13:01', '2026-03-09 03:13:01'),
+	(15, 'Mr. Y Investor', '444', NULL, '444', NULL, NULL, NULL, 1, NULL, 2, NULL, NULL, '$2y$12$kYynieumRivDoAK3fvKSQ.3GkJimOXJXC9M1aKMfoPdrlE.UvwtAS', NULL, 1, NULL, NULL, NULL, '2026-03-09 03:45:47', '2026-03-09 03:45:47'),
+	(16, 'Mr. Arif', 'mr.arif', '01921588567@email.com', '01921588567', 'asdasdasa', NULL, NULL, 1, NULL, 0, NULL, NULL, '$2y$12$xDQyjiymfR6oxpJNkrvyAOJ6t.TfSfKvSJgt1DsZ8arak6uOVnFxq', 'pEH8aEJh9BnLTk7cpbWrOhiN9KTyoyC2LxDLRybzBXqmiJ0ZHYAtLfE52F62', NULL, NULL, NULL, NULL, '2026-03-11 01:07:30', '2026-03-11 21:19:33');
 
 -- Dumping structure for table e_commerce_like_rokomary.vendors
 DROP TABLE IF EXISTS `vendors`;
@@ -3298,7 +3486,7 @@ CREATE TABLE IF NOT EXISTS `wishlists` (
   KEY `wishlists_product_id_foreign` (`product_id`),
   CONSTRAINT `wishlists_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
   CONSTRAINT `wishlists_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table e_commerce_like_rokomary.wishlists: ~7 rows (approximately)
 DELETE FROM `wishlists`;

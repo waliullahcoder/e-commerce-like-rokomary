@@ -809,6 +809,17 @@ del .Price-amount {
     height: 46px;
     z-index: 3;
 }
+.discount-badge-flat {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url(../images/icons/discount-badge-flat.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 46px;
+    height: 46px;
+    z-index: 3;
+}
 
 .product-discount {
     color: var(--bs-white);

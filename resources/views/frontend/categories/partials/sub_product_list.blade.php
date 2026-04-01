@@ -4,12 +4,12 @@
             <div class="product-card-wrapper">
                 <div class="product-card">
                     @if($product->discount>0)
-                    <div class="discount-badge">
+                    <div class="{{ $product->discount_type == 'percent' ? 'discount-badge' : 'discount-badge-flat' }}">
                         <span class="product-discount">{{ number_format($product->discount) }}</span>
                     </div>
                     @endif
                     <a class="z-2" href="{{ route('product.details', $product->id) }}">
-                        <figure class="product-card-image ratio" style="--bs-aspect-ratio: 130%">
+                        <figure class="product-card-image ratio" style="--bs-aspect-ratio: 150%">
                             <img class="object-fit-contain product-img"
                                  src="{{ asset($product->thumbnail) }}"
                                  alt="{{ $product->name }}">

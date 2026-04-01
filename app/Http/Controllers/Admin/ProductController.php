@@ -291,6 +291,7 @@ class ProductController extends Controller
             'categories' => Category::where('status', true)->orderBy('name', 'asc')->get(),
             'vendors' => Vendor::where('status', true)->orderBy('name', 'asc')->get(),
             'publications' => Publication::where('status', true)->orderBy('name', 'asc')->get(),
+            'authors' => Author::where('status', true)->orderBy('name', 'asc')->get(),
             'attributes' => Attribute::where('status', true)->orderBy('name', 'asc')->get()
         ];
         return HelperClass::resourceDataEdit($this->model, $id, $this->path, $this->edit_title, $additionalData);

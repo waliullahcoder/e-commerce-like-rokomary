@@ -82,6 +82,17 @@
                         @endforeach
                     </select>
                 </div>
+                 <div class="col-sm-6">
+                    <label for="author_id" class="form-label"><b>Author <span class="text-danger">*</span></b></label>
+                    <select class="form-select select" name="author_id" id="author_id"
+                        data-placeholder="Select Author" required>
+                        <option value=""></option>
+                        @foreach ($additionalData['authors'] as $item)
+                            <option value="{{ $item->id }}" {{ $data->author_id == $item->id ? 'selected' : '' }}>
+                                {{ $item->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="col-6">
                     <label for="tags" class="form-label"><b>Tags</b></label>
                     <input type="text" class="form-control" id="tags" name="tags[]"

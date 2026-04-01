@@ -25,6 +25,10 @@ class Product extends Model
     {
         return $this->belongsToMany(Author::class, 'product_authors', 'product_id', 'author_id')->withTimestamps();
     }
+    public function productauthor()
+    {
+        return $this->belongsTo(ProductAuthor::class, 'product_id');
+    }
 
     public function getAuthorNamesAttribute()
     {

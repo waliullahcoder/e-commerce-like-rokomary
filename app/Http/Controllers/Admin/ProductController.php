@@ -292,6 +292,7 @@ class ProductController extends Controller
             'vendors' => Vendor::where('status', true)->orderBy('name', 'asc')->get(),
             'publications' => Publication::where('status', true)->orderBy('name', 'asc')->get(),
             'authors' => Author::where('status', true)->orderBy('name', 'asc')->get(),
+            'productauthor' => ProductAuthor::where('product_id', $id)->first(),
             'attributes' => Attribute::where('status', true)->orderBy('name', 'asc')->get()
         ];
         return HelperClass::resourceDataEdit($this->model, $id, $this->path, $this->edit_title, $additionalData);
@@ -361,6 +362,15 @@ class ProductController extends Controller
                     $product->vendors()->sync($request->vendor_id);
                 } else {
                     $product->vendors()->detach();
+                }
+
+                //Author
+                if (!empty($request->author_id)) {
+                    $existedition = ProductAuthor::where('product_id', $product->id)->first();
+                    if ($existedition) {
+                        $existedition->update(['author_id' => $request->author_id]);
+                    }
+                    
                 }
 
                  //Edition

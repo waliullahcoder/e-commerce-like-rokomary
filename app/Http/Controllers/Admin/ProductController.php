@@ -369,6 +369,11 @@ class ProductController extends Controller
                     $existedition = ProductAuthor::where('product_id', $product->id)->first();
                     if ($existedition) {
                         $existedition->update(['author_id' => $request->author_id]);
+                    }else{
+                        ProductAuthor::create([
+                        'product_id' => $product->id,
+                        'author_id'  => $request->author_id
+                        ]);
                     }
                     
                 }

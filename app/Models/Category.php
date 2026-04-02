@@ -18,6 +18,7 @@ class Category extends Model
         'description',
         'status',
         'position',
+        'serial',
         'url',
         'created_by',
         'updated_by',

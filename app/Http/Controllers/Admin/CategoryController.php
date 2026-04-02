@@ -114,6 +114,7 @@ class CategoryController extends Controller
             'name' => $request->name,
             'type' => $request->type,
             'position' => $request->position,
+            'serial' => $request->serial,
             'url' => $request->url,
            // 'slug' => HelperClass::generateUniqueSlug($this->model, 'slug', $request->name, $id),
             'image' => $request->hasFile('image') ? HelperClass::saveImage($request->image, 600, $this->path, $data->image) : $data->image,

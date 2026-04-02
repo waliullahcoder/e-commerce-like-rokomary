@@ -33,7 +33,7 @@ $menus = Category::whereNull('parent_id')
         'name as category_name',
         'slug as category_slug',
         'position'
-    )
+    )->orderBy('serial', 'asc')
     ->get()
     ->groupBy('position');
 

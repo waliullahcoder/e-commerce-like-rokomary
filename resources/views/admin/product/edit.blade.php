@@ -88,7 +88,7 @@
                         data-placeholder="Select Author" required>
                         <option value=""></option>
                         @foreach ($additionalData['authors'] as $item)
-                            <option value="{{ $item->id }}" {{ $additionalData['productauthor']->author->id == $item->id ? 'selected' : '' }}>
+                            <option value="{{ $item->id }}" {{ isset($additionalData['productauthor']) && $additionalData['productauthor']->author->id == $item->id ? 'selected' : '' }}>
                                 {{ $item->name }}</option>
                         @endforeach
                     </select>

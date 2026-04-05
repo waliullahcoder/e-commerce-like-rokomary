@@ -89,13 +89,15 @@ return $data;
      }
 
  public function getProductData($cat_id)
-{
-   
-$categories = Category::where('parent_id', $cat_id)
-        ->with('products','products.variants')
-        ->get();
-       return $categories;
-}
+    {
+        $categories = Category::where('parent_id', $cat_id)
+            ->with(['products' => function($query){
+                $query->where('status', 1);
+            }, 'products.variants'])
+            ->get();
+
+        return $categories;
+    }
 
 //--------------Home Page----------------//
 

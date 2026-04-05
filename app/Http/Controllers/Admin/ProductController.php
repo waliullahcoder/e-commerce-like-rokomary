@@ -53,14 +53,15 @@ class ProductController extends Controller
     public function index()
     {
         return HelperClass::resourceDataView(
-            $this->model::with(['category', 'uom','edition'])
-                ->select('id','code','name','category_id','uom_id','thumbnail','status')
+            $this->model::with(['categories', 'uom','edition'])
+                ->select('id','code','name','uom_id','thumbnail','status')
                 ->where('product_type', 'book')
                 ->orderBy('id', 'desc'),
             'thumbnail',
             null,
             $this->path,
-            $this->title
+            $this->title,
+            null // এখানে relation_data null রাখো
         );
     }
 
@@ -109,7 +110,7 @@ class ProductController extends Controller
         $title = $this->create_title;
         $brands = Brand::where('status', true)->orderBy('name', 'asc')->get();
         $uoms = Uom::where('status', true)->orderBy('name', 'asc')->get();
-        $subcategories = Category::whereNotNull('parent_id')->where('status', true)->orderBy('name', 'asc')->get();
+        $subcategories = Category::whereNotNull('parent_id')->whereIn('position', ['mega_menu_child','header','homepage'])->where('status', true)->orderBy('name', 'asc')->get();
         $vendors = Vendor::where('status', true)->orderBy('name', 'asc')->get();
         $attributes = Attribute::where('status', true)->orderBy('name', 'asc')->get();
         $authors = Author::where('status', true)->orderBy('name', 'asc')->get();
@@ -144,7 +145,9 @@ class ProductController extends Controller
         $request->validate([
             'name'        => 'required',
             'uom_id'      => 'required',
-            'category_id' => 'required',
+            // 'category_id' => 'required',
+            'category_ids' => 'required|array',
+            'category_ids.*' => 'exists:categories,id',
             'barcode'     => 'nullable|unique:products,barcode',
         ]);
 
@@ -187,6 +190,10 @@ class ProductController extends Controller
                 // ✅ VENDORS (NULL SAFE)
                 if (!empty($request->vendor_id)) {
                     $product->vendors()->attach($request->vendor_id);
+                }
+                // categories insert
+                if (!empty($request->category_ids)) {
+                    $product->categories()->attach($request->category_ids);
                 }
 
                 //Edition
@@ -288,7 +295,7 @@ class ProductController extends Controller
         $additionalData = [
             'brands' => Brand::where('status', true)->orderBy('name', 'asc')->get(),
             'uoms' => Uom::where('status', true)->orderBy('name', 'asc')->get(),
-            'categories' => Category::where('status', true)->orderBy('name', 'asc')->get(),
+            'categories' => Category::whereNotNull('parent_id')->whereIn('position', ['mega_menu_child','header','homepage'])->where('status', true)->orderBy('name', 'asc')->get(),
             'vendors' => Vendor::where('status', true)->orderBy('name', 'asc')->get(),
             'publications' => Publication::where('status', true)->orderBy('name', 'asc')->get(),
             'authors' => Author::where('status', true)->orderBy('name', 'asc')->get(),
@@ -306,7 +313,9 @@ class ProductController extends Controller
         $request->validate([
             'name'        => 'required',
             'uom_id'      => 'required',
-            'category_id' => 'required',
+            // 'category_id' => 'required',
+            'category_ids' => 'required|array',
+            'category_ids.*' => 'exists:categories,id',
             'barcode'     => 'nullable|unique:products,barcode,' . $id,
         ]);
 
@@ -329,6 +338,15 @@ class ProductController extends Controller
                         $request->only(['choice_no', 'purchase_price', 'sale_price', 'sku']),
                         $product
                     );
+                }
+
+                // ======================
+                // ✅ CATEGORY SYNC (IMPORTANT)
+                // ======================
+                if (!empty($request->category_ids)) {
+                    $product->categories()->sync($request->category_ids);
+                } else {
+                    $product->categories()->detach();
                 }
 
                 // ======================

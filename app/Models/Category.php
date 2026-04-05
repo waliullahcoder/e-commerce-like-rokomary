@@ -68,9 +68,15 @@ class Category extends Model
     }
 
      // Products under sub-category
+    // public function products()
+    // {
+    //     return $this->hasMany(Product::class, 'category_id');
+    // }
     public function products()
     {
-        return $this->hasMany(Product::class, 'category_id');
+        return $this->belongsToMany(Product::class, 'product_categories', 'category_id', 'product_id')
+                    ->with('variants')
+                    ->where('status', 1); // only active products
     }
 
     /**

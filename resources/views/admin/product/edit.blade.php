@@ -347,7 +347,8 @@
                             name="category_ids[]" 
                             multiple 
                             data-placeholder="Select Categories" 
-                            required>
+                            required
+                            style="width:100%;height:400px;">
 
                         @foreach ($additionalData['categories'] as $item)
                             <option value="{{ $item->id }}"

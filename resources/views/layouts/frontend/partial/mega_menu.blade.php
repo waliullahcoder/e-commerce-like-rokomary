@@ -25,7 +25,7 @@
                         {{-- <h4>{{ $menu->name }}</h4> --}}
 
                         @foreach ($chunk as $item)
-                            <a href="{{ route('category.index', [$item->id, $item->category_slug,$item->name]) }}">
+                            <a href="{{route('category.singleCategoryPage', $item->id)}}">
                                 {{ $item->name }}
                             </a>
                         @endforeach

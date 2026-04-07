@@ -112,10 +112,12 @@ $categories = Category::whereNotNull('parent_id')->where('position', 'homepage')
 public function getSubCategoryTrendsNewBookProductOnly()
 {
 return Category::whereNotNull('parent_id')
-    ->whereIn('slug', ['trending-bismuuh', 'ntun-prkasit-bi'])
-    ->with('products','products.variants')
-    ->orderBy('id', 'asc')
-    ->get();
+        ->whereIn('slug', ['trending-bismuuh', 'ntun-prkasit-bi'])
+        ->with(['products' => function($query) {
+            $query->where('status', 1)->inRandomOrder();
+        }, 'products.variants'])
+        ->orderBy('id', 'asc')
+        ->get();
 }
 
 //Banner add category
@@ -124,12 +126,14 @@ public function getSubCategoryBannerOnly()
     return Category::whereNotNull('parent_id')->where('position', 'homepage_banner_category')->get();
 }
 
-//সিয়ান যুগপূর্তি অফার and রবিউল আউয়াল সীরাত গ্রন্থমালা
+//Flat Offer
 public function getSubCategorySianJugpuertiNrobiulAualProductOnly()
 {
 return Category::whereNotNull('parent_id')
     ->whereIn('slug', ['sizan-zugpuurti-ofar', 'rbiul-auzal-seerat-grnthmala'])
-    ->with('products','products.variants')
+    ->with(['products' => function($query) {
+            $query->where('status', 1)->inRandomOrder();
+        }, 'products.variants'])
     ->orderBy('id', 'asc')
     ->get();
 }

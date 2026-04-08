@@ -14,6 +14,23 @@
                 </div>
                 <input type="hidden" name="parent_id" value="{{ $data->parent_id }}">
                 <div class="modal-body">
+                     @php
+                     $categories = \App\Models\Category::with(['children'])
+                                        ->whereNull('parent_id')
+                                        ->whereIn('position', ['mega_menu_parent', 'header', 'homepage'])
+                                        ->where('status', 1)
+                                        ->orderBy('name', 'asc')
+                                        ->get();
+                                @endphp
+                     <div class="col-12">
+                            <label for="parent_id" class="form-label">Parent Category:</label>
+                            <select name="parent_id" id="parent_id" class="form-select select"
+                                data-placeholder="Select Parent Category">
+                                @foreach ($categories as $item)
+                                    <option value="{{ $item->id }}" {{ $item->id==$data->parent_id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     <div class="mb-2">
                         <label class="form-label">Name</label>
                         <input type="text"
@@ -22,6 +39,24 @@
                                value="{{ $data->name }}"
                                required>
                     </div>
+                    @if($data->parent_id != null)
+                    
+                    <div class="mb-2">
+                        <label for="parent_ids" class="form-label"><b>Parent Categories</b></label>
+                        @php
+                            $selectedParents = $data->parents ? $data->parents->pluck('id')->toArray() : [];
+                        @endphp
+
+                        <select name="parent_ids[]" class="form-select" multiple style="width:100%;height:300px;">
+                            @foreach($categories as $parent)
+                                 <option value="{{ $parent->id }}"
+                                    {{ in_array($parent->id, $selectedParents) ? 'selected' : '' }}>
+                                    {{ $parent->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @endif
                      <div class="col-12">
                                     <label for="type" class="form-label"><b>Type</b></label>
                                     <select name="type" id="type" class="form-select" required>

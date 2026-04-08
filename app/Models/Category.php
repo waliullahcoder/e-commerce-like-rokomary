@@ -56,6 +56,10 @@ class Category extends Model
     {
         return $this->belongsTo(self::class, 'parent_id', 'id');
     }
+    public function parents()
+    {
+        return $this->belongsToMany(Category::class, 'category_subcategory', 'subcategory_id', 'parent_id');
+    }
 
     /**
      * Child categories
@@ -128,6 +132,10 @@ class Category extends Model
         }
 
         return route('category.index', [$this->id, $this->slug]);
+    }
+    public function subcategories()
+    {
+        return $this->belongsToMany(Category::class, 'category_subcategory', 'parent_id', 'subcategory_id');
     }
 
 }

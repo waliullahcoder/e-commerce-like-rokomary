@@ -6,6 +6,7 @@ use App\HelperClass;
 use App\Models\Menu;
 use App\Models\MenuItem;
 use App\Models\Category;
+use App\Models\SubCategory;
 use App\Models\Publication;
 use App\Models\Product;
 use App\Models\Author;
@@ -43,9 +44,9 @@ $data['mega_menus']        = $menus['mega_menu_parent']  ?? collect();
 $data['footer_col1_menus'] = $menus['footer']       ?? collect();
 $data['footer_col2_menus'] = $menus['footer_col2']       ?? collect();
 
-$data['sub_menus'] = Category::whereNotNull('parent_id')
-    ->where('status', 1)
+$data['sub_menus'] = Category::where('status', 1)
     ->where('position', 'mega_menu_child')
+    ->whereHas('parents')
     ->select(
         'id',
         'name',
@@ -88,16 +89,33 @@ return $data;
             ->get();
      }
 
- public function getProductData($cat_id)
-    {
-        $categories = Category::where('parent_id', $cat_id)
-            ->with(['products' => function($query){
-                $query->where('status', 1);
-            }, 'products.variants'])
-            ->get();
+public function getProductData($cat_id)
+{
+    // 1️⃣ Direct child categories
+   // $directCategories = Category::where('parent_id', $cat_id);
 
-        return $categories;
-    }
+    // 2️⃣ Pivot table থেকে category id নেওয়া
+    $pivotCategoryIds = \DB::table('category_subcategory')
+        ->where('parent_id', $cat_id)
+        ->pluck('subcategory_id');
+
+    // 3️⃣ Pivot categories query
+    $pivotCategories = Category::whereIn('id', $pivotCategoryIds);
+
+    // 4️⃣ দুইটা merge করা
+    //  $categories = $directCategories
+    //     ->union($pivotCategories)
+    $categories = $pivotCategories->with([
+            'products' => function($query) {
+                $query->where('status', 1)->inRandomOrder();
+            },
+            'products.variants',
+            'subcategories'
+        ])
+        ->get();
+
+    return $categories;
+}
 
 //--------------Home Page----------------//
 

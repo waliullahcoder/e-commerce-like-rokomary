@@ -18,9 +18,9 @@ class UomController extends Controller
     public function __construct()
     {
         $this->path = 'uom';
-        $this->title = 'UOM Setup';
-        $this->create_title = 'Add UOM';
-        $this->edit_title = 'Update UOM';
+        $this->title = 'Editor Setup';
+        $this->create_title = 'Add Editor';
+        $this->edit_title = 'Update Editor';
         $this->model = Uom::class;
     }
 

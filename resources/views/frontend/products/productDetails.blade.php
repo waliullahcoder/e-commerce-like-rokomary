@@ -255,6 +255,10 @@
                                         <th>Publication</th>
                                         <td>{{$product->publication->name ?? 'N/A'}}</td>
                                     </tr>
+                                    <tr>
+                                    <th>Editor</th>
+                                    <td>{{ $product->uom->name??'N/A' }}</td>
+                                    </tr>
                                 </table>
 
                             </div>
@@ -342,6 +346,10 @@
                                 <tr>
                                     <th>Barcode</th>
                                     <td>{{ $product->barcode }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Editor</th>
+                                    <td>{{ $product->uom->name??'N/A' }}</td>
                                 </tr>
                             </table>
                         </div>

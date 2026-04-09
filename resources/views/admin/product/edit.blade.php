@@ -40,8 +40,8 @@
                     </select>
                 </div>
                 <div class="col-sm-6">
-                    <label for="uom_id" class="form-label"><b>Unit <span class="text-danger">*</span></b></label>
-                    <select class="form-select select" name="uom_id" id="uom_id" data-placeholder="Select Unit"
+                    <label for="uom_id" class="form-label"><b>Editor <span class="text-danger">*</span></b></label>
+                    <select class="form-select select" name="uom_id" id="uom_id" data-placeholder="Select Editor"
                         required>
                         <option value=""></option>
                         @foreach ($additionalData['uoms'] as $item)

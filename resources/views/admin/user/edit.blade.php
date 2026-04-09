@@ -14,6 +14,15 @@
                 @endforeach
             </select>
         </div>
+         <div class="col-lg-4 col-sm-6">
+            <label for="role_status" class="form-label require"><b>Panel<span class="text-danger">*</span></b></label>
+            <select class="form-control" name="role_status" required>
+                <option value="0" {{ $data->role_status==0 ? 'selected' : '' }}>Customer</option>
+                <option value="1" {{ $data->role_status==1 ? 'selected' : '' }}>System User</option>
+                <option value="2" {{ $data->role_status==2 ? 'selected' : '' }}>Investor</option>
+                <option value="3" {{ $data->role_status==3 ? 'selected' : '' }}>Merchant</option>
+            </select>
+        </div>
         <div class="col-lg-4 col-sm-6">
             <label for="name" class="form-label"><b>Name <span class="text-danger">*</span></b></label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Name"

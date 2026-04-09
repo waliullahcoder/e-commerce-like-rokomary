@@ -23,6 +23,15 @@
             <input type="text" class="form-control" id="user_name" name="user_name" placeholder="User ID"
                 value="{{ old('user_name') }}" required>
         </div>
+         <div class="col-lg-4 col-sm-6">
+            <label for="role_status" class="form-label require"><b>Panel<span class="text-danger">*</span></b></label>
+            <select class="form-control" name="role_status" required>
+                <option value="0">Customer</option>
+                <option value="1">System User</option>
+                <option value="2">Investor</option>
+                <option value="3">Merchant</option>
+            </select>
+        </div>
         <div class="col-lg-4 col-sm-6">
             <label for="email" class="form-label"><b>Email</b></label>
             <input type="email" class="form-control" id="email" name="email" placeholder="User Email"

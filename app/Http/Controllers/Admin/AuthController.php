@@ -61,8 +61,6 @@ class AuthController extends Controller
     public function dashboard(Request $request)
     {
 
-         
-
         if (Auth::user()->hasRole('Investor')) {
              if ($request->ajax() && $request->get_investors) {
             $invests = Invest::with(['investor'])->where('product_id', $request->product_id)->groupBy('investor_id')->select('*', DB::raw('SUM(qty) as sumQty'), DB::raw('SUM(amount) as sumAmount'))->get();
@@ -112,7 +110,48 @@ class AuthController extends Controller
             ];
         }
             return view('admin.auth.investor-dashbaord', compact('data'));
-        } else {
+        } else if(Auth::user()->role_status==3){
+              $today = Carbon::today();
+        $startOfMonth = $today->copy()->startOfMonth();
+        $endOfMonth = $today->copy()->endOfMonth();
+
+        // Total & Daily Expenses
+        $totalExpense = \App\Models\Expense::where('created_by',Auth::user()->id)->sum('amount');
+        $dailyExpense = \App\Models\Expense::where('created_by',Auth::user()->id)->whereDate('created_at', $today)->sum('amount');
+
+        // Total & Daily Sales
+        $totalSales = \App\Models\Sales::where('created_by',Auth::user()->id)->sum('net_amount');
+        $dailySales = \App\Models\Sales::where('created_by',Auth::user()->id)->whereDate('created_at', $today)->sum('net_amount');
+
+        // Total & Daily Orders
+      
+
+        // Monthly Sales & Expense for charts
+        $months = [];
+        $monthlySales = [];
+        $monthlyExpense = [];
+
+        for ($i = 0; $i < 6; $i++) {
+            $monthStart = $today->copy()->subMonths(5 - $i)->startOfMonth();
+            $monthEnd = $monthStart->copy()->endOfMonth();
+
+            $months[] = $monthStart->format('M');
+
+            $monthlySales[] = \App\Models\Sales::where('created_by',Auth::user()->id)->whereBetween('created_at', [$monthStart, $monthEnd])->sum('net_amount');
+            $monthlyExpense[] = \App\Models\Expense::where('created_by',Auth::user()->id)->whereBetween('created_at', [$monthStart, $monthEnd])->sum('amount');
+        }
+
+        $dashboardData = [
+            'totalExpense' => $totalExpense,
+            'dailyExpense' => $dailyExpense,
+            'totalSales' => $totalSales,
+            'dailySales' => $dailySales,
+            'monthlySales' => $monthlySales,
+            'monthlyExpense' => $monthlyExpense,
+            'months' => $months,
+        ];
+            return view('admin.auth.merchant-dashboard', compact('dashboardData'));
+        }else {
            $today = Carbon::today();
         $startOfMonth = $today->copy()->startOfMonth();
         $endOfMonth = $today->copy()->endOfMonth();

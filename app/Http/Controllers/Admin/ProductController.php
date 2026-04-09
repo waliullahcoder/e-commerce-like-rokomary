@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use App\Models\AttributeValue;
 use App\Services\ProductService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Services\ProductVariantService;
 use Yajra\DataTables\Facades\DataTables;
@@ -56,6 +57,7 @@ class ProductController extends Controller
             $this->model::with(['categories', 'uom','edition'])
                 ->select('id','code','name','uom_id','thumbnail','status')
                 ->where('product_type', 'book')
+                ->where('created_by',Auth::user()->id)
                 ->orderBy('id', 'desc'),
             'thumbnail',
             null,

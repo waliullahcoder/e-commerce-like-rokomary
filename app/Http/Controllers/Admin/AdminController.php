@@ -68,6 +68,7 @@ class AdminController extends Controller
             'password'   => ['required', Password::min(8), 'confirmed'],
             // 'password'   => ['required', Password::min(8)->letters()->mixedCase()->numbers()->symbols(), 'confirmed'],
             'role_id'    => ['required', 'exists:roles,id'],
+            'role_status'    => ['required'],
             'image'      => ['nullable', 'image'],
         ]);
 
@@ -76,6 +77,7 @@ class AdminController extends Controller
             'user_name'   => $validated['user_name'],
             'email'       => $validated['email'],
             'phone'       => $validated['phone'],
+            'role_status'   => $validated['role_status'],
             'password'    => Hash::make($validated['password']),
             'image'       => isset($validated['image']) ? HelperClass::saveImage($validated['image'], 300, $this->path) : null,
             'created_by'  => Auth::id(),
@@ -116,6 +118,7 @@ class AdminController extends Controller
             'email' => ['nullable', 'email', Rule::unique('users', 'email')->ignore($id)],
             'phone' => ['nullable', Rule::unique('users', 'phone')->ignore($id)],
             'role_id' => ['required', 'exists:roles,id'],
+            'role_status'    => ['required'],
             'image'      => ['nullable', 'image'],
         ]);
 
@@ -125,6 +128,7 @@ class AdminController extends Controller
             'user_name'  => $request->user_name,
             'email'      => $request->email,
             'phone'      => $request->phone,
+            'role_status'  => $request->role_status,
             'image'       => isset($validated['image']) ? HelperClass::saveImage($validated['image'], 300, $this->path, $data->image) : $data->image,
             'updated_by' => Auth::id(),
         ]);

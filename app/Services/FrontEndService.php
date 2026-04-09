@@ -161,12 +161,14 @@ public function getSubCategoryWriterOnly()
     return Category::whereNotNull('parent_id')->where('position', 'homepage_writter_category')->get();
 }
 
-//আতর ও সুগন্ধি পণ্য
-public function getSubCategoryAtarSugondhiProductOnly()
+//নিয়োগ সহায়িকা
+public function getSubCategoryNiogSohaikaOnly()
 {
     return Category::whereNotNull('parent_id')
-    ->whereIn('slug', ['atr-oo-sugndhi-pnz'])
-    ->with('products','products.variants')
+    ->whereIn('slug', ['niyog-shayika-1'])
+    ->with(['products' => function($query) {
+            $query->where('status', 1)->inRandomOrder();
+        }, 'products.variants'])
     ->orderBy('id', 'asc')
     ->get();
 }

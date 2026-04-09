@@ -35,8 +35,8 @@ class ViewController extends Controller
         $get_sub_category_sian_jugpuerti_nrobiul_aual_product_only = $this->frontEndService->getSubCategorySianJugpuertiNrobiulAualProductOnly();
         //জনপ্রিয় লেখক
         $get_sub_category_writer_only = $this->frontEndService->getSubCategoryWriterOnly();
-        //আতর ও সুগন্ধি পণ্য
-        $get_sub_category_atar_sugondhi_product_only = $this->frontEndService->getSubCategoryAtarSugondhiProductOnly();
+        //নিয়োগ সহায়িকা
+        $get_sub_category_niog_sohaika_product_only = $this->frontEndService->getSubCategoryNiogSohaikaOnly();
         //অন্যান্য পণ্য
         $get_sub_category_others_only = $this->frontEndService->getSubCategoryOthersOnly();
         //ব্র্যান্ডসমূহ
@@ -53,7 +53,7 @@ class ViewController extends Controller
             'get_sub_category_banner_only',
             'get_sub_category_sian_jugpuerti_nrobiul_aual_product_only',
             'get_sub_category_writer_only',
-            'get_sub_category_atar_sugondhi_product_only',
+            'get_sub_category_niog_sohaika_product_only',
             'get_sub_category_others_only',
             'get_sub_category_brand_only'
         ));

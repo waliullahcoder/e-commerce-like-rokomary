@@ -22,7 +22,7 @@
             <input type="text" class="form-control date_picker" name="date" id="date" placeholder="Date"
                 value="{{ date('d-m-Y', strtotime(old('date', date('d-m-Y')))) }}" required>
         </div>
-        <div class="col-lg-4 col-sm-6">
+        <div class="col-lg-8 col-sm-8">
             <label for="debit_heads" class="form-label"><b>Debit Account Head <span class="text-danger">*</span></b></label>
             <select name="debit_heads" id="debit_heads" class="form-select select" data-placeholder="select Debit Head">
                 <option value="">Select Account Name</option>
@@ -33,12 +33,12 @@
                 @endforeach
             </select>
         </div>
-        <div class="col-lg-4 col-sm-6">
+        {{-- <div class="col-lg-4 col-sm-6">
             <label for="narration" class="form-label"><b>Remarks</b></label>
             <textarea class="form-control narration" id="narration" name="narration" rows="1" spellcheck="false"
                 placeholder="Remarks">{{ old('narration') }}</textarea>
-        </div>
-        <div class="col-lg-4 col-sm-6">
+        </div> --}}
+        <div class="col-lg-4 col-sm-4">
             <label for="narration" class="form-label text-white"><b>Add Account</b></label>
             <button type="button" class="btn btn-xs btn-primary w-100 px-2 py-2" id="add_item">Add Account</button>
         </div>
@@ -49,6 +49,7 @@
                         <tr>
                             <th class="py-1 text-center" width="50">SL#</th>
                             <th class="py-1 px-3">Account Name</th>
+                            <th class="py-1 px-3">Remarks</th>
                             <th class="py-1 text-end" width="200">Debit</th>
                             <th class="py-1 text-center" width="100">Action</th>
                         </tr>
@@ -57,7 +58,7 @@
                     </tbody>
                     <tfoot class="bg-primary align-middle border-primary">
                         <tr>
-                            <th colspan="2" class="py-1 text-end text-white">Total Amount</th>
+                            <th colspan="3" class="py-1 text-end text-white">Total Amount</th>
                             <td class="py-1">
                                 <input type="number" step="any" class="totalDebit text-end form-control input-sm"
                                     id="totalDebit" name="totalDebit" value="0" readonly>
@@ -89,10 +90,17 @@
                                 <input type="hidden" name="head_code[${head_id}]" class="head_code" value="${head_code}">
                                 <b class="head_name">${head_name} - ${head_code}</b>
                             </td>
+                            
+                            <!-- 🔥 NEW: Row wise narration -->
+                            <td class="py-1">
+                                    <textarea class="form-control narration" name="row_narration[${head_id}]" rows="1" spellcheck="false"
+                placeholder="Remarks">{{ old('narration') }}</textarea>
+                            </td>
                             <td class="py-1">
                                 <input type="number" class="debit text-end form-control input-sm" name="debit_amount[${head_id}]" oninput="calculate()"
                                     value="0">
                             </td>
+
                             <td class="py-1 text-center">
                                 <button type="button" class="btn btn-outline-danger btn-sm w-100 remove_btn">
                                     <i class="far fa-trash-alt pb-1"></i>

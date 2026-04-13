@@ -20,7 +20,7 @@
                     <span class="d-inline-block" style="min-width: 200px;">{{ @$data->voucher_no }}</span>
                 </td>
                 <td class="text-right">
-                    <b class="d-inline-block text-left">Remarks :</b>
+                    <b class="d-inline-block text-left">Head Name :</b>
                     <span class="d-inline-block"
                         style="min-width: 110px;">{{ @$data->narration }}</span>
                 </td>
@@ -31,6 +31,7 @@
                 <tr>
                     <th class="text-center" width="20">SL#</th>
                     <th>Account Name</th>
+                     <th>Remarks</th>
                     <th class="text-right" width="200">Debit</th>
                 </tr>
             </thead>
@@ -39,13 +40,14 @@
                     <tr>
                         <th class="text-center">{{ $loop->iteration }}</th>
                         <th>{{ $item->coa->head_name }} - {{ $item->coa->head_code }}</th>
+                        <td>{{ $item->narration }}</td>
                         <td class="text-right">{{ number_format($item->debit_amount, 2) }}</td>
                     </tr>
                 @endforeach
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="2"><b>In words :</b>
+                    <td colspan="3"><b>In words :</b>
                         {{ \App\HelperClass::convertNumber($debitEntries->sum('debit_amount')) }} Taka Only
                     </td>
                     <td class="text-right">

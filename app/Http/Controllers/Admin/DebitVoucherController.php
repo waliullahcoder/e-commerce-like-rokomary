@@ -138,57 +138,165 @@ class DebitVoucherController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'credit_head' => 'required',
+    //         'date' => 'required',
+    //         'coa_id' => 'required',
+    //     ]);
+
+    //     try {
+    //         DB::transaction(function () use ($request) {
+    //             $head = Coa::find($request->credit_head);
+    //             $total_credit = array_sum($request->debit_amount);
+
+    //             $data = $this->model::create([
+    //                 'voucher_no' => $this->voucherNo(),
+    //                 'voucher_type' => "DV",
+    //                 'date' => date('Y-m-d', strtotime($request->date)),
+    //                 'coa_id' => $request->credit_head,
+    //                 'coa_head_code' => $head->head_code,
+    //                 'narration' => $request->narration,
+    //                 'credit_amount' => $total_credit,
+    //                 'document' => $request->hasFile('document') ? HelperClass::saveImage($request->document, 2000, $this->path) : null,
+    //                 'created_by' => Auth::id(),
+    //             ]);
+
+    //             $postData = [];
+    //             foreach ($request->coa_id as $coa_id) {
+    //                 if ($request->debit_amount[$coa_id] == 0) {
+    //                     continue;
+    //                 }
+    //                 $postData[] = [
+    //                     'voucher_no' => $data->voucher_no,
+    //                     'voucher_type' => "DV",
+    //                     'date' => date('Y-m-d', strtotime($request->date)),
+    //                     'coa_id' => $coa_id,
+    //                     'coa_head_code' => $request->head_code[$coa_id],
+    //                     'narration' => $request->narration,
+    //                     'debit_amount' => $request->debit_amount[$coa_id],
+    //                     'document' => $data->document,
+    //                     'created_by' => Auth::id(),
+    //                     'created_at' => Carbon::now(),
+    //                     'updated_at' => Carbon::now()
+    //                 ];
+    //             }
+    //             $this->model::insert($postData);
+    //         });
+    //     } catch (\Exception $e) {
+    //         return back()->withErrors($e->getMessage());
+    //     }
+
+    //     return redirect()->route("admin.{$this->path}.index")->withSuccessMessage('Created Successfully!');
+    // }
     public function store(Request $request)
     {
         $request->validate([
             'credit_head' => 'required',
             'date' => 'required',
-            'coa_id' => 'required',
+            'coa_id' => 'required|array',
         ]);
 
         try {
             DB::transaction(function () use ($request) {
-                $head = Coa::find($request->credit_head);
-                $total_credit = array_sum($request->debit_amount);
 
-                $data = $this->model::create([
+                // Load credit head once
+                $creditHead = Coa::findOrFail($request->credit_head);
+
+                $date = date('Y-m-d', strtotime($request->date));
+                $userId = Auth::id();
+
+                $debitAmounts = $request->debit_amount ?? [];
+                $rowNarrations = $request->row_narration ?? [];
+                $headCodes = $request->head_code ?? [];
+
+                $total_credit = array_sum($debitAmounts);
+
+                // Load all COA at once (avoid N+1)
+                $coas = Coa::whereIn('id', $request->coa_id)
+                    ->pluck('head_name', 'id');
+
+                // =========================
+                // COMBINED NARRATION
+                // =========================
+                $headNames = [];
+
+                foreach ($request->coa_id as $coa_id) {
+
+                    $headName = $coas[$coa_id] ?? null;
+                    if (!$headName) continue;
+
+                    $manual = $rowNarrations[$coa_id] ?? null;
+
+                    $headNames[] = $manual
+                        ? "{$headName} - {$manual}"
+                        : $headName;
+                }
+
+                $combinedNarration = $request->narration
+                    ? $request->narration . ' | ' . implode(', ', $headNames)
+                    : implode(', ', $headNames);
+
+                // =========================
+                // MAIN VOUCHER
+                // =========================
+                $voucher = $this->model::create([
                     'voucher_no' => $this->voucherNo(),
                     'voucher_type' => "DV",
-                    'date' => date('Y-m-d', strtotime($request->date)),
-                    'coa_id' => $request->credit_head,
-                    'coa_head_code' => $head->head_code,
-                    'narration' => $request->narration,
+                    'date' => $date,
+                    'coa_id' => $creditHead->id,
+                    'coa_head_code' => $creditHead->head_code,
+                    'narration' => $combinedNarration,
                     'credit_amount' => $total_credit,
-                    'document' => $request->hasFile('document') ? HelperClass::saveImage($request->document, 2000, $this->path) : null,
-                    'created_by' => Auth::id(),
+                    'document' => $request->hasFile('document')
+                        ? HelperClass::saveImage($request->document, 2000, $this->path)
+                        : null,
+                    'created_by' => $userId,
                 ]);
 
+                // =========================
+                // DETAIL VOUCHERS
+                // =========================
                 $postData = [];
+
                 foreach ($request->coa_id as $coa_id) {
-                    if ($request->debit_amount[$coa_id] == 0) {
-                        continue;
-                    }
+
+                    $amount = $debitAmounts[$coa_id] ?? 0;
+
+                    if ($amount <= 0) continue;
+
                     $postData[] = [
-                        'voucher_no' => $data->voucher_no,
+                        'voucher_no' => $voucher->voucher_no,
                         'voucher_type' => "DV",
-                        'date' => date('Y-m-d', strtotime($request->date)),
+                        'date' => $date,
                         'coa_id' => $coa_id,
-                        'coa_head_code' => $request->head_code[$coa_id],
-                        'narration' => $request->narration,
-                        'debit_amount' => $request->debit_amount[$coa_id],
-                        'document' => $data->document,
-                        'created_by' => Auth::id(),
-                        'created_at' => Carbon::now(),
-                        'updated_at' => Carbon::now()
+                        'coa_head_code' => $headCodes[$coa_id] ?? null,
+
+                        // FIXED: row narration (not global)
+                        'narration' => $rowNarrations[$coa_id]
+                            ?? ($coas[$coa_id] ?? ''),
+
+                        'debit_amount' => $amount,
+                        'document' => $voucher->document,
+                        'created_by' => $userId,
+                        'created_at' => now(),
+                        'updated_at' => now()
                     ];
                 }
-                $this->model::insert($postData);
+
+                if (!empty($postData)) {
+                    $this->model::insert($postData);
+                }
             });
+
         } catch (\Exception $e) {
             return back()->withErrors($e->getMessage());
         }
 
-        return redirect()->route("admin.{$this->path}.index")->withSuccessMessage('Created Successfully!');
+        return redirect()
+            ->route("admin.{$this->path}.index")
+            ->withSuccessMessage('Created Successfully!');
     }
 
     /**

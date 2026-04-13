@@ -41,7 +41,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th width="200">Remarks</th>
+                        <th width="200">Head Name</th>
                         <th width="10">:</th>
                         <td>{{ @$data->narration }}</td>
                     </tr>
@@ -53,6 +53,7 @@
                     <tr>
                         <th class="text-center" width="30">SL#</th>
                         <th>Debit Account Head</th>
+                        <th>Remarks</th>
                         <th width="200">Debit</th>
                     </tr>
                 </thead>
@@ -61,6 +62,7 @@
                         <tr>
                             <th class="text-center">{{ $loop->iteration }}</th>
                             <th>{{ $item->coa->head_name }} - {{ $item->coa->head_code }}</th>
+                            <td>{{ $item->narration }}</td>
                             <td>{{ number_format($item->debit_amount, 2) }}</td>
                         </tr>
                     @endforeach
@@ -68,7 +70,7 @@
 
                 <tfoot>
                     <tr>
-                        <th colspan="2" class="text-end">Total Amount</th>
+                        <th colspan="3" class="text-end">Total Amount</th>
                         <th>{{ number_format($debitEntries->sum('debit_amount'), 2) }}</th>
                     </tr>
                 </tfoot>

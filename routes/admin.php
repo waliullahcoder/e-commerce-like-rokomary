@@ -45,6 +45,12 @@ use App\Http\Controllers\Admin\{
     ExpenseController,
     CoaController,
     DebitVoucherController,
+    CreditVoucherController,
+    JournalVoucherController,
+    VoucherApproveController,
+    VoucherRejectController,
+    AutomationApproveController,
+    AutomationRejectController,
 };
 
 Route::middleware('guest')->group(function () {

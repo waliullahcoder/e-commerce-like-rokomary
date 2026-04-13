@@ -37,8 +37,8 @@ class CheckoutController extends Controller
     public function placeOrder(Request $request)
     {
 
-        if($request->email){
-            $user = User::where('email', $request->email)->first();
+        if($request->phone){
+            $user = User::where('phone', $request->phone)->first();
             if($user){
                 auth()->login($user);
             }
@@ -58,7 +58,7 @@ class CheckoutController extends Controller
             } else {
                 $user = User::create([
                     'name' => $request->name,
-                    'email' => $request->email,
+                    'phone' => $request->phone,
                     'password' => bcrypt($request->password),
                 ]);
                 auth()->login($user);

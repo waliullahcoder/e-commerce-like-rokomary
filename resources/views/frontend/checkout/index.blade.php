@@ -91,7 +91,7 @@
                             </div>
 
                             <div class="mb-2">
-                                <input type="email" name="email" class="form-control" placeholder="Email" required>
+                                <input type="number" name="phone" class="form-control" placeholder="Mobile No." required>
                             </div>
 
                             <div class="mb-3">

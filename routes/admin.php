@@ -44,6 +44,7 @@ use App\Http\Controllers\Admin\{
     InvestSattlementController,
     ExpenseController,
     CoaController,
+    DebitVoucherController,
 };
 
 Route::middleware('guest')->group(function () {
@@ -122,6 +123,28 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('/investor-statement', [ReportController::class, 'investorStatement'])->name('investor-statement.index');
     // Chart of Account
     Route::resource('/coa', CoaController::class);
+    
+    // Debit Voucher
+    Route::resource('/debit-voucher', DebitVoucherController::class);
+    Route::get('/debit-voucher/{id}/print', [DebitVoucherController::class, 'print'])->name('debit-voucher.print');
+
+    // Credit Voucher
+    Route::resource('/credit-voucher', CreditVoucherController::class);
+    Route::get('/credit-voucher/{id}/print', [CreditVoucherController::class, 'print'])->name('credit-voucher.print');
+
+    // Journal Voucher
+    Route::resource('/journal-voucher', JournalVoucherController::class);
+    Route::get('/journal-voucher/{id}/print', [JournalVoucherController::class, 'print'])->name('journal-voucher.print');
+
+    // Voucher Approve
+    Route::resource('/voucher-approve', VoucherApproveController::class);
+    // Voucher Refuse
+    Route::resource('/voucher-refuse', VoucherRejectController::class);
+    // Automation Approve
+    Route::resource('/automation-approve', AutomationApproveController::class);
+    // Automation Refuse
+    Route::resource('/automation-refuse', AutomationRejectController::class);
+
      // Accounting
     Route::get('/coa-list', [ReportController::class, 'coaList'])->name('coa-list.index');
     Route::get('/voucher-list', [ReportController::class, 'voucherList'])->name('voucher-list.index');

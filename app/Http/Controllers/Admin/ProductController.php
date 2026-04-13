@@ -51,21 +51,42 @@ class ProductController extends Controller
     //     return HelperClass::resourceDataView($this->model::with(['category', 'uom'])->where('product_type', 'book')->orderBy('id', 'desc'), 'thumbnail', null, $this->path, $this->title);
     // }
 
-    public function index()
-    {
-        return HelperClass::resourceDataView(
-            $this->model::with(['categories', 'uom','edition'])
+    // public function index()
+    // {
+    //     return HelperClass::resourceDataView(
+    //         $this->model::with(['categories', 'uom','edition'])
+    //             ->select('id','code','name','uom_id','thumbnail','status')
+    //             ->where('product_type', 'book')
+    //             ->where('created_by',Auth::user()->id)
+    //             ->orderBy('id', 'desc'),
+    //         'thumbnail',
+    //         null,
+    //         $this->path,
+    //         $this->title,
+    //         null // এখানে relation_data null রাখো
+    //     );
+    // }
+
+     public function index()
+        {
+            $query = $this->model::with(['categories', 'uom', 'edition'])
                 ->select('id','code','name','uom_id','thumbnail','status')
-                ->where('product_type', 'book')
-                ->where('created_by',Auth::user()->id)
-                ->orderBy('id', 'desc'),
-            'thumbnail',
-            null,
-            $this->path,
-            $this->title,
-            null // এখানে relation_data null রাখো
-        );
-    }
+                ->where('product_type', 'book');
+
+            // 🔥 Role ভিত্তিক condition
+            if (Auth::user()->role_status == 3) {
+                $query->where('created_by', Auth::user()->id);
+            }
+
+            return HelperClass::resourceDataView(
+                $query->orderBy('id', 'desc'),
+                'thumbnail',
+                null,
+                $this->path,
+                $this->title,
+                null
+            );
+        }
 
     
     public function skuCombination(Request $request)

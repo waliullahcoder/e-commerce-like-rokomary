@@ -199,9 +199,8 @@
                     @endforeach
                 </div>
                 <div class="col-sm-6">
-                <label for="thumbnail" class="form-label"><b>PDF</b></label>
-                <input type="file" class="form-control" id="thumbnail" name="thumbnail" accept=".pdf">
-
+                <label for="file" class="form-label"><b>PDF</b></label>
+                <input type="file" class="form-control" id="file" name="file" accept=".pdf">
                 @if (!empty($data->file) && file_exists(public_path($data->file)))
                     <a href="{{ asset($data->file) }}" target="_blank" class="btn btn-sm btn-primary mt-2">
                         View PDF

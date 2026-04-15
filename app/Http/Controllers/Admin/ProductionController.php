@@ -93,6 +93,7 @@ class ProductionController extends Controller
      */
     public function store(Request $request)
     {
+       // dd($request->all());
         $request->validate([
             'date' => 'required',
             'store_id' => 'required',
@@ -124,8 +125,8 @@ class ProductionController extends Controller
                         'product_edition_id' => $product_edition_id,
                         'qty' => $request->qty[$product_edition_id],
                     ]);
-                }
-                // 🔥 Stock Update
+
+                    // 🔥 Stock Update
                 $variant = ProductVariant::where([
                     'product_id' => $productId
                 ])->first();
@@ -149,6 +150,8 @@ class ProductionController extends Controller
                     ]);
                 }
                 // Stock update end
+                }
+                
 
 
             });

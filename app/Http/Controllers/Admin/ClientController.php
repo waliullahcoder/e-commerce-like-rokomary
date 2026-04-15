@@ -8,6 +8,8 @@ use App\Models\Area;
 use App\Models\Client;
 use App\Models\Region;
 use App\Models\User;
+use App\Models\Sales;
+use App\Models\Collection;
 use App\Models\Territory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,7 +17,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-
+use Yajra\DataTables\Facades\DataTables;
+use App\Services\ActionButtons\ActionButtons;
 class ClientController extends Controller
 {
     public $path;
@@ -35,9 +38,59 @@ class ClientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return HelperClass::resourceDataView($this->model::with(['region', 'area', 'territory'])->orderBy('id', 'desc'), NULL, NULL, $this->path, $this->title, ['sales', 'collections', 'transactions']);
+    // public function index()
+    // {
+    //     return HelperClass::resourceDataView($this->model::with(['region', 'area', 'territory'])->orderBy('id', 'desc'), NULL, NULL, $this->path, $this->title, ['sales', 'collections', 'transactions']);
+    // }
+
+     public function index()
+     {
+            if (request()->ajax()) {
+                $model = $model = $this->model::with(['region', 'area', 'territory'])
+                ->select([
+                'id',
+                'code',
+                'name',
+                'region_id',
+                'area_id',
+                'territory_id',
+                'phone',
+                'email',
+                'address',
+                'status'
+                ])
+                ->orderBy('id', 'desc');
+            return DataTables::eloquent($model)
+            ->addColumn('status', function ($row) {
+            return $row->status == 1 
+                ? '<span class="badge bg-success">Active</span>' 
+                : '<span class="badge bg-danger">Inactive</span>';
+        })
+        ->addColumn('actions', function ($row) {
+            $type = request('type');
+            $data = [
+                'id' => $row->id,
+                'edit' => !empty($type) && $type == 'trash' ? false : true,
+            ];
+            $delete = true;
+            $edit = true;
+            $addition_btns = [
+                [
+                    'parameter' => true,
+                    'target' => '_self',
+                    'title' => 'View Client Statement',
+                    'route' => "admin.{$this->path}.show",
+                    'icon' => '<i class="fas fa-eye"></i>',
+                    'class' => 'btn btn-sm btn-primary border-0',
+                ]
+            ];
+            return ActionButtons::actions($data, $addition_btns, $delete, $edit);
+        })
+        ->rawColumns(['status','actions'])
+        ->make(true);
+        }
+        $title = $this->title;
+        return view("admin.{$this->path}.index", compact('title'));
     }
 
     /**
@@ -153,7 +206,17 @@ class ClientController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $client= Client::find($id);
+         $sales = Sales::where('client_id', $id)->whereColumn('net_amount', '>', DB::raw('paid+return_amount'))->get();
+            $sales_amount = Sales::where('client_id', $id)->sum('net_amount');
+            $total_paid = Collection::where('client_id', $id)->whereIn('collection_type', ['Payment', 'Adjust'])->sum('amount');
+            $due = round($sales_amount - $total_paid, 2);
+
+            $advance = Collection::where('client_id', $id)->whereIn('collection_type', ['Return', 'Advance'])->sum('amount')
+                - Collection::where('client_id', $id)->where('collection_type', 'Adjust')->sum('amount');
+
+     
+        return view('admin.client.view',compact('id','client','sales','due','total_paid','advance'));
     }
 
     /**

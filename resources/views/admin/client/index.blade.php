@@ -10,7 +10,6 @@
     <table class="dataTable table align-middle" style="width:100%">
         <thead>
             <tr class="text-nowrap">
-                <th></th>
                 <th>Code</th>
                 <th>Name</th>
                 <th>Region</th>
@@ -40,7 +39,7 @@
                             </div>
                         </div>
                     </th>
-                    <th class="text-end" colspan="10">
+                    <th class="text-end" colspan="9">
                         <button type="button" name="bulk_delete" data-url="{{ $deleteUrl }}" id="bulk_delete"
                             class="btn btn btn-xs btn-danger">Delete</button>
                         <button type="button" name="bulk_delete" data-url="{{ $deleteUrl }}" style="display: none;"
@@ -66,14 +65,7 @@
                         data.type = $('#filter').val();
                     }
                 },
-                columns: [{
-                        data: "checkbox",
-                        name: "checkbox",
-                        orderable: false,
-                        searchable: false,
-                        className: 'text-center',
-                        width: '30',
-                    },
+                columns: [
                     {
                         data: 'code',
                         name: 'code'

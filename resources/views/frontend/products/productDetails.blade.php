@@ -263,8 +263,8 @@
                                     <th>PDF</th>
                                     <td> 
                                         @if (!empty($product->file) && file_exists(public_path($product->file)))
-                                            <a href="{{ asset($product->file) }}" target="_blank" class="btn btn-sm btn-primary mt-2">
-                                                View PDF
+                                            <a href="{{ asset($product->file) }}" target="_blank" >
+                                                 <i class="fas fa-file-pdf"></i> View PDF
                                             </a>
                                             @else
                                             Not uploaded yet

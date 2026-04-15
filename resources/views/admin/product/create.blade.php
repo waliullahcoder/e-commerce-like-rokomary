@@ -199,6 +199,10 @@
                     <input type="file" class="form-control" id="images" name="images[]" multiple
                         accept="image/*">
                 </div>
+                <div class="col-sm-6">
+                    <label for="file" class="form-label"><b>PDF</b></label>
+                    <input type="file" class="form-control" id="file" name="file" accept=".pdf">
+                </div>
             </div>
         </div>
         <div class="tab-pane fade" id="nav-price" role="tabpanel" aria-labelledby="nav-price-tab" tabindex="0">

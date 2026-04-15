@@ -259,6 +259,17 @@
                                     <th>Editor</th>
                                     <td>{{ $product->uom->name??'N/A' }}</td>
                                     </tr>
+                                     <tr>
+                                    <th>PDF</th>
+                                    <td> 
+                                        @if (!empty($product->file) && file_exists(public_path($product->file)))
+                                            <a href="{{ asset($product->file) }}" target="_blank" class="btn btn-sm btn-primary mt-2">
+                                                View PDF
+                                            </a>
+                                            @else
+                                            Not uploaded yet
+                                        @endif</td>
+                                    </tr>
                                 </table>
 
                             </div>

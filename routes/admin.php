@@ -18,6 +18,8 @@ use App\Http\Controllers\Admin\{
     BrandController,
     HomeSectionController,
     ProductController,
+    MerchantProductController,
+    MerchantOrderController,
     PublicationController,
     PurchaseOrderController,
     PurchaseReceiptController,
@@ -276,3 +278,23 @@ Route::group(['middleware' => ['admin']], function () {
     // Home Section
     Route::resource('/home-section', HomeSectionController::class);
 });
+
+
+// Merchant Panel
+Route::group(['middleware' => ['admin']], function () {
+
+     Route::resource('/merchant-product', MerchantProductController::class);
+
+    // Merchant order Management
+    Route::get('/merchant-orders', [MerchantOrderController::class, 'index'])
+        ->name('merchant.orders.index');
+    Route::get('/merchant-orders/{order}', [MerchantOrderController::class, 'show'])
+        ->name('merchant.orders.show');
+    Route::get('/merchant-orders/{order}/track', [MerchantOrderController::class, 'track'])
+        ->name('merchant.orders.track');
+    Route::get('/merchant-orders/{order}/invoice', [MerchantOrderController::class, 'invoice'])
+        ->name('merchant.orders.invoice');
+    Route::post('/admin/merchant-orders/{order}/status', [MerchantOrderController::class, 'updateStatus'])
+    ->name('merchant.orders.updateStatus');
+
+    });

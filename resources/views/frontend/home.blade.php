@@ -240,7 +240,7 @@
     <!--  End ট্রেন্ডিং বইসমূহ and নতুন প্রকাশিত বই -->
 
     <!-- Banner Category -->
-    <div class="pb-4">
+    <div class="pb-4" style="display:none">
         <div class="container">
             <div class="row g-3">
                 @foreach($get_sub_category_banner_only as $subCategory)
@@ -346,9 +346,9 @@
                         <div class="swiper-wrapper">
                             @foreach ($get_sub_category_writer_only as $item)
                             <div class="swiper-slide">
-                                <a href="{{route('category.singleCategoryPage', $item->id)}}" class="author-card">
-                                    <img src="{{ asset($item->image) }}">
-                                    <p class="author-card-text">{{ $item->name }}</p>
+                                <a href="{{route('category.singleCategoryPage', $item->category->id)}}" class="author-card">
+                                    <img src="{{ asset($item->category->image) }}">
+                                    <p class="author-card-text">{{ $item->category->name }}</p>
                                 </a>
                             </div>
                             @endforeach

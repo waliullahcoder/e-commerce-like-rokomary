@@ -31,7 +31,7 @@
                 <div class="col-sm-6">
                     <label for="brand_id" class="form-label"><b>Brand</b></label>
                     <select class="form-select select" name="brand_id" id="brand_id" data-placeholder="Select Brand">
-                        <option value=""></option>
+                        
                         @foreach ($additionalData['brands'] as $item)
                             <option value="{{ $item->id }}"
                                 {{ old('brand_id', $data->brand_id) == $item->id ? 'selected' : '' }}>
@@ -40,10 +40,10 @@
                     </select>
                 </div>
                 <div class="col-sm-6">
-                    <label for="uom_id" class="form-label"><b>Editor <span class="text-danger">*</span></b></label>
-                    <select class="form-select select" name="uom_id" id="uom_id" data-placeholder="Select Editor"
+                    <label for="uom_id" class="form-label"><b>Editor/Translator <span class="text-danger">*</span></b></label>
+                    <select class="form-select select" name="uom_id" id="uom_id" data-placeholder="Select Editor/Translator"
                         required>
-                        <option value=""></option>
+                        
                         @foreach ($additionalData['uoms'] as $item)
                             <option value="{{ $item->id }}"
                                 {{ old('uom_id', $data->uom_id) == $item->id ? 'selected' : '' }}>
@@ -55,7 +55,7 @@
                     <label for="vendor_id" class="form-label"><b>Suppliers</b></label>
                     <select name="vendor_id[]" id="vendor_id" class="form-select select" data-placeholder="Select Vendors"
                         multiple>
-                        <option value=""></option>
+                        
                         @foreach ($additionalData['vendors'] as $item)
                             <option value="{{ $item->id }}"
                                 {{ in_array($item->id, old('vendor_id', $data->vendors->pluck('id')->toArray())) ? 'selected' : '' }}>
@@ -67,7 +67,7 @@
                     <label for="publication_id" class="form-label"><b>Publication <span class="text-danger">*</span></b></label>
                     <select class="form-select select" name="publication_id" id="publication_id"
                         data-placeholder="Select Publication" required>
-                        <option value=""></option>
+                        
                         @foreach ($additionalData['publications'] as $item)
                             <option value="{{ $item->id }}" {{ $data->publication_id == $item->id ? 'selected' : '' }}>
                                 {{ $item->name }}</option>
@@ -78,7 +78,7 @@
                     <label for="author_id" class="form-label"><b>Author <span class="text-danger">*</span></b></label>
                     <select class="form-select select" name="author_id" id="author_id"
                         data-placeholder="Select Author" required>
-                        <option value=""></option>
+                        
                         @foreach ($additionalData['authors'] as $item)
                             <option value="{{ $item->id }}" {{ isset($additionalData['productauthor']) && $additionalData['productauthor']->author->id == $item->id ? 'selected' : '' }}>
                                 {{ $item->name }}</option>

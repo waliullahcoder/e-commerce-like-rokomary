@@ -7,7 +7,9 @@ use App\HelperClass;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\Category;
+use App\Models\SubCategory;
+use Illuminate\Support\Facades\DB;
 class UomController extends Controller
 {
     public $path;
@@ -18,9 +20,9 @@ class UomController extends Controller
     public function __construct()
     {
         $this->path = 'uom';
-        $this->title = 'Editor Setup';
-        $this->create_title = 'Add Editor';
-        $this->edit_title = 'Update Editor';
+        $this->title = 'Editor/Translator Setup';
+        $this->create_title = 'Add Editor/Translator';
+        $this->edit_title = 'Update Editor/Translator';
         $this->model = Uom::class;
     }
 
@@ -46,15 +48,43 @@ class UomController extends Controller
     public function store(Request $request)
     {
         $request->validate(['name' => 'required']);
+        $existingCategory = Category::where('name', $request->name)->first();
+        if ($existingCategory) {
+            return back()->withInput()->withErrors('Ops! Already exists!');
+        }
 
-        $this->model::create([
-            'name' => $request->name,
-            'slug' => HelperClass::generateUniqueSlug($this->model, 'slug', $request->name),
-            'description' => $request->description,
-            'created_by' => Auth::id(),
-        ]);
+        try {
+            DB::transaction(function () use ($request) {
+                // Main Model Create
+                $this->model::create([
+                'name' => $request->name,
+                'type' => $request->type,
+                'slug' => HelperClass::generateUniqueSlug($this->model, 'slug', $request->name),
+                'description' => $request->description,
+                'created_by' => Auth::id(),
+                ]);
 
+                // Category Create
+                $category = Category::create([
+                    'parent_id' => 17,
+                    'type' => "book",
+                    'position' => "mega_menu_child",
+                    'serial' => 100,
+                    'name' => $request->name,
+                    'slug' => HelperClass::generateUniqueSlug(Category::class, 'slug', $request->name),
+                    'created_by' => Auth::id(),
+                ]);
+
+                // SubCategory Create
+                SubCategory::create([
+                    'parent_id' => 17,
+                    'subcategory_id' => $category->id,
+                ]);
+            });
         return redirect()->route("admin.{$this->path}.index")->withSuccessMessage('Created Successfully!');
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors('Something went wrong!');
+        }
     }
 
     /**
@@ -83,16 +113,47 @@ class UomController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate(['name' => 'required']);
+         try {
+            DB::transaction(function () use ($request,$id) {
+                // Main Model Create
+                $data = $this->model::findOrFail($id);
+                $data->update([
+                    'name' => $request->name,
+                    'type' => $request->type,
+                    'slug' => HelperClass::generateUniqueSlug($this->model, 'slug', $request->name, $id),
+                    'description' => $request->description,
+                    'updated_by' => Auth::id(),
+                ]);
+                $existingCategory = Category::where('name', $data->name)->first();
+                if (!$existingCategory) {
+                   // Category Create
+                $category = Category::create([
+                    'parent_id' => 17,
+                    'type' => "book",
+                    'position' => "mega_menu_child",
+                    'serial' => 100,
+                    'name' => $request->name,
+                    'slug' => HelperClass::generateUniqueSlug(Category::class, 'slug', $request->name),
+                    'created_by' => Auth::id(),
+                ]);
 
-        $data = $this->model::findOrFail($id);
-        $data->update([
-            'name' => $request->name,
-            'slug' => HelperClass::generateUniqueSlug($this->model, 'slug', $request->name, $id),
-            'description' => $request->description,
-            'updated_by' => Auth::id(),
-        ]);
+                // SubCategory Create
+                SubCategory::create([
+                    'parent_id' => 17,
+                    'subcategory_id' => $category->id,
+                ]);
+                }else{
+                    $existingCategory->update([
+                        'name' => $request->name,
+                    ]);
+                }
+                
+            });
 
         return redirect()->route("admin.{$this->path}.index")->withSuccessMessage('Updated Successfully!');
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors('Something went wrong!');
+        }
     }
 
     /**

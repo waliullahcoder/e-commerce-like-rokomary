@@ -158,7 +158,9 @@ return Category::whereNotNull('parent_id')
 //জনপ্রিয় লেখক
 public function getSubCategoryWriterOnly()
 {
-    return Category::whereNotNull('parent_id')->where('position', 'homepage_writter_category')->get();
+    return SubCategory::with('category')
+    ->where('parent_id', 228)
+    ->get();
 }
 
 //নিয়োগ সহায়িকা

@@ -14,6 +14,24 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Select Type</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="editor" value="0" 
+                                {{ old('type', 0) == 0 ? 'checked' : '' }}>
+                            <label class="form-check-label" for="editor">
+                                Editor
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="translator" value="1" 
+                                {{ old('type') == 1 ? 'checked' : '' }}>
+                            <label class="form-check-label" for="translator">
+                                Translator
+                            </label>
+                        </div>
+                    </div>
                     <div class="row g-3">
                         <div class="col-12">
                             <label for="name" class="form-label">Name: <span class="text-danger">*</span></label>

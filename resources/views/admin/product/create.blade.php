@@ -65,7 +65,7 @@
                     <label for="author_id" class="form-label"><b>Author <span class="text-danger">*</span></b></label>
                     <select class="form-select select" name="author_id" id="author_id"
                         data-placeholder="Select Author" required>
-                        <option value=""></option>
+                        
                         @foreach ($authors as $item)
                             <option value="{{ $item->id }}" {{ old('author_id') == $item->id ? 'selected' : '' }}>
                                 {{ $item->name }}</option>
@@ -76,7 +76,7 @@
                     <label for="publication_id" class="form-label"><b>Publication <span class="text-danger">*</span></b></label>
                     <select class="form-select select" name="publication_id" id="publication_id"
                         data-placeholder="Select Publication" required>
-                        <option value=""></option>
+                        
                         @foreach ($publications as $item)
                             <option value="{{ $item->id }}" {{ old('publication_id') == $item->id ? 'selected' : '' }}>
                                 {{ $item->name }}</option>
@@ -86,7 +86,7 @@
                 <div class="col-sm-6">
                     <label for="brand_id" class="form-label"><b>Brand</b><span class="text-danger">*</span></b></label>
                     <select class="form-select select" name="brand_id" id="brand_id" data-placeholder="Select Brand" required>
-                        <option value=""></option>
+                        
                         @foreach ($brands as $item)
                             <option value="{{ $item->id }}" {{ old('brand_id') == $item->id ? 'selected' : '' }}>
                                 {{ $item->name }}</option>
@@ -94,10 +94,10 @@
                     </select>
                 </div>
                 <div class="col-sm-6">
-                    <label for="uom_id" class="form-label"><b>Editor <span class="text-danger">*</span></b></label>
-                    <select class="form-select select" name="uom_id" id="uom_id" data-placeholder="Select Editor"
+                    <label for="uom_id" class="form-label"><b>Editor/Translator <span class="text-danger">*</span></b></label>
+                    <select class="form-select select" name="uom_id" id="uom_id" data-placeholder="Select Editor/Translator"
                         required>
-                        <option value=""></option>
+                        
                         @foreach ($uoms as $item)
                             <option value="{{ $item->id }}" {{ old('uom_id') == $item->id ? 'selected' : '' }}>
                                 {{ $item->name }}</option>
@@ -108,7 +108,7 @@
                     <label for="vendor_id" class="form-label"><b>Suppliers</b></label>
                     <select name="vendor_id[]" id="vendor_id" class="form-select select" data-placeholder="Select Vendors"
                         multiple>
-                        <option value=""></option>
+                        
                         @foreach ($vendors as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach

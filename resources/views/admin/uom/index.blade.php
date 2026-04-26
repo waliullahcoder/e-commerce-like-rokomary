@@ -11,6 +11,7 @@
         <thead>
             <tr class="text-nowrap">
                 <th></th>
+                <th>Type</th>
                 <th>Name</th>
                 <th>Status</th>
                 <th>Actions</th>
@@ -75,6 +76,19 @@
                         searchable: false,
                         className: "text-center",
                         width: '20'
+                    },
+                    {
+                        data: 'type',
+                        name: 'type',
+                        render: function (data, type, row) {
+                            if (data == 0) {
+                                return '<span class="badge bg-primary">Editor</span>';
+                            } else if (data == 1) {
+                                return '<span class="badge bg-success">Translator</span>';
+                            } else {
+                                return '<span class="badge bg-secondary">Unknown</span>';
+                            }
+                        }
                     },
                     {
                         data: 'name',

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\HelperClass;
+use App\Models\Category;
+use App\Models\SubCategory;
 use App\Models\Author;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuthorController extends Controller
 {
@@ -47,16 +50,46 @@ class AuthorController extends Controller
     {
         $request->validate(['name' => 'required']);
 
-        $this->model::create([
-            'name' => $request->name,
-            'slug' => HelperClass::generateUniqueSlug($this->model, 'slug', $request->name),
-            'image' => $request->hasFile('image') ? HelperClass::saveImage($request->image, 400, $this->path) : null,
-            'cover_image' => $request->hasFile('cover_image') ? HelperClass::saveImage($request->cover_image, 800, $this->path) : null,
-            'description' => $request->description,
-            'created_by' => Auth::id(),
-        ]);
+        $existingCategory = Category::where('name', $request->name)->first();
+
+        if ($existingCategory) {
+            return back()->withInput()->withErrors('Ops! Already exists!');
+        }
+
+        try {
+            DB::transaction(function () use ($request) {
+                // Main Model Create
+                $this->model::create([
+                'name' => $request->name,
+                'slug' => HelperClass::generateUniqueSlug($this->model, 'slug', $request->name),
+                'image' => $request->hasFile('image') ? HelperClass::saveImage($request->image, 400, $this->path) : null,
+                'cover_image' => $request->hasFile('cover_image') ? HelperClass::saveImage($request->cover_image, 800, $this->path) : null,
+                'description' => $request->description,
+                'created_by' => Auth::id(),
+                ]);
+                // Category Create
+                $category = Category::create([
+                    'parent_id' => 17,
+                    'type' => "book",
+                    'position' => "mega_menu_child",
+                    'serial' => 100,
+                    'name' => $request->name,
+                    'slug' => HelperClass::generateUniqueSlug(Category::class, 'slug', $request->name),
+                    'created_by' => Auth::id(),
+                ]);
+
+                // SubCategory Create
+                SubCategory::create([
+                    'parent_id' => 17,
+                    'subcategory_id' => $category->id,
+                ]);
+            });
 
         return redirect()->route("admin.{$this->path}.index")->withSuccessMessage('Created Successfully!');
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors('Something went wrong!');
+        }
+
     }
 
     /**
@@ -85,18 +118,56 @@ class AuthorController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate(['name' => 'required']);
+        $existingCategory = Category::where('name', $request->name)->first();
+        if ($existingCategory) {
+            return back()->withInput()->withErrors('Ops! Already exists!');
+        }
+     
+         try {
+            DB::transaction(function () use ($request,$id) {
+                // Main Model Create
+                $data = $this->model::findOrFail($id);
 
-        $data = $this->model::findOrFail($id);
-        $data->update([
-            'name' => $request->name,
-            'slug' => HelperClass::generateUniqueSlug($this->model, 'slug', $request->name, $id),
-            'image' => $request->hasFile('image') ? HelperClass::saveImage($request->image, 400, $this->path, $data->image) : $data->image,
-            'cover_image' => $request->hasFile('cover_image') ? HelperClass::saveImage($request->cover_image, 800, $this->path, $data->cover_image) : $data->cover_image,
-            'description' => $request->description,
-            'updated_by' => Auth::id(),
-        ]);
+                $data->update([
+                'name' => $request->name,
+                'slug' => HelperClass::generateUniqueSlug($this->model, 'slug', $request->name, $id),
+                'image' => $request->hasFile('image') ? HelperClass::saveImage($request->image, 400, $this->path, $data->image) : $data->image,
+                'cover_image' => $request->hasFile('cover_image') ? HelperClass::saveImage($request->cover_image, 800, $this->path, $data->cover_image) : $data->cover_image,
+                'description' => $request->description,
+                'updated_by' => Auth::id(),
+                ]);
+                $existingCategory = Category::where('name', $data->name)->first();
+                if (!$existingCategory) {
+                   // Category Create
+                $category = Category::create([
+                    'parent_id' => 17,
+                    'type' => "book",
+                    'position' => "mega_menu_child",
+                    'serial' => 100,
+                    'name' => $request->name,
+                    'slug' => HelperClass::generateUniqueSlug(Category::class, 'slug', $request->name),
+                    'created_by' => Auth::id(),
+                ]);
 
-        return redirect()->route("admin.{$this->path}.index")->withSuccessMessage('Updated Successfully!');
+                // SubCategory Create
+                SubCategory::create([
+                    'parent_id' => 17,
+                    'subcategory_id' => $category->id,
+                ]);
+                }else{
+                    $existingCategory->update([
+                        'name' => $request->name,
+                    ]);
+                }
+
+        
+                
+            });
+
+            return redirect()->route("admin.{$this->path}.index")->withSuccessMessage('Updated Successfully!');
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors('Something went wrong!');
+        }
     }
 
     /**

@@ -83,7 +83,7 @@ class ProductionController extends Controller
 
         $title = $this->create_title;
         $production_no = $this->productionNo();
-        $products = Product::where('status', true)->orderBy('name', 'asc')->get();
+        $products = Product::where('status', true)->orderBy('name', 'asc')->where('created_by',Auth::id())->get();
         $stores = Store::where('status', true)->orderBy('name', 'asc')->get();
         return view("admin.{$this->path}.create", compact('title', 'production_no', 'products', 'stores'));
     }
@@ -192,7 +192,7 @@ class ProductionController extends Controller
         }
 
         $additionalData = [
-            'products' => Product::where('status', true)->orderBy('name', 'asc')->get(),
+            'products' => Product::where('status', true)->orderBy('name', 'asc')->where('created_by',Auth::id())->get(),
             'stores' => Store::where('status', true)->orderBy('name', 'asc')->get()
         ];
         return HelperClass::resourceDataEdit($this->model, $id, $this->path, $this->edit_title, $additionalData);

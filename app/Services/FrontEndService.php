@@ -163,6 +163,20 @@ public function getSubCategoryWriterOnly()
     ->get();
 }
 
+//বেস্ট সেলার বই
+public function getSubCategoryBestSellerBoiOnly()
+{
+    return Product::where('status', 1)
+        ->orderByDesc(
+            DB::raw('(SELECT COALESCE(SUM(qty),0) 
+                      FROM order_items 
+                      WHERE order_items.product_id = products.id)')
+        )
+        ->with('variants')
+        ->limit(5)
+        ->get();
+}
+
 //নিয়োগ সহায়িকা
 public function getSubCategoryNiogSohaikaOnly()
 {

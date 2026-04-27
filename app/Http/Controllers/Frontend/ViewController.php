@@ -37,6 +37,9 @@ class ViewController extends Controller
         $get_sub_category_writer_only = $this->frontEndService->getSubCategoryWriterOnly();
         //নিয়োগ সহায়িকা
         $get_sub_category_niog_sohaika_product_only = $this->frontEndService->getSubCategoryNiogSohaikaOnly();
+        //বেস্ট সেলার বই
+        $get_sub_category_best_seller_boi_product_only = $this->frontEndService->getSubCategoryBestSellerBoiOnly();
+
         //অন্যান্য পণ্য
         $get_sub_category_others_only = $this->frontEndService->getSubCategoryOthersOnly();
         //ব্র্যান্ডসমূহ
@@ -55,7 +58,8 @@ class ViewController extends Controller
             'get_sub_category_writer_only',
             'get_sub_category_niog_sohaika_product_only',
             'get_sub_category_others_only',
-            'get_sub_category_brand_only'
+            'get_sub_category_brand_only',
+            'get_sub_category_best_seller_boi_product_only'
         ));
     }
 

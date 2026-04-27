@@ -256,7 +256,7 @@
                                         <td>{{$product->publication->name ?? 'N/A'}}</td>
                                     </tr>
                                     <tr>
-                                    <th>Editor</th>
+                                    <th>@if($product->uom->type==0) Editor @else Translator @endif</th>
                                     <td>{{ $product->uom->name??'N/A' }}</td>
                                     </tr>
                                      <tr>

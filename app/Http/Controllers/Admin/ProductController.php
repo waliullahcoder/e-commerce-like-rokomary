@@ -77,6 +77,9 @@ class ProductController extends Controller
             if (Auth::user()->role_status == 3) {
                 $query->where('created_by', Auth::user()->id);
             }
+            if (Auth::user()->role_status == 1) {
+                $query->where('created_by', Auth::user()->id);
+            }
 
             return HelperClass::resourceDataView(
                 $query->orderBy('id', 'desc'),
@@ -174,12 +177,12 @@ class ProductController extends Controller
             'barcode'     => 'nullable|unique:products,barcode',
         ]);
 
-        if(!empty($request->name)) {
-           $exists=Product::where('name', $request->name)->exists();
-           if($exists) {
-            return back()->withErrors('Product already exists');
-           }
-        }
+        // if(!empty($request->name)) {
+        //    $exists=Product::where('name', $request->name)->exists();
+        //    if($exists) {
+        //     return back()->withErrors('Product already exists');
+        //    }
+        // }
 
         try {
             DB::transaction(function () use ($request) {

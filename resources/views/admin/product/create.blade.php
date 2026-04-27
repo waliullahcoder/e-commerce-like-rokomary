@@ -100,7 +100,7 @@
                         
                         @foreach ($uoms as $item)
                             <option value="{{ $item->id }}" {{ old('uom_id') == $item->id ? 'selected' : '' }}>
-                                {{ $item->name }}</option>
+                                {{ $item->name }} ({{ $item->type==1 ? 'Translator':'Editor' }})</option>
                         @endforeach
                     </select>
                 </div>

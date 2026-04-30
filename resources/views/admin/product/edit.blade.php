@@ -352,7 +352,17 @@
                         <b>Categories <span class="text-danger">*</span></b>
                     </label>
 
-                    <select class="form-select select2" 
+                    <select name="category_ids[]" id="category_ids" class="form-select select" data-placeholder="Select Categories" multiple>
+                        <option value=""></option>
+                         @foreach ($additionalData['categories'] as $item)
+                            <option value="{{ $item->id }}"
+                                {{ isset($data) && $data->categories->pluck('id')->contains($item->id) ? 'selected' : '' }}>
+                               [ID:{{ $item->id }}] {{ $item->name }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    {{-- <select class="form-select select2" 
                             name="category_ids[]" 
                             multiple 
                             data-placeholder="Select Categories" 
@@ -366,7 +376,7 @@
                             </option>
                         @endforeach
 
-                    </select>
+                    </select> --}}
                 </div>
             </div>
         </div>

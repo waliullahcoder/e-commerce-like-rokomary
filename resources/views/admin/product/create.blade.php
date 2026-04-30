@@ -312,6 +312,22 @@
 
             <div class="row g-3">
                 <div class="col-sm-12">
+            <label class="form-label">
+                        <b>Categories <span class="text-danger">*</span></b>
+            </label>
+            <select name="category_ids[]" id="category_ids" class="form-select select" data-placeholder="Select Categories" multiple>
+                <option value=""></option>
+                @foreach ($subcategories as $item)
+                     <option value="{{ $item->id }}">
+                            [ID:{{ $item->id }}] {{ $item->name }}
+                            </option>
+                @endforeach
+            </select>
+           </div>
+        </div>
+
+            {{-- <div class="row g-3">
+                <div class="col-sm-12">
                     <label class="form-label">
                         <b>Categories <span class="text-danger">*</span></b>
                     </label>
@@ -331,7 +347,7 @@
 
                     </select>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <div class="tab-pane fade" id="nav-seo" role="tabpanel" aria-labelledby="nav-seo-tab" tabindex="0">
             <h5 class="mb-3 pb-3 fs-17 fw-700" style="border-bottom: 1px dashed #e4e5eb;">SEO Meta Tags</h5>

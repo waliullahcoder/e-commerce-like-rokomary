@@ -173,7 +173,7 @@ public function getSubCategoryBestSellerBoiOnly()
                       WHERE order_items.product_id = products.id)')
         )
         ->with('variants')
-        ->limit(5)
+        ->limit(10)
         ->get();
 }
 

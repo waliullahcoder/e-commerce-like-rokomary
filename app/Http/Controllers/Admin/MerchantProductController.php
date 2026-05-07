@@ -76,6 +76,11 @@ class MerchantProductController extends Controller
                 $q->where('role_status', 3); // 🔥 only merchant users
             });
 
+        // seller filter
+        if(request()->filled('seller_id')){
+            $query->where('created_by', request('seller_id'));
+        }
+
         return HelperClass::resourceDataView(
             $query->orderBy('id', 'desc'),
             'thumbnail',

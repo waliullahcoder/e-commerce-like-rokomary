@@ -10,6 +10,18 @@
 
 <div class="card">
     <div class="card-body">
+   <div class="mb-3 col-sm-12">
+                    <label for="author_id" class="form-label"><b>Merchant <span class="text-danger">*</span></b></label>
+                    <select class="form-select select" name="author_id" id="seller_filter"
+                        data-placeholder="Select Merchant" required>
+                        <option value=""></option>
+                        @foreach($sellers as $seller)
+                            <option value="{{ $seller->id }}">
+                                {{ $seller->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
         <table class="dataTable table table-bordered table-hover align-middle w-100">
             <thead>
                 <tr class="text-nowrap align-middle">
@@ -58,6 +70,7 @@ $(document).ready(function() {
             type: "GET",
             data: function(d) {
                 d.type = $('#filter').val();
+                d.seller_id = $('#seller_filter').val();
             }
         },
         columns: [
@@ -95,6 +108,10 @@ $(document).ready(function() {
     $(document).on('change', '#selectAll', function() {
         $('input[type="checkbox"]').prop('checked', $(this).prop('checked'));
     });
+
+    $('#seller_filter').change(function () {
+    table.ajax.reload();
+});
 
 });
 </script>

@@ -19,6 +19,7 @@ use App\Models\SalesReturnList;
 use App\Models\ProductEdition;
 use App\Models\ProductVariant;
 use App\Models\Product;
+use App\Models\User;
 use Intervention\Image\Drivers\Gd\Driver as GdDriver;
 
 class HelperClass
@@ -26,7 +27,10 @@ class HelperClass
     public static function resourceDataView($model, ?string $image_column, ?array $addition_btns, string $route_path, ?string $title, string|array|null $relation_data = null, ?string $edit = null)
     {
         if (!request()->ajax()) {
-            return view("admin.{$route_path}.index", compact('title'));
+            $sellers = User::where('role_status', 3)
+            ->select('id','name')
+            ->get()??null;
+            return view("admin.{$route_path}.index", compact('title','sellers'));
         }
 
         $type = request('type');

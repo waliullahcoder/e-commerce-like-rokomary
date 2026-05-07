@@ -68,8 +68,29 @@ class ViewController extends Controller
     {
         $query = $request->get('query');
         
-        $products = Product::where('name', 'LIKE', "%{$query}%")
-                            ->orWhere('slug', 'LIKE', "%{$query}%")
+        $products = Product::with(['authors', 'category'])
+                            ->where('status', 1)
+                            ->where(function ($q) use ($query) {
+
+                                // Product Name
+                                $q->where('name', 'LIKE', "%{$query}%")
+
+                                // Product Slug
+                                ->orWhere('slug', 'LIKE', "%{$query}%")
+                                
+                                // Product Code
+                                ->orWhere('code', 'LIKE', "%{$query}%")
+
+                                // Category Name
+                                ->orWhereHas('category', function ($cat) use ($query) {
+                                    $cat->where('name', 'LIKE', "%{$query}%");
+                                })
+
+                                // Author Name
+                                ->orWhereHas('authors', function ($author) use ($query) {
+                                    $author->where('name', 'LIKE', "%{$query}%");
+                                });
+                            })
                             ->limit(10)
                             ->get()
                             ->map(function($product){

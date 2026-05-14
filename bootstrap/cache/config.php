@@ -109,9 +109,9 @@
   array (
     'paths' => 
     array (
-      0 => 'F:\\laragon\\www\\e-commerce-like-rokomary\\resources\\views',
+      0 => 'E:\\laragon\\www\\e-commerce-like-rokomary\\resources\\views',
     ),
-    'compiled' => 'F:\\laragon\\www\\e-commerce-like-rokomary\\storage\\framework\\views',
+    'compiled' => 'E:\\laragon\\www\\e-commerce-like-rokomary\\storage\\framework\\views',
   ),
   'app' => 
   array (
@@ -303,8 +303,8 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'F:\\laragon\\www\\e-commerce-like-rokomary\\storage\\framework/cache/data',
-        'lock_path' => 'F:\\laragon\\www\\e-commerce-like-rokomary\\storage\\framework/cache/data',
+        'path' => 'E:\\laragon\\www\\e-commerce-like-rokomary\\storage\\framework/cache/data',
+        'lock_path' => 'E:\\laragon\\www\\e-commerce-like-rokomary\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -580,10 +580,10 @@
     'convert_entities' => true,
     'options' => 
     array (
-      'font_dir' => 'F:\\laragon\\www\\e-commerce-like-rokomary\\storage\\fonts',
-      'font_cache' => 'F:\\laragon\\www\\e-commerce-like-rokomary\\storage\\fonts',
-      'temp_dir' => 'C:\\Users\\Fattah\\AppData\\Local\\Temp',
-      'chroot' => 'F:\\laragon\\www\\e-commerce-like-rokomary',
+      'font_dir' => 'E:\\laragon\\www\\e-commerce-like-rokomary\\storage\\fonts',
+      'font_cache' => 'E:\\laragon\\www\\e-commerce-like-rokomary\\storage\\fonts',
+      'temp_dir' => 'C:\\Users\\user\\AppData\\Local\\Temp',
+      'chroot' => 'E:\\laragon\\www\\e-commerce-like-rokomary',
       'allowed_protocols' => 
       array (
         'data://' => 
@@ -636,7 +636,7 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'F:\\laragon\\www\\e-commerce-like-rokomary\\storage\\app/private',
+        'root' => 'E:\\laragon\\www\\e-commerce-like-rokomary\\storage\\app/private',
         'serve' => true,
         'throw' => false,
         'report' => false,
@@ -644,7 +644,7 @@
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'F:\\laragon\\www\\e-commerce-like-rokomary\\storage\\app/public',
+        'root' => 'E:\\laragon\\www\\e-commerce-like-rokomary\\storage\\app/public',
         'url' => 'http://127.0.0.1:8000//storage',
         'visibility' => 'public',
         'throw' => false,
@@ -666,7 +666,7 @@
     ),
     'links' => 
     array (
-      'F:\\laragon\\www\\e-commerce-like-rokomary\\public\\storage' => 'F:\\laragon\\www\\e-commerce-like-rokomary\\storage\\app/public',
+      'E:\\laragon\\www\\e-commerce-like-rokomary\\public\\storage' => 'E:\\laragon\\www\\e-commerce-like-rokomary\\storage\\app/public',
     ),
   ),
   'laravolt' => 
@@ -692,8 +692,8 @@
       'rtl' => false,
       'fonts' => 
       array (
-        0 => 'F:\\laragon\\www\\e-commerce-like-rokomary\\config\\laravolt/../fonts/OpenSans-Bold.ttf',
-        1 => 'F:\\laragon\\www\\e-commerce-like-rokomary\\config\\laravolt/../fonts/rockwell.ttf',
+        0 => 'E:\\laragon\\www\\e-commerce-like-rokomary\\config\\laravolt/../fonts/OpenSans-Bold.ttf',
+        1 => 'E:\\laragon\\www\\e-commerce-like-rokomary\\config\\laravolt/../fonts/rockwell.ttf',
       ),
       'foregrounds' => 
       array (
@@ -829,14 +829,14 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'F:\\laragon\\www\\e-commerce-like-rokomary\\storage\\logs/laravel.log',
+        'path' => 'E:\\laragon\\www\\e-commerce-like-rokomary\\storage\\logs/laravel.log',
         'level' => 'debug',
         'replace_placeholders' => true,
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'F:\\laragon\\www\\e-commerce-like-rokomary\\storage\\logs/laravel.log',
+        'path' => 'E:\\laragon\\www\\e-commerce-like-rokomary\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
         'replace_placeholders' => true,
@@ -901,7 +901,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'F:\\laragon\\www\\e-commerce-like-rokomary\\storage\\logs/laravel.log',
+        'path' => 'E:\\laragon\\www\\e-commerce-like-rokomary\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -979,7 +979,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'F:\\laragon\\www\\e-commerce-like-rokomary\\resources\\views/vendor/mail',
+        0 => 'E:\\laragon\\www\\e-commerce-like-rokomary\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -1138,7 +1138,7 @@
     'lifetime' => 2880,
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'F:\\laragon\\www\\e-commerce-like-rokomary\\storage\\framework/sessions',
+    'files' => 'E:\\laragon\\www\\e-commerce-like-rokomary\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -1158,7 +1158,7 @@
   'livewire' => 
   array (
     'class_namespace' => 'App\\Livewire',
-    'view_path' => 'F:\\laragon\\www\\e-commerce-like-rokomary\\resources\\views/livewire',
+    'view_path' => 'E:\\laragon\\www\\e-commerce-like-rokomary\\resources\\views/livewire',
     'layout' => 'components.layouts.app',
     'lazy_placeholder' => NULL,
     'temporary_file_upload' => 

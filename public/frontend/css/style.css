@@ -16,8 +16,8 @@ body {
     padding: 0;
     font-size: 14px;
     font-weight: 400;
-    color: #3F4254;
-    background-color:#fbfffe;
+    color: #7A5030;
+    background-color:#FBF3E4;
     font-family: "Noto Sans Bengali", sans-serif;
     overflow-x: hidden;
 }
@@ -35,14 +35,20 @@ ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    border-bottom:1px solid #e5e5e5;
 }
-
+hr{
+    border-top: 2px solid white !important;
+}
 a {
     text-decoration: none;
-    color: inherit;
+    color: #E8C89A;
 }
-
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
+    color: #C89048 !important;
+}
+p{
+    color:#C89048;
+}
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -115,9 +121,9 @@ h6 {
 }
 
 .btn-primary {
-    background-color: #549a95;
-    border-color: #549a95;
-    color: var(--bs-white);
+    background-color: #9B6030;
+    border-color: #F5DFB8;
+    color: #F5DFB8;
 }
 
 .btn-primary:hover {
@@ -377,8 +383,8 @@ h6 {
 
 /* =============== Header CSS =============== */
 .header-top {
-    background: #fbfffe;
-    color: #666;
+    background: #5A2E0A;
+    color: #E8C89A;
     display: block;
     font-size: 13px;
     font-weight: 400;
@@ -397,7 +403,7 @@ h6 {
 }
 
 .top-header-links a {
-    color: #666;
+    color: #E8C89A;
 }
 
 .top-header-links a:hover {
@@ -406,7 +412,7 @@ h6 {
 }
 
 .main-header {
-    background-color: var(--bs-white);
+    background-color: #FBF3E4;
 }
 
 .header-middle {
@@ -419,10 +425,10 @@ h6 {
     left: 0;
     animation: slideDown .3s ease-in-out both;
     -webkit-animation: slideDown .3s ease-in-out both;
-    background-color: var(--bs-white);
+    background-color: #FBF3E4;
     z-index: 999;
     width: 100%;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #fbbebe;
     padding: 10px 0;
 }
 
@@ -529,7 +535,7 @@ h6 {
 }
 
 .header-nav {
-    border-bottom: 1px solid #cecfd1;
+    border-bottom: 0.5px solid #e9e0ca;
 }
 
 .menu-list {
@@ -541,17 +547,20 @@ h6 {
 .menu-link {
     display: inline-block;
     padding: 8px 15px;
-    background-color: var(--bs-white);
+    background-color: #9B6030;
     margin-bottom: -1px;
     border-bottom: 1px solid #ddd;
-    border-radius: 0.3rem 0.3rem 0 0;
+    /* border-radius: 0.3rem 0.3rem 0 0; */
 }
 
 .menu-link.active {
     border: 1px solid #ddd;
     border-bottom-color: var(--bs-white);
+    background: #5A2E0A;
 }
-
+.menu-link:hover{
+    background: #5A2E0A;
+}
 .menu-toggle-btn {
     padding: 0;
     width: 32px;
@@ -569,7 +578,7 @@ h6 {
 }
 
 .swiper-arrow-btn {
-    background-color: var(--bs-white);
+    background-color: #F0DEC0;
     border: 1px solid transparent;
     height: 30px;
     width: 10px;
@@ -613,7 +622,7 @@ h6 {
 /* =============== Fetured Category CSS =============== */
 .featured-category {
     background-color: #e8e9ed;
-    border: 2px solid #549a95;
+    border: 0.5px solid #D9C8A0;
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -660,7 +669,7 @@ h6 {
 
 /* =============== Product CSS =============== */
 .section-card {
-    background-color: var(--bs-white);
+    background-color: #FBF3E4;
     padding: 0.4rem;
     border-radius: 0.3rem;
     box-shadow: 0 3px 5px rgb(0 0 0 / 8%);
@@ -677,12 +686,12 @@ h6 {
     flex-grow: 1;
     margin: 0;
     font-weight: 400;
-    color: #549a95;
+    color: #5A2E0A;
 }
 
 .section-link {
     flex-shrink: 0;
-    background-color: #549a95;
+    background-color: #5A2E0A;
     color: var(--bs-white);
     display: inline-flex;
     padding: 0.3rem 0.6rem 0.23rem;
@@ -694,9 +703,9 @@ h6 {
 }
 
 .product-card {
-    background-color: var(--bs-white);
+    background: #F0DEC0;
     padding: 10px;
-    border: 1px solid #ededed;
+    border: 0.5px solid #D9C8A0;
 }
 
 .product-card-wrapper:hover .product-card {
@@ -943,8 +952,8 @@ del .Price-amount {
 
 /* =============== Footer CSS =============== */
 .footer-section {
-    border-top: 1px solid rgb(204, 204, 204);
-    background-color: #ffffff;
+    border-top: 1px solid rgb(166, 104, 3);
+    background-color: #683002;
     padding-block: 2.5rem 1.5rem;
 }
 
@@ -973,7 +982,7 @@ del .Price-amount {
 
 .footer-bottom {
     text-align: center;
-    background-color: #f7f7f7;
+    background-color: #532602;
     border-top: 1px solid rgb(204, 204, 204);
 }
 

@@ -55,18 +55,17 @@ body {
 
 /* Sidebar */
 .sidebar {
-    position:fixed;
-    top:0;
-    left:-280px;
-    width:260px;
-    height:100%;
-    background:#fff;
-    z-index:1000;
-    overflow-y:auto;
+    position: fixed;
+    top: 0px; /* sticky header height */
+    left: -280px;
+    width: 260px;
+    height: calc(100vh - 60px); /* remaining screen */
+    background: #fff;
+    z-index: 1000;
+    overflow-y: auto;
     box-shadow: 2px 0 12px rgba(0,0,0,0.2);
-    transition:0.3s;
+    transition: 0.3s;
 }
-
 .sidebar.active {
     left:0;
 }
@@ -247,15 +246,25 @@ body {
                     </a>
 
                     @if(isset($menus['sub_menus'][$menu->id]) && count($menus['sub_menus'][$menu->id]) > 0)
+                    @php
+                    $items = $menus['sub_menus'][$menu->id]->take(20);
+                    @endphp
                         <ul class="sub-menu">
-                            @foreach($menus['sub_menus'][$menu->id] as $item)
+                            @foreach($items as $item)
                                 <li>
-                                    <a href="{{ route('category.index', [$item->id, $item->category_slug, $item->name]) }}">
+                                    <a href="{{ route('category.singleCategoryPage', $item->id) }}">
                                         → {{ $item->name }}
                                     </a>
                                 </li>
                             @endforeach
+                            @if($menus['sub_menus'][$menu->id]->count() > 20)
+                               <li><a href="{{ route('category.index', [$menu->category_id, $menu->category_slug,$menu->name]) }}" data-menu="menu-{{ $menu->id }}" style="padding-left:30px; color:#549a95;">
+                                    Read More →
+                                </a>
+                                </li>
+                            @endif
                         </ul>
+                         
                     @endif
                 </li>
             @endforeach

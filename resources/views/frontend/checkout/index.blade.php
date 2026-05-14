@@ -104,6 +104,63 @@
 
                         {{-- PAYMENT METHOD --}}
                         <h5 class="mb-3">💳 Payment Method</h5>
+                        <div class="section-label">Placement 2 — checkout page</div>
+                        <div class="checkout-box">
+                            <div class="checkout-title">পেমেন্ট পদ্ধতি বেছে নিন · Choose payment method</div>
+
+                            <div class="method-option selected">
+                            <div class="radio on"></div>
+                            <div class="method-icon" style="background:#e2136e;">৳</div>
+                            <div class="method-info">
+                                <div class="method-name">bKash</div>
+                                <div class="method-note">মোবাইল ব্যাংকিং — সবচেয়ে জনপ্রিয়</div>
+                            </div>
+                            <div style="font-size: 11px; background: #e2136e; color: #fff; padding: 3px 8px; border-radius: 6px;">Popular</div>
+                            </div>
+
+                            <div class="method-option">
+                            <div class="radio"></div>
+                            <div class="method-icon" style="background:#f5821f;">N</div>
+                            <div class="method-info">
+                                <div class="method-name">Nagad</div>
+                                <div class="method-note">মোবাইল ব্যাংকিং</div>
+                            </div>
+                            </div>
+
+                            <div class="method-option">
+                            <div class="radio"></div>
+                            <div class="method-icon" style="background:#8b2fc9;">R</div>
+                            <div class="method-info">
+                                <div class="method-name">Rocket</div>
+                                <div class="method-note">ডাচ-বাংলা ব্যাংক</div>
+                            </div>
+                            </div>
+
+                            <div class="method-option">
+                            <div class="radio"></div>
+                            <div class="method-icon" style="background:#2e7d32;">✓</div>
+                            <div class="method-info">
+                                <div class="method-name">Cash on Delivery</div>
+                                <div class="method-note">বই পেলে টাকা দিন</div>
+                            </div>
+                            </div>
+
+                            <div class="method-option">
+                            <div class="radio"></div>
+                            <div class="method-icon" style="background:#1a1f71; font-size:10px;">VISA</div>
+                            <div class="method-info">
+                                <div class="method-name">Card payment</div>
+                                <div class="method-note">Visa / Mastercard</div>
+                            </div>
+                            </div>
+
+                            <button class="pay-btn">এখনই পেমেন্ট করুন · Pay now</button>
+
+                            <div class="trust-strip">
+                            <span class="lock-icon">🔒</span>
+                            <span>256-bit SSL encrypted · Safe & secure</span>
+                            </div>
+                        </div>
 
                         <div class="form-check mb-2">
                             <input class="form-check-input" type="radio" name="payment_method" value="cod" checked>

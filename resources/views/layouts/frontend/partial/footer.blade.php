@@ -38,14 +38,14 @@
                 <ul class="footer-contact">
                     <li class="footer-contact-item">
                         <i class="fa fa-map-marker-alt"></i>&nbsp;
-                        {!! $settings->address !!}
+                        <a href="https://maps.app.goo.gl/pEVDe4UvAWp7Rx4J8" target="_blank">{{$settings->address}}</a>
                     </li>
                     <li class="footer-contact-item">
                         <i class="fa fa-mobile-alt"></i>&nbsp;&nbsp;
                         <a href="tel:+88{{ $settings->primary_phone }}">{{ $settings->primary_phone }}</a>
                     </li>
                     <li class="footer-contact-item">
-                        <i class="fa fa-envelope"></i>&nbsp;&nbsp;<span>{{ $settings->primary_email }}</span>
+                        <i class="fa fa-envelope"></i>&nbsp;&nbsp;<span><a href="">{{ $settings->primary_email }}</a></span>
                     </li>
                     <li class="footer-contact-item">
                         @if ($settings->facebook_page)

@@ -26,6 +26,7 @@
                             <label for="parent_id" class="form-label">Parent Category:</label>
                             <select name="parent_id" id="parent_id" class="form-select select"
                                 data-placeholder="Select Parent Category">
+                                <option value="">--</option>
                                 @foreach ($categories as $item)
                                     <option value="{{ $item->id }}" {{ $item->id==$data->parent_id ? 'selected' : '' }}>{{ $item->name }}</option>
                                 @endforeach

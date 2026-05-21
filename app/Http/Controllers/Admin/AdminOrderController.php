@@ -42,6 +42,12 @@ class AdminOrderController extends Controller
     {
         $query = Order::query();
 
+        // Daily Orders filter
+        if($request->daily){
+            $query->whereDate('created_at', today());
+        }
+
+
         // 🔍 Search by order number or status
         if ($request->filled('search')) {
             $query->where(function ($q) use ($request) {
@@ -94,6 +100,8 @@ class AdminOrderController extends Controller
                             'date'      => date('Y-m-d', strtotime($order->created_at)),
                             'amount'    => $order->subtotal,
                             'discount'  => $order->discount,
+                            'tax'       => $settings->tax??0,
+                            'tax_amount' => $order->tax,
                             'net_amount' => $order->total,
                             'paid'      => 0.00,
                             'remarks'   => 'Online Order',

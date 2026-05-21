@@ -12,9 +12,9 @@
             <tr class="text-nowrap">
                 <th>Code</th>
                 <th>Name</th>
-                <th>Region</th>
+                <!-- <th>Region</th>
                 <th>Area</th>
-                <th>Territory</th>
+                <th>Territory</th> -->
                 <th>Phone</th>
                 <th>Email</th>
                 <th>Address</th>
@@ -74,21 +74,21 @@
                         data: 'name',
                         name: 'name'
                     },
-                    {
-                        data: 'region.name',
-                        name: 'region.name',
-                        defaultContent: ''
-                    },
-                    {
-                        data: 'area.name',
-                        name: 'area.name',
-                        defaultContent: ''
-                    },
-                    {
-                        data: 'territory.name',
-                        name: 'territory.name',
-                        defaultContent: ''
-                    },
+                    // {
+                    //     data: 'region.name',
+                    //     name: 'region.name',
+                    //     defaultContent: ''
+                    // },
+                    // {
+                    //     data: 'area.name',
+                    //     name: 'area.name',
+                    //     defaultContent: ''
+                    // },
+                    // {
+                    //     data: 'territory.name',
+                    //     name: 'territory.name',
+                    //     defaultContent: ''
+                    // },
                     {
                         data: 'phone',
                         name: 'phone'

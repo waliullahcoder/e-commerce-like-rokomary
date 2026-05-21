@@ -65,7 +65,7 @@
 
         <div class="col-lg-4 col-sm-6">
             <div class="card info-card shadow-sm">
-                <a href="{{ route('admin.expense.index') }}">
+                <a href="{{ route('admin.expense.index',['daily'=>1]) }}">
                 <div class="card-body">
                     <div>
                         <p>Daily Expense</p>
@@ -81,7 +81,7 @@
 
         <div class="col-lg-4 col-sm-6">
             <div class="card info-card shadow-sm">
-                <a href="{{ route('admin.sales.index') }}">
+                <a href="{{ route('admin.sales.index',['daily'=>1]) }}">
                 <div class="card-body">
                     <div>
                         <p>Daily Sales</p>
@@ -97,7 +97,7 @@
 
         <div class="col-lg-4 col-sm-6">
             <div class="card info-card shadow-sm">
-                <a href="{{ route('admin.orders.index') }}">
+                <a href="{{ route('admin.orders.index',['daily'=>1]) }}">
                 <div class="card-body">
                     <div>
                         <p>Daily Orders</p>

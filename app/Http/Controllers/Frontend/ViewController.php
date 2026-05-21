@@ -63,6 +63,31 @@ class ViewController extends Controller
         ));
     }
 
+    public function loadHomeSection($type)
+    {
+        if ($type == 'niog') {
+            $data = $this->frontEndService->getSubCategoryNiogSohaikaOnly();
+            return view('frontend.home_sections.products', compact('data'));
+        }
+
+        if ($type == 'trending') {
+            $data = $this->frontEndService->getSubCategoryTrendsNewBookProductOnly();
+            return view('frontend.home_sections.products', compact('data'));
+        }
+
+        if ($type == 'sian') {
+            $data = $this->frontEndService->getSubCategorySianJugpuertiNrobiulAualProductOnly();
+            return view('frontend.home_sections.products', compact('data'));
+        }
+
+        if ($type == 'writers') {
+            $data = $this->frontEndService->getSubCategoryWriterOnly();
+            return view('frontend.home_sections.writers', compact('data'));
+        }
+
+        return '';
+    }
+
     //Global search home
     public function search(Request $request)
     {

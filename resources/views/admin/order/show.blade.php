@@ -70,22 +70,26 @@
                 
 
                     <div class="text-end mt-3">
-                        <table>
+                        <table class="table table-bordered">
                                         <tr>
                                             <td>Total</td>
-                                            <td style="text-align:right;">- ৳{{ number_format($subtotal,2) }}</td>
+                                            <td style="text-align:right;"> ৳{{ number_format($subtotal,2) }}</td>
                                         </tr>
                                         <tr>
                                             <td>Discount {{$settings->discount_type=='percent' ? '('.$settings->discount.'%'.')' : ''}}</td>
-                                            <td style="text-align:right;">- ৳{{ number_format($discount,2) }}</td>
+                                            <td style="text-align:right;"> ৳{{ number_format($discount,2) }}</td>
                                         </tr>
                                         <tr>
                                             <td>Tax ({{$settings->tax}}%)</td>
-                                            <td style="text-align:right;">- ৳{{ number_format($tax,2) }}</td>
+                                            <td style="text-align:right;"> ৳{{ number_format($tax,2) }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Grand Total  </th>
-                                            <th style="text-align:right;">- ৳{{ number_format($grandTotal,2) }}</th>
+                                            <th>Grand Total   </th>
+                                            <th style="text-align:right;"> ৳{{ number_format($grandTotal,2) }}</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Delivery Charge</th>
+                                            <th style="text-align:right;"> ৳{{ number_format(($order->total-$grandTotal),2) }}</th>
                                         </tr>
                                     </table>
                         <h5>Net Total: ৳ {{ number_format($order->total,2) }}</h5>

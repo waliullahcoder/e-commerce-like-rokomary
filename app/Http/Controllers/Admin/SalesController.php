@@ -48,6 +48,10 @@ class SalesController extends Controller
     {
         if (request()->ajax()) {
             $model = $this->model::with(['client', 'store', 'tso'])->orderBy('id', 'desc');
+            // Daily Sales filter
+        if (request('daily') == 1) {
+            $model->whereDate('date', today());
+        }
             if (request('type') == 'trash') {
                 $model->onlyTrashed();
             }

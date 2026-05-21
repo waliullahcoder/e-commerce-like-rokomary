@@ -61,6 +61,7 @@
                     type: "GET",
                     data: function(data) {
                         data.type = $('#filter').val();
+                        data.daily = "{{ request('daily') }}";
                     }
                 },
                 columns: [{

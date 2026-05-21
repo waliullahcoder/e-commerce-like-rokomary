@@ -10,6 +10,9 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\ProductVariant;
 use App\Models\User;
+use App\Models\Coa;
+use App\Models\Client;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Services\FrontEndService;
@@ -62,6 +65,46 @@ class CheckoutController extends Controller
                     'password' => bcrypt($request->password),
                 ]);
                 auth()->login($user);
+            }
+            if ($user) {
+            $user_id = $user->id;
+            $parent = Coa::findOrFail(7);
+                $prefix = $parent->head_code;
+                $maxCode = Coa::withTrashed()->where('parent_id', $parent->id)->max('head_code');
+                if ($maxCode) {
+                    $next = str_pad((int) substr($maxCode, strlen($prefix)) + 1, 2, '0', STR_PAD_LEFT);
+                    $headCode = $prefix . $next;
+                } else {
+                    $headCode = $prefix . '01';
+                }
+                $account = Coa::create([
+                    'parent_id'   => $parent->id,
+                    'head_code'   => $headCode,
+                    'head_name'   => $request->name,
+                    'transaction' => true,
+                    'general'     => false,
+                    'head_type'   => $parent->head_type,
+                    'status'      => true,
+                    'updateable'     => false,
+                    'created_by'  => Auth::id(),
+                ]);
+
+                Client::create([
+                    'user_id'  => $user_id,
+                    'region_id' => $request->region_id,
+                    'area_id' => $request->area_id,
+                    'territory_id' => $request->territory_id,
+                    'coa_id' => $account->id,
+                    'code' => $request->code,
+                    'name' => $request->name,
+                    'contact_person' => $request->contact_person,
+                    'phone' => $request->phone,
+                    'email' => $request->phone.'@email.com',
+                    'address' => $request->address,
+                    'bin_no' => $request->bin_no,
+                    'credit_limit' => $request->credit_limit,
+                    'created_by' => Auth::id(),
+                ]);
             }
 
             $cart = session('cart');

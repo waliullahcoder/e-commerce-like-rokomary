@@ -18,7 +18,7 @@
 @php
     $user= App\Models\User::where('id',$data->client->user_id)->first();
 @endphp
-<p>
+<p style="font-size:23px;">
 <strong>{{ $data->client->name ?? '' }}</strong><br>
 {{$data->client->address?? $user->address}} <br>
 Phone: {{$data->client->phone??'N/A'}} <br>
@@ -125,7 +125,6 @@ Email: {{$data->client->email??'N/A'}}
 
 </div>
 
-
 <div class="col-xs-6">
 
 <table class="table table-bordered">
@@ -151,7 +150,11 @@ Email: {{$data->client->email??'N/A'}}
 </td>
 </tr>
 
-
+<th>Delivery Charge</th>
+<td class="text-right">
+৳{{ number_format($data->net_amount - $data->amount - $data->tax_amount + $data->discount) }}
+</td>
+</tr>
 <tr class="grand-total">
 <th>Net Amount</th>
 <td class="text-right">

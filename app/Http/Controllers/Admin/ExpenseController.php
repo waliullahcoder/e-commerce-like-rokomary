@@ -43,7 +43,13 @@ class ExpenseController extends Controller
             'class' => 'btn btn-sm btn-primary mw-fit',
         ]];
 
-        return HelperClass::resourceDataView($this->model::with('coa')->orderBy('id', 'desc'), null, $addition_btns, $this->path, $this->title, ['transactions'], 'conditional');
+         $query = $this->model::with('coa')
+        ->orderBy('id', 'desc');
+        if (request('daily') == 1) {
+            $query->whereDate('date', today());
+        }
+
+        return HelperClass::resourceDataView($query, null, $addition_btns, $this->path, $this->title, ['transactions'], 'conditional');
     }
 
     /**

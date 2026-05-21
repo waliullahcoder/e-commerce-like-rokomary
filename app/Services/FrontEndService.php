@@ -19,68 +19,45 @@ class FrontEndService
     public function getMenu()
     {
 
-/*
-|--------------------------------------------------------------------------
-| MAIN MENUS (parent_id = NULL)
-|--------------------------------------------------------------------------
-*/
-$menus = Category::whereNull('parent_id')
-    ->where('status', 1)
-    ->select(
-        'id',
-        'id as category_id',
-        'name',
-        'url as menu_url',
-        'name as category_name',
-        'slug as category_slug',
-        'position'
-    )->orderBy('serial', 'asc')
-    ->get()
-    ->groupBy('position');
+    /*
+    |--------------------------------------------------------------------------
+    | MAIN MENUS (parent_id = NULL)
+    |--------------------------------------------------------------------------
+    */
+    $menus = Category::whereNull('parent_id')
+        ->where('status', 1)
+        ->select(
+            'id',
+            'id as category_id',
+            'name',
+            'url as menu_url',
+            'name as category_name',
+            'slug as category_slug',
+            'position'
+        )->orderBy('serial', 'asc')
+        ->get()
+        ->groupBy('position');
 
-$data['top_menus']         = $menus['header_top']        ?? collect();
-$data['middle_menus']      = $menus['header']            ?? collect();
-$data['mega_menus']        = $menus['mega_menu_parent']  ?? collect();
-$data['footer_col1_menus'] = $menus['footer']       ?? collect();
-$data['footer_col2_menus'] = $menus['footer_col2']       ?? collect();
+    $data['top_menus']         = $menus['header_top']        ?? collect();
+    $data['middle_menus']      = $menus['header']            ?? collect();
+    $data['mega_menus']        = $menus['mega_menu_parent']  ?? collect();
+    $data['footer_col1_menus'] = $menus['footer']       ?? collect();
+    $data['footer_col2_menus'] = $menus['footer_col2']       ?? collect();
 
-$data['sub_menus'] = Category::where('status', 1)
-    ->where('position', 'mega_menu_child')
-    ->whereHas('parents')
-    ->select(
-        'id',
-        'name',
-        'parent_id',
-        'slug as category_slug'
-    )
-    ->get()
-    ->groupBy('parent_id');
+    $data['sub_menus'] = Category::where('status', 1)
+        ->where('position', 'mega_menu_child')
+        ->whereHas('parents')
+        ->select(
+            'id',
+            'name',
+            'parent_id',
+            'slug as category_slug'
+        )
+        ->get()
+        ->groupBy('parent_id');
 
-return $data;
+    return $data;
 
-
-
-        // $menus = Menu::where('menus.status', true)
-        // ->join('categories', 'menus.category_id', '=', 'categories.id')
-        // ->select(
-        //     'menus.*',
-        //     'categories.name as category_name',
-        //     'categories.slug as category_slug'
-        // )
-        // ->get()
-        // ->groupBy('position');
-
-        // $data['top_menus']         = $menus['header_top']   ?? collect();
-        // $data['middle_menus']      = $menus['header']       ?? collect();
-        // $data['mega_menus']        = $menus['mega_menu']    ?? collect();
-        // $data['footer_col1_menus'] = $menus['footer_col1']  ?? collect();
-        // $data['footer_col2_menus'] = $menus['footer_col2']  ?? collect();
-
-
-        // $data['sub_menus'] = DB::table('menu_items')
-        //     ->get()
-        //     ->groupBy('menu_id');
-        // return $data;
     }
 
      public function getSubCategoryData($category_id){

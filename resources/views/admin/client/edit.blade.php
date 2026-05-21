@@ -12,20 +12,20 @@
             <input type="text" class="form-control" id="name" name="name" value="{{ $data->name }}"
                 placeholder="Name" required>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6" style="display:none">
             <label for="region_id" class="form-label"><b>Region <span class="text-danger">*</span></b></label>
             <select name="region_id" id="region_id" class="form-select select" data-placeholder="Select Region" required>
-                <option value=""></option>
+                <option value="1"></option>
                 @foreach ($additionalData['regions'] as $item)
                     <option value="{{ $item->id }}" {{ $data->region_id == $item->id ? 'selected' : '' }}>
                         {{ $item->name }}</option>
                 @endforeach
             </select>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6" style="display:none">
             <label for="area_id" class="form-label"><b>Area <span class="text-danger">*</span></b></label>
             <select name="area_id" id="area_id" class="form-select select" data-placeholder="Select Area" required>
-                <option value=""></option>
+                <option value="1"></option>
                 @php
                     $areas = \App\Models\Area::where('region_id', $data->region_id)
                         ->where('status', true)
@@ -44,11 +44,11 @@
                 @endforeach
             </select>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6" style="display:none">
             <label for="territory_id" class="form-label"><b>Territory <span class="text-danger">*</span></b></label>
             <select name="territory_id" id="territory_id" class="form-select select" data-placeholder="Select Territory"
                 required>
-                <option value=""></option>
+                <option value="1"></option>
                 @php
                     $territories = \App\Models\Territory::where('area_id', $data->area_id)
                         ->where('status', true)

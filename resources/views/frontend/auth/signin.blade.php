@@ -62,7 +62,7 @@
 
                         <p class="text-center mt-3 mb-0">
                             Don't have an account?
-                            <a href="{{ route('auth.signupPage') }}">Sign up</a>
+                            <a href="{{ route('auth.signupPage') }}" style="color:#1a8961">Sign up</a>
                         </p>
 
                     </div>

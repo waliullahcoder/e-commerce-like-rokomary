@@ -7,7 +7,19 @@
         $deletePermission = str_replace('index', 'destroy', $currentRouteName);
         $deleteUrl = route($deletePermission, 0);
     @endphp
+<style>
+    .dt-buttons{
+    margin-bottom:15px;
+    }
 
+    .dt-button{
+        background:#198754 !important;
+        border:none !important;
+        color:#fff !important;
+        border-radius:6px !important;
+        padding:8px 15px !important;
+    }
+</style>
     <table class="dataTable table align-middle" style="width: 100%">
         <thead>
             <tr class="text-nowrap">
@@ -57,76 +69,89 @@
 
 @push('js')
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('.dataTable').dataTable({
-                processing: true,
-                serverSide: true,
-                responsive: true,
-                ajax: {
-                    url: "{{ $ajaxUrl }}",
-                    type: "GET",
-                    data: function(data) {
-                        data.type = $('#filter').val();
+       $(document).ready(function() {
+
+    $('.dataTable').DataTable({
+        processing: true,
+        serverSide: true,
+        responsive: true,
+
+        dom: 'Bfrtip',
+
+        buttons: [{
+            extend: 'excelHtml5',
+            text: '<i class="fas fa-file-excel"></i> Export Excel',
+            className: 'btn btn-success btn-sm'
+        }],
+
+        ajax: {
+            url: "{{ $ajaxUrl }}",
+            type: "GET",
+            data: function(data) {
+                data.type = $('#filter').val();
+            }
+        },
+
+        columns: [{
+                data: "checkbox",
+                name: "checkbox",
+                orderable: false,
+                searchable: false,
+                className: "text-center",
+                width: '20'
+            },
+            {
+                data: 'image',
+                name: 'image',
+                orderable: false,
+                searchable: false
+            },
+            {
+                data: 'name',
+                name: 'name'
+            },
+            {
+                data: 'user_name',
+                name: 'user_name'
+            },
+            {
+                data: 'role_names',
+                name: 'role_names',
+                render: function(data) {
+                    if (Array.isArray(data) && data.length > 0) {
+                        return data.map(role =>
+                            `<span class="badge bg-primary me-1 rounded-0 fw-normal">${role}</span>`
+                        ).join('');
                     }
+                    return '<span class="text-muted">No Role</span>';
                 },
-                columns: [{
-                        data: "checkbox",
-                        name: "checkbox",
-                        orderable: false,
-                        searchable: false,
-                        className: "text-center",
-                        width: '20'
-                    },
-                    {
-                        data: 'image',
-                        name: 'image',
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        data: 'name',
-                        name: 'name'
-                    },
-                    {
-                        data: 'user_name',
-                        name: 'user_name'
-                    },
-                    {
-                        data: 'role_names',
-                        name: 'role_names',
-                        render: function(data) {
-                            if (Array.isArray(data) && data.length > 0) {
-                                return data.map(role =>
-                                    `<span class="badge bg-primary me-1 rounded-0 fw-normal">${role}</span>`
-                                ).join('');
-                            }
-                            return '<span class="text-muted">No Role</span>';
-                        },
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        data: 'status',
-                        name: 'status',
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        data: 'actions',
-                        name: 'actions',
-                        orderable: false,
-                        searchable: false,
-                        className: "text-end",
-                        width: '90'
-                    }
-                ],
-                fnDrawCallback: function() {
-                    const tooltips = document.querySelectorAll('.tt');
-                    tooltips.forEach(t => {
-                        new bootstrap.Tooltip(t);
-                    });
-                }
+                orderable: false,
+                searchable: false
+            },
+            {
+                data: 'status',
+                name: 'status',
+                orderable: false,
+                searchable: false
+            },
+            {
+                data: 'actions',
+                name: 'actions',
+                orderable: false,
+                searchable: false,
+                className: "text-end",
+                width: '90'
+            }
+        ],
+
+        fnDrawCallback: function() {
+            const tooltips = document.querySelectorAll('.tt');
+            tooltips.forEach(t => {
+                new bootstrap.Tooltip(t);
             });
-        });
+        }
+    });
+
+});
     </script>
 @endpush

@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Invest;
 use App\Models\Product;
+use App\Models\Collection;
+use App\Models\Expense;
 use App\Models\ProductionList;
 use App\Models\ProfitDistribution;
 use App\Models\SalesList;
@@ -195,7 +197,78 @@ class AuthController extends Controller
             'months' => $months,
         ];
 
-        return view('admin.auth.dashbaord', compact('dashboardData'));
+   //=================Invest information============================================================
+    $year = $request->year ?? date('Y');
+    $month = $request->month ?? date('F');
+
+    // Convert month name to number
+    $monthNumber = date('m', strtotime($month));
+
+    // Date range
+    $startDate = "$year-$monthNumber-01";
+    $endDate = date("Y-m-t", strtotime($startDate));
+
+    // ======================
+    // ORDERS
+    // ======================
+    $total_monthly_orders = Order::whereBetween('created_at', [$startDate, $endDate])->count();
+
+    $total_monthly_delivered_orders = Order::whereBetween('created_at', [$startDate, $endDate])
+        ->where('status', 'delivered')
+        ->count();
+
+    $total_monthly_order_amount = Order::whereBetween('created_at', [$startDate, $endDate])
+        ->avg('total') ?? 0;
+
+    $collection = Collection::whereBetween('date', [$startDate, $endDate])
+        ->sum('amount');
+    $total_sales = Order::whereBetween('created_at', [$startDate, $endDate])
+        ->sum('total')+$collection;
+
+    // ======================
+    // PURCHASE (example)
+    // ======================
+    $total_purchases = 0; // replace with your purchase model
+
+    // ======================
+    // EXPENSES
+    // ======================
+    $total_expense = Expense::whereBetween('date', [$startDate, $endDate])->sum('amount');
+
+    $profitDistribution = ProfitDistribution::where('month', $month)
+        ->where('year', $year)
+        ->first();
+
+    $investorProfit = $profitDistribution->invest_amount ?? 0;
+
+    // SHARE
+    $totalShareQty = 0;
+    $perShareProfit = 0;
+
+    if ($profitDistribution && $profitDistribution->list->sum('invest_qty') > 0) {
+        $perShareProfit =
+            $profitDistribution->list->sum('invest_amount') /
+            $profitDistribution->list->sum('invest_qty');
+
+        $totalShareQty = $profitDistribution->list->sum('invest_qty');
+    }
+
+
+        return view('admin.auth.dashbaord', compact(
+            'dashboardData',
+            'year',
+            'month',
+            'total_monthly_orders',
+            'total_monthly_delivered_orders',
+            'total_monthly_order_amount',
+            'total_sales',
+            'total_purchases',
+            'profitDistribution',
+            'investorProfit',
+            'total_expense',
+            'totalShareQty',
+            'perShareProfit'
+            ));
         }
 
         

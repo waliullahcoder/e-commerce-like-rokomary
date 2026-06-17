@@ -228,7 +228,7 @@
                                             
                                             
                                             <tr class="bg-light">
-                                                <th>Management Cost</th>
+                                                <th>Total Expense</th>
                                                 <td class="text-center" width="30">=&gt;</td>
                                                 <td class="text-end">{{ number_format($total_expense) }}</td>
                                             </tr>

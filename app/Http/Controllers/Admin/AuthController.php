@@ -235,25 +235,13 @@ class AuthController extends Controller
     // ======================
     $total_expense = Expense::whereBetween('date', [$startDate, $endDate])->sum('amount');
 
-    $profitDistribution = ProfitDistribution::where('month', $month)
+    $investorProfit = ProfitDistribution::where('month', $month)
         ->where('year', $year)
-        ->first();
-
-    $investorProfit = $profitDistribution->invest_amount ?? 0;
-
-    // SHARE
-    $totalShareQty = 0;
-    $perShareProfit = 0;
-
-    if ($profitDistribution && $profitDistribution->list->sum('invest_qty') > 0) {
-        $perShareProfit =
-            $profitDistribution->list->sum('invest_amount') /
-            $profitDistribution->list->sum('invest_qty');
-
-        $totalShareQty = $profitDistribution->list->sum('invest_qty');
-    }
-
-
+        ->sum('profit_amount')??0;
+    $totalShareQty = ProfitDistribution::where('month', $month)
+        ->where('year', $year)
+        ->sum('invest_qty')??0;
+    $perShareProfit= $investorProfit? $investorProfit/$totalShareQty : 0;
         return view('admin.auth.dashbaord', compact(
             'dashboardData',
             'year',
@@ -263,7 +251,6 @@ class AuthController extends Controller
             'total_monthly_order_amount',
             'total_sales',
             'total_purchases',
-            'profitDistribution',
             'investorProfit',
             'total_expense',
             'totalShareQty',

@@ -168,7 +168,7 @@ body {
             <!-- Logo -->
             <a href="{{ route('home') }}">
                 <img src="{{ asset(file_exists($settings->logo) ? $settings->logo : 'frontend/images/logo/logo.jpg') }}"
-                     height="40" alt="{{ $settings->app_name }}">
+                     height="100" alt="{{ $settings->app_name }}">
             </a>
 
             <!-- Desktop Search (desktop only) -->
